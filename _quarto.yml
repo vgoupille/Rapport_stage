@@ -29,7 +29,7 @@ book:
     - text: "Annexe C"
       file: "chapters/C-Appendix.qmd"
     
-  output-file: "thesis.pdf"
+  output-file: "thesis"
   sidebar:
     style: "docked"
   downloads: [pdf]
@@ -69,7 +69,8 @@ format:
       search: true
       left:
         - text: "Download PDF"
-          file: _book/thesis.pdf
+          #file: _book/thesis.pdf
+          file: docs/thesis.pdf
     comments:
       hypothesis: true
   bioinformatics-Msc-thesis-pdf:
