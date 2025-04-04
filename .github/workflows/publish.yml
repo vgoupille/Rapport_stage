@@ -56,7 +56,9 @@ jobs:
           path: |
             ~/.TinyTeX
             ~/.cache/tinytex
-          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex', '**/*.qmd') }}
+          key: tinytex-2025-${{ runner.os }}-${{ hashFiles('**/*.tex', '**/*.qmd') }}
+          restore-keys: |
+            tinytex-2025-${{ runner.os }}-
 
       - name: Install System Dependencies
         run: |
@@ -83,50 +85,34 @@ jobs:
 
       - name: Install and Setup TinyTeX
         run: |
-          if [ ! -d "~/.TinyTeX" ] || [ ! -f "~/.TinyTeX/bin/x86_64-linux/tlmgr" ]; then
-            quarto install tinytex
-            tlmgr update --self
-            tlmgr path add
+          # Vérifie si TinyTeX est déjà installé et à la bonne version
+          if [ -d "$HOME/.TinyTeX" ] && [ -f "$HOME/.TinyTeX/bin/x86_64-linux/tlmgr" ]; then
+            export PATH="$PATH:$HOME/.TinyTeX/bin/x86_64-linux"
+            INSTALLED_VERSION=$(tlmgr --version | grep "revision" | grep -o "202[0-9]")
+            if [ "$INSTALLED_VERSION" = "2025" ]; then
+              echo "TinyTeX 2025 déjà installé, on garde la version en cache"
+            else
+              echo "Version obsolète détectée ($INSTALLED_VERSION), réinstallation nécessaire"
+              rm -rf ~/.TinyTeX
+              quarto install tinytex --update
+            fi
+          else
+            echo "TinyTeX non trouvé, installation..."
+            quarto install tinytex --update
           fi
+
+          # Configure tlmgr
+          export PATH="$PATH:$HOME/.TinyTeX/bin/x86_64-linux"
           tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-          tlmgr update --all
-          tlmgr install \
-            fvextra \
-            bera \
-            mathdesign \
-            sourcecodepro \
-            fira \
-            fontawesome \
-            unicode-math \
-            tcolorbox \
-            environ \
-            fancyvrb \
-            listings \
-            xcolor \
-            booktabs \
-            multirow \
-            wrapfig \
-            float \
-            colortbl \
-            pdflscape \
-            tabu \
-            varwidth \
-            threeparttable \
-            threeparttablex \
-            etoolbox \
-            ulem \
-            makecell \
-            geometry \
-            setspace \
-            babel-french \
-            carlisle \
-            latexmk \
-            collection-fontsrecommended \
-            collection-latex \
-            collection-latexrecommended \
-            collection-fontsrecommended \
-            collection-langenglish \
-            collection-langfrench
+
+          # Installation des packages seulement si nécessaire
+          echo "Vérification et installation des packages LaTeX..."
+          for pkg in fvextra bera mathdesign sourcecodepro fira fontawesome unicode-math tcolorbox environ fancyvrb listings xcolor booktabs multirow wrapfig float colortbl pdflscape tabu varwidth threeparttable threeparttablex etoolbox ulem makecell geometry setspace babel-french carlisle latexmk collection-fontsrecommended collection-latex collection-latexrecommended collection-langenglish collection-langfrench; do
+            if ! tlmgr info "$pkg" >/dev/null 2>&1; then
+              echo "Installation de $pkg..."
+              tlmgr install "$pkg"
+            fi
+          done
 
       - name: Create latexmkrc
         run: |
