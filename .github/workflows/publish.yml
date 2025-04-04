@@ -40,17 +40,6 @@ jobs:
         if: steps.cache-tinytex.outputs.cache-hit != 'true'
         run: quarto install tinytex
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          cache: 'pip'
-
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt || echo "No requirements.txt found"
-
       - name: Render Quarto Book
         run: |
           quarto check
