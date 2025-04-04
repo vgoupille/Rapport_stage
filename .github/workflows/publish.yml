@@ -1,0 +1,50 @@
+name: Render and Publish Quarto Book
+
+on:
+  push:
+    branches:
+      - main  # Exécute seulement sur la branche principale
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache Quarto installation
+        id: cache-quarto
+        uses: actions/cache@v4
+        with:
+          path: ~/quarto
+          key: quarto-${{ runner.os }}-1.4.0  # Modifier selon la version
+
+      - name: Set up Quarto
+        if: steps.cache-quarto.outputs.cache-hit != 'true'
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: latest  # Ou spécifier une version spécifique
+
+      - name: Cache TinyTeX
+        id: cache-tinytex
+        uses: actions/cache@v4
+        with:
+          path: ~/.TinyTeX
+          key: tinytex-${{ runner.os }}
+
+      - name: Install TinyTeX
+        if: steps.cache-tinytex.outputs.cache-hit != 'true'
+        run: quarto install tinytex
+
+      - name: Set up Pandoc (déjà inclus avec Quarto, pas besoin de le réinstaller)
+        uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Render Quarto Book
+        run: quarto render --execute  # Génère le livre et exécute le code
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs
