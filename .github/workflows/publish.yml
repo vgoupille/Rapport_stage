@@ -85,34 +85,32 @@ jobs:
 
       - name: Install and Setup TinyTeX
         run: |
-          # Vérifie si TinyTeX est déjà installé et à la bonne version
-          if [ -d "$HOME/.TinyTeX" ] && [ -f "$HOME/.TinyTeX/bin/x86_64-linux/tlmgr" ]; then
-            export PATH="$PATH:$HOME/.TinyTeX/bin/x86_64-linux"
-            INSTALLED_VERSION=$(tlmgr --version | grep "revision" | grep -o "202[0-9]")
-            if [ "$INSTALLED_VERSION" = "2025" ]; then
-              echo "TinyTeX 2025 déjà installé, on garde la version en cache"
-            else
-              echo "Version obsolète détectée ($INSTALLED_VERSION), réinstallation nécessaire"
-              rm -rf ~/.TinyTeX
-              quarto install tinytex
-            fi
-          else
-            echo "TinyTeX non trouvé, installation..."
-            quarto install tinytex
-          fi
-
-          # Configure tlmgr
+          # Installation de TinyTeX
+          quarto install tinytex
+          
+          # Configure PATH
           export PATH="$PATH:$HOME/.TinyTeX/bin/x86_64-linux"
-          tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-
-          # Installation des packages seulement si nécessaire
-          echo "Vérification et installation des packages LaTeX..."
-          for pkg in fvextra bera mathdesign sourcecodepro fira fontawesome unicode-math tcolorbox environ fancyvrb listings xcolor booktabs multirow wrapfig float colortbl pdflscape tabu varwidth threeparttable threeparttablex etoolbox ulem makecell geometry setspace babel-french carlisle latexmk collection-fontsrecommended collection-latex collection-latexrecommended collection-langenglish collection-langfrench; do
-            if ! tlmgr info "$pkg" >/dev/null 2>&1; then
-              echo "Installation de $pkg..."
-              tlmgr install "$pkg"
-            fi
-          done
+          
+          # Mise à jour de tlmgr
+          wget -q https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+          chmod +x update-tlmgr-latest.sh
+          ./update-tlmgr-latest.sh -- --upgrade
+          rm update-tlmgr-latest.sh
+          
+          # Met à jour tous les packages
+          tlmgr update --self
+          tlmgr update --all
+          
+          # Installation des packages nécessaires
+          tlmgr install \
+            fvextra bera mathdesign sourcecodepro fira fontawesome \
+            unicode-math tcolorbox environ fancyvrb listings xcolor \
+            booktabs multirow wrapfig float colortbl pdflscape tabu \
+            varwidth threeparttable threeparttablex etoolbox ulem \
+            makecell geometry setspace babel-french carlisle latexmk \
+            collection-fontsrecommended collection-latex \
+            collection-latexrecommended collection-langenglish \
+            collection-langfrench
 
       - name: Create latexmkrc
         run: |
