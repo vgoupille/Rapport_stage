@@ -36,7 +36,7 @@ book:
   # sharing: [linkedin] 
   search: true
 
-  repo-url: "https://github.com/vgoupille/bioinformatics-Msc-thesis" # TODO: change to your repository URL
+  repo-url: "https://github.com/vgoupille/Rapport_stage" # TODO: change to your repository URL
 
 bibliography: bibliography/thesisrefs.bib
 csl: styles/nature.csl
