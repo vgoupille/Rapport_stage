@@ -7,11 +7,25 @@ format: gfm
 ```{r}
 #| include: false
 # Create pdf and png version of template
-install.packages("pdftools")
+# Check and install required packages if needed
+if (!require("pdftools")) {
+  install.packages("pdftools")
+}
+if (!require("tidyverse")) {
+  install.packages("tidyverse") 
+}
+if (!require("quarto")) {
+  install.packages("quarto")
+}
+if (!require("magick")) {
+  install.packages("magick")
+}
+
+# Load required packages
+library(pdftools)
 library(tidyverse)
 library(quarto)
 library(magick)
-library (pdftools)
 
 #create examples folder if it doesn't exist
 if (!dir.exists("examples")) {
