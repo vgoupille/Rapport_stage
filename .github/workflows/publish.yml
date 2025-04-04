@@ -106,6 +106,7 @@ jobs:
             quarto install tinytex --no-prompt
             
             # Préinstaller les packages LaTeX les plus courants
+            tlmgr update --self
             tlmgr install \
               amsmath \
               babel-french \
@@ -150,16 +151,20 @@ jobs:
             tlmgr path add
           fi
           
-          # Désactiver l'installation automatique pendant le rendu
-          tlmgr option -- autoinstall 0
-          
           # Vérifier l'installation
           tlmgr list --only-installed
 
+      # Configuration de pdflatex pour éviter les installations automatiques
+      - name: Configure pdflatex
+        run: |
+          mkdir -p ~/.texmf/web2c
+          echo "shell_escape = t" >> ~/.texmf/web2c/texmf.cnf
+          echo "auto_install = 0" >> ~/.texmf/web2c/texmf.cnf
+          
       - name: Render Quarto Book
         run: |
           quarto check
-          quarto render --execute --debug
+          TEXMFVAR=~/.texmf quarto render --execute --debug
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
