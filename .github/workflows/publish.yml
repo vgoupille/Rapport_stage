@@ -43,7 +43,7 @@ jobs:
       - name: Render Quarto Book
         run: |
           quarto check
-          quarto render --execute
+          quarto render --execute --debug
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
