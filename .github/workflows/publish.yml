@@ -94,11 +94,11 @@ jobs:
             else
               echo "Version obsolète détectée ($INSTALLED_VERSION), réinstallation nécessaire"
               rm -rf ~/.TinyTeX
-              quarto install tinytex --update
+              quarto install tinytex
             fi
           else
             echo "TinyTeX non trouvé, installation..."
-            quarto install tinytex --update
+            quarto install tinytex
           fi
 
           # Configure tlmgr
