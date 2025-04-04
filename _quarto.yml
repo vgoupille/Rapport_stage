@@ -74,6 +74,17 @@ format:
           file: docs/thesis.pdf
     comments:
       hypothesis: true
+    other-links:
+      - text: NASA Open Data
+        href: https://data.nasa.gov/
+    code-links:
+      - text: Data Import Code
+        icon: file-code
+        href: https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R
+      - text: script test
+        icon: file-code
+        href: data/test.py
+
   bioinformatics-Msc-thesis-pdf:
     cross-references: true 
     # TODO: add a reference to the figure
