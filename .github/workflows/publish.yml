@@ -50,10 +50,13 @@ jobs:
 
       # Cache TinyTeX
       - name: Cache TinyTeX
+        id: cache-tinytex
         uses: actions/cache@v4
         with:
-          path: ~/.TinyTeX
-          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+          path: |
+            ~/.TinyTeX
+            ~/.cache/tinytex
+          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex', '**/*.qmd') }}
 
       - name: Install System Dependencies
         run: |
@@ -78,42 +81,53 @@ jobs:
           if (!require("devtools")) install.packages("devtools", repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
-      - name: Install TinyTeX
+      - name: Install and Setup TinyTeX
         run: |
-          if [ ! -d "~/.TinyTeX" ]; then
+          if [ ! -d "~/.TinyTeX" ] || [ ! -f "~/.TinyTeX/bin/x86_64-linux/tlmgr" ]; then
             quarto install tinytex
-            tlmgr install \
-              fvextra \
-              bera \
-              mathdesign \
-              sourcecodepro \
-              fira \
-              fontawesome \
-              unicode-math \
-              tcolorbox \
-              environ \
-              fancyvrb \
-              listings \
-              xcolor \
-              booktabs \
-              multirow \
-              wrapfig \
-              float \
-              colortbl \
-              pdflscape \
-              tabu \
-              varwidth \
-              threeparttable \
-              threeparttablex \
-              etoolbox \
-              ulem \
-              makecell \
-              geometry \
-              setspace \
-              babel-french \
-              carlisle \
-              latexmk
+            tlmgr update --self
+            tlmgr path add
           fi
+          tlmgr install \
+            fvextra \
+            bera \
+            mathdesign \
+            sourcecodepro \
+            fira \
+            fontawesome \
+            unicode-math \
+            tcolorbox \
+            environ \
+            fancyvrb \
+            listings \
+            xcolor \
+            booktabs \
+            multirow \
+            wrapfig \
+            float \
+            colortbl \
+            pdflscape \
+            tabu \
+            varwidth \
+            threeparttable \
+            threeparttablex \
+            etoolbox \
+            ulem \
+            makecell \
+            geometry \
+            setspace \
+            babel-french \
+            carlisle \
+            latexmk \
+            collection-fontsrecommended \
+            collection-latex
+
+      - name: Create latexmkrc
+        run: |
+          echo '$pdf_mode = 1;' > ~/.latexmkrc
+          echo '$max_repeat = 3;' >> ~/.latexmkrc
+          echo '$latex = "latex -interaction=nonstopmode %O %S";' >> ~/.latexmkrc
+          echo '$pdflatex = "pdflatex -interaction=nonstopmode %O %S";' >> ~/.latexmkrc
 
       - name: Render Quarto Book
         run: |
