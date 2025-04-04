@@ -1,0 +1,265 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Msc Bioinformatics thesis",
+    "section": "",
+    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\nAbstract\n\nPhasellus enim erat, vestibulum vel, adedededliquam a, posuere eu, velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a, enim. Nunc tincidunt ante vitae massa. Duis ante orci, molestie vitae, vehicula venenatis, tincidunt ac, pede. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. Etiam commodo dui eget wisi. Donec iaculis gravida nulla. Donec quis nibh at felis congue commodo. Etiam bibendum elit eget erat. Maecenas ipsum velit, consectetuer eu, lobortis ut, dictum at, dui. In rutrum. Sed ac dolor sit amet purus malesuada congue. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Suspendisse sagittis ultrices augue. Mauris metus. Nunc dapibus tortor vel mi dapibus sollicitudin. Etiam posuere lacus quis dolor. Praesent id justo in neque elementum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus.\nMaecenas lorem. Pellentesque pr Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Fusce wisi. Phasellus faucibus molestie nisl. Fusce eget urna. Curabitur vitae diam non\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
+    "crumbs": [
+      "Front matter"
+    ]
+  },
+  {
+    "objectID": "chapters/01-Introduction.html",
+    "href": "chapters/01-Introduction.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Litterature review\ntest de citation de figure Table C.1\nje cite la figure Figure 1.1\ntest ajout\ndeddfefde1,2 Internship description\nThe survival of organisms in evolving environments is driven by their fitness. The cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms will have to compete, cooperate and/or specialize as a result of how fit their traits are considering their biotic and abiotic environment. Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, [[auxotrophic bacteria]] (i.e bacteria lacking genes coding for a molecule essential for their survival) have been studied (Morris et al., 2012).3\nAuxotroph bacteria can take advantage of leaky functions of helper’s organisms to fulfill their needs in specific compounds (Morris et al., 2014, Estrela et al., 2016).4,5 With a reduced genetic material, the beneficiary organism fitness is improved, at the risk of being dependent on the helpers presence in their environment. The conditions in which patterns of such [[division of labor (DOL)]] arise are still obscure, but its advantages for bacterial population are clear: DOL allows to diminish the cost associated to certain functions and the possibility of cohabitation of various mutants/specialized cells within the population to respond as a whole to environmental constraints, and thrive. New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell -omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.\nThe goal of this internship is to explore [[scRNA-seq]] (single-cell RNA-seq) datasets of [[Pseudomonas brassicacearum]], a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.  The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.\ntest de automatisation github actions en ajoutant cette ligne",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-Introduction.html#litterature-review",
+    "href": "chapters/01-Introduction.html#litterature-review",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).\n\n\n2. Gaisser, K. D. et al. High-throughput single-cell transcriptomics of bacteria using combinatorial barcoding. Nature Protocols 19, 3048–3084 (2024).\n\n\n3. Morris, J. J., Lenski, R. E. & Zinser, E. R. The black queen hypothesis: Evolution of dependencies through adaptive gene loss. mBio 3, e00036–12 (2012).\n\n\n4. Morris, E. K. et al. Choosing and using diversity indices: insights for ecological applications from the German Biodiversity Exploratories. Ecology and Evolution 4, 3514–3524 (2014).\n\n\n5. Estrela, S., Kerr, B. & Morris, J. J. Transitions in individuality through symbiosis. Current Opinion in Microbiology 31, 191–198 (2016).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-Materials-and-methods.html",
+    "href": "chapters/02-Materials-and-methods.html",
+    "title": "2  Materials and Methods",
+    "section": "",
+    "text": "2.1 Materials\nggghhhhh",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html",
+    "href": "chapters/03-Results.html",
+    "title": "3  Results",
+    "section": "",
+    "text": "3.1 Overview\nThis chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#single-cell-rna-seq-analysis",
+    "href": "chapters/03-Results.html#single-cell-rna-seq-analysis",
+    "title": "3  Results",
+    "section": "3.2 Single-cell RNA-seq Analysis",
+    "text": "3.2 Single-cell RNA-seq Analysis\n\nData Quality and Preprocessing\n\n\nCell Type Identification\n\n\nDifferential Expression Analysis\n\n\nDivision of Labor Patterns",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#functional-analysis",
+    "href": "chapters/03-Results.html#functional-analysis",
+    "title": "3  Results",
+    "section": "3.3 Functional Analysis",
+    "text": "3.3 Functional Analysis\n\nPathway Enrichment\n\n\nGene Set Analysis\n\n\nRegulatory Network Analysis",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#integration-with-previous-studies",
+    "href": "chapters/03-Results.html#integration-with-previous-studies",
+    "title": "3  Results",
+    "section": "3.4 Integration with Previous Studies",
+    "text": "3.4 Integration with Previous Studies",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#summary-of-key-findings",
+    "href": "chapters/03-Results.html#summary-of-key-findings",
+    "title": "3  Results",
+    "section": "3.5 Summary of Key Findings",
+    "text": "3.5 Summary of Key Findings",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html",
+    "href": "chapters/04-Discussion.html",
+    "title": "4  Discussion",
+    "section": "",
+    "text": "4.1 Interpretation of Key Findings\ntetetdehdhe\nfrfrkrzrkkfrkfzrkfk",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#interpretation-of-key-findings",
+    "href": "chapters/04-Discussion.html#interpretation-of-key-findings",
+    "title": "4  Discussion",
+    "section": "",
+    "text": "Division of Labor Mechanisms\nedezedzed\n\n\nBiological Significance\ne”“e”\n\n\nTechnical Considerations",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#comparison-with-existing-literature",
+    "href": "chapters/04-Discussion.html#comparison-with-existing-literature",
+    "title": "4  Discussion",
+    "section": "4.2 Comparison with Existing Literature",
+    "text": "4.2 Comparison with Existing Literature\n\nSimilarities with Previous Studies\n\n\nNovel Insights\n\n\nDiscrepancies and Their Implications",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#methodological-strengths-and-limitations",
+    "href": "chapters/04-Discussion.html#methodological-strengths-and-limitations",
+    "title": "4  Discussion",
+    "section": "4.3 Methodological Strengths and Limitations",
+    "text": "4.3 Methodological Strengths and Limitations\n\nTechnical Advantages\n\n\nPotential Limitations\n\n\nFuture Methodological Improvements",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#biological-implications",
+    "href": "chapters/04-Discussion.html#biological-implications",
+    "title": "4  Discussion",
+    "section": "4.4 Biological Implications",
+    "text": "4.4 Biological Implications\n\nEcological Significance\n\n\nEvolutionary Perspectives\n\n\nPotential Applications",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#future-research-directions",
+    "href": "chapters/04-Discussion.html#future-research-directions",
+    "title": "4  Discussion",
+    "section": "4.5 Future Research Directions",
+    "text": "4.5 Future Research Directions\n\nOpen Questions\n\n\nSuggested Follow-up Studies\n\n\nTechnical Improvements",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#conclusion",
+    "href": "chapters/04-Discussion.html#conclusion",
+    "title": "4  Discussion",
+    "section": "4.6 Conclusion",
+    "text": "4.6 Conclusion",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-Conclusion-and-future-work.html",
+    "href": "chapters/05-Conclusion-and-future-work.html",
+    "title": "5  Conclusion and Future Work",
+    "section": "",
+    "text": "5.1 Summary of Main Findings",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion and Future Work</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-Conclusion-and-future-work.html#summary-of-main-findings",
+    "href": "chapters/05-Conclusion-and-future-work.html#summary-of-main-findings",
+    "title": "5  Conclusion and Future Work",
+    "section": "",
+    "text": "Key Discoveries\n\n\nMethodological Contributions\n\n\nBiological Insights",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion and Future Work</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-Conclusion-and-future-work.html#impact-on-the-field",
+    "href": "chapters/05-Conclusion-and-future-work.html#impact-on-the-field",
+    "title": "5  Conclusion and Future Work",
+    "section": "5.2 Impact on the Field",
+    "text": "5.2 Impact on the Field\n\nContribution to Single-cell RNA-seq Methodology\n\n\nContribution to Pseudomonas Research\n\n\nBroader Implications for Microbial Ecology",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion and Future Work</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-Conclusion-and-future-work.html#future-research-directions",
+    "href": "chapters/05-Conclusion-and-future-work.html#future-research-directions",
+    "title": "5  Conclusion and Future Work",
+    "section": "5.3 Future Research Directions",
+    "text": "5.3 Future Research Directions\n\nTechnical Improvements\n\n\nBiological Questions to Address\n\n\nPotential Applications",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion and Future Work</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-Conclusion-and-future-work.html#final-remarks",
+    "href": "chapters/05-Conclusion-and-future-work.html#final-remarks",
+    "title": "5  Conclusion and Future Work",
+    "section": "5.4 Final Remarks",
+    "text": "5.4 Final Remarks",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion and Future Work</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-Conclusion-and-future-work.html#references",
+    "href": "chapters/05-Conclusion-and-future-work.html#references",
+    "title": "5  Conclusion and Future Work",
+    "section": "5.5 References",
+    "text": "5.5 References",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion and Future Work</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-References.html",
+    "href": "chapters/06-References.html",
+    "title": "Bibliography",
+    "section": "",
+    "text": "1. Kuchina, A. et al. Microbial single-cell RNA\nsequencing by split-pool barcoding. Science\n371, eaba5257 (2021).\n\n\n2. Gaisser, K. D. et al. High-throughput\nsingle-cell transcriptomics of bacteria using combinatorial\nbarcoding. Nature Protocols 19, 3048–3084\n(2024).\n\n\n3. Morris, E. K. et al. Choosing and using diversity\nindices: insights for ecological applications from the German\nBiodiversity Exploratories. Ecology and Evolution\n4, 3514–3524 (2014).\n\n\n4. Morris, J. J., Lenski, R. E. & Zinser, E.\nR. The black queen\nhypothesis: Evolution of dependencies through adaptive gene loss.\nmBio 3, e00036–12 (2012).\n\n\n5. Estrela, S., Kerr, B. & Morris, J. J. Transitions in\nindividuality through symbiosis. Current Opinion in\nMicrobiology 31, 191–198 (2016).",
+    "crumbs": [
+      "Bibliography"
+    ]
+  },
+  {
+    "objectID": "chapters/A-Appendix.html",
+    "href": "chapters/A-Appendix.html",
+    "title": "Msc Bioinformatics thesis",
+    "section": "",
+    "text": "Vous pouvez insérer ici des tableaux supplémentaires ou des sorties d’analyses.\n\n\n\nTable 1: Titre du tableau\n\n\n\n\n\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n———-\n———-\n———-\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n———-\n———-\n———-\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n———-\n———-\n———-\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Surus\n\n\n\n\n\n\n\n\n\n\n\n(b) Hanno\n\n\n\n\n\n\n\nFigure 1: Famous Elephants",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Annexe A </span>"
+    ]
+  },
+  {
+    "objectID": "chapters/B-Appendix.html",
+    "href": "chapters/B-Appendix.html",
+    "title": "Appendix B — Annexe B: erferfrefref",
+    "section": "",
+    "text": "Figure A",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Annexe B</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/C-Appendix.html",
+    "href": "chapters/C-Appendix.html",
+    "title": "Appendix C — Annexe C: codcefe",
+    "section": "",
+    "text": "Table C.1: Tableau représentant les résultats des expériences",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Annexe C</span>"
+    ]
+  }
+]
