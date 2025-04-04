@@ -7,19 +7,26 @@ format: gfm
 ```{r}
 #| include: false
 # Create pdf and png version of template
+install.packages("pdftools")
 library(tidyverse)
 library(quarto)
 library(magick)
+library (pdftools)
+
+#create examples folder if it doesn't exist
+if (!dir.exists("examples")) {
+  dir.create("examples")
+}
 
 # Render template
 quarto_render(input = "index.qmd")
 # Convert rendered PDF to PNG
-image_read_pdf("_book/This-is-my-thesis.pdf", pages = 1) |>
+image_read_pdf("docs/thesis.pdf", pages = 1) |>
   image_montage(geometry = "x1000+25+35", tile = 1, bg = "grey92", shadow = TRUE) |>
   image_convert(format = "png") |>
   image_write("examples/template.png", )
 # Move pdf to examples folder
-fs::file_copy("_book/This-is-my-thesis.pdf", "examples/template.pdf", overwrite = TRUE)
+fs::file_copy("docs/thesis.pdf", "examples/template.pdf", overwrite = TRUE)
 ```
 
 # University of Rennes Msc Thesis Template
@@ -31,23 +38,10 @@ This is a Quarto template that assists you in creating a University of Rennes Ms
 You can create a thesis based on this template with the following command:
 
 ```bash
-quarto use template quarto-vgoupille/bioinformatics-Msc-thesis
+quarto use template quarto-vgoupille/Rapport_stage
 ```
 
 This will install the extension and create the files that you can use as a starting place for your thesis.
 
 [![](examples/template.png)](examples/template.pdf)
-
-
-```{r}
-#| echo: true
-#| label: load_packages
-#| include: false
-#combine two pdf files
-library(pdftools)
-
-pdf_files <- list.files(path = ".", pattern = "*.pdf", full.names = TRUE)
-pdf_combined <- pdftools::pdf_combine(pdf_files, output = "combined.pdf")
-```
-
 
