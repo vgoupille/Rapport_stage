@@ -12,38 +12,43 @@ permissions:
 jobs:
   render:
     runs-on: ubuntu-latest
-
+    container:
+      image: rocker/verse:4.3.2
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache Quarto installation
-        id: cache-quarto
-        uses: actions/cache@v4
-        with:
-          path: ~/quarto
-          key: quarto-${{ runner.os }}-1.4.0
+      - name: Install System Dependencies
+        run: |
+          apt-get update && apt-get install -y --no-install-recommends \
+          curl \
+          gdebi-core \
+          && rm -rf /var/lib/apt/lists/*
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: 1.4.549  # Version stable spécifique
+      - name: Install Quarto
+        run: |
+          curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
+          gdebi --non-interactive quarto-linux-amd64.deb
+          rm quarto-linux-amd64.deb
 
-      - name: Cache TinyTeX
-        id: cache-tinytex
-        uses: actions/cache@v4
-        with:
-          path: ~/.TinyTeX
-          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+      - name: Install R Dependencies
+        run: |
+          install.packages(c('rmarkdown', 'knitr', 'tidyverse', 'devtools'), repos = 'https://cloud.r-project.org')
+        shell: Rscript {0}
 
       - name: Install TinyTeX
-        if: steps.cache-tinytex.outputs.cache-hit != 'true'
-        run: quarto install tinytex
+        run: |
+          quarto install tinytex --update=false
 
       - name: Render Quarto Book
         run: |
           quarto check
           quarto render --execute --debug
+
+      - name: Fix Permissions
+        run: |
+          chmod -R a+w docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
