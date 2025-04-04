@@ -87,6 +87,32 @@ format:
         href: test.py
 
   bioinformatics-Msc-thesis-pdf:
-    cross-references: true 
-    # TODO: add a reference to the figure
+    documentclass: report
+    pdf-engine: pdflatex
+    template-partials:
+      - "before-title.tex"
+      - "title.tex"
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \usepackage{bera}
+        \usepackage{mathdesign}
+        \usepackage{sourcecodepro}
+        \usepackage{fira}
+        \usepackage{fontawesome}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+    latex-clean: true
+    latex-auto-install: true
+    latex-tinytex: true
+    cross-references: true
+    fig-pos: "H"
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=2.5cm
+      - right=2.5cm
+    fontsize: 11pt
+    colorlinks: true
+    linestretch: 1.5
     
