@@ -26,17 +26,20 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /var/lib/docker
-          key: docker-${{ runner.os }}-${{ hashFiles('**/*.yml') }}
+          key: docker-${{ runner.os }}-${{ hashFiles('.github/workflows/publish.yml') }}
           restore-keys: |
             docker-${{ runner.os }}-
+
       # Cache R packages
       - name: Cache R packages
         uses: actions/cache@v4
         with:
           path: /usr/local/lib/R/site-library
-          key: r-${{ runner.os }}-${{ hashFiles('**/*.R') }}
+          key: r-pkg-${{ runner.os }}-4.3.2-${{ hashFiles('**/*.R', '**/*.Rmd', '**/*.qmd') }}
           restore-keys: |
-            r-${{ runner.os }}-
+            r-pkg-${{ runner.os }}-4.3.2-
+            r-pkg-${{ runner.os }}-
+
       # Cache Quarto
       - name: Cache Quarto
         uses: actions/cache@v4
@@ -44,14 +47,22 @@ jobs:
           path: |
             /opt/quarto
             ~/.local/share/quarto
-          key: quarto-${{ runner.os }}-${{ hashFiles('**/*.qmd') }}
+          key: quarto-${{ runner.os }}-1.4.549-${{ hashFiles('**/*.qmd') }}
+          restore-keys: |
+            quarto-${{ runner.os }}-1.4.549-
+            quarto-${{ runner.os }}-
 
-      # Cache TinyTeX
+      # Cache TinyTeX avec une meilleure stratégie
       - name: Cache TinyTeX
         uses: actions/cache@v4
         with:
-          path: ~/.TinyTeX
-          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+          path: |
+            ~/.TinyTeX
+            ~/.cache/tinytex
+          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex', '**/*.qmd') }}-${{ github.sha }}
+          restore-keys: |
+            tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex', '**/*.qmd') }}-
+            tinytex-${{ runner.os }}-
 
       - name: Install System Dependencies
         run: |
@@ -59,30 +70,97 @@ jobs:
           curl \
           gdebi-core \
           && rm -rf /var/lib/apt/lists/*
+
       - name: Install Quarto
         run: |
+          QUARTO_VERSION="1.4.549"
           if [ ! -f "/opt/quarto/bin/quarto" ]; then
-            curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
-            gdebi --non-interactive quarto-linux-amd64.deb
-            rm quarto-linux-amd64.deb
+            curl -LO "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb"
+            gdebi --non-interactive quarto-${QUARTO_VERSION}-linux-amd64.deb
+            rm quarto-${QUARTO_VERSION}-linux-amd64.deb
           fi
+          quarto --version
+
       - name: Install R Dependencies
         run: |
-          if (!require("rmarkdown")) install.packages("rmarkdown", repos = "https://cloud.r-project.org")
-          if (!require("knitr")) install.packages("knitr", repos = "https://cloud.r-project.org")
-          if (!require("tidyverse")) install.packages("tidyverse", repos = "https://cloud.r-project.org")
-          if (!require("devtools")) install.packages("devtools", repos = "https://cloud.r-project.org")
+          # Create a list of required packages
+          required_packages <- c("rmarkdown", "knitr", "tidyverse", "devtools")
+          
+          # Check installed versions
+          installed_packages <- rownames(installed.packages())
+          
+          # Install missing packages
+          missing_packages <- setdiff(required_packages, installed_packages)
+          if (length(missing_packages) > 0) {
+            install.packages(missing_packages, repos = "https://cloud.r-project.org")
+          }
+          
+          # Print package versions for debugging
+          installed.packages()[required_packages, "Version"]
         shell: Rscript {0}
 
-      - name: Install TinyTeX
+      - name: Install and Configure TinyTeX
         run: |
           if [ ! -d "~/.TinyTeX" ]; then
-            quarto install tinytex
+            # Installation minimale de TinyTeX
+            quarto install tinytex --no-prompt
+            
+            # Préinstaller les packages LaTeX les plus courants
+            tlmgr install \
+              amsmath \
+              babel-french \
+              caption \
+              graphics \
+              hyperref \
+              latex-bin \
+              listings \
+              lm-math \
+              memoir \
+              microtype \
+              parskip \
+              pdftexcmds \
+              xcolor \
+              fvextra \
+              bera \
+              mathdesign \
+              sourcecodepro \
+              fira \
+              fontawesome \
+              upquote \
+              lineno \
+              fancyvrb \
+              framed \
+              booktabs \
+              multirow \
+              wrapfig \
+              float \
+              colortbl \
+              pdflscape \
+              tabu \
+              varwidth \
+              threeparttable \
+              threeparttablex \
+              environ \
+              trimspaces \
+              ulem \
+              makecell \
+              footnotehyper
+              
+            # Mettre à jour la base de données
+            tlmgr path add
           fi
+          
+          # Désactiver l'installation automatique pendant le rendu
+          tlmgr option -- autoinstall 0
+          
+          # Vérifier l'installation
+          tlmgr list --only-installed
+
       - name: Render Quarto Book
         run: |
           quarto check
           quarto render --execute --debug
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
