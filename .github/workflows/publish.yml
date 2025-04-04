@@ -21,6 +21,40 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Cache Docker images
+      - name: Cache Docker images
+        uses: actions/cache@v4
+        with:
+          path: /var/lib/docker
+          key: docker-${{ runner.os }}-${{ hashFiles('**/*.yml') }}
+          restore-keys: |
+            docker-${{ runner.os }}-
+
+      # Cache R packages
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/lib/R/site-library
+          key: r-${{ runner.os }}-${{ hashFiles('**/*.R') }}
+          restore-keys: |
+            r-${{ runner.os }}-
+
+      # Cache Quarto
+      - name: Cache Quarto
+        uses: actions/cache@v4
+        with:
+          path: |
+            /opt/quarto
+            ~/.local/share/quarto
+          key: quarto-${{ runner.os }}-${{ hashFiles('**/*.qmd') }}
+
+      # Cache TinyTeX
+      - name: Cache TinyTeX
+        uses: actions/cache@v4
+        with:
+          path: ~/.TinyTeX
+          key: tinytex-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+
       - name: Install System Dependencies
         run: |
           apt-get update && apt-get install -y --no-install-recommends \
@@ -30,18 +64,25 @@ jobs:
 
       - name: Install Quarto
         run: |
-          curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
-          gdebi --non-interactive quarto-linux-amd64.deb
-          rm quarto-linux-amd64.deb
+          if [ ! -f "/opt/quarto/bin/quarto" ]; then
+            curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
+            gdebi --non-interactive quarto-linux-amd64.deb
+            rm quarto-linux-amd64.deb
+          fi
 
       - name: Install R Dependencies
         run: |
-          install.packages(c('rmarkdown', 'knitr', 'tidyverse', 'devtools'), repos = 'https://cloud.r-project.org')
+          if (!require("rmarkdown")) install.packages("rmarkdown", repos = "https://cloud.r-project.org")
+          if (!require("knitr")) install.packages("knitr", repos = "https://cloud.r-project.org")
+          if (!require("tidyverse")) install.packages("tidyverse", repos = "https://cloud.r-project.org")
+          if (!require("devtools")) install.packages("devtools", repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
       - name: Install TinyTeX
         run: |
-          quarto install tinytex
+          if [ ! -d "~/.TinyTeX" ]; then
+            quarto install tinytex
+          fi
 
       - name: Render Quarto Book
         run: |
