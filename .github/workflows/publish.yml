@@ -8,9 +8,11 @@ on:
 # Permissions nécessaires pour le déploiement
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  render:
+  build:
     runs-on: ubuntu-latest
     container:
       image: rocker/verse:4.3.2
@@ -46,13 +48,20 @@ jobs:
           quarto check
           quarto render --execute --debug
 
-      - name: Fix Permissions
-        run: |
-          chmod -R a+w docs
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs  # Dossier configuré dans _quarto.yml
-          force_orphan: true  # Garde uniquement la dernière version de la documentation
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
