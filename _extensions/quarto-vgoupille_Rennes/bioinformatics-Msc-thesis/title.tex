@@ -1,0 +1,73 @@
+\def\maketitle{
+\pagenumbering{roman}
+{\sf\thispagestyle{empty}%
+  \null\vskip-.4cm%
+  % Logos at the top
+  \begin{center}
+    \includegraphics[width=4cm]{logo_Univ_Rennes.png}\hspace{2cm}
+    \includegraphics[width=4cm]{Logo_Université_Rennes_1.png}\hspace{2cm}
+  \end{center}
+  \vspace*{2cm}
+  
+  % Title and main information
+  \begin{center}
+    \fontsize{24}{28}\sf
+    \textbf{$title$}\\[1cm]
+    \textbf{$subtitle$}\\[1cm]
+    \fontsize{18}{20}\sf
+    $author$\\[0.5cm]
+    
+    \fontsize{16}{18}\sf 
+    Master 2 in Bioinformatics\\[0.5cm]
+    
+    \fontsize{14}{16}\sf
+    Academic Year: $academic_year$\\[1cm]
+    
+    \fontsize{14}{16}\sf
+    Internship conducted at $affiliation$\\[0.5cm]
+  \end{center}
+  % Logos at the bottom
+  \begin{center}
+    \includegraphics[width=4cm]{$logo$}
+  \end{center}
+  \begin{center}
+    $adresse_acc$\\[0.5cm]
+    $adresse_labo$\\[0.5cm]
+  \end{center}
+  \begin{center}
+    \fontsize{14}{16}\sf
+    \vspace{1cm}
+    Under the supervision of:\\[0.3cm]
+    \fontsize{14}{16}\sf
+    $director$\\[0.3cm]
+    \fontsize{14}{16}\sf
+    $co-director$\\[0.3cm]
+  \end{center}
+  
+  \vfill
+  
+  % Submission date
+  \begin{center}
+    \fontsize{14}{16}\sf 
+    Presented on $defense_date$
+  \end{center}
+  
+  \newpage\mbox{}\thispagestyle{empty}\newpage
+}
+}
+
+% Title and date
+
+$if(title)$
+\title{$title$}
+$endif$
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+\date{$date$}

@@ -1,0 +1,78 @@
+project:
+  type: book
+  #output-dir: _book
+  output-dir: docs  # GitHub Pages serves from 'docs' by default
+book:
+  title: "Msc Bioinformatics thesis"
+  subtitle: "Study of Division of Labor in Pseudomonas throught single-cell RNA-seq"
+  author: 
+    - name: "Valentin Goupille"
+      affiliation: "Ecobio UMR 6553 CNRS-University of Rennes"
+      email: "goupille.valentin@live.fr"
+      github: "https://github.com/vgoupille" #info : ne marche pas sur book 
+      linkedin: "https://www.linkedin.com/in/valentin-goupille/" #info : ne marche pas sur book 
+      orcid: "0009-0006-6795-9234"
+  chapters:
+    - text: "Front matter"
+      file: index.qmd
+    - "chapters/01-Introduction.qmd"
+    - "chapters/02-Materials-and-methods.qmd"
+    - "chapters/03-Results.qmd"
+    - "chapters/04-Discussion.qmd"
+    - "chapters/05-Conclusion-and-future-work.qmd"
+    - "chapters/06-References.qmd"
+  appendices:
+    - text: "Annexe A "
+      file: "chapters/A-Appendix.qmd"
+    - text: "Annexe B"
+      file: "chapters/B-Appendix.qmd"
+    - text: "Annexe C"
+      file: "chapters/C-Appendix.qmd"
+    
+  output-file: "thesis.pdf"
+  sidebar:
+    style: "docked"
+  downloads: [pdf]
+  # sharing: [linkedin] 
+  search: true
+
+  repo-url: "https://github.com/vgoupille/bioinformatics-Msc-thesis" # TODO: change to your repository URL
+
+bibliography: bibliography/thesisrefs.bib
+csl: styles/nature.csl
+citation-style: numeric
+link-citations: true
+submitted: 2025
+director: "Solène Mauger-Franklin, Postdoctoral Researcher"
+co-director: "Philippe Vandenkoornhuyse, Professor"
+defense_date: "2025-07-01"
+logo: "logo-ecobio.png"
+adresse_acc: "Ecobio UMR 6553 CNRS-University of Rennes"
+adresse_labo: "Campus de Beaulieu, 35042 Rennes Cedex, France"
+affiliation: "Ecobio UMR 6553 CNRS-University of Rennes"
+
+academic_year: 2024-2025
+license: "CC BY-NC-ND"
+
+
+
+master_domain: 'Bioinformatics'
+university: 'University of Rennes'
+
+format:
+  bioinformatics-Msc-thesis-html: 
+    cross-references: true
+    toc: true
+    number-sections: true
+    navbar:
+      background: $theme-main
+      search: true
+      left:
+        - text: "Download PDF"
+          file: _book/thesis.pdf
+    comments:
+      hypothesis: true
+  bioinformatics-Msc-thesis-pdf:
+    cross-references: true 
+    # TODO: add a reference to the figure
+    

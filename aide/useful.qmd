@@ -1,0 +1,110 @@
+# Guidelines for Bioinformatics Thesis Writing
+
+## General Format Requirements
+
+- **Length**: 25 pages (±10%)
+- **Font**: Size 12 for text, up to 18 for titles
+- **Line spacing**: Single
+- **Language**: French or English
+
+## Document Structure
+
+### 1. Cover Page
+- 3 logos (University Rennes 1, UFR SVE, Host institution)
+- "Master 2 Bioinformatique" mention
+- Academic year (2023-2024)
+- Your contact information
+- Thesis title
+- Host institution and supervisors
+
+### 2. Preliminary Pages
+- Signed plagiarism declaration
+- Acknowledgments (optional)
+- List of abbreviations (optional)
+- Numbered table of contents (mandatory)
+
+### 3. Main Content
+- Introduction (state of the art and presentation of the bioinformatics challenge)
+- Materials and Methods
+  - Data description and sources
+  - Software and tools used
+  - Algorithms and methodologies
+  - Statistical analyses
+- Results
+  - Data analysis outcomes
+  - Statistical results
+  - Visualizations and figures
+- Discussion
+  - Interpretation of results
+  - Comparison with existing literature
+  - Technical challenges and solutions
+- Conclusion and Perspectives
+
+### 4. References
+- Format: NATURE style
+- 10-20 references for engineering internship
+- 15-30 references for research internship
+- Superscript numbering in text
+- All cited articles must have been read
+
+### 5. Back Cover
+- French summary (250 words max)
+- English summary (exact translation)
+- 4-5 keywords in both languages
+
+## Important Points
+
+### Writing Quality
+- Writing quality is evaluated
+- Proofreading is strongly recommended
+- Grammar and spelling mistakes can affect the grade
+- Grade cannot exceed 10/20 if there are too many mistakes
+
+### Technical Requirements
+- All pages must be numbered
+- Figures and tables can be integrated in text or at the end
+- Total length must not exceed 25 pages
+- References must be placed after conclusion
+- Use of bibliographic management software is mandatory
+- Code snippets should be properly formatted and commented
+- Data visualizations should be clear and publication-ready
+
+### Bioinformatics-Specific Guidelines
+- Document all software versions used
+- Include command-line scripts in appendices
+- Provide links to public repositories if applicable
+- Explain all bioinformatics tools and their parameters
+- Include validation methods for your analyses
+- Document data preprocessing steps
+- Provide clear descriptions of algorithms used
+
+### Appendices
+- Optional (max 5 pages)
+- Must start on new page
+- Must have title
+- Referenced as (see appendix x)
+- Not counted in pagination
+- Can include:
+  - Detailed methodology
+  - Code snippets
+  - Additional figures
+  - Data processing pipelines
+  - Statistical analyses details
+
+## Tips for Success
+
+1. Start writing early
+2. Keep track of references as you go
+3. Make regular backups of your code and data
+4. Follow the format guidelines strictly
+5. Have your work proofread
+6. Plan your time carefully
+7. Keep in regular contact with your supervisors
+8. Save all your data and code
+9. Document your methods thoroughly
+10. Make sure all figures are clear and properly labeled
+11. Use version control (Git) for your code
+12. Document your computational environment
+13. Include reproducibility instructions
+14. Validate your bioinformatics results
+15. Keep a detailed lab notebook of your analyses 

@@ -1,0 +1,127 @@
+::: {.content-visible when-format="html"}
+
+A Master's thesis submitted in partial fulfillment of the requirements for the Master degree in {{< meta master_domain >}} at the {{< meta university >}}.
+
+:::
+
+::: {.content-visible when-format="pdf"}
+# Copyright notice {-}
+
+```{r}
+#| output: asis
+cat("Produced on",format(Sys.Date(), "%e %B %Y.\n\n"))
+cat("© {{< meta author >}} (",format(Sys.Date(), "%Y"),").", sep="")
+```
+
+
+
+# Declaration {-}
+### Statement of originality
+\begin{figure}[h]
+    \raggedleft
+    \includegraphics[width=200px]{figures/logo_Univ_Rennes.png}
+\end{figure}
+
+I, the undersigned, **Valentin Goupille**, a student in the **Master's program in Bioinformatics**,
+hereby declare that I am fully aware that plagiarism of documents or parts of documents published on any type of medium, including the internet, constitutes a violation of copyright laws as well as an act of fraud.
+
+As a result, I commit to citing all the sources I have used in the writing of this document.
+
+Date : **01/04/2025**
+
+Signature : 
+
+![](figures/signature.png){width="200px" style="float: right; margin-right: -50px; margin-bottom: 20px;"}
+
+### Reproducibility statement
+
+This thesis is written using Quarto. All materials (including the data sets and source files) required to reproduce this document can be found at the Github repository [`github.com/vgoupille/Internship_2025`](https://github.com/vgoupille/Internship_2025).
+
+
+This work is licensed under a [Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=75px]{figures/CC_BY-NC-ND.png}
+\end{figure}
+
+:::
+
+# Abstract {-}
+
+
+::: {.content-visible when-format="pdf"}
+### Study of Pseudomonas brassicacearum gene expression variation in environ-mental constraints, towards the validation of Division Of Labor.
+:::
+
+::: {.text-justify}
+
+Morbi a metus. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a, enim. Nunc tincidunt ante vitae massa. Duis ante orci, molestie vitae, vehicula venenatis, tincidunt ac, pede. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. Etiam commodo dui eget wisi. Donec iaculis gravida nulla. Donec quis nibh at felis congue commodo. Etiam bibendum elit eget erat. Maecenas ipsum velit, consectetuer eu, lobortis ut, dictum at, dui. In rutrum. Sed ac dolor sit amet purus malesuada congue. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Suspendisse sagittis ultrices augue. Mauris metus. Nunc dapibus tortor vel mi dapibus sollicitudin. Etiam posuere lacus quis dolor. Praesent id justo in neque elementum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus.
+
+Etiam posuere quam ac quam. Maecenas aliquet accumsan leo. Nullam dapibus fermentum ipsum. Etiam quis quam. Integer lacinia. Nulla est. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Integer vulputate sem a nibh rutrum consequat. Maecenas lorem. Pellentesque pretium lectus id turpis. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Fusce wisi. Phasellus faucibus molestie nisl. Fusce eget urna. Curabitur vitae diam non enim vestibulum
+
+:::
+
+### Keywords :
+Single-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords)
+bacterial population, metabolism, specialization, root colonization
+
+::: {.content-visible when-format="pdf"}
+
+# Acknowledgements {-}
+
+I would like to thank ...
+Ecobio 
+ANR Divide 
+
+> In accordance with Chapter 7.1.4 of the research degrees handbook, if you have engaged the services of a professional editor, you must provide their name and a brief description of the service rendered. If the professional editor's current or former area of academic specialisation is similar your own, this too should be stated as it may suggest to examiners that the editor's advice to the student has extended beyond guidance on English expression to affect the substance and structure of the thesis.
+
+> If you have used generative artificial intelligence (AI) technologies, you must include a written acknowledgment of the use and its extent. Your acknowledgement should at a minimum specify which technology was used, include explicit description on how the information was generated, and explain how the output was used in your work. Below is a suggested format:
+
+> "I acknowledge the use of [insert AI system(s) and link] to [specific use of generative artificial intelligence]. The output from these was used to [explain use]."
+
+> Free text section for you to record your acknowledgment and gratitude for the more general academic input and support such as financial support from grants and scholarships and the non-academic support you have received during the course of your enrolment. If you are a recipient of the "Australian Government Research Training Program Scholarship", you are required to include the following statement:
+
+> > "This research was supported by an Australian Government Research Training Program (RTP) Scholarship."
+
+> You may also wish to acknowledge significant and substantial contribution made by others to the research, work and writing represented and/or reported in the thesis. These could include significant contributions to: the conception and design of the project; non-routine technical work; analysis and interpretation of research data; drafting significant parts of the work or critically revising it to contribute to the interpretation.
+
+:::
+::: {.content-visible when-format="pdf"}
+# List of Abbreviations {-}
+
+| Abbreviation | Definition |
+|-------------|------------|
+| AI | Artificial Intelligence |
+| ANR | Agence Nationale de la Recherche |
+| DNA | Deoxyribonucleic Acid |
+| DOL | Division Of Labor |
+| NGS | Next Generation Sequencing |
+| RNA | Ribonucleic Acid |
+| RNA-seq | RNA sequencing |
+| scRNA-seq | single-cell RNA sequencing |
+
+# List of Symbols {-}
+
+| Symbol | Definition |
+|--------|------------|
+| $\alpha$ | Alpha |
+| $\beta$ | Beta |
+| $\gamma$ | Gamma |
+
+```{=tex}
+\renewcommand{\listfigurename}{List of Figures}
+\renewcommand{\listtablename}{List of Tables}
+
+\clearpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\clearpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+```
+
+\clearpage\pagenumbering{arabic}\setcounter{page}{1}
+
+:::

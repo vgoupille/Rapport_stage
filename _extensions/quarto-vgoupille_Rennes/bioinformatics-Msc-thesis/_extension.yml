@@ -1,0 +1,62 @@
+title: Rennes Msc Thesis Format Template
+author: Valentin Goupille
+version: 1.0.0
+contributes:
+  formats:
+    common:
+      date-format: "D MMMM YYYY"
+      number-depth: 2
+      toc-depth: 2
+      number-sections: true
+      fig-height: 5
+      fig-width: 8
+      knitr:
+        opts_chunk:
+          echo: false
+          warning: false
+          message: false
+      link-citations: true
+    pdf:
+      documentclass: report
+      pdf-engine: pdflatex
+      papersize: a4
+      fontsize: 11pt
+      geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=2.5cm
+      - right=2.5cm
+      block-headings: false
+      colorlinks: true
+      linestretch: 1.5
+      # allow no line to be cut because of the line length
+      include-in-header: 
+        text: |
+          \usepackage{fvextra}
+          \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+            commandchars=\\\{\},
+            breaklines, breaknonspaceingroup, breakanywhere
+          }
+
+      
+      include-after-body: 
+        file: back-cover.tex
+
+      template-partials:
+        - "before-title.tex"
+        - "title.tex"
+    html:
+      theme:
+        - cosmo
+        - ../../../styles/thesis.scss
+      fontsize: 16px
+      mainfont: "Merriweather, serif"
+      code-link: true
+      toc-title: "<b>Sections</b>"
+      html-math-method: katex
+      published-title: "Last updated"
+      format-resources:
+        - fonts.html
+      include-in-header:
+        file: fonts.html
+      

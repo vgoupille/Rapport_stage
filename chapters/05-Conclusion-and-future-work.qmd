@@ -1,0 +1,38 @@
+# Conclusion and Future Work
+
+## Summary of Main Findings
+
+### Key Discoveries
+
+### Methodological Contributions
+
+### Biological Insights
+
+## Impact on the Field
+
+### Contribution to Single-cell RNA-seq Methodology
+
+### Contribution to Pseudomonas Research
+
+### Broader Implications for Microbial Ecology
+
+## Future Research Directions
+
+### Technical Improvements
+
+### Biological Questions to Address
+
+### Potential Applications
+
+## Final Remarks
+
+## References 
+
+```{=tex}
+\clearpage
+% Désactiver l'inclusion des prochaines figures et tableaux dans les listes
+\captionsetup[figure]{list=false}
+\captionsetup[table]{list=false}
+```
+
+

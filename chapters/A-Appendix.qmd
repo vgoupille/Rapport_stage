@@ -1,0 +1,29 @@
+Vous pouvez insérer ici des tableaux supplémentaires ou des sorties d'analyses.
+
+| Column 1   | Column 2   | Column 3   |
+|------------|------------|------------|
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+| ---------- | ---------- | ---------- |
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+| ---------- | ---------- | ---------- |
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+| ---------- | ---------- | ---------- |
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+
+: Titre du tableau {#tbl-example layout-ncol="1"}
+
+::: {#fig-elephants layout-ncol="2"}
+![Surus](../figures/exampleR1_R2.png){#fig-surus .lightbox}
+
+![Hanno](../figures/exampleR1_R2.png){#fig-hanno .lightbox}
+
+Famous Elephants
+:::
