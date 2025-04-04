@@ -37,6 +37,7 @@ book:
   search: true
 
   repo-url: "https://github.com/vgoupille/Rapport_stage" # TODO: change to your repository URL
+  repo-actions: [edit]
 
 bibliography: bibliography/thesisrefs.bib
 csl: styles/nature.csl
