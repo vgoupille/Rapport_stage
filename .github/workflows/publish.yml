@@ -82,6 +82,37 @@ jobs:
         run: |
           if [ ! -d "~/.TinyTeX" ]; then
             quarto install tinytex
+            tlmgr install \
+              fvextra \
+              bera \
+              mathdesign \
+              sourcecodepro \
+              fira \
+              fontawesome \
+              unicode-math \
+              tcolorbox \
+              environ \
+              fancyvrb \
+              listings \
+              xcolor \
+              booktabs \
+              multirow \
+              wrapfig \
+              float \
+              colortbl \
+              pdflscape \
+              tabu \
+              varwidth \
+              threeparttable \
+              threeparttablex \
+              etoolbox \
+              ulem \
+              makecell \
+              geometry \
+              setspace \
+              babel-french \
+              carlisle \
+              latexmk
           fi
 
       - name: Render Quarto Book
