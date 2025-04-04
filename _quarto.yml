@@ -83,7 +83,7 @@ format:
         href: https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R
       - text: script test
         icon: file-code
-        href: data/test.py
+        href: test.py
 
   bioinformatics-Msc-thesis-pdf:
     cross-references: true 

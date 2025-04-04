@@ -43,6 +43,18 @@ image_read_pdf("docs/thesis.pdf", pages = 1) |>
 fs::file_copy("docs/thesis.pdf", "examples/template.pdf", overwrite = TRUE)
 ```
 
+```{R}
+# Copy all .py files to docs/
+# Using R's file system functions
+py_files <- list.files(pattern = "\\.py$", recursive = TRUE)
+if (length(py_files) > 0) {
+  file.copy(py_files, "docs/", overwrite = TRUE)
+  message("✅ Fichiers .py copiés dans docs/")
+} else {
+  message("Aucun fichier .py trouvé")
+}
+```
+
 # University of Rennes Msc Thesis Template
 
 This is a Quarto template that assists you in creating a University of Rennes Msc Thesis. 
