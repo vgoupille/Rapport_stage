@@ -88,6 +88,8 @@ jobs:
             tlmgr update --self
             tlmgr path add
           fi
+          tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
+          tlmgr update --all
           tlmgr install \
             fvextra \
             bera \
@@ -120,7 +122,11 @@ jobs:
             carlisle \
             latexmk \
             collection-fontsrecommended \
-            collection-latex
+            collection-latex \
+            collection-latexrecommended \
+            collection-fontsrecommended \
+            collection-langenglish \
+            collection-langfrench
 
       - name: Create latexmkrc
         run: |
