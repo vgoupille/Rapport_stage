@@ -39,7 +39,7 @@ jobs:
 
       - name: Install TinyTeX
         run: |
-          quarto install tinytex --update=false
+          quarto install tinytex
 
       - name: Render Quarto Book
         run: |
