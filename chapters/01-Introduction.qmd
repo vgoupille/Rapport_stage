@@ -8,7 +8,7 @@ test de citation de figure @tbl-results
 
 je cite la figure @fig-elephant
 
-:::: {.content-visible when-format="html"}
+<!-- :::: {.content-visible when-format="html"}
 <div>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0Vtg245ZDbU?si=9tVUFJtF1ps4euVB">
@@ -18,7 +18,7 @@ je cite la figure @fig-elephant
 Elephant
 
 </div>
-:::
+::: -->
 
 test ajout 
 
