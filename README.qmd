@@ -43,7 +43,8 @@ image_read_pdf("docs/thesis.pdf", pages = 1) |>
 fs::file_copy("docs/thesis.pdf", "examples/template.pdf", overwrite = TRUE)
 ```
 
-```{R}
+```{r}
+#| include: false
 # Copy all .py files to docs/
 # Using R's file system functions
 py_files <- list.files(pattern = "\\.py$", recursive = TRUE)
