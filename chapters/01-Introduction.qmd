@@ -1,26 +1,6 @@
 # Introduction {#sec-intro}
 
-![image d'un elephant](../figures/exampleR1_R2.png "Title: An elephant zdzedzedezdez"){#fig-elephant .lightbox fig-alt="A drawing of an elephant."}
 
-![image d'un elephant](../figures/exampleR1_R2.png "Title: An elephant"){#fig-elephant2 .lightbox fig-alt="A drawing of an elephant."}
-
-test de citation de figure @tbl-results
-
-je cite la figure @fig-elephant
-
-<!-- :::: {.content-visible when-format="html"}
-<div>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0Vtg245ZDbU?si=9tVUFJtF1ps4euVB">
-
-</iframe>
-
-Elephant
-
-</div>
-::: -->
-
-test ajout 
 
 ## Litterature review
 
@@ -31,6 +11,3 @@ The survival of organisms in evolving environments is driven by their fitness. T
 Auxotroph bacteria can take advantage of leaky functions of helper’s organisms to fulfill their needs in specific compounds (Morris et al., 2014, Estrela et al., 2016).[@morris2014; @estrela2016] With a reduced genetic material, the beneficiary organism fitness is improved, at the risk of being dependent on the helpers presence in their environment. The conditions in which patterns of such \[\[division of labor (DOL)\]\] arise are still obscure, but its advantages for bacterial population are clear: DOL allows to diminish the cost associated to certain functions and the possibility of cohabitation of various mutants/specialized cells within the population to respond as a whole to environmental constraints, and thrive. New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell -omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.
 
 The goal of this internship is to explore \[\[scRNA-seq\]\] (single-cell RNA-seq) datasets of \[\[Pseudomonas brassicacearum\]\], a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.  The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.
-
-
-test de automatisation github actions en ajoutant cette ligne 

@@ -1,5 +1,4 @@
 ## Annexe C: codcefe {#annexe-c}
-![Tableau représentant les résultats des expériences](../figures/tableau.png){#tbl-results width="30%"}
 
 <!-- add a white page after the appendix -->
 
