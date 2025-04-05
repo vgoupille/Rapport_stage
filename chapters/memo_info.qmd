@@ -1,0 +1,72 @@
+
+Aide 
+
+![image d'un elephant](../figures/exampleR1_R2.png "Title: An elephant zdzedzedezdez"){#fig-elephant .lightbox fig-alt="A drawing of an elephant."}
+
+![image d'un elephant](../figures/exampleR1_R2.png "Title: An elephant"){#fig-elephant2 .lightbox fig-alt="A drawing of an elephant."}
+
+test de citation de figure @tbl-results
+
+je cite la figure @fig-elephant
+
+<!-- :::: {.content-visible when-format="html"}
+<div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0Vtg245ZDbU?si=9tVUFJtF1ps4euVB">
+
+</iframe>
+
+Elephant
+
+</div>
+::: -->
+
+test ajout 
+
+
+
+
+Vous pouvez insérer ici des tableaux supplémentaires ou des sorties d'analyses.
+
+| Column 1   | Column 2   | Column 3   |
+|------------|------------|------------|
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+| ---------- | ---------- | ---------- |
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+| ---------- | ---------- | ---------- |
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+| ---------- | ---------- | ---------- |
+| Cell 1     | Cell 2     | Cell 3     |
+| Cell 4     | Cell 5     | Cell 6     |
+| Column 1   | Column 2   | Column 3   |
+
+: Titre du tableau {#tbl-example layout-ncol="1"}
+
+::: {#fig-elephants layout-ncol="2"}
+![Surus](../figures/exampleR1_R2.png){#fig-surus .lightbox}
+
+![Hanno](../figures/exampleR1_R2.png){#fig-hanno .lightbox}
+
+Famous Elephants
+:::
+
+
+
+![Tableau représentant les résultats des expériences](../figures/tableau.png){#tbl-results width="30%"}
+
+
+
+
+# List of Symbols {-}
+
+| Symbol | Definition |
+|--------|------------|
+| $\alpha$ | Alpha |
+| $\beta$ | Beta |
+| $\gamma$ | Gamma |
