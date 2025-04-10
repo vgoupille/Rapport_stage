@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main  # Exécute seulement sur la branche principale
-    paths-ignore:
-      - 'Analyse_data/**'  # Ignore les modifications dans le super-projet
+    # paths-ignore:
+    #   - 'Analyse_data/**'  # Ignore les modifications dans le super-projet
 
 # Permissions nécessaires pour le déploiement
 permissions:
