@@ -1,7 +1,5 @@
 # Introduction {#sec-intro}
 
-
-
 ## Litterature review
 
 deddfefde[@kuchina2021; @gaisser2024] Internship description
