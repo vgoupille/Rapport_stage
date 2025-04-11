@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Msc Bioinformatics thesis",
     "section": "",
-    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\nAbstract\n\nAenean placerat luctus tortor vitae molestie. Nulla at aliquet nulla. Sed efficitur tellus orci, sed fringilla lectus laoreet eget. Vivamus maximus quam sit amet arcu dignissim, sed accumsan massa ullamcorper. Sed iaculis tincidunt feugiat. Nulla in est at nunc ultricies dictum ut vitae nunc. Aenean convallis vel diam at malesuada. Suspendisse arcu libero, vehicula tempus ultrices a, placerat sit amet tortor. Sed dictum id nulla commodo mattis. Aliquam mollis, nunc eu tristique faucibus, purus lacus tincidunt nulla, ac pretium lorem nunc ut enim. Curabitur eget mattis nisl, vitae sodales augue. Nam felis massa, bibendum sit amet nulla vel, vulputate rutrum lacus. Aenean convallis odio pharetra nulla mattis consequat.\nUt ut condimentum augue, nec eleifend nisl. Sed facilisis egestas odio ac pretium. Pellentesque consequat magna sed venenatis sagittis. Vivamus feugiat lobortis magna vitae accumsan. Pellentesque euismod malesuada hendrerit. Ut non mauris non arcu condimentum sodales vitae vitae dolor. Nullam dapibus, velit eget lacinia rutrum, ipsum justo malesuada odio, et lobortis sapien magna vel lacus. Nulla purus neque, hendrerit non malesuada eget, mattis vel erat. Suspendisse potenti.\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
+    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\nAbstract\n\nDuis ornare ex ac iaculis pretium. Maecenas sagittis odio id erat pharetra, sit amet consectetur quam sollicitudin. Vivamus pharetra quam purus, nec sagittis risus pretium at. Nullam feugiat, turpis ac accumsan interdum, sem tellus blandit neque, id vulputate diam quam semper nisl. Donec sit amet enim at neque porttitor aliquet. Phasellus facilisis nulla eget placerat eleifend. Vestibulum non egestas eros, eget lobortis ipsum. Nulla rutrum massa eget enim aliquam, id porttitor erat luctus. Nunc sagittis quis eros eu sagittis. Pellentesque dictum, erat at pellentesque sollicitudin, justo augue pulvinar metus, quis rutrum est mi nec felis. Vestibulum efficitur mi lorem, at elementum purus tincidunt a. Aliquam finibus enim magna, vitae pellentesque erat faucibus at. Nulla mauris tellus, imperdiet id lobortis et, dignissim condimentum ipsum. Morbi nulla orci, varius at aliquet sed, facilisis id tortor. Donec ut urna nisi.\nAenean placerat luctus tortor vitae molestie. Nulla at aliquet nulla. Sed efficitur tellus orci, sed fringilla lectus laoreet eget. Vivamus maximus quam sit amet arcu dignissim, sed accumsan massa ullamcorper. Sed iaculis tincidunt feugiat. Nulla in est at nunc ultricies dictum ut vitae nunc. Aenean convallis vel diam at malesuada. Suspendisse arcu libero, vehicula tempus ultrices a, placerat sit amet tortor. Sed dictum id nulla commodo mattis. Aliquam mollis, nunc eu tristique faucibus, purus lacus tincidunt nulla, ac pretium lorem nunc ut enim. Curabitur eget mattis nisl, vitae sodales augue. Nam felis massa, bibendum sit amet nulla vel, vulputate rutrum lacus. Aenean convallis odio pharetra nulla mattis consequat.\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
     "crumbs": [
       "Front matter"
     ]
@@ -92,71 +92,11 @@
   {
     "objectID": "chapters/04-Discussion.html",
     "href": "chapters/04-Discussion.html",
-    "title": "4  Discussion",
+    "title": "Msc Bioinformatics thesis",
     "section": "",
-    "text": "4.1 Interpretation of Key Findings",
+    "text": "from plotly.basedatatypes import BaseTraceHierarchyType as _BaseTraceHierarchyType import copy as _copy\nclass Line(_BaseTraceHierarchyType):\n# class properties\n# --------------------\n_parent_path_str = \"violin.marker\"\n_path_str = \"violin.marker.line\"\n_valid_props = {\"color\", \"outliercolor\", \"outlierwidth\", \"width\"}\n\n# color\n# -----\n@property\ndef color(self):\n    \"\"\"\n    Sets the marker.line color. It accepts either a specific color\n    or an array of numbers that are mapped to the colorscale\n    relative to the max and min values of the array or relative to\n    `marker.line.cmin` and `marker.line.cmax` if set.\n\n    The 'color' property is a color and may be specified as:\n      - A hex string (e.g. '#ff0000')\n      - An rgb/rgba string (e.g. 'rgb(255,0,0)')\n      - An hsl/hsla string (e.g. 'hsl(0,100%,50%)')\n      - An hsv/hsva string (e.g. 'hsv(0,100%,100%)')\n      - A named CSS color:\n            aliceblue, antiquewhite, aqua, aquamarine, azure,\n            beige, bisque, black, blanchedalmond, blue,\n            blueviolet, brown, burlywood, cadetblue,\n            chartreuse, chocolate, coral, cornflowerblue,\n            cornsilk, crimson, cyan, darkblue, darkcyan,\n            darkgoldenrod, darkgray, darkgrey, darkgreen,\n            darkkhaki, darkmagenta, darkolivegreen, darkorange,\n            darkorchid, darkred, darksalmon, darkseagreen,\n            darkslateblue, darkslategray, darkslategrey,\n            darkturquoise, darkviolet, deeppink, deepskyblue,\n            dimgray, dimgrey, dodgerblue, firebrick,\n            floralwhite, forestgreen, fuchsia, gainsboro,\n            ghostwhite, gold, goldenrod, gray, grey, green,\n            greenyellow, honeydew, hotpink, indianred, indigo,\n            ivory, khaki, lavender, lavenderblush, lawngreen,\n            lemonchiffon, lightblue, lightcoral, lightcyan,\n            lightgoldenrodyellow, lightgray, lightgrey,\n            lightgreen, lightpink, lightsalmon, lightseagreen,\n            lightskyblue, lightslategray, lightslategrey,\n            lightsteelblue, lightyellow, lime, limegreen,\n            linen, magenta, maroon, mediumaquamarine,\n            mediumblue, mediumorchid, mediumpurple,\n            mediumseagreen, mediumslateblue, mediumspringgreen,\n            mediumturquoise, mediumvioletred, midnightblue,\n            mintcream, mistyrose, moccasin, navajowhite, navy,\n            oldlace, olive, olivedrab, orange, orangered,\n            orchid, palegoldenrod, palegreen, paleturquoise,\n            palevioletred, papayawhip, peachpuff, peru, pink,\n            plum, powderblue, purple, red, rosybrown,\n            royalblue, rebeccapurple, saddlebrown, salmon,\n            sandybrown, seagreen, seashell, sienna, silver,\n            skyblue, slateblue, slategray, slategrey, snow,\n            springgreen, steelblue, tan, teal, thistle, tomato,\n            turquoise, violet, wheat, white, whitesmoke,\n            yellow, yellowgreen\n\n    Returns\n    -------\n    str\n    \"\"\"\n    return self[\"color\"]\n\n@color.setter\ndef color(self, val):\n    self[\"color\"] = val\n\n# outliercolor\n# ------------\n@property\ndef outliercolor(self):\n    \"\"\"\n    Sets the border line color of the outlier sample points.\n    Defaults to marker.color\n\n    The 'outliercolor' property is a color and may be specified as:\n      - A hex string (e.g. '#ff0000')\n      - An rgb/rgba string (e.g. 'rgb(255,0,0)')\n      - An hsl/hsla string (e.g. 'hsl(0,100%,50%)')\n      - An hsv/hsva string (e.g. 'hsv(0,100%,100%)')\n      - A named CSS color:\n            aliceblue, antiquewhite, aqua, aquamarine, azure,\n            beige, bisque, black, blanchedalmond, blue,\n            blueviolet, brown, burlywood, cadetblue,\n            chartreuse, chocolate, coral, cornflowerblue,\n            cornsilk, crimson, cyan, darkblue, darkcyan,\n            darkgoldenrod, darkgray, darkgrey, darkgreen,\n            darkkhaki, darkmagenta, darkolivegreen, darkorange,\n            darkorchid, darkred, darksalmon, darkseagreen,\n            darkslateblue, darkslategray, darkslategrey,\n            darkturquoise, darkviolet, deeppink, deepskyblue,\n            dimgray, dimgrey, dodgerblue, firebrick,\n            floralwhite, forestgreen, fuchsia, gainsboro,\n            ghostwhite, gold, goldenrod, gray, grey, green,\n            greenyellow, honeydew, hotpink, indianred, indigo,\n            ivory, khaki, lavender, lavenderblush, lawngreen,\n            lemonchiffon, lightblue, lightcoral, lightcyan,\n            lightgoldenrodyellow, lightgray, lightgrey,\n            lightgreen, lightpink, lightsalmon, lightseagreen,\n            lightskyblue, lightslategray, lightslategrey,\n            lightsteelblue, lightyellow, lime, limegreen,\n            linen, magenta, maroon, mediumaquamarine,\n            mediumblue, mediumorchid, mediumpurple,\n            mediumseagreen, mediumslateblue, mediumspringgreen,\n            mediumturquoise, mediumvioletred, midnightblue,\n            mintcream, mistyrose, moccasin, navajowhite, navy,\n            oldlace, olive, olivedrab, orange, orangered,\n            orchid, palegoldenrod, palegreen, paleturquoise,\n            palevioletred, papayawhip, peachpuff, peru, pink,\n            plum, powderblue, purple, red, rosybrown,\n            royalblue, rebeccapurple, saddlebrown, salmon,\n            sandybrown, seagreen, seashell, sienna, silver,\n            skyblue, slateblue, slategray, slategrey, snow,\n            springgreen, steelblue, tan, teal, thistle, tomato,\n            turquoise, violet, wheat, white, whitesmoke,\n            yellow, yellowgreen\n\n    Returns\n    -------\n    str\n    \"\"\"\n    return self[\"outliercolor\"]\n\n@outliercolor.setter\ndef outliercolor(self, val):\n    self[\"outliercolor\"] = val\n\n# outlierwidth\n# ------------\n@property\ndef outlierwidth(self):\n    \"\"\"\n    Sets the border line width (in px) of the outlier sample\n    points.\n\n    The 'outlierwidth' property is a number and may be specified as:\n      - An int or float in the interval [0, inf]\n\n    Returns\n    -------\n    int|float\n    \"\"\"\n    return self[\"outlierwidth\"]\n\n@outlierwidth.setter\ndef outlierwidth(self, val):\n    self[\"outlierwidth\"] = val\n\n# width\n# -----\n@property\ndef width(self):\n    \"\"\"\n    Sets the width (in px) of the lines bounding the marker points.\n\n    The 'width' property is a number and may be specified as:\n      - An int or float in the interval [0, inf]\n\n    Returns\n    -------\n    int|float\n    \"\"\"\n    return self[\"width\"]\n\n@width.setter\ndef width(self, val):\n    self[\"width\"] = val\n\n# Self properties description\n# ---------------------------\n@property\ndef _prop_descriptions(self):\n    return \"\"\"\\\n    color\n        Sets the marker.line color. It accepts either a\n        specific color or an array of numbers that are mapped\n        to the colorscale relative to the max and min values of\n        the array or relative to `marker.line.cmin` and\n        `marker.line.cmax` if set.\n    outliercolor\n        Sets the border line color of the outlier sample\n        points. Defaults to marker.color\n    outlierwidth\n        Sets the border line width (in px) of the outlier\n        sample points.\n    width\n        Sets the width (in px) of the lines bounding the marker\n        points.\n    \"\"\"\n\ndef __init__(\n    self,\n    arg=None,\n    color=None,\n    outliercolor=None,\n    outlierwidth=None,\n    width=None,\n    **kwargs,\n):\n    \"\"\"\n    Construct a new Line object\n\n    Parameters\n    ----------\n    arg\n        dict of properties compatible with this constructor or\n        an instance of\n        :class:`plotly.graph_objs.violin.marker.Line`\n    color\n        Sets the marker.line color. It accepts either a\n        specific color or an array of numbers that are mapped\n        to the colorscale relative to the max and min values of\n        the array or relative to `marker.line.cmin` and\n        `marker.line.cmax` if set.\n    outliercolor\n        Sets the border line color of the outlier sample\n        points. Defaults to marker.color\n    outlierwidth\n        Sets the border line width (in px) of the outlier\n        sample points.\n    width\n        Sets the width (in px) of the lines bounding the marker\n        points.\n\n    Returns\n    -------\n    Line\n    \"\"\"\n    super(Line, self).__init__(\"line\")\n\n    if \"_parent\" in kwargs:\n        self._parent = kwargs[\"_parent\"]\n        return\n\n    # Validate arg\n    # ------------\n    if arg is None:\n        arg = {}\n    elif isinstance(arg, self.__class__):\n        arg = arg.to_plotly_json()\n    elif isinstance(arg, dict):\n        arg = _copy.copy(arg)\n    else:\n        raise ValueError(\n            \"\"\"\\\nThe first argument to the plotly.graph_objs.violin.marker.Line constructor must be a dict or an instance of :class:plotly.graph_objs.violin.marker.Line““” )\n    # Handle skip_invalid\n    # -------------------\n    self._skip_invalid = kwargs.pop(\"skip_invalid\", False)\n    self._validate = kwargs.pop(\"_validate\", True)\n\n    # Populate data dict with properties\n    # ----------------------------------\n    _v = arg.pop(\"color\", None)\n    _v = color if color is not None else _v\n    if _v is not None:\n        self[\"color\"] = _v\n    _v = arg.pop(\"outliercolor\", None)\n    _v = outliercolor if outliercolor is not None else _v\n    if _v is not None:\n        self[\"outliercolor\"] = _v\n    _v = arg.pop(\"outlierwidth\", None)\n    _v = outlierwidth if outlierwidth is not None else _v\n    if _v is not None:\n        self[\"outlierwidth\"] = _v\n    _v = arg.pop(\"width\", None)\n    _v = width if width is not None else _v\n    if _v is not None:\n        self[\"width\"] = _v\n\n    # Process unknown kwargs\n    # ----------------------\n    self._process_kwargs(**dict(arg, **kwargs))\n\n    # Reset skip_invalid\n    # ------------------\n    self._skip_invalid = False",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-Discussion.html#interpretation-of-key-findings",
-    "href": "chapters/04-Discussion.html#interpretation-of-key-findings",
-    "title": "4  Discussion",
-    "section": "",
-    "text": "Division of Labor Mechanisms\n\n\nBiological Significance\n\n\nTechnical Considerations",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-Discussion.html#comparison-with-existing-literature",
-    "href": "chapters/04-Discussion.html#comparison-with-existing-literature",
-    "title": "4  Discussion",
-    "section": "4.2 Comparison with Existing Literature",
-    "text": "4.2 Comparison with Existing Literature\n\nSimilarities with Previous Studies\n\n\nNovel Insights\n\n\nDiscrepancies and Their Implications",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-Discussion.html#methodological-strengths-and-limitations",
-    "href": "chapters/04-Discussion.html#methodological-strengths-and-limitations",
-    "title": "4  Discussion",
-    "section": "4.3 Methodological Strengths and Limitations",
-    "text": "4.3 Methodological Strengths and Limitations\n\nTechnical Advantages\n\n\nPotential Limitations\n\n\nFuture Methodological Improvements",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-Discussion.html#biological-implications",
-    "href": "chapters/04-Discussion.html#biological-implications",
-    "title": "4  Discussion",
-    "section": "4.4 Biological Implications",
-    "text": "4.4 Biological Implications\n\nEcological Significance\n\n\nEvolutionary Perspectives\n\n\nPotential Applications",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-Discussion.html#future-research-directions",
-    "href": "chapters/04-Discussion.html#future-research-directions",
-    "title": "4  Discussion",
-    "section": "4.5 Future Research Directions",
-    "text": "4.5 Future Research Directions\n\nOpen Questions\n\n\nSuggested Follow-up Studies\n\n\nTechnical Improvements",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-Discussion.html#conclusion",
-    "href": "chapters/04-Discussion.html#conclusion",
-    "title": "4  Discussion",
-    "section": "4.6 Conclusion",
-    "text": "4.6 Conclusion",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>04-Discussion.html</span>"
     ]
   },
   {
@@ -227,39 +167,6 @@
     "text": "1. Kuchina, A. et al. Microbial single-cell RNA\nsequencing by split-pool barcoding. Science\n371, eaba5257 (2021).\n\n\n2. Gaisser, K. D. et al. High-throughput\nsingle-cell transcriptomics of bacteria using combinatorial\nbarcoding. Nature Protocols 19, 3048–3084\n(2024).\n\n\n3. Morris, E. K. et al. Choosing and using diversity\nindices: insights for ecological applications from the German\nBiodiversity Exploratories. Ecology and Evolution\n4, 3514–3524 (2014).\n\n\n4. Morris, J. J., Lenski, R. E. & Zinser, E.\nR. The black queen\nhypothesis: Evolution of dependencies through adaptive gene loss.\nmBio 3, e00036–12 (2012).\n\n\n5. Estrela, S., Kerr, B. & Morris, J. J. Transitions in\nindividuality through symbiosis. Current Opinion in\nMicrobiology 31, 191–198 (2016).",
     "crumbs": [
       "Bibliography"
-    ]
-  },
-  {
-    "objectID": "chapters/A-Appendix.html",
-    "href": "chapters/A-Appendix.html",
-    "title": "Msc Bioinformatics thesis",
-    "section": "",
-    "text": "Vous pouvez insérer ici des tableaux supplémentaires ou des sorties d’analyses.\n\n\n\nTable 1: Titre du tableau\n\n\n\n\n\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n———-\n———-\n———-\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n———-\n———-\n———-\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n———-\n———-\n———-\n\n\nCell 1\nCell 2\nCell 3\n\n\nCell 4\nCell 5\nCell 6\n\n\nColumn 1\nColumn 2\nColumn 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Surus\n\n\n\n\n\n\n\n\n\n\n\n(b) Hanno\n\n\n\n\n\n\n\nFigure 1: Famous Elephants",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Annexe A </span>"
-    ]
-  },
-  {
-    "objectID": "chapters/B-Appendix.html",
-    "href": "chapters/B-Appendix.html",
-    "title": "Appendix B — Annexe B: erferfrefref",
-    "section": "",
-    "text": "Figure A",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Annexe B</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/C-Appendix.html",
-    "href": "chapters/C-Appendix.html",
-    "title": "Appendix C — Annexe C: codcefe",
-    "section": "",
-    "text": "Table C.1: Tableau représentant les résultats des expériences",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Annexe C</span>"
     ]
   }
 ]
