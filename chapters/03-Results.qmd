@@ -1,55 +1,7 @@
 # Results
 
-
-- figure de % de type of RNA 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-   figure de % de type of RNA
+-   ![](../figures/pourcentage_RNA.png)
 
 ## Overview
 
@@ -75,4 +27,4 @@ This chapter presents the findings of our single-cell RNA-seq analysis of Pseudo
 
 ## Integration with Previous Studies
 
-## Summary of Key Findings 
+## Summary of Key Findings
