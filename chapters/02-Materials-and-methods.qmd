@@ -3,3 +3,383 @@
 
 ## Materials
 
+catfastq to merge the reads from the 4 lanes (https://nf-co.re/rnaseq/3.14.0/)
+
+We have 4 index to improve the quality of the sequencing Illimina 
+first step : verify the quality of the reads
+we do a fastqc analysis and multiqc to have a global overview of the quality of the reads
+
+
+then we remove the adapters and low quality reads with cutadapt or Trimmomatic, TrimGalore 
+
+
+
+https://cutadapt.readthedocs.io/en/stable/guide.html
+
+
+https://onlinelibrary.wiley.com/doi/10.1002/imt2.107 
+fastp is a tool to improve the quality of the reads
+
+
+
+2,5 coupes de queue polyG et polyX
+PolyG est un problème fréquent observé dans les séries Illumina NextSeq et NovaSeq, basées sur la chimie bicolore. Ces systèmes utilisent deux lumières différentes (rouge et verte) pour représenter quatre bases : une base avec seulement un signal rouge détecté est appelée C ; une base avec seulement un signal vert détecté est appelée T ; une base avec à la fois des lumières rouge et verte détectées est appelée A ; et une base sans lumière détectée est appelée G. Cependant, à mesure que le séquençage par synthèse progresse, l'intensité du signal de chaque cluster d'ADN s'affaiblit progressivement. Ce problème entraîne l'interprétation erronée de certaines T et C comme G dans les queues de lecture, un problème également connu sous le nom de queue polyG.
+
+
+I will use the fastp because it is more efficient and faster than cutadapt or Trimmomatic
+
+manual : https://open.bioqueue.org/home/knowledge/showKnowledge/sig/fastp
+It's also available on github : https://github.com/OpenGene/fastp
+
+
+
+
+
+
+
+
+ I receiv the data from Genobird plateforme of sequencing the 25 april 2025
+ https://umr1087.univ-nantes.fr/research/core-facilities/genobird
+ Two types of sequencing data :
+- bcl files (raw data from the plateforme of sequencing) (250go)
+- fastq files (processed data from the plateforme of sequencing) => we use this one for the moment because they remove the index from the reads (150go)
+
+
+There are 4 index for Novaseq (BC_0076, BC_0077, BC_0078, BC_0079) : CAGATC, ACTTGA, TAGCTT, GGCTAC. No experimental variation (biological or technical) between the index (Just added for a better quality of sequencing with Novaseq (I'm not sure about this)).
+
+
+ We don't use the raw data from the plateforme of sequencing (bcl files) maybe later if I want to test to do the demultiplexing of the index (r4)
+
+In fact the plateforme of sequencing already do a demultiplexing of the index (r4). This allows to have a better quality of sequencing with Novaseq.
+
+
+
+So we have 8 fastq files ((R1 and R2)*4) (one for each index)
+ the index is removed from the R1 and R2 files
+ the R1 file contain the  sequence 
+ the R2 file contain the barcodes (r1, r2, r3) and the UMI and the index (already removed) CB_UMI_Complex consider of STARsolo consider that bardeodes are on the R2 file
+
+
+ Do a figure for represent the sequence  (see the formation Norwich and paper of Kuchina)
+
+ I test to directly run STARsolo on the fastq files 
+ but I need more space on the server for all run 
+ I observe that we don't detect many genes and read (test on BC_0077 which is the file  with the lowest size) 
+So we decided to do a fastq quality control with fastqc and multiqc of R1 and R2 files (example in BC_0076)
+
+R2 file is globally correct : we see the barcodes and the UMI
+ R1 file is not correct : adapter and low quality sequences at the end of the read
+
+of there are no different between the R1 and R2 files we could combine them in unique files (R1 and R2), for the moment we keep them separate and I test on  BC_0076
+
+ We want to remove the adapters and low quality sequences detected by fastqc many poly at the end of the read
+
+
+ We use fastp to remove the adapters and low quality sequences detected by fastqc many poly at the end of the read
+ before we want to do small file test we need to generate small fastq R1 and R2 files
+
+
+ list of the Illumina adapters : https://github.com/s-andrews/FastQC/blob/master/Configuration/contaminant_list.txt
+
+
+manual of fastp : http://open.bioqueue.org/home/knowledge/showKnowledge/sig/fastp
+
+ Script to run fastp on the fastq files
+ allow to remove adapters and low quality sequences detected by fastqc 
+ The fastq files are in the folder 0_QC/data
+ The fastp files are in the folder 1_fastp/data
+
+
+Test on 250 000 000 reads  
+
+
+We need to remove the sequences R1 that we don't use in our experiment 
+
+list of the sequences to remove in fastp :  
+https://teichlab.github.io/scg_lib_structs/methods_html/SPLiT-seq.html
+
+I will see the result of fastqc to find 
+
+
+
+Très bonne question ! Voici pourquoi le “Insert size peak : 241 bp” est cohérent avec les lectures R1 de 241 cycles :
+
+⸻
+
+🔍 Définition rapide :
+	•	Insert size (taille de l’insert) : c’est la distance entre le début de R1 et la fin de R2 sur la molécule d’ADN originale, c’est-à-dire la taille de l’ADN réellement séquencé (hors adaptateurs).
+	•	Nombre de cycles : correspond au nombre de bases que le séquenceur lit par lecture.
+
+⸻
+
+📊 Dans ton cas :
+	•	R1 = 241 cycles → chaque lecture R1 peut théoriquement faire jusqu’à 241 bases
+	•	R2 = 91 cycles → R2 peut faire jusqu’à 91 bases
+
+Mais attention : les lectures ne couvrent pas toujours la totalité de l’insert. Cela dépend de la taille de l’insert fragmenté lors de la préparation de la librairie.
+
+⸻
+
+✅ Pourquoi 241 bp est cohérent ici ?
+	•	Le “insert size peak” représente la valeur la plus fréquente des insert sizes calculés en alignant les paires de lectures (R1 et R2).
+	•	Or, ici on voit que :
+	•	Le nombre de cycles de R1 est 241 ⇒ donc on peut lire jusqu’à 241 bases sur le fragment (avant que R2 commence).
+	•	Le fait que l’insert size pic soit à 241 signifie que les deux lectures R1 et R2 se chevauchent à peine ou pas du tout, et que l’insert est environ aussi long que la lecture R1.
+
+Donc :
+
+Le pic d’insert size à 241 bp signifie que la plupart des fragments d’ADN (les inserts) font la même longueur que la lecture R1 → cohérent avec une préparation où R2 lit le reste ou très peu de l’insert.
+
+⸻
+
+🧬 Hypothèse probable ici :
+	•	Tu travailles probablement avec des librairies scRNA-seq adaptées pour des fragments courts, et tu séquences surtout à fond R1 (lecture informative).
+	•	R2 est plus courte (91 cycles), souvent pour lire un barcode ou UMI → R1 capture le bulk de l’information transcriptomique.
+
+⸻
+
+🧠 Résumé :
+
+Insert size = 241 bp, R1 = 241 cycles → la lecture R1 couvre quasiment toute la molécule. C’est donc cohérent et attendu dans ce type de design.
+
+
+
+ --adapter_sequence_r2=AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
+      --adapter_sequence=TGTGAGAAAGGGATGTGCTGCGAGAAGGCTAGA
+
+
+
+
+
+	  Le graphique que tu montres provient de FastQC (via MultiQC) et présente les niveaux de duplication des séquences dans 4 échantillons. Voici une explication de la variabilité entre les index observés :
+
+⸻
+
+🔍 Comprendre le graphe :
+	•	Axe X : niveau de duplication (combien de fois chaque séquence apparaît).
+	•	Axe Y : pourcentage de la librairie.
+	•	Lignes vertes : échantillons avec peu de duplication (bon signe).
+	•	Lignes rouges : échantillons avec forte duplication (plusieurs séquences présentes en très grand nombre).
+
+⸻
+
+📌 Pourquoi observe-t-on une telle variabilité entre échantillons/index ?
+	1.	📚 Complexité de la librairie :
+	•	Les échantillons avec peu de duplication (courbe verte) ont probablement une bonne complexité → beaucoup de séquences uniques, peu de redondance.
+	•	Ceux avec forte duplication (courbes rouges) ont une faible complexité → trop de séquences identiques.
+	2.	📦 Qualité ou quantité d’ADN/ARN initial :
+	•	Si la quantité de matériel initial est faible, il y a un risque de suramplification lors de la PCR, ce qui entraîne une duplication artificielle des séquences.
+	3.	🧪 Protocole de préparation des librairies :
+	•	Des différences dans la préparation des index ou la quantité d’amplification PCR peuvent induire cette variabilité.
+	•	Mauvaise ligation d’adaptateurs ou biais d’amplification peuvent engendrer une surreprésentation de certaines séquences.
+	4.	🔄 Index/swapping ou contamination croisée :
+	•	Si des échantillons ont été mal indexés ou qu’il y a eu du swapping d’index, cela peut créer une fausse duplication dans un échantillon.
+	•	Des erreurs dans le multiplexing (mélange d’échantillons mal contrôlé) peuvent aussi l’expliquer.
+	5.	🧬 Nature biologique de l’échantillon :
+	•	Certains échantillons biologiques peuvent contenir naturellement beaucoup de séquences identiques (ex : séquences rRNA, transcrits très abondants).
+	•	Une transcription très polarisée (un seul gène très exprimé) peut causer des duplications élevées.
+
+⸻
+
+✅ Que faire ensuite ?
+	•	Vérifie les logs de préparation des librairies (nombre de cycles PCR, quantités initiales).
+	•	Contrôle la nature des séquences dupliquées (rRNA ? contamination ? artefacts PCR ?).
+	•	Si la duplication est due à un biais technique, envisage une normalisation, filtrage ou réanalyse avec des méthodes robustes à la duplication.
+
+Souhaites-tu que je t’aide à analyser un des fichiers FastQC ou MultiQC de ces échantillons ?
+
+
+
+
+
+
+Excellente question ! Pour comprendre l’origine de la duplication dans tes échantillons, tu peux suivre une démarche en plusieurs étapes. Voici comment procéder concrètement, avec des outils comme FastQC, MultiQC, et éventuellement un peu de bioinformatique :
+
+⸻
+
+🧪 Étape 1 : Identifier quels échantillons sont affectés
+	•	Dans MultiQC, regarde le nom des fichiers / échantillons associés aux courbes rouges.
+	•	Tu peux passer ta souris sur les courbes dans le rapport MultiQC (ou cliquer sur « Summarize plot ») pour identifier les noms des échantillons concernés.
+
+⸻
+
+🔍 Étape 2 : Inspecter le rapport FastQC individuel
+
+Pour chaque échantillon avec forte duplication :
+
+📁 a. Ouvre le rapport fastqc.html
+
+Regarde particulièrement ces modules :
+	1.	Per base sequence content
+→ S’il y a un biais fort (ex. enrichissement en G ou T), cela peut refléter une amorce ou adaptateur résiduel.
+	2.	Overrepresented sequences
+→ Si des séquences précises sont très abondantes, tu verras leurs séquences et une annotation possible (ex : “Illumina adapter”, “rRNA”…).
+	3.	K-mer content
+→ Détecte des motifs courts (souvent adaptateurs ou contamination PCR) qui sont surreprésentés.
+
+⸻
+
+🧰 Étape 3 : Vérifier la complexité de librairie
+	1.	Utilise preseq (si possible) pour estimer la diversité de la librairie et prédire combien de nouvelles séquences seraient trouvées avec plus de séquençage.
+	2.	Vérifie le nombre de cycles PCR lors de la préparation (si tu as accès aux métadonnées du protocole).
+
+⸻
+
+🔎 Étape 4 : Aligner et filtrer pour comprendre
+	1.	Alignement contre la référence :
+	•	Si la duplication est biologique (ex : gène très exprimé), les séquences dupliquées s’aligneront sur le génome.
+	•	Si c’est technique, tu verras des clusters de lectures identiques, souvent non alignées ou alignées aux mêmes positions.
+	2.	Filtrer les reads rRNA ou adaptateurs avec bbduk ou cutadapt.
+
+⸻
+
+📊 Étape 5 : Comparer les duplications avant/après nettoyage
+
+Après avoir filtré ou supprimé des séquences surreprésentées (ex : adaptateurs, rRNA), relance FastQC sur les fichiers nettoyés pour voir si la duplication baisse.
+
+⸻
+
+En résumé :
+
+Étape	Objectif	Outil
+Identifier échantillons affectés	MultiQC	multiqc report.html
+Voir séquences dupliquées	FastQC (Overrepresented sequences)	fastqc sample.fastq.gz
+Filtrer adaptateurs/rRNA	Nettoyage des reads	cutadapt, bbduk, SortMeRNA
+Aligner sur génome	Déterminer l’origine (biologique ou technique)	bowtie2, STAR, bwa
+Estimer complexité de librairie	Saturation / diversité	preseq
+
+Souhaites-tu que je t’aide à faire l’un de ces diagnostics étape par étape avec tes fichiers ?
+
+
+
+
+
+Merci pour la précision ! Le fait que la variabilité de duplication concerne le R2 contenant les barcodes (Split-seq) change complètement l’interprétation — et c’est attendu dans ce cas. Voici pourquoi :
+
+⸻
+
+✅ Pourquoi observe-t-on une forte duplication dans les reads R2 (barcodes) en Split-seq ?
+
+🔹 1. R2 ne reflète pas l’ARNm, mais les barcodes de marquage cellulaire
+
+Dans Split-seq, le read 2 contient :
+	•	Les barcodes de cellule, de well, et parfois des UMI (unique molecular identifiers).
+	•	Ces séquences sont courtes et proviennent d’un nombre limité de combinaisons (des dizaines à centaines de barcodes possibles).
+
+👉 Cela veut dire que le contenu du read 2 est volontairement redondant.
+
+🔹 2. Répétition intentionnelle de séquences dans R2
+
+Exemple :
+	•	Si tu as 96 puits + 48 barcodes de round 2, tu n’auras que quelques centaines de combinaisons uniques dans R2.
+	•	Mais tu as des millions de lectures, donc chaque barcode apparaît des milliers de fois → duplication élevée dans R2.
+
+🔹 3. Pas un problème de qualité, mais une conséquence du protocole
+
+C’est normal, attendu, et non problématique du tout pour l’analyse — car ces duplications représentent des barcodes techniques, pas des artefacts de PCR ou de mauvaise préparation de librairie.
+
+⸻
+
+📊 Pourquoi cette variabilité entre échantillons R2 ?
+
+La variabilité entre échantillons R2 peut s’expliquer par :
+
+Cause possible	Explication
+📈 Nombre de cellules différentes	Un échantillon avec moins de cellules aura plus de redondance de barcodes.
+🧬 Répartition inégale de barcodes	Mauvais mélange ou étiquetage inégal lors des étapes de split (rounds de barcoding).
+🧪 Efficacité du reverse transcription ou capture ARN	Peut biaiser la représentation de certains barcodes.
+🧫 Contamination croisée entre puits	Peut aussi expliquer des duplications anormales.
+
+
+⸻
+
+🧠 À retenir
+	•	✅ Duplication élevée dans R2 (barcodes Split-seq) est normale.
+	•	🧪 FastQC n’est pas conçu pour interpréter ce type de données → il est plus utile sur R1 (où se trouve le transcriptome).
+	•	❌ Ne filtre surtout pas ces duplications sur R2.
+	•	✔️ Continue l’analyse avec des outils comme zUMIs, split-pipe, kb-python, ou le pipeline adapté à ton protocole Split-seq.
+
+⸻
+
+Souhaites-tu que je t’aide à identifier automatiquement les barcodes valides ou à préparer un pipeline pour la phase de “demultiplexing” ?
+
+
+
+
+
+Oui, exactement : si tu observes des échantillons R2 (barcodes) sans ou avec très peu de duplication, c’est potentiellement problématique dans un protocole comme Split-seq. Voici pourquoi :
+
+⸻
+
+❌ Peu de duplication dans R2 (barcodes) : signal d’alerte
+
+Dans un bon échantillon de Split-seq :
+	•	Le R2 contient des barcodes techniques qui devraient être fortement redondants.
+	•	Chaque combinaison de barcodes doit être lue des milliers de fois (car chaque cellule donne lieu à de nombreuses lectures avec le même barcode).
+
+Donc, si :
+	•	📉 Tu as très peu de duplication dans R2,
+	•	Cela signifie probablement que les barcodes sont absents, mal lus ou trop diversifiés,
+	•	Ce qui peut rendre impossible le regroupement des lectures par cellule (la base du single-cell).
+
+⸻
+
+🔍 Causes possibles d’une faible duplication en R2
+
+Cause	Explication
+❌ Problème de lecture du R2 (séquençage)	Mauvaise qualité du read, séquence illisible, ou erreur de base-calling.
+❌ Mauvais design ou synthèse des barcodes	Si les barcodes n’ont pas été bien intégrés, ou si des erreurs ont été introduites (ex : oligo dégradé).
+❌ Échec du marquage lors du split	Si les cellules n’ont pas bien été barcodées (erreur dans les rounds de split).
+❌ Orientation incorrecte ou mauvais parsing	Si l’outil d’analyse lit R2 sans trouver la séquence attendue (ex : motif de linker/barcode non détecté).
+
+
+⸻
+
+✅ Attendu : un pic de duplication dans R2
+
+Dans des données Split-seq fonctionnelles, tu dois voir :
+	•	Une forte duplication dans les classes >10, >50, >100, etc. dans R2.
+	•	Si un échantillon n’a pas cela, il peut être non-exploitable ou à vérifier de près.
+
+⸻
+
+🧪 Que faire maintenant ?
+	1.	Comparer les FastQC de tous les R2 entre échantillons pour voir s’il y a une vraie anomalie.
+	2.	Regarder un échantillon de séquences R2 brutes (FASTQ) :
+	•	Est-ce que tu vois bien les motifs de barcodes ?
+	•	Est-ce qu’ils sont bien positionnés et consistants ?
+	3.	Utiliser un outil de parsing de barcodes (comme umi_tools extract ou splitseq-pipe) pour voir combien de barcodes valides sont retrouvés.
+
+⸻
+
+Souhaites-tu que je t’aide à écrire un petit script pour explorer la diversité de barcodes dans les R2 d’un FASTQ ?
+
+
+
+
+
+
+
+
+reception of the data
+-verif data quality 
+
+BARQC  pour recuperer barcode , mieux que starsolo pour les barcodes
+verif contamination voir help
+ curation des données 
+
+ 76 et 80 corr R2 bcp de duplication donc bien mais les deux autres pas ça donc bizarre 
+
+ faire schema avec representation des barcodes 
+ 
+ 
+ 
+ fig BARQC 
+
+ fig profondeur de sequençage améliore ou pas 
+ 
+ 
+
+
+
+
