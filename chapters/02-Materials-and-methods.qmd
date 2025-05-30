@@ -1,130 +1,75 @@
 # Materials and Methods {#sec-materials-and-methods}
 
-
 ## Materials
 
 catfastq to merge the reads from the 4 lanes (https://nf-co.re/rnaseq/3.14.0/)
 
-We have 4 index to improve the quality of the sequencing Illimina 
-first step : verify the quality of the reads
-we do a fastqc analysis and multiqc to have a global overview of the quality of the reads
+We have 4 index to improve the quality of the sequencing Illimina first step : verify the quality of the reads we do a fastqc analysis and multiqc to have a global overview of the quality of the reads
 
-
-then we remove the adapters and low quality reads with cutadapt or Trimmomatic, TrimGalore 
-
-
+then we remove the adapters and low quality reads with cutadapt or Trimmomatic, TrimGalore
 
 https://cutadapt.readthedocs.io/en/stable/guide.html
 
+https://onlinelibrary.wiley.com/doi/10.1002/imt2.107 fastp is a tool to improve the quality of the reads
 
-https://onlinelibrary.wiley.com/doi/10.1002/imt2.107 
-fastp is a tool to improve the quality of the reads
-
-
-
-2,5 coupes de queue polyG et polyX
-PolyG est un problème fréquent observé dans les séries Illumina NextSeq et NovaSeq, basées sur la chimie bicolore. Ces systèmes utilisent deux lumières différentes (rouge et verte) pour représenter quatre bases : une base avec seulement un signal rouge détecté est appelée C ; une base avec seulement un signal vert détecté est appelée T ; une base avec à la fois des lumières rouge et verte détectées est appelée A ; et une base sans lumière détectée est appelée G. Cependant, à mesure que le séquençage par synthèse progresse, l'intensité du signal de chaque cluster d'ADN s'affaiblit progressivement. Ce problème entraîne l'interprétation erronée de certaines T et C comme G dans les queues de lecture, un problème également connu sous le nom de queue polyG.
-
+2,5 coupes de queue polyG et polyX PolyG est un problème fréquent observé dans les séries Illumina NextSeq et NovaSeq, basées sur la chimie bicolore. Ces systèmes utilisent deux lumières différentes (rouge et verte) pour représenter quatre bases : une base avec seulement un signal rouge détecté est appelée C ; une base avec seulement un signal vert détecté est appelée T ; une base avec à la fois des lumières rouge et verte détectées est appelée A ; et une base sans lumière détectée est appelée G. Cependant, à mesure que le séquençage par synthèse progresse, l'intensité du signal de chaque cluster d'ADN s'affaiblit progressivement. Ce problème entraîne l'interprétation erronée de certaines T et C comme G dans les queues de lecture, un problème également connu sous le nom de queue polyG.
 
 I will use the fastp because it is more efficient and faster than cutadapt or Trimmomatic
 
-manual : https://open.bioqueue.org/home/knowledge/showKnowledge/sig/fastp
-It's also available on github : https://github.com/OpenGene/fastp
+manual : https://open.bioqueue.org/home/knowledge/showKnowledge/sig/fastp It's also available on github : https://github.com/OpenGene/fastp
 
-
-
-
-
-
-
-
- I receiv the data from Genobird plateforme of sequencing the 25 april 2025
- https://umr1087.univ-nantes.fr/research/core-facilities/genobird
- Two types of sequencing data :
-- bcl files (raw data from the plateforme of sequencing) (250go)
-- fastq files (processed data from the plateforme of sequencing) => we use this one for the moment because they remove the index from the reads (150go)
-
+I receiv the data from Genobird plateforme of sequencing the 25 april 2025 https://umr1087.univ-nantes.fr/research/core-facilities/genobird Two types of sequencing data : - bcl files (raw data from the plateforme of sequencing) (250go) - fastq files (processed data from the plateforme of sequencing) =\> we use this one for the moment because they remove the index from the reads (150go)
 
 There are 4 index for Novaseq (BC_0076, BC_0077, BC_0078, BC_0079) : CAGATC, ACTTGA, TAGCTT, GGCTAC. No experimental variation (biological or technical) between the index (Just added for a better quality of sequencing with Novaseq (I'm not sure about this)).
 
-
- We don't use the raw data from the plateforme of sequencing (bcl files) maybe later if I want to test to do the demultiplexing of the index (r4)
+We don't use the raw data from the plateforme of sequencing (bcl files) maybe later if I want to test to do the demultiplexing of the index (r4)
 
 In fact the plateforme of sequencing already do a demultiplexing of the index (r4). This allows to have a better quality of sequencing with Novaseq.
 
+So we have 8 fastq files ((R1 and R2)\*4) (one for each index) the index is removed from the R1 and R2 files the R1 file contain the sequence the R2 file contain the barcodes (r1, r2, r3) and the UMI and the index (already removed) CB_UMI_Complex consider of STARsolo consider that bardeodes are on the R2 file
 
+Do a figure for represent the sequence (see the formation Norwich and paper of Kuchina)
 
-So we have 8 fastq files ((R1 and R2)*4) (one for each index)
- the index is removed from the R1 and R2 files
- the R1 file contain the  sequence 
- the R2 file contain the barcodes (r1, r2, r3) and the UMI and the index (already removed) CB_UMI_Complex consider of STARsolo consider that bardeodes are on the R2 file
+I test to directly run STARsolo on the fastq files but I need more space on the server for all run I observe that we don't detect many genes and read (test on BC_0077 which is the file with the lowest size) So we decided to do a fastq quality control with fastqc and multiqc of R1 and R2 files (example in BC_0076)
 
+R2 file is globally correct : we see the barcodes and the UMI R1 file is not correct : adapter and low quality sequences at the end of the read
 
- Do a figure for represent the sequence  (see the formation Norwich and paper of Kuchina)
+of there are no different between the R1 and R2 files we could combine them in unique files (R1 and R2), for the moment we keep them separate and I test on BC_0076
 
- I test to directly run STARsolo on the fastq files 
- but I need more space on the server for all run 
- I observe that we don't detect many genes and read (test on BC_0077 which is the file  with the lowest size) 
-So we decided to do a fastq quality control with fastqc and multiqc of R1 and R2 files (example in BC_0076)
+We want to remove the adapters and low quality sequences detected by fastqc many poly at the end of the read
 
-R2 file is globally correct : we see the barcodes and the UMI
- R1 file is not correct : adapter and low quality sequences at the end of the read
+We use fastp to remove the adapters and low quality sequences detected by fastqc many poly at the end of the read before we want to do small file test we need to generate small fastq R1 and R2 files
 
-of there are no different between the R1 and R2 files we could combine them in unique files (R1 and R2), for the moment we keep them separate and I test on  BC_0076
-
- We want to remove the adapters and low quality sequences detected by fastqc many poly at the end of the read
-
-
- We use fastp to remove the adapters and low quality sequences detected by fastqc many poly at the end of the read
- before we want to do small file test we need to generate small fastq R1 and R2 files
-
-
- list of the Illumina adapters : https://github.com/s-andrews/FastQC/blob/master/Configuration/contaminant_list.txt
-
+list of the Illumina adapters : https://github.com/s-andrews/FastQC/blob/master/Configuration/contaminant_list.txt
 
 manual of fastp : http://open.bioqueue.org/home/knowledge/showKnowledge/sig/fastp
 
- Script to run fastp on the fastq files
- allow to remove adapters and low quality sequences detected by fastqc 
- The fastq files are in the folder 0_QC/data
- The fastp files are in the folder 1_fastp/data
+Script to run fastp on the fastq files allow to remove adapters and low quality sequences detected by fastqc The fastq files are in the folder 0_QC/data The fastp files are in the folder 1_fastp/data
 
+Test on 250 000 000 reads
 
-Test on 250 000 000 reads  
+We need to remove the sequences R1 that we don't use in our experiment
 
-
-We need to remove the sequences R1 that we don't use in our experiment 
-
-list of the sequences to remove in fastp :  
+list of the sequences to remove in fastp :\
 https://teichlab.github.io/scg_lib_structs/methods_html/SPLiT-seq.html
 
-I will see the result of fastqc to find 
-
-
+I will see the result of fastqc to find
 
 Très bonne question ! Voici pourquoi le “Insert size peak : 241 bp” est cohérent avec les lectures R1 de 241 cycles :
 
 ⸻
 
-🔍 Définition rapide :
-	•	Insert size (taille de l’insert) : c’est la distance entre le début de R1 et la fin de R2 sur la molécule d’ADN originale, c’est-à-dire la taille de l’ADN réellement séquencé (hors adaptateurs).
-	•	Nombre de cycles : correspond au nombre de bases que le séquenceur lit par lecture.
+🔍 Définition rapide : • Insert size (taille de l’insert) : c’est la distance entre le début de R1 et la fin de R2 sur la molécule d’ADN originale, c’est-à-dire la taille de l’ADN réellement séquencé (hors adaptateurs). • Nombre de cycles : correspond au nombre de bases que le séquenceur lit par lecture.
 
 ⸻
 
-📊 Dans ton cas :
-	•	R1 = 241 cycles → chaque lecture R1 peut théoriquement faire jusqu’à 241 bases
-	•	R2 = 91 cycles → R2 peut faire jusqu’à 91 bases
+📊 Dans ton cas : • R1 = 241 cycles → chaque lecture R1 peut théoriquement faire jusqu’à 241 bases • R2 = 91 cycles → R2 peut faire jusqu’à 91 bases
 
 Mais attention : les lectures ne couvrent pas toujours la totalité de l’insert. Cela dépend de la taille de l’insert fragmenté lors de la préparation de la librairie.
 
 ⸻
 
-✅ Pourquoi 241 bp est cohérent ici ?
-	•	Le “insert size peak” représente la valeur la plus fréquente des insert sizes calculés en alignant les paires de lectures (R1 et R2).
-	•	Or, ici on voit que :
-	•	Le nombre de cycles de R1 est 241 ⇒ donc on peut lire jusqu’à 241 bases sur le fragment (avant que R2 commence).
-	•	Le fait que l’insert size pic soit à 241 signifie que les deux lectures R1 et R2 se chevauchent à peine ou pas du tout, et que l’insert est environ aussi long que la lecture R1.
+✅ Pourquoi 241 bp est cohérent ici ? • Le “insert size peak” représente la valeur la plus fréquente des insert sizes calculés en alignant les paires de lectures (R1 et R2). • Or, ici on voit que : • Le nombre de cycles de R1 est 241 ⇒ donc on peut lire jusqu’à 241 bases sur le fragment (avant que R2 commence). • Le fait que l’insert size pic soit à 241 signifie que les deux lectures R1 et R2 se chevauchent à peine ou pas du tout, et que l’insert est environ aussi long que la lecture R1.
 
 Donc :
 
@@ -132,9 +77,7 @@ Le pic d’insert size à 241 bp signifie que la plupart des fragments d’ADN (
 
 ⸻
 
-🧬 Hypothèse probable ici :
-	•	Tu travailles probablement avec des librairies scRNA-seq adaptées pour des fragments courts, et tu séquences surtout à fond R1 (lecture informative).
-	•	R2 est plus courte (91 cycles), souvent pour lire un barcode ou UMI → R1 capture le bulk de l’information transcriptomique.
+🧬 Hypothèse probable ici : • Tu travailles probablement avec des librairies scRNA-seq adaptées pour des fragments courts, et tu séquences surtout à fond R1 (lecture informative). • R2 est plus courte (91 cycles), souvent pour lire un barcode ou UMI → R1 capture le bulk de l’information transcriptomique.
 
 ⸻
 
@@ -142,64 +85,32 @@ Le pic d’insert size à 241 bp signifie que la plupart des fragments d’ADN (
 
 Insert size = 241 bp, R1 = 241 cycles → la lecture R1 couvre quasiment toute la molécule. C’est donc cohérent et attendu dans ce type de design.
 
+--adapter_sequence_r2=AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC\
+--adapter_sequence=TGTGAGAAAGGGATGTGCTGCGAGAAGGCTAGA
 
-
- --adapter_sequence_r2=AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
-      --adapter_sequence=TGTGAGAAAGGGATGTGCTGCGAGAAGGCTAGA
-
-
-
-
-
-	  Le graphique que tu montres provient de FastQC (via MultiQC) et présente les niveaux de duplication des séquences dans 4 échantillons. Voici une explication de la variabilité entre les index observés :
+```         
+  Le graphique que tu montres provient de FastQC (via MultiQC) et présente les niveaux de duplication des séquences dans 4 échantillons. Voici une explication de la variabilité entre les index observés :
+```
 
 ⸻
 
-🔍 Comprendre le graphe :
-	•	Axe X : niveau de duplication (combien de fois chaque séquence apparaît).
-	•	Axe Y : pourcentage de la librairie.
-	•	Lignes vertes : échantillons avec peu de duplication (bon signe).
-	•	Lignes rouges : échantillons avec forte duplication (plusieurs séquences présentes en très grand nombre).
+🔍 Comprendre le graphe : • Axe X : niveau de duplication (combien de fois chaque séquence apparaît). • Axe Y : pourcentage de la librairie. • Lignes vertes : échantillons avec peu de duplication (bon signe). • Lignes rouges : échantillons avec forte duplication (plusieurs séquences présentes en très grand nombre).
 
 ⸻
 
-📌 Pourquoi observe-t-on une telle variabilité entre échantillons/index ?
-	1.	📚 Complexité de la librairie :
-	•	Les échantillons avec peu de duplication (courbe verte) ont probablement une bonne complexité → beaucoup de séquences uniques, peu de redondance.
-	•	Ceux avec forte duplication (courbes rouges) ont une faible complexité → trop de séquences identiques.
-	2.	📦 Qualité ou quantité d’ADN/ARN initial :
-	•	Si la quantité de matériel initial est faible, il y a un risque de suramplification lors de la PCR, ce qui entraîne une duplication artificielle des séquences.
-	3.	🧪 Protocole de préparation des librairies :
-	•	Des différences dans la préparation des index ou la quantité d’amplification PCR peuvent induire cette variabilité.
-	•	Mauvaise ligation d’adaptateurs ou biais d’amplification peuvent engendrer une surreprésentation de certaines séquences.
-	4.	🔄 Index/swapping ou contamination croisée :
-	•	Si des échantillons ont été mal indexés ou qu’il y a eu du swapping d’index, cela peut créer une fausse duplication dans un échantillon.
-	•	Des erreurs dans le multiplexing (mélange d’échantillons mal contrôlé) peuvent aussi l’expliquer.
-	5.	🧬 Nature biologique de l’échantillon :
-	•	Certains échantillons biologiques peuvent contenir naturellement beaucoup de séquences identiques (ex : séquences rRNA, transcrits très abondants).
-	•	Une transcription très polarisée (un seul gène très exprimé) peut causer des duplications élevées.
+📌 Pourquoi observe-t-on une telle variabilité entre échantillons/index ? 1. 📚 Complexité de la librairie : • Les échantillons avec peu de duplication (courbe verte) ont probablement une bonne complexité → beaucoup de séquences uniques, peu de redondance. • Ceux avec forte duplication (courbes rouges) ont une faible complexité → trop de séquences identiques. 2. 📦 Qualité ou quantité d’ADN/ARN initial : • Si la quantité de matériel initial est faible, il y a un risque de suramplification lors de la PCR, ce qui entraîne une duplication artificielle des séquences. 3. 🧪 Protocole de préparation des librairies : • Des différences dans la préparation des index ou la quantité d’amplification PCR peuvent induire cette variabilité. • Mauvaise ligation d’adaptateurs ou biais d’amplification peuvent engendrer une surreprésentation de certaines séquences. 4. 🔄 Index/swapping ou contamination croisée : • Si des échantillons ont été mal indexés ou qu’il y a eu du swapping d’index, cela peut créer une fausse duplication dans un échantillon. • Des erreurs dans le multiplexing (mélange d’échantillons mal contrôlé) peuvent aussi l’expliquer. 5. 🧬 Nature biologique de l’échantillon : • Certains échantillons biologiques peuvent contenir naturellement beaucoup de séquences identiques (ex : séquences rRNA, transcrits très abondants). • Une transcription très polarisée (un seul gène très exprimé) peut causer des duplications élevées.
 
 ⸻
 
-✅ Que faire ensuite ?
-	•	Vérifie les logs de préparation des librairies (nombre de cycles PCR, quantités initiales).
-	•	Contrôle la nature des séquences dupliquées (rRNA ? contamination ? artefacts PCR ?).
-	•	Si la duplication est due à un biais technique, envisage une normalisation, filtrage ou réanalyse avec des méthodes robustes à la duplication.
+✅ Que faire ensuite ? • Vérifie les logs de préparation des librairies (nombre de cycles PCR, quantités initiales). • Contrôle la nature des séquences dupliquées (rRNA ? contamination ? artefacts PCR ?). • Si la duplication est due à un biais technique, envisage une normalisation, filtrage ou réanalyse avec des méthodes robustes à la duplication.
 
 Souhaites-tu que je t’aide à analyser un des fichiers FastQC ou MultiQC de ces échantillons ?
-
-
-
-
-
 
 Excellente question ! Pour comprendre l’origine de la duplication dans tes échantillons, tu peux suivre une démarche en plusieurs étapes. Voici comment procéder concrètement, avec des outils comme FastQC, MultiQC, et éventuellement un peu de bioinformatique :
 
 ⸻
 
-🧪 Étape 1 : Identifier quels échantillons sont affectés
-	•	Dans MultiQC, regarde le nom des fichiers / échantillons associés aux courbes rouges.
-	•	Tu peux passer ta souris sur les courbes dans le rapport MultiQC (ou cliquer sur « Summarize plot ») pour identifier les noms des échantillons concernés.
+🧪 Étape 1 : Identifier quels échantillons sont affectés • Dans MultiQC, regarde le nom des fichiers / échantillons associés aux courbes rouges. • Tu peux passer ta souris sur les courbes dans le rapport MultiQC (ou cliquer sur « Summarize plot ») pour identifier les noms des échantillons concernés.
 
 ⸻
 
@@ -209,27 +120,15 @@ Pour chaque échantillon avec forte duplication :
 
 📁 a. Ouvre le rapport fastqc.html
 
-Regarde particulièrement ces modules :
-	1.	Per base sequence content
-→ S’il y a un biais fort (ex. enrichissement en G ou T), cela peut refléter une amorce ou adaptateur résiduel.
-	2.	Overrepresented sequences
-→ Si des séquences précises sont très abondantes, tu verras leurs séquences et une annotation possible (ex : “Illumina adapter”, “rRNA”…).
-	3.	K-mer content
-→ Détecte des motifs courts (souvent adaptateurs ou contamination PCR) qui sont surreprésentés.
+Regarde particulièrement ces modules : 1. Per base sequence content → S’il y a un biais fort (ex. enrichissement en G ou T), cela peut refléter une amorce ou adaptateur résiduel. 2. Overrepresented sequences → Si des séquences précises sont très abondantes, tu verras leurs séquences et une annotation possible (ex : “Illumina adapter”, “rRNA”…). 3. K-mer content → Détecte des motifs courts (souvent adaptateurs ou contamination PCR) qui sont surreprésentés.
 
 ⸻
 
-🧰 Étape 3 : Vérifier la complexité de librairie
-	1.	Utilise preseq (si possible) pour estimer la diversité de la librairie et prédire combien de nouvelles séquences seraient trouvées avec plus de séquençage.
-	2.	Vérifie le nombre de cycles PCR lors de la préparation (si tu as accès aux métadonnées du protocole).
+🧰 Étape 3 : Vérifier la complexité de librairie 1. Utilise preseq (si possible) pour estimer la diversité de la librairie et prédire combien de nouvelles séquences seraient trouvées avec plus de séquençage. 2. Vérifie le nombre de cycles PCR lors de la préparation (si tu as accès aux métadonnées du protocole).
 
 ⸻
 
-🔎 Étape 4 : Aligner et filtrer pour comprendre
-	1.	Alignement contre la référence :
-	•	Si la duplication est biologique (ex : gène très exprimé), les séquences dupliquées s’aligneront sur le génome.
-	•	Si c’est technique, tu verras des clusters de lectures identiques, souvent non alignées ou alignées aux mêmes positions.
-	2.	Filtrer les reads rRNA ou adaptateurs avec bbduk ou cutadapt.
+🔎 Étape 4 : Aligner et filtrer pour comprendre 1. Alignement contre la référence : • Si la duplication est biologique (ex : gène très exprimé), les séquences dupliquées s’aligneront sur le génome. • Si c’est technique, tu verras des clusters de lectures identiques, souvent non alignées ou alignées aux mêmes positions. 2. Filtrer les reads rRNA ou adaptateurs avec bbduk ou cutadapt.
 
 ⸻
 
@@ -241,18 +140,9 @@ Après avoir filtré ou supprimé des séquences surreprésentées (ex : adaptat
 
 En résumé :
 
-Étape	Objectif	Outil
-Identifier échantillons affectés	MultiQC	multiqc report.html
-Voir séquences dupliquées	FastQC (Overrepresented sequences)	fastqc sample.fastq.gz
-Filtrer adaptateurs/rRNA	Nettoyage des reads	cutadapt, bbduk, SortMeRNA
-Aligner sur génome	Déterminer l’origine (biologique ou technique)	bowtie2, STAR, bwa
-Estimer complexité de librairie	Saturation / diversité	preseq
+Étape Objectif Outil Identifier échantillons affectés MultiQC multiqc report.html Voir séquences dupliquées FastQC (Overrepresented sequences) fastqc sample.fastq.gz Filtrer adaptateurs/rRNA Nettoyage des reads cutadapt, bbduk, SortMeRNA Aligner sur génome Déterminer l’origine (biologique ou technique) bowtie2, STAR, bwa Estimer complexité de librairie Saturation / diversité preseq
 
 Souhaites-tu que je t’aide à faire l’un de ces diagnostics étape par étape avec tes fichiers ?
-
-
-
-
 
 Merci pour la précision ! Le fait que la variabilité de duplication concerne le R2 contenant les barcodes (Split-seq) change complètement l’interprétation — et c’est attendu dans ce cas. Voici pourquoi :
 
@@ -262,17 +152,13 @@ Merci pour la précision ! Le fait que la variabilité de duplication concerne l
 
 🔹 1. R2 ne reflète pas l’ARNm, mais les barcodes de marquage cellulaire
 
-Dans Split-seq, le read 2 contient :
-	•	Les barcodes de cellule, de well, et parfois des UMI (unique molecular identifiers).
-	•	Ces séquences sont courtes et proviennent d’un nombre limité de combinaisons (des dizaines à centaines de barcodes possibles).
+Dans Split-seq, le read 2 contient : • Les barcodes de cellule, de well, et parfois des UMI (unique molecular identifiers). • Ces séquences sont courtes et proviennent d’un nombre limité de combinaisons (des dizaines à centaines de barcodes possibles).
 
 👉 Cela veut dire que le contenu du read 2 est volontairement redondant.
 
 🔹 2. Répétition intentionnelle de séquences dans R2
 
-Exemple :
-	•	Si tu as 96 puits + 48 barcodes de round 2, tu n’auras que quelques centaines de combinaisons uniques dans R2.
-	•	Mais tu as des millions de lectures, donc chaque barcode apparaît des milliers de fois → duplication élevée dans R2.
+Exemple : • Si tu as 96 puits + 48 barcodes de round 2, tu n’auras que quelques centaines de combinaisons uniques dans R2. • Mais tu as des millions de lectures, donc chaque barcode apparaît des milliers de fois → duplication élevée dans R2.
 
 🔹 3. Pas un problème de qualité, mais une conséquence du protocole
 
@@ -284,28 +170,15 @@ C’est normal, attendu, et non problématique du tout pour l’analyse — car 
 
 La variabilité entre échantillons R2 peut s’expliquer par :
 
-Cause possible	Explication
-📈 Nombre de cellules différentes	Un échantillon avec moins de cellules aura plus de redondance de barcodes.
-🧬 Répartition inégale de barcodes	Mauvais mélange ou étiquetage inégal lors des étapes de split (rounds de barcoding).
-🧪 Efficacité du reverse transcription ou capture ARN	Peut biaiser la représentation de certains barcodes.
-🧫 Contamination croisée entre puits	Peut aussi expliquer des duplications anormales.
-
+Cause possible Explication 📈 Nombre de cellules différentes Un échantillon avec moins de cellules aura plus de redondance de barcodes. 🧬 Répartition inégale de barcodes Mauvais mélange ou étiquetage inégal lors des étapes de split (rounds de barcoding). 🧪 Efficacité du reverse transcription ou capture ARN Peut biaiser la représentation de certains barcodes. 🧫 Contamination croisée entre puits Peut aussi expliquer des duplications anormales.
 
 ⸻
 
-🧠 À retenir
-	•	✅ Duplication élevée dans R2 (barcodes Split-seq) est normale.
-	•	🧪 FastQC n’est pas conçu pour interpréter ce type de données → il est plus utile sur R1 (où se trouve le transcriptome).
-	•	❌ Ne filtre surtout pas ces duplications sur R2.
-	•	✔️ Continue l’analyse avec des outils comme zUMIs, split-pipe, kb-python, ou le pipeline adapté à ton protocole Split-seq.
+🧠 À retenir • ✅ Duplication élevée dans R2 (barcodes Split-seq) est normale. • 🧪 FastQC n’est pas conçu pour interpréter ce type de données → il est plus utile sur R1 (où se trouve le transcriptome). • ❌ Ne filtre surtout pas ces duplications sur R2. • ✔️ Continue l’analyse avec des outils comme zUMIs, split-pipe, kb-python, ou le pipeline adapté à ton protocole Split-seq.
 
 ⸻
 
 Souhaites-tu que je t’aide à identifier automatiquement les barcodes valides ou à préparer un pipeline pour la phase de “demultiplexing” ?
-
-
-
-
 
 Oui, exactement : si tu observes des échantillons R2 (barcodes) sans ou avec très peu de duplication, c’est potentiellement problématique dans un protocole comme Split-seq. Voici pourquoi :
 
@@ -313,47 +186,439 @@ Oui, exactement : si tu observes des échantillons R2 (barcodes) sans ou avec tr
 
 ❌ Peu de duplication dans R2 (barcodes) : signal d’alerte
 
-Dans un bon échantillon de Split-seq :
-	•	Le R2 contient des barcodes techniques qui devraient être fortement redondants.
-	•	Chaque combinaison de barcodes doit être lue des milliers de fois (car chaque cellule donne lieu à de nombreuses lectures avec le même barcode).
+Dans un bon échantillon de Split-seq : • Le R2 contient des barcodes techniques qui devraient être fortement redondants. • Chaque combinaison de barcodes doit être lue des milliers de fois (car chaque cellule donne lieu à de nombreuses lectures avec le même barcode).
 
-Donc, si :
-	•	📉 Tu as très peu de duplication dans R2,
-	•	Cela signifie probablement que les barcodes sont absents, mal lus ou trop diversifiés,
-	•	Ce qui peut rendre impossible le regroupement des lectures par cellule (la base du single-cell).
+Donc, si : • 📉 Tu as très peu de duplication dans R2, • Cela signifie probablement que les barcodes sont absents, mal lus ou trop diversifiés, • Ce qui peut rendre impossible le regroupement des lectures par cellule (la base du single-cell).
 
 ⸻
 
 🔍 Causes possibles d’une faible duplication en R2
 
-Cause	Explication
-❌ Problème de lecture du R2 (séquençage)	Mauvaise qualité du read, séquence illisible, ou erreur de base-calling.
-❌ Mauvais design ou synthèse des barcodes	Si les barcodes n’ont pas été bien intégrés, ou si des erreurs ont été introduites (ex : oligo dégradé).
-❌ Échec du marquage lors du split	Si les cellules n’ont pas bien été barcodées (erreur dans les rounds de split).
-❌ Orientation incorrecte ou mauvais parsing	Si l’outil d’analyse lit R2 sans trouver la séquence attendue (ex : motif de linker/barcode non détecté).
-
+Cause Explication ❌ Problème de lecture du R2 (séquençage) Mauvaise qualité du read, séquence illisible, ou erreur de base-calling. ❌ Mauvais design ou synthèse des barcodes Si les barcodes n’ont pas été bien intégrés, ou si des erreurs ont été introduites (ex : oligo dégradé). ❌ Échec du marquage lors du split Si les cellules n’ont pas bien été barcodées (erreur dans les rounds de split). ❌ Orientation incorrecte ou mauvais parsing Si l’outil d’analyse lit R2 sans trouver la séquence attendue (ex : motif de linker/barcode non détecté).
 
 ⸻
 
 ✅ Attendu : un pic de duplication dans R2
 
-Dans des données Split-seq fonctionnelles, tu dois voir :
-	•	Une forte duplication dans les classes >10, >50, >100, etc. dans R2.
-	•	Si un échantillon n’a pas cela, il peut être non-exploitable ou à vérifier de près.
+Dans des données Split-seq fonctionnelles, tu dois voir : • Une forte duplication dans les classes \>10, \>50, \>100, etc. dans R2. • Si un échantillon n’a pas cela, il peut être non-exploitable ou à vérifier de près.
 
 ⸻
 
-🧪 Que faire maintenant ?
-	1.	Comparer les FastQC de tous les R2 entre échantillons pour voir s’il y a une vraie anomalie.
-	2.	Regarder un échantillon de séquences R2 brutes (FASTQ) :
-	•	Est-ce que tu vois bien les motifs de barcodes ?
-	•	Est-ce qu’ils sont bien positionnés et consistants ?
-	3.	Utiliser un outil de parsing de barcodes (comme umi_tools extract ou splitseq-pipe) pour voir combien de barcodes valides sont retrouvés.
+🧪 Que faire maintenant ? 1. Comparer les FastQC de tous les R2 entre échantillons pour voir s’il y a une vraie anomalie. 2. Regarder un échantillon de séquences R2 brutes (FASTQ) : • Est-ce que tu vois bien les motifs de barcodes ? • Est-ce qu’ils sont bien positionnés et consistants ? 3. Utiliser un outil de parsing de barcodes (comme umi_tools extract ou splitseq-pipe) pour voir combien de barcodes valides sont retrouvés.
 
 ⸻
 
 Souhaites-tu que je t’aide à écrire un petit script pour explorer la diversité de barcodes dans les R2 d’un FASTQ ?
 
+reception of the data -verif data quality
+
+BARQC pour recuperer barcode , mieux que starsolo pour les barcodes verif contamination voir help curation des données
+
+76 et 80 corr R2 bcp de duplication donc bien mais les deux autres pas ça donc bizarre
+
+faire schema avec representation des barcodes
+
+fig BARQC
+
+fig profondeur de sequençage améliore ou pas
+
+------------------------------------------------------------------------
+
+Bilan du 09/05/2025 - mis du temps pour la reception des données - au debut du stage pré-données mais je ne pouvais rien en faire du tout car pas tout les barcodes - avant fait biblio sur l'ANR, sujets de stage (contexte biologique), types d'analyses (seurat, scanpy, ...) et logiciels pour traiter les données - lecture des cours des M1 en single cell et la formation Norwich - test d'un pipeline (BacSC) - analyse de données d'autres articles (le probleme etait la dispo des données), preparation de script pour analyser les données - Appris à utiliser le cluster, preparer les metadatas, - fait mon template quarto pour le rapport de stage - appris à utiliser cursor - decouvert de pipelines Nextflow - construction d'un docker et devcontainer pour maximiser la reproductibilité (vraiment cool pour après ) - appris à utiliser renv - appris quarto - appris renv - appris cursor, agent
+
+-   reception des données le 25/04/2025
+    -   Brute data : 230 go (no demultiplexing)
+    -   Processed data : 150 go (demultiplexing)
+        -   8 fastq files (R1 and R2)
+        -   4 index for Novaseq (BC_0076, BC_0077, BC_0079, BC_0080)
+            -   "1) BC_0076 (R1: 42.8GB, R2: 18.6GB)"
+            -   "2) BC_0077 (R1: 21.3GB, R2: 9.6GB)"
+            -   "3) BC_0079 (R1: 25.2GB, R2: 11.3GB)"
+            -   "4) BC_0080 (R1: 26.6GB, R2: 11.6GB)"
+    -   au debut : probleme de stockage des données sur le cluster pas assez de memoire pour les fichiers bruts et lancer les analyses
+        -   remarque :
+            -   index de poids variable (Go)
+            -   sur leur graph deux points outliers non mentionnés dans leur doc
+            -   pour le demultiplexing ont eu besoin des sequences complémentaires finalement
+-   d'abord j'ai fait un test STARsolo sur des données brutes démultiplexées mais non nettoyées
+    -   detection des barcodes (80% des barcodes sont bien détectés)
+    -   mais les reads sont très bruités et il y a des reads qui ne sont pas alignés (très faible nombre dans la matrice)
+    -   detection de beaucoup de cellules mais avec chacun peut de reads de gènes exprimés
+    -   donc pas de résultats satisfaisants
+    -   aussi test seurat : voit conditions de stress moins de reads et plus DO augmente pareil
+-   choix de nettoyer les données
+    -   pour la suite des analyses, on a choisi de verifier la qualité des données avant de nettoyer les données pour avoir des reads de meilleure qualité
+    -   pour cela on a fait un fastqc et un multiqc pour voir la qualité des données
+        -   beaucoup d'adaptateurs sur R1 (contient l'insert)
+            -   donc on a fait un nettoyage des données avec fastp pour enlever les adaptateurs (trimming)
+            -   aussi on enlève les polyG (polyG bias)
+            -   beaucoup de duplication sur R2 (barcodes) mais seulement pour deux des quatre index
+            -   c'est etrange car on devrait observer la meme chose pour les quatre index
+
+![image](../figures/BC_0076_dupli_R2.png) =\> 76 et 80 corr R2 bcp de duplication donc bien mais les deux autres pas ça donc bizarre
+
+aussi en R1 : bcp de duplication mais pas pour les quatre index
+
+![image](../figures/BC_0076_overr_seq_R1.png) =\> beaucoup de séquences surreprésentées (illumina adapter, ...)
+
+![image](../figures/BC_0076_Adapt_R1.png) =\> beaucoup d'adaptateurs sur R1 (contient l'insert)
+
+-   on a donc fait un nettoyage des données avec fastp pour enlever les adaptateurs
+
+-   si jamais le cut ne marche pas,  essai de cut très court (74pb je crois ) pour ne pas avoir les sequence d'adaptateur pour un meilleur alignement 
+
+-   qualité des données
+
+    -   fastqc
+    -   multiqc
+    -   fastp
+    -   BARQC
+    -   contamination
+
+lister les figures que je veux mettre dans le rapport
+
+![image](../figures/final_libraries.png)
+
+BC_0076 CAGATC
+BC_0077 ACTTGA
+BC_0078 TAGCTT
+BC_0079 GGCTAC
+
+j'ai recherché dans le  R1 contient l'insert et possiblement barcodes si taille petites
+round 2 linker :  5' CCACAGTCTCAAGCACGTGGAT 3'
+round 3 linker :  5' AGTCGTACGCCGATGCGAAACATCGGCCAC 3'
+
+Truseq read 2 : 5' AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 3'
+Illumina P7 : 5' ATCTCGTATGCCGTCTTCTGCTTG 3'
+
+l'index est ici normalement situé entre les deux sequence mais ici grace demultiplexage deja supprime 
+
+nous on cherche plutot les barcodes dans le R2 : 
+Truseq Read 2 :   3' TCTAGCCTTCTCGTGTGCAGACTTGAGGTCAGTG 5' 
+donc la sequence reverse pour find :  5' GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT 3' => pas retrouve 
+
+reverse de round 3 linker : 5'*GTGGCCGATGTTTCGCATCGGCGTACGACT* 3'
+reverse de round 2 linker : 5'*ATCCACGTGCTTGAGACTGTGG* 3'
+
+UMI (10bp) -round3 barcode (8pb)- linker_rd3 (30pb)- round 2 barcode (8pb) - linker_rd2 (22 pb) barcode rd1 (8pb) fait 86pb  au total 
+ici bien BC_0076 car **CAGATC** issu du demultiplexage 
+# exemple :
+
+pour le R1 : insert (taille variable : 0pb à 196 pb ) normalement 241 cycles mais 
+du coup 76 pb la seqeunce qui suit 
+*AATGATACGGCGACCACCGAGATCTACACT*AGATCGC*TCGTCGGCAGCGT*CAGATGTGTATAAGAGACAG  ...........
+*Ilummina P5*                     truc     s5             ME                   cDNA
+
+la plateforme a probablement deja trimmé : AGATCGCTCGTCGGCAGCGTCAGATGTGTATAAGAGACAG en amont du cDNA qui fait 42 bp =>>> peut etre ils enlèvent des sequences utile lorsque l'insert est petit, discuter avec eux 
+
+@LH00611:18:225KMWLT1:2:1101:3219:1096 2:N:0:CAGATC                           
+read 2 : 
+5' TNTACGCCGAGTCTGTCA*GTGGCCGATGTTTCGCATCGGCGTACGACT*GACAGTGC*ATCCACGTGCTTGAGACTGTGG*TATAGTCGCTGAC 3'
+
+vgoupille@genossh:/projects/ecogeno/DEV/2025_GoupilleValentin$ ./view_fastq_head.sh data/processed_data/unzipped_data/NTS-412_fastq/fastq/BC_0076_R1.fastq.gz 80
+Showing first 80 lines of data/processed_data/unzipped_data/NTS-412_fastq/fastq/BC_0076_R1.fastq.gz:
+----------------------------------------
+@LH00611:18:225KMWLT1:2:1101:1111:1096 1:N:0:CAGATC
+ANATCGAGTAGGACGGAACCCAC*CCACAGTCTCAAGCACGTGGAT*TTCAGCTC**AGTCGTACGCCGATGCGAAACATCGGCCACT**AGTTCCACATAAACACAAGATAGGAAGAGCACACGTCTGAACTCCAGTCACCAGATCATCTAGGGGGGGGGGGGGGGGTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGNGGG
++
+I#IIII9II*IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9III9IIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIII9IIIIIIIIIIII9*III*9I*I*99*9**9***9*9***99999999IIIII9I9I99I9999III9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII#III
+@LH00611:18:225KMWLT1:2:1101:1203:1096 1:N:0:CAGATC
+GNAGTGGTATCAACGCAGAGTGAATGGGGGAACCCAGCCATCATAAGATGGTTATCTTGTACTGAATACATAGGTGCAAGAGGCGAACCAGGGGAACTGAAACATCTAAGTACCCTGAGGAAAAGAAATCAACCGAGATTCCCTTAGTAGTGGCGAGCGAACGGGGGTCCGGGCG*CCACAGTCTCAAGCACGTGGAT*GTTCGCCTGTCGTACGCCGATGCTAAACATCGGCCACTCGNCGT
++
+I#IIII9I9IIIIIIIIIII9IIII*IIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9IIIIIIIII*IIIIIII9IIIII9IIIII9I9I9IIII9*IIIIIIII9IIIIIIIIIIII99I*IIIIIIII99II99IIIIIIII9I9IIIIIII9III999IIII9III*I9II9**III9I9I9*9II*I9I99I99I9I9*9*II*I**9I9*I*9*9I9****#**9
+@LH00611:18:225KMWLT1:2:1101:1277:1096 1:N:0:CAGATC
+ANTGAAACATCTAAGTACCCTGAGGAAAAGAAATCAACCGAGATTCCCTTAGTAGTGGCGAGCGAACGGGGACTAGCCCTTCAGCTTCTTTGATTTTCGCGGCACGCTCTGGAAAGTGCGGCCATAGTGGGTGATCGCCCTGTACGCGAAAGGATCTTCGAAGTGAAATCGAGTAGGACGGAGCACGACTCTC*CCACAGTCTCAAGCACGTGGAT*TGAACTGGAGTCGTACGCCGATNCGA
++
+I#I*IIIII9IIIIIIIIIIIIIIIIIIIIIIIIIII9II9IIIIIIIIII9IIII9IIIIIIIIIIII9II*I9IIIIII99I9IIIIIIIIIIII*IIII**I9IIII9*I9II9*9II**I*I99*999I9I9*9*99*9**II9999*9999I*9*9IIIII*III9IIIIIIII9IIII9I9I9I*I9I99*IIII9II*9*9I**I*II9*9999*I*III*9II*II9*I#**9
+@LH00611:18:225KMWLT1:2:1101:1499:1096 1:N:0:CAGATC
+GNGAATACGTTCCCGGGCCTTACACACACCGCCCGTCACACCATGGGAGTGGGTTGCACCAGAAGTAGCTAGTCTAACCTTCGGGAGGACGGTTACCACGGTGTGATTCATGACTGGGGTGAAGTCGTAACAAGGCATAACCGTA*CCACAGTCTCAAGCACGTGGAT*ACAGTGGTATCAACGCAGAGTGGATGGAATGAT**AGTCGTACGCCGATGCGAAACATCGGCCAC**TCAGGAGNTGA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9*IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9III9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9II#III
+@LH00611:18:225KMWLT1:2:1101:1703:1096 1:N:0:CAGATC
+ANCAGTGGTATCAACGCAGAGTGAATGGGGGTCAAGTGAAGAAGCGCATACGGTGGATGCCTTGGCAGTCAGAGGCGATGAAAGACGTGGTAGCCTGCGAAAAGCTTCGGGGAGTCGGCAAACAGACTTTGATCCGGAGATGTCTGCAGGGGGAACCCAC*CCACAGTCTCAAGCACGTGGAT*TGTGGTTGATTCGTACGCCGATGCGAAACATCGGCCACTGTACCTTCCACACACTTAGA
++
+I#IIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9III9IIIIIIIIII9
+@LH00611:18:225KMWLT1:2:1101:1740:1096 1:N:0:CAGATC
+GNTGAAAGACGTGGTAGCCTGCGAAAAGCTTCGGGGAGTCGGCAAACAGACTTTGATCCGGAGATGTCTGAATGGGGGAACCCAGCCATCATAAGATGGTTATCTTGTACTGAATACATAGGTGCAAGAGGCGAACCAGGGGAACTGAAACATCTAAGTACCCTGAGGAAAAGAAATCAACCGAGATTCCCTTAGTAGTGGCGAGCGAACGGGGACTAGCCCTTAAGCTTCTTTGATTTTG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIII*II9IIIIIII*IIII*
+@LH00611:18:225KMWLT1:2:1101:1758:1096 1:N:0:CAGATC
+CNAAGTTTAAGGTGGTAGGCTGAATCTTAGGTAAATCCGGGATTCTAAGGCCGAGAGCTGATGACGAGTTACCCTTTGGGTGACGAAGTGGTTGATGCCATGCTTCCAAAAAGGCTTCTAAGCTTCAGGCCCCAAGCA*CCACAGTCTCAAGCACGTGGAT*TAGTCTTGAGTCGTACGCCGATGCGAAACATCGGCACTCTCGGTTCAAAAAAAGTAGCTCGGAAGAGCACCCTTCTGAACT   
++
+9#9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIII9II99IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9III9III9IIIIIIIIIIIIIIIII9IIIIIIIIIIIIIII9IIIIIIIIII9I9II99IIIII9IIII99IIIIIIIIIIIIIIIIII*9IIIIII*III**9*9I99*II*
+@LH00611:18:225KMWLT1:2:1101:1777:1096 1:N:0:CAGATC
+ANGCAGTGGTATCAACGCAGAGTGAATGGGAAAGACCCCGTGAACCTTTACTATAGCTTTGCACTGGACTTTGAATTTGCTTGTGTAGGATAGGTGGGAGGCTTTGAAGCGTGGACGCCAGTTCGCGTGGAGCCATCCTTGAAATACCACCCTGGCAACTTTGAGGTTCTAACTCAGGTCCGTTATCCAGATCGGGACAG*CCACAGTCTCAAGCACGTGGAT*TCTCACGGAGTCGTACGCC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1814:1096 1:N:0:CAGATC
+CNTTGATCCGGAGATGTCTGAATGGGGGAACCCAGCCATCATAAGATGGTTATCTTGTACTGAATACATAGGTGCAAGAGGCGAACCAGGGGAACTGAAACATCTAAGTACCCTGAGG*AAAAAAAAAAAAAAA*GAACCCAC*CCACAGTCTCAAGCACGTGGAT*TGTGAAGA**AGTCGTACGCCGATGCGAAACATCGGCCAC**TGTTCTCCTGGACTATTGAGATCGGAAGAGCACACGTCTG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIII9III99IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIII*9II9III*IIII9IIIII99I9II99I9
+@LH00611:18:225KMWLT1:2:1101:1832:1096 1:N:0:CAGATC
+TNGTTGTCCAAGTTTAAGGTGGTAGGCTGGAATCTTAGGTAAATCCGGGATTCTAAGGCCGAGAGCTGATGACGAGTTACCCTTTGGGTGACGAAGTGGTTGATGCCATGCTTCCAAGAAAAGCTTCTAAGCTTCAGGTAACCAAGTAACCGTA*CCACAGTCTCAAGCACGTGGAT*TGACAGACAGTCGTACGCGATGCGAAACATCGGCCACAGAGTGGTATAAAAACATAGATCGGAAG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2072:1096 1:N:0:CAGATC
+GNGTGAATGGGTGTCG**AGTCGTACGCCGATGCGAAACATCGGCCAC**TGCTGATAAGCCACACAC**AGATCGGAAGAGCACACGTCTGAACTCCAGTCA**CCAGATCATCTAGGGGGGGGGGGGTGGTTTGGGAGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9*IIII9**99***********9*****99999*9999999I9III9I9I999IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2165:1096 1:N:0:CAGATC
+ANCGCATACGTCCTACGGGAGAAAGCAGGGGACCTTCGGGCCTTGCGCTATCAGATGAGCCTAGGTCGGATTAGCTAGTTGGTGAGGTAATGGCTCACCAAGGCGACGATCCGTAACTGGTCTGAGAGGTAAGACAGTGC*CCACAGTCTCAAGCACGTGGAT*ATCACGTT**AGTCGTACGCCGATGCGAAACATCGGCCAC**GATCTCTTCTAGTAATTTAGATCGGAAGAGCACACGTCTGA
+# par exemple r1 contient un insert assez court : ANCGCATACGTCCTACGGGAGAAAGCAGGGGACCTTCGGGCCTTGCGCTATCAGATGAGCCTAGGTCGGATTAGCTAGTTGGTGAGGTAATGGCTCACCAAGGCGACGATCCGTAACTGGTCTGAGAGGTAAGACAGTGC (132pb -8pb (barcode round1) = 124pb donc on arrive a retrouver le barcodes dans l'autre sens) moi je vais vouloir trimmé ce qui suis alors pour l'alignement 
+
+# ici par exemple contient round 2 linker et round 3 linker : donc barcode round 2 entre les deux (8pb) , avant round 2 linker on a normalement barcode round 1 (8pb)
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2220:1096 1:N:0:CAGATC
+GNATCAACGCAGAGTGATCGGAAGAGCACACGTCTGAACTCCAGTCACCAGATCATCTAGGGGGGGGGGGTGTTTTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII99*I9I9I9999***********9***999999999999999I9I9III99III9III9II9I9IIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2442:1096 1:N:0:CAGATC
+GNTATCAACGCAGAGTGAATGGGGGTCAAGTGAAGAAGCGCATACGGTGGATGCCTTGGCAGTCAGAGGCGATGAAAGACGTGGTAGCCTGCGAAAAGCTTCGGGGAGTCGGCAAACAGACTTTGATCCGGAGATGTCTGAATGGGGGACTAATTTC*CCACAGTCTCAAGCACGTGGAT*TCCAGTCG**AGTCGTACGCCGATGCGAAACATCGGCCAC**TGCATAGTGTGGGGCAGCAGNTCG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII#III
+@LH00611:18:225KMWLT1:2:1101:2535:1096 1:N:0:CAGATC
+CNCCCTTTAAAGAAAGCGTAATAGCTCACTAGTCGAGTCGGCCTGCGCGGAAGATGTAACGGGGCTCAAACCATACACCGAAGCTACGGGTATCACGTAAGTGATGCGGTAGAGGAGCGTTCTGTAAGCCTGTGAAGGTGAGTTGAGAAGCTTGCTGGAGGTATCAGAAGTGCGTCGGGACAGCCACCGTCTCAAGCACGTGGATCTTGTACTATTCGTACGCCGATGCGAAGCATCNGCC
++
+I#IIIIIII*III9IIIIIIIII9IIIII*IIIII9IIIIIIIIII9IIII9I*I9IIIIII9IIIIIIIII9IIIII9IIIIIIIIIIIIIII99I9IIIIIIIIIIIIIIIIIIIII9III9IIIII*IIIIIII*IIIIIIIIIIIIIIII9IIII99III9I*II*III9IIII9IIII9II9*IIII9I9*9I9*I*9*I99I*I99*9*9I99II*99II*99*99**I9*#9I9
+@LH00611:18:225KMWLT1:2:1101:2997:1096 1:N:0:CAGATC
+GNCATGCCGCGTGTGTGAAGAAGGTCTTCGGATTGTAAAGCACCTTAAGTTGGGAGGAAGGGCATTAACCTAATACGTTAGTGTTTTGACGTTACCGACAGAATAAGCACCGGCTAACTCTGTGCCAGCAGCCGCGGTAATACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGCGCGTAGGTGGTTCGTTAAGTTGGATGTAAATCCCCGGGCTCAACCTGGGAACNGCA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*IIIIIIIIIIIIIIIIIIIIIIIII9II9IIIIIIIIIIIIIIIIIIIIIIIIIII9II9IIII#III
+@LH00611:18:225KMWLT1:2:1101:3034:1096 1:N:0:CAGATC
+CNTGGACTGATACTGACACTGAGGTGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGTCAACTAGCCGTTGGGAGCCTTGAGCTCTTAGTGGCGCAGCTAACGCATTAAGTTGACCGCCTGGGGAGTACGGCCGCAAGGTTAAAACCCAAAAAAAAAAAAAATAGGGTAG*CCACAGTCTCAAGCACGTGGAT*GAGGATGGAGTCGTACGCNGAT
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIII*IIIIIIIII9IIIIIII9IIIII9IIIII9IIIIIIIIIIIIIIIIIIIII99IIIIIIIIIIIII9I9III#*II
+@LH00611:18:225KMWLT1:2:1101:3052:1096 1:N:0:CAGATC
+GNAGGACGGAGCACTAATTTC*CCACAGTCTCAAGCACGTGGAT*GTTAGCCT**AGTCGTACGCCGATGCGAAACATCGGCCAC**TCGAGCGTCAATGCCCTCAGATCGGAAGAGCACACGTCTGAACTCCAGTAAACAGATCATCTATGGGGTGCTGTTTTTTTTGGTAGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGAGGGGGAGGGGGGGGNGGG
++
+I#9II99I99I9999IIII9IIIII99IIIII9IIIIIIII*9IIII99IIIIIIII*IIII9IIIIIIIII99IIII99III9I9IIIIIIIIIIIIIIII9*I99I9IIIIIII999I9III*I**I9**9**9999999*9*9***********9*9**9***999999*999****999**99*9**99***99999*99*99****99****99999*99*99*9****999#9*9
+@LH00611:18:225KMWLT1:2:1101:3219:1096 1:N:0:CAGATC
+GNAGTGAAATCGAGTAGGACGGAGCACGAGAAACTTTGTCTGAATATGGGGGGACCATCCTCCAAGGCTAAATACTACTGACTGACCGATAGTGAACTAGTACCGTGAGGGAAAGGCGAAAAGAACCCCTGAGAGGGGAGTGAAATAGATCCTGAAACCGTATGCGTACAAGCAGTGGGAGCCCACTTTGTTGGGTGACTGCGTACCTTTTGTATAATGGGTCAGCGACTATACCACAGTC
++
+I#IIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9IIII9II9IIII
+@LH00611:18:225KMWLT1:2:1101:3293:1096 1:N:0:CAGATC
+ANGCAGTGGTATCAACGCAGAGTGAATGGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGTCAACTAGCCGTTGGGAGCCTTGAGCTCTTAGTGGCGCAGCTAACGCATTAAGTTGACCGCCTGGGGAGTACGGCCGCAAGGTTAAAACTCAAATGAATTGACGGGGTCCCTTAG*CCACAGTCTCAAGCACGTGGAT*TCGAGCGT**AGTCGTACGCCGATGCGAAACATCGGCCAC**T
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIII9IIIII9IIIIIIIIIIIIIIIII9IIIIII
+
+
+
+
+
+vgoupille@genossh:/projects/ecogeno/DEV/2025_GoupilleValentin$ ./view_fastq_head.sh data/processed_data/unzipped_data/NTS-412_fastq/fastq/BC_0076_R2.fastq.gz 80
+Showing first 80 lines of data/processed_data/unzipped_data/NTS-412_fastq/fastq/BC_0076_R2.fastq.gz:
+----------------------------------------
+@LH00611:18:225KMWLT1:2:1101:1111:1096 2:N:0:CAGATC
+TNTGTTTCCTTTGAACCCATGGCCCACGTTTCGCCCCCGCGTCCCACCTATCCGACCCCCCCCCCCTTTACACCGCTGGTTGGTTCCCTCC
++
+I#I*9II9**9*9***9*****99**9******99*99*9***9**999**9**9*9999*99******9**9***9*9**9*99*9*99*
+@LH00611:18:225KMWLT1:2:1101:1203:1096 2:N:0:CAGATC
+TNGGATTAAACACTTCGAGTGGCCGATGTTTCGCATCGGCGTACGACAGGCTAAC*ATCCACGTGCTTGAGACTGTGG*CGCCCGGACCCCCG
++
+9#IIIIII*III*IIIIIIIIIIII9IIIIIIIIIIIIIIIIIII*II9III99I9IIIIIIIII9IIIIIIIIIIIIII*III*IIIIII
+@LH00611:18:225KMWLT1:2:1101:1277:1096 2:N:0:CAGATC
+TNCCCGTGTGTGGCTTCA*GTGGCCGATGTTTCGCATCGGCGTACGACT*CCAGTTCA*ATCCACGTGCTTGAGACTGTGG*TATAGTCGTGCTC
++
+I#IIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1499:1096 2:N:0:CAGATC
+TNTCTTTTCACCTCCTGA*GTGGCCGATGTTTCGCATCGGCGTACGACT*ATCATTCCATCCACTCTGCGTTGATACCACTGTATCCACGTGC
++
+I#IIIIIIIIIIII9III9IIIIII*I9IIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1703:1096 2:N:0:CAGATC
+ANGTGTGTGGAAGGTACAGTGGCCGATGTTTCGCATCGGCGTACGAATCAACCACA*ATCCACGTGCTTGAGACTGTGG*GTGGGTTCCCCCT
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1740:1096 2:N:0:CAGATC
+ANAGTGCTTGACAGATTC*GTGGCCGATGTTTCGCATCGGCGTACGACT*GTGTTCTA*ATCCACGTGCTTGAGACTGTGG*GGGTAGCGTTTTT
++
+I#IIIII9IIIIIIIIIIIIIIIII*IIIIIIII*IIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*IIII
+@LH00611:18:225KMWLT1:2:1101:1758:1096 2:N:0:CAGATC
+ANTTTTTTTGAACCGAGAGTGCCGATGTTTCGCATCGGCGTACGACTCAAGACTA*ATCCACGTGCTTGAGACTGTGG*TGCTTGGGGCCTGA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9II*IIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1777:1096 2:N:0:CAGATC
+TNTTATTCTTGAGCTGAA*GTGGCCGATGTTTCGCATCGGCGTACGACT*CCGTGAGA*ATCCACGTGCTTGAGACTGTGG*CTGTCCCGATCTG
++
+I#IIIIIIIIIIIIIIII99*IIII*IIIIIIIIIIIIIIII*II9IIIIIIIIIIIIIIIIIIIIIIII*IIIIIIIIIIIII9IIIIII
+@LH00611:18:225KMWLT1:2:1101:1814:1096 2:N:0:CAGATC
+CNATAGTCCAGGAGAACA*GTGGCCGATGTTTCGCATCGGCGTACGACT*TCTTCACA*ATCCACGTGCTTGAGACTGTGG*GTGGGTTCTTTTT
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1832:1096 2:N:0:CAGATC
+ANGTTTTTATACCACTCTGTGGCCGATGTTTCGCATCGCGTACGACTGTCTGTCA*ATCCACGTGCTTGAGACTGTGG*TACGGTTACTTGGT
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2072:1096 2:N:0:CAGATC
+GNGTGTGGCTTATCAGCA*GTGGCCGATGTTTCGCATCGGCGTACGACT*CGACACCCATTCACTCAGATCGGAAGAGCGTCGTGTAGGGAAA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII**III*II
+@LH00611:18:225KMWLT1:2:1101:2165:1096 2:N:0:CAGATC
+ANATTACTAGAAGAGATC*GTGGCCGATGTTTCGCATCGGCGTACGACT*AACGTGAT*ATCCACGTGCTTGAGACTGTGG*GCACTGTCTTACC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9I9IIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2220:1096 2:N:0:CAGATC
+GNGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTGGAGGTCCCATCTACCGCCTCACACCACCC
++
+I#IIIIIIIIIIIIIIIIIIIIIII9I9IIII*IIII99IIIII*I9II9*9I999IIII*9***9*9*******9***9******9999*
+@LH00611:18:225KMWLT1:2:1101:2442:1096 2:N:0:CAGATC
+GNTGCCCCACACTATGCA*GTGGCCGATGTTTCGCATCGGCGTACGACT*CGACTGGA*ATCCACGTGCTTGAGACTGTGG*GAAATTAGTCCCC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2535:1096 2:N:0:CAGATC
+GNGGGGAGAGGTGTTCTA*GTGGCCGATGTTTCGCATCGGCGTACGACT*AGTACAAG*ATCCACGTGCTTGAGACTGTGG*CTGTCCCGACGCA
++
+I#*******9999*9**9I9II9*9*9II*9*9*9**9I*I99999999*99999I999I9IIII9IIIIIIII9I9IIIIII9IIIIIII
+@LH00611:18:225KMWLT1:2:1101:2997:1096 2:N:0:CAGATC
+GNTCGCTTCGGGAGAACA*GTGGCCGATGTTTCGCATCGGCGTACGACT*CCAGTTCA*ATCCACGTGCTTGAGACTGTGG*TATAGTCGTCTTC
++
+I#IIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3034:1096 2:N:0:CAGATC
+CNTATAAGTTTCCGTCTA*GTGGCCGATGTTTCGCATCGGCGTACGACT*CCATCCTC*ATCCACGTGCTTGAGACTGTGG*CTACCCTATTTTT
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3052:1096 2:N:0:CAGATC
+GNGGGGGTTGAGGCTTGA*GTGGCCGATGTTTCGCATCGGCGTACGACT*AGTCTAAC*ATCCACGTGCTTGAGACTGTGG*GAAATTAGTGCTC
++
+I#III****9**9***99I9II*99*999I9*II*IIIIII*III*III9*III9IIII99I*III9*9*9*99IIIIII9I99**99I*I
+@LH00611:18:225KMWLT1:2:1101:3219:1096 2:N:0:CAGATC
+TNTACGCCGAGTCTGTCA*GTGGCCGATGTTTCGCATCGGCGTACGACT*GACAGTGC*ATCCACGTGCTTGAGACTGTGG*TATAGTCGCTGAC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3293:1096 2:N:0:CAGATC
+TNGTCGTGCTCAAGACTA*GTGGCCGATGTTTCGCATCGGCGTACGACT*ACGCTCGA*ATCCACGTGCTTGAGACTGTGG*CTAAGGGACCCCG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIII9I9IIIIIIIIII*IIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIII9IIIIIII
+
+
+
+
+j'analyse la structure des données fastq : 
+
+je veux trimmer les sequences r1 qui contiennent : 
+NNNNNNNNCCACAGTCTCAAGCACGTGGATNNNNNNNNAGTCGTACGCCGATGCGAAACATCGGCCACNNNNNNNNNNNNNNNNNNAGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG -3'
+
+la sequence (insert d'interet est situé avant 5' NNNNNNNNCCACAGTCTCAAGCACGTGGAT 3'  correspond au 8pb rd1 barcode suivie de Round2 linker 
+
+mais si encore plus mauvais le R1 peut contenir  seulement linker round3 (AGTCGTACGCCGATGCGAAACATCGGCCAC) ou meme encore plus loin AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC qui est le truseq read 2 et si encore plus loin Illumina P7  (ATCTCGTATGCCGTCTTCTGCTTG)
+
+
+
+-Faire un subset : de fatsq (voir sur RNAseq Nextflow )
+
+- Novaseq pair-end 
+- R2 contient les barcodes
+- R1 contient l'insert (si long) et possiblement barcode et adptateur si insert court ou pas existe  (erreur)
+
+
+-cut adapt sur R1 
+
+Read : AGCTTAGGCCACAGTCTCAAGCACGTGGATGTTTGA...
+        └────┬────┘ motif
+             ↓
+        on supprime à partir de là
+
+CCACAGTCTCAAGCACGTGGAT est le linker round 2 , juste avant 8pb barcide round 1  et encore avant le cDNA 
+
+
+Résultat : AGCTTAGG
+cutadapt \
+  -g 'NNNNNNNNNNNNCCACAGTCTCAAGCACGTGGAT' \
+  --action=trim \
+  -o R1_trimmed.fastq.gz \
+  -p R2_untouched.fastq.gz \
+  R1.fastq.gz R2.fastq.gz \
+  > cutadapt_log.txt
+
+
+
+
+  🎯 Objectif final :
+	1.	Détecter le motif principal :
+CCACAGTCTCAAGCACGTGGAT
+→ Supprimer 8 bases en amont du motif et tout ce qui suit.
+	2.	Si ce motif n’est pas trouvé, chercher un second motif alternatif :
+AGTCGTACGCCGATGCGAAACATCGGCCAC
+→ Supprimer 38 bases en amont de ce second motif et tout ce qui suit.
+
+ 3. Si ce motif n’est pas trouvé, chercher un troisième  motif alternatif AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC	86 bases en amont	Supprimer ces 86 bases + tout ce qui suit
+
+
+
+
+
+⸻
+
+🔁 Résumé des 3 règles de trimming sur R1 uniquement :
+
+Priorité	Motif à détecter	Position de coupe	Action
+1	CCACAGTCTCAAGCACGTGGAT	8 bases en amont	Supprimer ces 8 bases + tout ce qui suit
+2	AGTCGTACGCCGATGCGAAACATCGGCCAC	38 bases en amont	Supprimer ces 38 bases + tout ce qui suit
+3	AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC	86 bases en amont	Supprimer ces 86 bases + tout ce qui suit
+∅	Aucun motif détecté	Garder read entier	
+
+
+⸻
+
+✅ Script final mis à jour avec les 3 règles + synchro R2
+
+Voici le script complet en Python :
+
+from Bio import SeqIO
+import gzip
+
+# === PARAMÈTRES ===
+input_R1 = "R1.fastq.gz"
+input_R2 = "R2.fastq.gz"
+output_R1 = "R1_trimmed.fastq.gz"
+output_R2 = "R2_trimmed.fastq.gz"
+
+motifs = [
+    ("CCACAGTCTCAAGCACGTGGAT", 8),
+    ("AGTCGTACGCCGATGCGAAACATCGGCCAC", 38),
+    ("AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC", 86)
+]
+
+# === LECTURE SYNCHRONISÉE ===
+open_in = lambda f: gzip.open(f, "rt") if f.endswith(".gz") else open(f, "r")
+open_out = lambda f: gzip.open(f, "wt") if f.endswith(".gz") else open(f, "w")
+
+with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
+     open_out(output_R1) as out_R1, open_out(output_R2) as out_R2:
+
+    for rec1, rec2 in zip(SeqIO.parse(handle_R1, "fastq"), SeqIO.parse(handle_R2, "fastq")):
+        seq = str(rec1.seq)
+        cut = None
+
+        for motif, offset in motifs:
+            if motif in seq:
+                i = seq.find(motif)
+                cut = max(i - offset, 0)
+                break  # dès qu'un motif est détecté, on s'arrête
+
+        if cut is not None:
+            rec1.seq = rec1.seq[:cut]
+            rec1.letter_annotations["phred_quality"] = rec1.letter_annotations["phred_quality"][:cut]
+
+        # Écrire les deux reads seulement si R1 est encore assez long
+        if len(rec1.seq) >= 20:
+            SeqIO.write(rec1, out_R1, "fastq")
+            SeqIO.write(rec2, out_R2, "fastq")
+
+
+⸻
+
+📦 Exécution
+	•	Assure-toi d’avoir installé :
+
+pip install biopython
+
+	•	Lance le script :
+
+python trim_paired_custom.py
+
+
+⸻
 
 
 
@@ -361,25 +626,523 @@ Souhaites-tu que je t’aide à écrire un petit script pour explorer la diversi
 
 
 
-reception of the data
--verif data quality 
-
-BARQC  pour recuperer barcode , mieux que starsolo pour les barcodes
-verif contamination voir help
- curation des données 
-
- 76 et 80 corr R2 bcp de duplication donc bien mais les deux autres pas ça donc bizarre 
-
- faire schema avec representation des barcodes 
- 
- 
- 
- fig BARQC 
-
- fig profondeur de sequençage améliore ou pas 
- 
- 
 
 
 
+Parfait Valentin ! Voici la version complète et robuste de ton script, mise à jour pour permettre la détection avec erreurs (fuzzy matching) sur R1 uniquement, tout en gardant la synchronisation avec R2. 🧬🔧
 
+⸻
+
+✅ Objectif :
+	•	Autoriser jusqu’à 1 erreur (substitution/insertion/délétion) par défaut.
+	•	Appliquer les règles de trimming par priorité.
+	•	Garder la synchronisation des reads R1/R2.
+	•	Ne garder que les reads R1 > 20 nt après trimming.
+
+⸻
+
+📜 Script trim_r1_fuzzy.py
+
+from Bio import SeqIO
+import gzip
+import regex as re
+
+# === PARAMÈTRES ===
+input_R1 = "R1.fastq.gz"
+input_R2 = "R2.fastq.gz"
+output_R1 = "R1_trimmed.fastq.gz"
+output_R2 = "R2_trimmed.fastq.gz"
+
+# Liste des motifs avec leur offset (bases à supprimer avant le motif)
+motifs = [
+    ("CCACAGTCTCAAGCACGTGGAT", 8),
+    ("AGTCGTACGCCGATGCGAAACATCGGCCAC", 38),
+    ("AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC", 86)
+]
+
+# Nombre maximal d'erreurs autorisées (substitution/insertion/délétion)
+MAX_ERRORS = 1
+
+def find_approx(seq, motif, max_errors):
+    """Cherche un motif avec un nombre maximum d'erreurs."""
+    match = re.search(f'({motif}){{e<={max_errors}}}', seq)
+    return match.start() if match else None
+
+# === GESTION DES FICHIERS COMPRESSÉS ===
+open_in = lambda f: gzip.open(f, "rt") if f.endswith(".gz") else open(f, "r")
+open_out = lambda f: gzip.open(f, "wt") if f.endswith(".gz") else open(f, "w")
+
+# === TRAITEMENT PAIRÉ (R1 seulement modifié) ===
+with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
+     open_out(output_R1) as out_R1, open_out(output_R2) as out_R2:
+
+    for rec1, rec2 in zip(SeqIO.parse(handle_R1, "fastq"), SeqIO.parse(handle_R2, "fastq")):
+        seq = str(rec1.seq)
+        cut = None
+
+        for motif, offset in motifs:
+            pos = find_approx(seq, motif, MAX_ERRORS)
+            if pos is not None:
+                cut = max(pos - offset, 0)
+                break  # On applique la 1re règle qui match
+
+        if cut is not None:
+            rec1.seq = rec1.seq[:cut]
+            rec1.letter_annotations["phred_quality"] = rec1.letter_annotations["phred_quality"][:cut]
+
+        # On ne garde les reads que si R1 est encore assez long
+        if len(rec1.seq) >= 20:
+            SeqIO.write(rec1, out_R1, "fastq")
+            SeqIO.write(rec2, out_R2, "fastq")
+
+
+⸻
+
+🚀 Instructions
+	1.	Installe les dépendances :
+
+pip install biopython regex
+
+	2.	Lance le script avec :
+
+python trim_r1_fuzzy.py
+
+	3.	Résultat :
+
+	•	R1_trimmed.fastq.gz contient les R1 coupés selon le motif trouvé (avec erreurs autorisées).
+	•	R2_trimmed.fastq.gz garde les R2 synchronisés (inchangés).
+
+⸻
+
+🧪 Optionnel
+
+Souhaites-tu :
+	•	Un paramètre par motif pour ajuster les erreurs ?
+	•	Un fichier log avec statistiques des motifs trouvés ?
+	•	Une version Snakemake ou bash ?
+
+Je peux te l’ajouter selon ton workflow.
+
+
+
+
+
+
+
+
+
+
+Parfait, Valentin ! Voici une version mise à jour de ton script, où :
+
+⸻
+
+✅ Nouveauté :
+
+1. Si le read R1 contient une queue polyA (≥15 A consécutifs) → on coupe à l’amont de cette queue, et on supprime le reste du read (comme un hard clipping).
+2. Sinon, on applique ensuite les règles précédentes (avec erreurs autorisées sur motifs).
+
+⸻
+
+🧬 Nouveau comportement :
+
+Priorité	Règle appliquée sur R1	Action
+1️⃣	PolyA (≥15 A) détecté	Couper à l’amont de la queue + supprimer tout le reste
+2️⃣	Motif CCACAG... détecté avec ≤1 erreur	Supprimer 8 nt en amont
+3️⃣	Motif AGTCGTAC... détecté avec ≤1 erreur	Supprimer 38 nt en amont
+4️⃣	Motif AGATCGGAAG... détecté avec ≤1 erreur	Supprimer 86 nt en amont
+
+
+⸻
+
+🔧 Script : trim_r1_polyA_then_motifs.py
+
+from Bio import SeqIO
+import gzip
+import regex as re
+
+# === PARAMÈTRES ===
+input_R1 = "R1.fastq.gz"
+input_R2 = "R2.fastq.gz"
+output_R1 = "R1_trimmed.fastq.gz"
+output_R2 = "R2_trimmed.fastq.gz"
+
+# Motifs personnalisés à détecter avec leur offset
+motifs = [
+    ("CCACAGTCTCAAGCACGTGGAT", 8),
+    ("AGTCGTACGCCGATGCGAAACATCGGCCAC", 38),
+    ("AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC", 86)
+]
+
+MAX_ERRORS = 1  # tolérance d’erreurs
+
+def find_approx(seq, motif, max_errors):
+    match = re.search(f"({motif}){{e<={max_errors}}}", seq)
+    return match.start() if match else None
+
+def find_polyA(seq, min_len=15):
+    match = re.search(f"A{{{min_len},}}", seq)
+    return match.start() if match else None
+
+open_in = lambda f: gzip.open(f, "rt") if f.endswith(".gz") else open(f, "r")
+open_out = lambda f: gzip.open(f, "wt") if f.endswith(".gz") else open(f, "w")
+
+with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
+     open_out(output_R1) as out_R1, open_out(output_R2) as out_R2:
+
+    for rec1, rec2 in zip(SeqIO.parse(handle_R1, "fastq"), SeqIO.parse(handle_R2, "fastq")):
+        seq = str(rec1.seq)
+        cut = None
+
+        # Priorité 1 : PolyA
+        polyA_pos = find_polyA(seq, min_len=15)
+        if polyA_pos is not None:
+            cut = polyA_pos  # on coupe juste avant la queue polyA
+
+        else:
+            # Sinon : motifs avec erreurs
+            for motif, offset in motifs:
+                pos = find_approx(seq, motif, MAX_ERRORS)
+                if pos is not None:
+                    cut = max(pos - offset, 0)
+                    break
+
+        if cut is not None:
+            rec1.seq = rec1.seq[:cut]
+            rec1.letter_annotations["phred_quality"] = rec1.letter_annotations["phred_quality"][:cut]
+
+        # Ne garder que les séquences R1 ≥ 20 nt
+        if len(rec1.seq) >= 20:
+            SeqIO.write(rec1, out_R1, "fastq")
+            SeqIO.write(rec2, out_R2, "fastq")
+
+
+⸻
+
+📌 Résumé
+	•	PolyA ≥15 → prioritaire sur tous les autres motifs.
+	•	Si aucun motif trouvé, le read est conservé tel quel (si longueur suffisante).
+	•	Synchronisation avec R2 garantie.
+
+⸻
+
+
+deux possibilité soit random hexamer ou bien polyA pour capturer le plus de reads possible 
+
+XXX...XXX(pA)
+XXX...XXX (random hexamer)
+    cDNA 
+
+je peux modifier la regle pour supprimer les random hexamer et polyA 
+    - si je considere -15 : alors ce supprime aussi bien polyA que random hexamer mais perd 9pb inutilement 
+
+
+je vais utiliser cette approche pour commencer :pas de biais alignement entre les deux aux moisn 
+
+
+D’accord, Valentin ! Voici une version finale du script qui inclut :
+	1.	Le trimming de 15 bases avant chaque motif (comme tu l’as demandé).
+	2.	L’ajout d’un log pour suivre les statistiques sur les motifs détectés et les trims effectués.
+
+⸻
+
+✅ Ce que fait le script :
+	1.	PolyA (≥15 A) : Si trouvé, on coupe la séquence avant la queue polyA et on supprime tout après.
+	2.	Autres motifs : Si un motif est trouvé, on coupe 15 bases avant le motif.
+	3.	Statistiques : Un fichier log.txt sera généré, contenant des informations sur le nombre de reads traités, le nombre de trims effectués, et les motifs détectés.
+
+⸻
+
+📜 Script : trim_r1_with_log.py
+
+from Bio import SeqIO
+import gzip
+import regex as re
+
+# === PARAMÈTRES ===
+input_R1 = "R1.fastq.gz"
+input_R2 = "R2.fastq.gz"
+output_R1 = "R1_trimmed.fastq.gz"
+output_R2 = "R2_trimmed.fastq.gz"
+log_file = "trim_log.txt"
+
+# Liste des motifs avec leur offset (15 bases avant le motif)
+motifs = [
+    ("CCACAGTCTCAAGCACGTGGAT", 23),
+    ("AGTCGTACGCCGATGCGAAACATCGGCCAC", 53),
+    ("AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC", 101)
+]
+
+MAX_ERRORS = 1  # tolérance d’erreurs
+
+def find_approx(seq, motif, max_errors):
+    match = re.search(f"({motif}){{e<={max_errors}}}", seq)
+    return match.start() if match else None
+
+def find_polyA(seq, min_len=15):
+    match = re.search(f"A{{{min_len},}}", seq)
+    return match.start() if match else None
+
+open_in = lambda f: gzip.open(f, "rt") if f.endswith(".gz") else open(f, "r")
+open_out = lambda f: gzip.open(f, "wt") if f.endswith(".gz") else open(f, "w")
+
+# === VARIABLES LOG ===
+log_stats = {
+    "total_reads": 0,
+    "trimmed_reads": 0,
+    "polyA_trimmed": 0,
+    "motif_trimmed": {motif[0]: 0 for motif in motifs}
+}
+
+# === TRAITEMENT ===
+with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
+     open_out(output_R1) as out_R1, open_out(output_R2) as out_R2, \
+     open(log_file, "w") as log:
+
+    for rec1, rec2 in zip(SeqIO.parse(handle_R1, "fastq"), SeqIO.parse(handle_R2, "fastq")):
+        seq = str(rec1.seq)
+        cut = None
+
+        log_stats["total_reads"] += 1  # Incrémente le compteur de reads traités
+
+        # Priorité 1 : Détecter PolyA (≥15 A)
+        polyA_pos = find_polyA(seq, min_len=15)
+        if polyA_pos is not None:
+            cut = polyA_pos  # On coupe avant la queue polyA
+            log_stats["polyA_trimmed"] += 1
+            log.write(f"Read {rec1.id}: PolyA found at position {polyA_pos}, trimmed.\n")
+        else:
+            # Priorité 2 : Chercher motifs avec erreurs
+            for motif, offset in motifs:
+                pos = find_approx(seq, motif, MAX_ERRORS)
+                if pos is not None:
+                    cut = max(pos - offset, 0)
+                    log_stats["motif_trimmed"][motif] += 1
+                    log.write(f"Read {rec1.id}: Motif '{motif}' found at position {pos}, trimmed {offset} bases before.\n")
+                    break
+
+        if cut is not None:
+            rec1.seq = rec1.seq[:cut]
+            rec1.letter_annotations["phred_quality"] = rec1.letter_annotations["phred_quality"][:cut]
+
+        # Ne garder que les séquences R1 ≥ 20 nt
+        if len(rec1.seq) >= 20:
+            SeqIO.write(rec1, out_R1, "fastq")
+            SeqIO.write(rec2, out_R2, "fastq")
+            log_stats["trimmed_reads"] += 1
+
+    # === LOG STATISTIQUES ===
+    log.write("\n=== STATISTIQUES ===\n")
+    log.write(f"Total reads processed: {log_stats['total_reads']}\n")
+    log.write(f"Total reads trimmed: {log_stats['trimmed_reads']}\n")
+    log.write(f"Total PolyA trims: {log_stats['polyA_trimmed']}\n")
+    for motif, count in log_stats["motif_trimmed"].items():
+        log.write(f"Motif '{motif}' trims: {count}\n")
+
+
+⸻
+
+🔧 Instructions pour l’utilisation :
+	1.	Installer les dépendances :
+
+pip install biopython regex
+
+	2.	Exécuter le script :
+
+python trim_r1_with_log.py
+
+	3.	Résultats :
+	•	Le fichier R1_trimmed.fastq.gz contient les séquences R1 après trimming.
+	•	Le fichier R2_trimmed.fastq.gz reste synchronisé avec R1.
+	•	Le fichier trim_log.txt contient un rapport détaillé avec des statistiques sur les motifs détectés et les trims effectués.
+
+⸻
+
+🎯 Statistiques dans trim_log.txt
+	•	Total reads processed : Nombre total de reads analysés.
+	•	Total reads trimmed : Nombre de reads qui ont été modifiés (coupés).
+	•	PolyA trims : Nombre de trims dus à la détection de la queue polyA.
+	•	Motif trims : Compte du nombre de fois que chaque motif a été trouvé et coupé.
+
+⸻
+
+💡 Améliorations possibles :
+	•	Ajouter une fonctionnalité pour que le script prenne en charge plusieurs fichiers en entrée/sortie (batch processing).
+	•	Générer un fichier de sortie avec les motifs détectés dans chaque read pour une analyse plus poussée.
+
+Si tu as besoin d’autres ajustements, n’hésite pas à me le dire ! 😊
+
+
+
+
+
+
+
+
+Pour effectuer un subsampling (échantillonnage aléatoire) de fichiers FASTQ, plusieurs outils logiciels sont disponibles, chacun ayant ses propres caractéristiques. Voici quelques options populaires :
+
+1. seqtk
+	•	Description : seqtk est un outil rapide et léger pour manipuler les fichiers FASTA/FASTQ. Il permet de faire un échantillonnage aléatoire d’un pourcentage ou d’un nombre fixe de séquences.
+	•	Installation :
+
+sudo apt-get install seqtk
+
+
+	•	Commande pour subsampling :
+
+seqtk sample input.fastq 0.1 > output.fastq
+
+Cela prendra un échantillon de 10 % des séquences dans input.fastq et l’enregistrera dans output.fastq.
+
+2. BBTools (bbduk.sh)
+	•	Description : Le package BBTools contient un ensemble d’outils pour manipuler les données de séquences, y compris bbduk.sh, qui peut être utilisé pour échantillonner les fichiers FASTQ.
+	•	Installation : Téléchargez depuis BBTools.
+	•	Commande pour subsampling :
+
+bbduk.sh in=input.fastq out=output.fastq k=12 ref=adapters.fasta
+
+Vous pouvez ajuster le pourcentage ou le nombre de séquences à conserver en jouant avec les paramètres de l’outil.
+
+3. Fastq-tools
+	•	Description : C’est un autre ensemble d’outils pratiques pour manipuler les fichiers FASTQ, notamment pour effectuer du subsampling.
+	•	Installation :
+
+sudo apt-get install fastq-tools
+
+
+	•	Commande pour subsampling :
+
+fastq-clipper -s 0.1 input.fastq output.fastq
+
+Cela permet de prélever un échantillon de 10 % des séquences.
+
+4. shuf (Unix)
+	•	Description : Si vous préférez une méthode plus générale et simple, shuf est un utilitaire Unix qui permet de mélanger les lignes de fichiers, et peut être utilisé pour faire du subsampling.
+	•	Commande pour subsampling :
+
+shuf -n 100000 input.fastq > output.fastq
+
+Cela extrait 100 000 lignes du fichier d’entrée.
+
+5. FASTQ-MJ
+	•	Description : Un outil Python léger pour effectuer du subsampling sur des fichiers FASTQ.
+	•	Installation :
+
+pip install fastq-mj
+
+
+	•	Commande pour subsampling :
+
+fastq-mj -i input.fastq -o output.fastq -p 0.1
+
+Cela extrait un échantillon de 10 % des séquences.
+
+Ces outils sont tous performants et permettent de manipuler les fichiers FASTQ facilement. Choisissez celui qui convient le mieux à vos besoins et à votre environnement.
+
+
+
+
+
+Test de https://github.com/lh3/seqtk 
+
+
+
+
+zcat tara_reads_R1.fastq.gz | wc -1
+zcat tara_reads_R1.fastq.gz | head -n 20
+
+
+
+seqtk sample -s200 tara_reads_R1.fastq.gz 5000 > tara_reads_R1.fastq
+seqtk sample -s200 tara_reads_R1.fastq.gz 5000 > tara_reads_R2.fastq
+
+
+
+
+
+
+
+
+./view_fastq_head.sh data/processed_data/trimmed_data_test/BC_0076_R1_trimmed.fastq.gz 80
+Showing first 80 lines of data/processed_data/trimmed_data_test/BC_0076_R1_trimmed.fastq.gz:
+----------------------------------------
+@LH00611:18:225KMWLT1:2:1101:1203:1096 1:N:0:CAGATC
+GNAGTGGTATCAACGCAGAGTGAATGGGGGAACCCAGCCATCATAAGATGGTTATCTTGTACTGAATACATAGGTGCAAGAGGCGAACCAGGGGAACTGAAACATCTAAGTACCCTGAGGAAAAGAAATCAACCGAGATTCCCTTAGTAGT
++
+I#IIII9I9IIIIIIIIIII9IIII*IIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9IIIIIIIII*IIIIIII9IIIII9IIIII9I9I9IIII9*IIIIIIII9IIIIIIIIIIII99I*IIIIIIII99II99IIII
+@LH00611:18:225KMWLT1:2:1101:1277:1096 1:N:0:CAGATC
+ANTGAAACATCTAAGTACCCTGAGGAAAAGAAATCAACCGAGATTCCCTTAGTAGTGGCGAGCGAACGGGGACTAGCCCTTCAGCTTCTTTGATTTTCGCGGCACGCTCTGGAAAGTGCGGCCATAGTGGGTGATCGCCCTGTACGCGAAAGGATCTTCGAAGTGAAAT
++
+I#I*IIIII9IIIIIIIIIIIIIIIIIIIIIIIIIII9II9IIIIIIIIII9IIII9IIIIIIIIIIII9II*I9IIIIII99I9IIIIIIIIIIII*IIII**I9IIII9*I9II9*9II**I*I99*999I9I9*9*99*9**II9999*9999I*9*9IIIII*II
+@LH00611:18:225KMWLT1:2:1101:1499:1096 1:N:0:CAGATC
+GNGAATACGTTCCCGGGCCTTACACACACCGCCCGTCACACCATGGGAGTGGGTTGCACCAGAAGTAGCTAGTCTAACCTTCGGGAGGACGGTTACCACGGTGTGATTCATGACTGGGGTG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1703:1096 1:N:0:CAGATC
+ANCAGTGGTATCAACGCAGAGTGAATGGGGGTCAAGTGAAGAAGCGCATACGGTGGATGCCTTGGCAGTCAGAGGCGATGAAAGACGTGGTAGCCTGCGAAAAGCTTCGGGGAGTCGGCAAACAGACTTTGATCCG
++
+I#IIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1740:1096 1:N:0:CAGATC
+GNTGAAAGACGTGGTAGCCTGCGAAAAGCTTCGGGGAGTCGGCAAACAGACTTTGATCCGGAGATGTCTGAATGGGGGAACCCAGCCATCATAAGATGGTTATCTTGTACTGAATACATAGGTGCAAGAGGCGAACCAGGGGAACTGAAACATCTAAGTACCCTGAGGAAAAGAAATCAACCGAGATTCCCTTAGTAGTGGCGAGCGAACGGGGACTAGCCCTTAAGCTTCTTTGATTTTG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIII*II9IIIIIII*IIII*
+@LH00611:18:225KMWLT1:2:1101:1758:1096 1:N:0:CAGATC
+CNAAGTTTAAGGTGGTAGGCTGAATCTTAGGTAAATCCGGGATTCTAAGGCCGAGAGCTGATGACGAGTTACCCTTTGGGTGACGAAGTGGTTGATGCCATGCTTCCAAAAAGG
++
+9#9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIII9II99IIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1777:1096 1:N:0:CAGATC
+ANGCAGTGGTATCAACGCAGAGTGAATGGGAAAGACCCCGTGAACCTTTACTATAGCTTTGCACTGGACTTTGAATTTGCTTGTGTAGGATAGGTGGGAGGCTTTGAAGCGTGGACGCCAGTTCGCGTGGAGCCATCCTTGAAATACCACCCTGGCAACTTTGAGGTTCTAACTCA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1814:1096 1:N:0:CAGATC
+CNTTGATCCGGAGATGTCTGAATGGGGGAACCCAGCCATCATAAGATGGTTATCTTGTACTGAATACATAGGTGCAAGAGGCGAACCAGGGGAACTGAAACATCTAAGTACCCTGAGG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:1832:1096 1:N:0:CAGATC
+TNGTTGTCCAAGTTTAAGGTGGTAGGCTGGAATCTTAGGTAAATCCGGGATTCTAAGGCCGAGAGCTGATGACGAGTTACCCTTTGGGTGACGAAGTGGTTGATGCCATGCTTCCAAGAAAAGCTTCTAA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIII9
+@LH00611:18:225KMWLT1:2:1101:2165:1096 1:N:0:CAGATC
+ANCGCATACGTCCTACGGGAGAAAGCAGGGGACCTTCGGGCCTTGCGCTATCAGATGAGCCTAGGTCGGATTAGCTAGTTGGTGAGGTAATGGCTCACCAAGGCGACGATCCGTAA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2442:1096 1:N:0:CAGATC
+GNTATCAACGCAGAGTGAATGGGGGTCAAGTGAAGAAGCGCATACGGTGGATGCCTTGGCAGTCAGAGGCGATGAAAGACGTGGTAGCCTGCGAAAAGCTTCGGGGAGTCGGCAAACAGACTTTGATCCGGAG
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:2535:1096 1:N:0:CAGATC
+CNCCCTTTAAAGAAAGCGTAATAGCTCACTAGTCGAGTCGGCCTGCGCGGAAGATGTAACGGGGCTCAAACCATACACCGAAGCTACGGGTATCACGTAAGTGATGCGGTAGAGGAGCGTTCTGTAAGCCTGTGAAGGTGAGTTGAGAAGCTTGCTGGAG
++
+I#IIIIIII*III9IIIIIIIII9IIIII*IIIII9IIIIIIIIII9IIII9I*I9IIIIII9IIIIIIIII9IIIII9IIIIIIIIIIIIIII99I9IIIIIIIIIIIIIIIIIIIII9III9IIIII*IIIIIII*IIIIIIIIIIIIIIII9IIII9
+@LH00611:18:225KMWLT1:2:1101:2997:1096 1:N:0:CAGATC
+GNCATGCCGCGTGTGTGAAGAAGGTCTTCGGATTGTAAAGCACCTTAAGTTGGGAGGAAGGGCATTAACCTAATACGTTAGTGTTTTGACGTTACCGACAGAATAAGCACCGGCTAACTCTGTGCCAGCAGCCGCGGTAATACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGCGCGTAGGTGGTTCGTTAAGTTGGATGTAAATCCCCGGGCTCAACCTGGGAACNGCA
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*IIIIIIIIIIIIIIIIIIIIIIIII9II9IIIIIIIIIIIIIIIIIIIIIIIIIII9II9IIII#III
+@LH00611:18:225KMWLT1:2:1101:3034:1096 1:N:0:CAGATC
+CNTGGACTGATACTGACACTGAGGTGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGTCAACTAGCCGTTGGGAGCCTTGAGCTCTTAGTGGCGCAGCTAACGCATTAAGTTGACCGCCTGGGGAGTACGGCCGCAAGGTTAAAAC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIII*IIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3219:1096 1:N:0:CAGATC
+GNAGTGAAATCGAGTAGGACGGAGCACGAGAAACTTTGTCTGAATATGGGGGGACCATCCTCCAAGGCTAAATACTACTGACTGACCGATAGTGAACTAGTACCGTGAGGGAAAGGCGAAAAGAACCCCTGAGAGGGGAGTGAAATAGATCCTGAAACCGTATGCGTACAAGCAGTGGGAGCCCACTTTGTTGGGTGACTGCGTACCTTTTGTATAATGGGTCAGCGACTATACCACAGTC
++
+I#IIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIII9IIII9II9IIII
+@LH00611:18:225KMWLT1:2:1101:3293:1096 1:N:0:CAGATC
+ANGCAGTGGTATCAACGCAGAGTGAATGGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGTCAACTAGCCGTTGGGAGCCTTGAGCTCTTAGTGGCGCAGCTAACGCATTAAGTTGACCGCCTGGGGAGTACGGCCGCAAGGTTAAAACTC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3330:1096 1:N:0:CAGATC
+GNGGTATCAACGCAGAGTGAATGGGGACTAGCCCTTAAGCTTCTTTGATTTTAGCGGAACGCTCTGGAAAGTGCGGCCATAGTGGGTGATAGCCCTGTACGCGAAAGGATCTTAGAAGTGAAATCGAGTAGGACGGAGCACGAGAAACTTTGTCTGAATATGGGGGGACCATCCTCCAAGGCTAAATACTACTGACTGACCGATAGTGAACTAGTGCCAATATCCACAGTCTCAAGCACGT
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3459:1096 1:N:0:CAGATC
+CNGCACGAATGGCGTAACGAT
++
+I#IIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3533:1096 1:N:0:CAGATC
+ANGCAGTGGTATCAACGCAGAGTGAATGGGAGACACACGGCGGGTGCTAACGTCCGTC
++
+I#IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00611:18:225KMWLT1:2:1101:3774:1096 1:N:0:CAGATC
+ANAGTATGGTAGAGGGTGGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTG
++
+I#99IIIIIIIIIIIIIIIII9I*IIIIII9III9II9II*II9I9IIIIIII**I9III9I9IIIIIIIII
+vgoupille@genossh:/projects/ecogeno/DEV/2025_GoupilleValentin$ 
