@@ -25,6 +25,13 @@ voir annex pour le tableau de choix du nombre de cellules pour la librairies (es
 
 
 
+Tableau des conditions biologiques : 
+
+
+
+
+
+
 
 -   figure / tableau et explications des conditions biologiques
 
@@ -38,6 +45,7 @@ voir annex pour le tableau de choix du nombre de cellules pour la librairies (es
 
 => un nombre cellules visés de 3000 cellules au totale
 
+=> voir annexe pour le plan de plaques 
 
 
 => discussion : renvoie vers l'outils Shiny pour voir les conditions biologiques permet une visualisation plus rapide des donnees
