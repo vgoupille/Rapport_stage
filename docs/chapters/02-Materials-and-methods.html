@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -144,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-Discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">04-Discussion.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,7 +218,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#materials" id="toc-materials" class="nav-link active" data-scroll-target="#materials"><span class="header-section-number">2.1</span> Materials</a></li>
+  <li><a href="#biological-conditions" id="toc-biological-conditions" class="nav-link active" data-scroll-target="#biological-conditions"><span class="header-section-number">2.1</span> Biological conditions</a></li>
+  <li><a href="#microsplit" id="toc-microsplit" class="nav-link" data-scroll-target="#microsplit"><span class="header-section-number">2.2</span> MicroSPLiT</a></li>
+  <li><a href="#librairies-structures" id="toc-librairies-structures" class="nav-link" data-scroll-target="#librairies-structures"><span class="header-section-number">2.3</span> Librairies structures</a></li>
+  <li><a href="#pipeline-of-the-analysis" id="toc-pipeline-of-the-analysis" class="nav-link" data-scroll-target="#pipeline-of-the-analysis"><span class="header-section-number">3</span> Pipeline of the analysis</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.1</span> </a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/02-Materials-and-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -224,10 +250,143 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="materials" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="materials"><span class="header-section-number">2.1</span> Materials</h2>
+<p>Before to explain the techn we need to present the</p>
+<section id="biological-conditions" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="biological-conditions"><span class="header-section-number">2.1</span> Biological conditions</h2>
+<p>Population isogenenique de PsR401 application de different conditions env</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Tableau des conditions biologiques :</p>
+<ul>
+<li>figure / tableau et explications des conditions biologiques</li>
+</ul>
+<p>voir avec Solène comment sont appliqué les stress (des debut ou apres un certain temps )=&gt; parler de ça en discussion</p>
+<ul>
+<li><p>deux conditions env : stress (low_glucose_low fer) / pas stress</p></li>
+<li><p>suivi temporel à 3 timepoints (peut etre discuter de ce point après car les mesures de do ont été fait a des temps précis et variation de DO entre les reelles et attendus )</p></li>
+<li><p>3 replicats biologiques par condition</p></li>
+<li><p>5 replicats techniques par replicat biologique</p></li>
+</ul>
+<p>=&gt; un nombre cellules visés de 3000 cellules au totale (voir annexes pour le choix cela )</p>
+<p>=&gt; voir annexe pour le plan de plaques</p>
+<p>=&gt; donc 90 echantillons differents</p>
+<p>=&gt; rep bio : voir si variation entre les populations =&gt; replica techn : permettre d’estimer si variance dans le nombre - utilisation du nombre d’UMIs dans le round1 pour estimer cela =&gt; voir resultats : pooler ensemble</p>
+<p>=&gt; discussion : renvoie vers l’outils Shiny pour voir les conditions biologiques permet une visualisation plus rapide des donnees</p>
+</section>
+<section id="microsplit" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="microsplit"><span class="header-section-number">2.2</span> MicroSPLiT</h2>
+<ul>
+<li><p>explication de la méthode microSPLiT<span class="citation" data-cites="brettner2024 kuchina2021"><sup><a href="06-References.html#ref-brettner2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span></p></li>
+<li><p>contrairement aux autres methodes, pas d’isolation individuelle des cellules</p></li>
+<li><p>3 rounds de split-pool : le premier round on affecte les differentes conditions biologiques</p></li>
+<li><p>un 4eme round pour rajouté un UMI pour les differentes libraires de sequençage</p></li>
+</ul>
+<p>-envoie d’un pool de librairies à la plateforme de sequençage - sequençage de type NovaSeq™ X Plus par la plateforme GenoBIRD , et demulteplexé permet d’amelioré la qualité de sequençage</p>
+<ul>
+<li><p>renvoie vers le protocole de kuchina 2021 et bretner 2024<span class="citation" data-cites="brettner2024 kuchina2021"><sup><a href="06-References.html#ref-brettner2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span> pour l’explication de la méthode en detail</p></li>
+<li><p>=&gt; discussion des limites de cette methode dans la partie discussion</p></li>
+<li><p>ce qui est importantes de comprendre c’est que cela repose sur un methodes mathematiques combinatoires mais pas methodes d’isolation en tant que tel .</p></li>
+<li><p>un grand nombre de cellules ont été barcodés : plusieurs dizaines ou 100aines de milliers mais seulemtnn pres de 3000 cellules ont été choisi pour le sequencçage :<br>
+voir annex pour le tableau de choix du nombre de cellules pour la librairies (est un compromis pour avoir suffissament de cellules potentielles mais pas trop pour ne pas avoir des librairies trop grandes qui pourrait entrainer un profondeur de sequençage pas suffisante ) =&gt; discussion sur le nombre de cellules choisi pour la librairie</p></li>
+</ul>
+</section>
+<section id="librairies-structures" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="librairies-structures"><span class="header-section-number">2.3</span> Librairies structures</h2>
+<p>-stucture de la librairie</p>
+<ul>
+<li><p>figure : Final librairies structure</p></li>
+<li><p>R1 contient la sequence d’interet</p></li>
+<li><p>R2 contient les barcodes</p></li>
+<li><p>polyA ou random_hexamer</p></li>
+</ul>
+<p>-&gt; key point : dans chauque puit polyA et random</p>
+<p>=&gt; voir annex pour la structure complete avec TSO… =&gt; discussion sur TSO</p>
+<p>-STARsolo permet l’alignements des reads et lectures des barcodes - details de methode d’alignements partielles ou non … - tailles des reads que j’ai alignés</p>
+</section>
+<section id="pipeline-of-the-analysis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Pipeline of the analysis</h1>
+<ul>
+<li><p>differentes etapes :</p>
+<ul>
+<li><p>demultiplexage des index de librairies (réalisé par la plateforme de sequençage)</p></li>
+<li><p>QC control des données avec Andrews, S. (2010). FastQC: &nbsp;A&nbsp;Quality Control Tool for High Throughput Sequence Data [Online]. Available online at:&nbsp;<a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/" class="uri">http://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a> et avec<span class="citation" data-cites="ewels2016"><sup><a href="06-References.html#ref-ewels2016" role="doc-biblioref">3</a></sup></span></p></li>
+<li><p>trimming des données de seqeunçage avec Fastp<span class="citation" data-cites="chen2018"><sup><a href="06-References.html#ref-chen2018" role="doc-biblioref">4</a></sup></span> et Cutadapt<span class="citation" data-cites="martin2011"><sup><a href="06-References.html#ref-martin2011" role="doc-biblioref">5</a></sup></span></p></li>
+<li><p>aligment des data sur le genome de reference de <em>Pseudomonas brassicacearum</em> grace à STARsolo un amelioration de l’outils STAR pour les données single-cell [<span class="citation" data-cites="dobin2013"><sup><a href="06-References.html#ref-dobin2013" role="doc-biblioref">6</a></sup></span>]<span class="citation" data-cites="kaminow"><sup><a href="06-References.html#ref-kaminow" role="doc-biblioref">7</a></sup></span></p></li>
+<li><p>different other tools existe comme pour alignement et lecture des barcodes SPLiTseq/ microSPliT comme Kallisto<span class="citation" data-cites="bray2016"><sup><a href="06-References.html#ref-bray2016" role="doc-biblioref">8</a></sup></span>,<span class="citation" data-cites="sullivan2025"><sup><a href="06-References.html#ref-sullivan2025" role="doc-biblioref">9</a></sup></span> mais d’apres le benchmarking de le plus rapide, reproductible est starsolo<span class="citation" data-cites="kuijpers2024"><sup><a href="06-References.html#ref-kuijpers2024" role="doc-biblioref">10</a></sup></span></p>
+<p>Although single‐cell sequencing approaches have been developed for several molecular modalities, single‐cell transcriptome sequencing is the most prevalent and widely applied technique. SPLiT‐seq (split‐pool ligation‐based transcriptome sequencing) is one of these single‐cell transcriptome techniques that applies a unique combinatorial‐barcoding approach by splitting and pooling cells into multi‐well plates containing barcodes. This unique approach required the development of dedicated computational tools to preprocess the data and extract the count matrices. Here we compare eight bioinformatic pipelines (alevin‐fry splitp, LR‐splitpipe, SCSit, splitpipe, splitpipeline, SPLiTseq‐demultiplex, STARsolo and zUMI) that have been developed to process SPLiT‐seq data.</p></li>
+<li><p>Metadata assignation to seura</p></li>
+</ul></li>
+</ul>
+<p>=&gt; d’autres étapes pourrait etre ajouter dans le pipeline (voir la partie disccussion)</p>
+<ul>
+<li>figure of the pipeline</li>
+<li>differnetes steps of the pipeline</li>
+<li></li>
+<li>assignation des metadonnées (utilisation d’un genome de reference =&gt; discussion )</li>
+</ul>
+<section id="section" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="section"><span class="header-section-number">3.1</span> </h2>
+<p>attention je vais devoir dire les version des outils utilisés</p>
+<p>github,</p>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-brettner2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Brettner, L. &amp; Geiler-Samerotte, K. Single-cell heterogeneity in ribosome content and the consequences for the growth laws. <em>bioRxiv: The Preprint Server for Biology</em> 2024.04.19.590370 (2024) doi:<a href="https://doi.org/10.1101/2024.04.19.590370">10.1101/2024.04.19.590370</a>.</div>
+</div>
+<div id="ref-kuchina2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Kuchina, A. <em>et al.</em> <a href="https://doi.org/10.1126/science.aba5257">Microbial single-cell RNA sequencing by split-pool barcoding</a>. <em>Science</em> <strong>371</strong>, eaba5257 (2021).</div>
+</div>
+<div id="ref-ewels2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Ewels, P., Magnusson, M., Lundin, S. &amp; Käller, M. <a href="https://doi.org/10.1093/bioinformatics/btw354">MultiQC: summarize analysis results for multiple tools and samples in a single report</a>. <em>Bioinformatics (Oxford, England)</em> <strong>32</strong>, 3047–3048 (2016).</div>
+</div>
+<div id="ref-chen2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Chen, S., Zhou, Y., Chen, Y. &amp; Gu, J. <a href="https://doi.org/10.1093/bioinformatics/bty560">Fastp: An ultra-fast all-in-one FASTQ preprocessor</a>. <em>Bioinformatics</em> <strong>34</strong>, i884–i890 (2018).</div>
+</div>
+<div id="ref-martin2011" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Martin, M. <a href="https://doi.org/10.14806/ej.17.1.200">Cutadapt removes adapter sequences from high-throughput sequencing reads</a>. <em>EMBnet.journal</em> <strong>17</strong>, 10–12 (2011).</div>
+</div>
+<div id="ref-dobin2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Dobin, A. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/bts635">STAR: ultrafast universal RNA-seq aligner</a>. <em>Bioinformatics (Oxford, England)</em> <strong>29</strong>, 15–21 (2013).</div>
+</div>
+<div id="ref-kaminow" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Kaminow, B., Yunusov, D. &amp; Dobin, A. STARsolo: accurate, fast and versatile mapping/quantification of single-cell and single-nucleus RNA-seq data. doi:<a href="https://doi.org/10.1101/2021.05.05.442755">10.1101/2021.05.05.442755</a>.</div>
+</div>
+<div id="ref-bray2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Bray, N. L., Pimentel, H., Melsted, P. &amp; Pachter, L. <a href="https://doi.org/10.1038/nbt.3519">Near-optimal probabilistic RNA-seq quantification</a>. <em>Nature Biotechnology</em> <strong>34</strong>, 525–527 (2016).</div>
+</div>
+<div id="ref-sullivan2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Sullivan, D. K. <em>et al.</em> <a href="https://doi.org/10.1038/s41596-024-01057-0">kallisto, bustools and kb-python for quantifying bulk, single-cell and single-nucleus RNA-seq</a>. <em>Nature Protocols</em> <strong>20</strong>, 587–607 (2025).</div>
+</div>
+<div id="ref-kuijpers2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Kuijpers, L. <em>et al.</em> <a href="https://doi.org/10.1186/s12864-024-10285-3">Split pool ligation-based single-cell transcriptome sequencing (SPLiT-seq) data processing pipeline comparison</a>. <em>BMC Genomics</em> <strong>25</strong>, 361 (2024).</div>
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->

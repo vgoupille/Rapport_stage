@@ -10,18 +10,16 @@ Auxotroph bacteria can take advantage of leaky functions of helper’s organisms
 
 The goal of this internship is to explore \[\[scRNA-seq\]\] (single-cell RNA-seq) datasets of \[\[Pseudomonas brassicacearum\]\], a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.  The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.
 
+-   differentes methodes de single cell RNA seq (voir diapo et citations )
+-   voir annexes pour les differentes methodes
+-   nous focus sur microSPLiT stratégie qui est derivé de la SPLiTseq pour les eucaryotes (=\> voir matériels et methodes pour l'explication de la méthode )[@nishimura2025]
 
-- differentes methodes de single cell RNA seq (voir diapo et citations )
-- nous focus sur microSPLiT stratégie qui est derivé de la SPLiTseq pour les eucaryotes  (=> voir matériels et methodes pour l'explication de la méthode )
+-nombreux defi pour les bactéries : faire la liste ici
 
--nombreux defi pour les bactéries  : faire la liste ici 
-et pas d'outils pour le moment vraiment adaptés ... 
+et pour le moment pas d'outils pour le moment vraiment adaptés ... [@ostner]
 
-- voir mon diapo pour toute l'introduction , les figures ET LA LOGIQUE 
+-   voir mon diapo pour toute l'introduction , les figures ET LA LOGIQUE
 
+=\> QUESTIONS BIOLOGIQUES IMPORTANT :
 
-
-=> QUESTIONS BIOLOGIQUES IMPORTANT :
-
-DOL 
-2 hypotheses : noises / specialized cells 
+DOL 2 hypotheses : noises / specialized cells

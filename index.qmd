@@ -84,6 +84,16 @@ ANR Divide
 
 > You may also wish to acknowledge significant and substantial contribution made by others to the research, work and writing represented and/or reported in the thesis. These could include significant contributions to: the conception and design of the project; non-routine technical work; analysis and interpretation of research data; drafting significant parts of the work or critically revising it to contribute to the interpretation.
 
+
+
+
+« We are most grateful to the Genomics Core Facility GenoA, member of Biogenouest and France
+Genomique and to the Bioinformatics Core Facility BiRD, member of Biogenouest and Institut Français
+de Bioinformatique (IFB) (ANR-11-INBS-0013) for the use of their resources and their technical support
+»
+
+
+
 :::
 ::: {.content-visible when-format="pdf"}
 # List of Abbreviations {-}

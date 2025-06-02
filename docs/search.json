@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Msc Bioinformatics thesis",
     "section": "",
-    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\nAbstract\n\nDuis ornare ex ac iaculis pretium. Maecenas sagittis odio id erat pharetra, sit amet consectetur quam sollicitudin. Vivamus pharetra quam purus, nec sagittis risus pretium at. Nullam feugiat, turpis ac accumsan interdum, sem tellus blandit neque, id vulputate diam quam semper nisl. Donec sit amet enim at neque porttitor aliquet. Phasellus facilisis nulla eget placerat eleifend. Vestibulum non egestas eros, eget lobortis ipsum. Nulla rutrum massa eget enim aliquam, id porttitor erat luctus. Nunc sagittis quis eros eu sagittis. Pellentesque dictum, erat at pellentesque sollicitudin, justo augue pulvinar metus, quis rutrum est mi nec felis. Vestibulum efficitur mi lorem, at elementum purus tincidunt a. Aliquam finibus enim magna, vitae pellentesque erat faucibus at. Nulla mauris tellus, imperdiet id lobortis et, dignissim condimentum ipsum. Morbi nulla orci, varius at aliquet sed, facilisis id tortor. Donec ut urna nisi.\nAenean placerat luctus tortor vitae molestie. Nulla at aliquet nulla. Sed efficitur tellus orci, sed fringilla lectus laoreet eget. Vivamus maximus quam sit amet arcu dignissim, sed accumsan massa ullamcorper. Sed iaculis tincidunt feugiat. Nulla in est at nunc ultricies dictum ut vitae nunc. Aenean convallis vel diam at malesuada. Suspendisse arcu libero, vehicula tempus ultrices a, placerat sit amet tortor. Sed dictum id nulla commodo mattis. Aliquam mollis, nunc eu tristique faucibus, purus lacus tincidunt nulla, ac pretium lorem nunc ut enim. Curabitur eget mattis nisl, vitae sodales augue. Nam felis massa, bibendum sit amet nulla vel, vulputate rutrum lacus. Aenean convallis odio pharetra nulla mattis consequat.\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
+    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\n\nAbstract\n\nEtiam maximus accumsan gravida. Maecenas at nunc dignissim, euismod enim ac, bibendum ipsum. Maecenas vehicula velit in nisl aliquet ultricies. Nam eget massa interdum, maximus arcu vel, pretium erat. Maecenas sit amet tempor purus, vitae aliquet nunc. Vivamus cursus urna velit, eleifend dictum magna laoreet ut. Duis eu erat mollis, blandit magna id, tincidunt ipsum. Integer massa nibh, commodo eu ex vel, venenatis efficitur ligula. Integer convallis lacus elit, maximus eleifend lacus ornare ac. Vestibulum scelerisque viverra urna id lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean eget enim at diam bibendum tincidunt eu non purus. Nullam id magna ultrices, sodales metus viverra, tempus turpis.\nDuis ornare ex ac iaculis pretium. Maecenas sagittis odio id erat pharetra, sit amet consectetur quam sollicitudin. Vivamus pharetra quam purus, nec sagittis risus pretium at. Nullam feugiat, turpis ac accumsan interdum, sem tellus blandit neque, id vulputate diam quam semper nisl. Donec sit amet enim at neque porttitor aliquet. Phasellus facilisis nulla eget placerat eleifend. Vestibulum non egestas eros, eget lobortis ipsum. Nulla rutrum massa eget enim aliquam, id porttitor erat luctus. Nunc sagittis quis eros eu sagittis. Pellentesque dictum, erat at pellentesque sollicitudin, justo augue pulvinar metus, quis rutrum est mi nec felis. Vestibulum efficitur mi lorem, at elementum purus tincidunt a. Aliquam finibus enim magna, vitae pellentesque erat faucibus at. Nulla mauris tellus, imperdiet id lobortis et, dignissim condimentum ipsum. Morbi nulla orci, varius at aliquet sed, facilisis id tortor. Donec ut urna nisi.\n\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
     "crumbs": [
       "Front matter"
     ]
@@ -14,7 +14,7 @@
     "href": "chapters/01-Introduction.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Litterature review\ndeddfefde1,2 Internship description\nThe survival of organisms in evolving environments is driven by their fitness. The cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms will have to compete, cooperate and/or specialize as a result of how fit their traits are considering their biotic and abiotic environment. Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, [[auxotrophic bacteria]] (i.e bacteria lacking genes coding for a molecule essential for their survival) have been studied (Morris et al., 2012).3\nAuxotroph bacteria can take advantage of leaky functions of helper’s organisms to fulfill their needs in specific compounds (Morris et al., 2014, Estrela et al., 2016).4,5 With a reduced genetic material, the beneficiary organism fitness is improved, at the risk of being dependent on the helpers presence in their environment. The conditions in which patterns of such [[division of labor (DOL)]] arise are still obscure, but its advantages for bacterial population are clear: DOL allows to diminish the cost associated to certain functions and the possibility of cohabitation of various mutants/specialized cells within the population to respond as a whole to environmental constraints, and thrive. New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell -omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.\nThe goal of this internship is to explore [[scRNA-seq]] (single-cell RNA-seq) datasets of [[Pseudomonas brassicacearum]], a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.  The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.",
+    "text": "1.1 Litterature review\ndeddfefde1,2 Internship description\nThe survival of organisms in evolving environments is driven by their fitness. The cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms will have to compete, cooperate and/or specialize as a result of how fit their traits are considering their biotic and abiotic environment. Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, [[auxotrophic bacteria]] (i.e bacteria lacking genes coding for a molecule essential for their survival) have been studied (Morris et al., 2012).3\nAuxotroph bacteria can take advantage of leaky functions of helper’s organisms to fulfill their needs in specific compounds (Morris et al., 2014, Estrela et al., 2016).4,5 With a reduced genetic material, the beneficiary organism fitness is improved, at the risk of being dependent on the helpers presence in their environment. The conditions in which patterns of such [[division of labor (DOL)]] arise are still obscure, but its advantages for bacterial population are clear: DOL allows to diminish the cost associated to certain functions and the possibility of cohabitation of various mutants/specialized cells within the population to respond as a whole to environmental constraints, and thrive. New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell -omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.\nThe goal of this internship is to explore [[scRNA-seq]] (single-cell RNA-seq) datasets of [[Pseudomonas brassicacearum]], a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.  The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.\n-nombreux defi pour les bactéries : faire la liste ici\net pas d’outils pour le moment vraiment adaptés …7\n=&gt; QUESTIONS BIOLOGIQUES IMPORTANT :\nDOL 2 hypotheses : noises / specialized cells",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -24,7 +24,7 @@
     "href": "chapters/01-Introduction.html#litterature-review",
     "title": "1  Introduction",
     "section": "",
-    "text": "1. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).\n\n\n2. Gaisser, K. D. et al. High-throughput single-cell transcriptomics of bacteria using combinatorial barcoding. Nature Protocols 19, 3048–3084 (2024).\n\n\n3. Morris, J. J., Lenski, R. E. & Zinser, E. R. The black queen hypothesis: Evolution of dependencies through adaptive gene loss. mBio 3, e00036–12 (2012).\n\n\n4. Morris, E. K. et al. Choosing and using diversity indices: insights for ecological applications from the German Biodiversity Exploratories. Ecology and Evolution 4, 3514–3524 (2014).\n\n\n5. Estrela, S., Kerr, B. & Morris, J. J. Transitions in individuality through symbiosis. Current Opinion in Microbiology 31, 191–198 (2016).",
+    "text": "differentes methodes de single cell RNA seq (voir diapo et citations )\nvoir annexes pour les differentes methodes\nnous focus sur microSPLiT stratégie qui est derivé de la SPLiTseq pour les eucaryotes (=&gt; voir matériels et methodes pour l’explication de la méthode )6\n\n\n\n\nvoir mon diapo pour toute l’introduction , les figures ET LA LOGIQUE\n\n\n\n\n\n\n\n1. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).\n\n\n2. Gaisser, K. D. et al. High-throughput single-cell transcriptomics of bacteria using combinatorial barcoding. Nature Protocols 19, 3048–3084 (2024).\n\n\n3. Morris, J. J., Lenski, R. E. & Zinser, E. R. The black queen hypothesis: Evolution of dependencies through adaptive gene loss. mBio 3, e00036–12 (2012).\n\n\n4. Morris, E. K. et al. Choosing and using diversity indices: insights for ecological applications from the German Biodiversity Exploratories. Ecology and Evolution 4, 3514–3524 (2014).\n\n\n5. Estrela, S., Kerr, B. & Morris, J. J. Transitions in individuality through symbiosis. Current Opinion in Microbiology 31, 191–198 (2016).\n\n\n6. Nishimura, M., Takahashi, K. & Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. Journal of Bioscience and Bioengineering (2025) doi:10.1016/j.jbiosc.2025.01.008.\n\n\n7. Ostner, J. et al. BacSC: A general workflow for bacterial single-cell RNA sequencing data analysis. doi:10.1101/2024.06.22.600071.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -34,7 +34,47 @@
     "href": "chapters/02-Materials-and-methods.html",
     "title": "2  Materials and Methods",
     "section": "",
-    "text": "2.1 Materials",
+    "text": "2.1 Biological conditions\nBefore to explain the techn we need to present the\nPopulation isogenenique de PsR401 application de different conditions env\nTableau des conditions biologiques :\nvoir avec Solène comment sont appliqué les stress (des debut ou apres un certain temps )=&gt; parler de ça en discussion\n=&gt; un nombre cellules visés de 3000 cellules au totale (voir annexes pour le choix cela )\n=&gt; voir annexe pour le plan de plaques\n=&gt; donc 90 echantillons differents\n=&gt; rep bio : voir si variation entre les populations =&gt; replica techn : permettre d’estimer si variance dans le nombre - utilisation du nombre d’UMIs dans le round1 pour estimer cela =&gt; voir resultats : pooler ensemble\n=&gt; discussion : renvoie vers l’outils Shiny pour voir les conditions biologiques permet une visualisation plus rapide des donnees",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-Materials-and-methods.html#microsplit",
+    "href": "chapters/02-Materials-and-methods.html#microsplit",
+    "title": "2  Materials and Methods",
+    "section": "2.2 MicroSPLiT",
+    "text": "2.2 MicroSPLiT\n\nexplication de la méthode microSPLiT1,2\ncontrairement aux autres methodes, pas d’isolation individuelle des cellules\n3 rounds de split-pool : le premier round on affecte les differentes conditions biologiques\nun 4eme round pour rajouté un UMI pour les differentes libraires de sequençage\n\n-envoie d’un pool de librairies à la plateforme de sequençage - sequençage de type NovaSeq™ X Plus par la plateforme GenoBIRD , et demulteplexé permet d’amelioré la qualité de sequençage\n\nrenvoie vers le protocole de kuchina 2021 et bretner 20241,2 pour l’explication de la méthode en detail\n=&gt; discussion des limites de cette methode dans la partie discussion\nce qui est importantes de comprendre c’est que cela repose sur un methodes mathematiques combinatoires mais pas methodes d’isolation en tant que tel .\nun grand nombre de cellules ont été barcodés : plusieurs dizaines ou 100aines de milliers mais seulemtnn pres de 3000 cellules ont été choisi pour le sequencçage :\nvoir annex pour le tableau de choix du nombre de cellules pour la librairies (est un compromis pour avoir suffissament de cellules potentielles mais pas trop pour ne pas avoir des librairies trop grandes qui pourrait entrainer un profondeur de sequençage pas suffisante ) =&gt; discussion sur le nombre de cellules choisi pour la librairie",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-Materials-and-methods.html#librairies-structures",
+    "href": "chapters/02-Materials-and-methods.html#librairies-structures",
+    "title": "2  Materials and Methods",
+    "section": "2.3 Librairies structures",
+    "text": "2.3 Librairies structures\n-stucture de la librairie\n\nfigure : Final librairies structure\nR1 contient la sequence d’interet\nR2 contient les barcodes\npolyA ou random_hexamer\n\n-&gt; key point : dans chauque puit polyA et random\n=&gt; voir annex pour la structure complete avec TSO… =&gt; discussion sur TSO\n-STARsolo permet l’alignements des reads et lectures des barcodes - details de methode d’alignements partielles ou non … - tailles des reads que j’ai alignés",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-Materials-and-methods.html#biological-conditions",
+    "href": "chapters/02-Materials-and-methods.html#biological-conditions",
+    "title": "2  Materials and Methods",
+    "section": "",
+    "text": "Col1\nCol2\nCol3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nfigure / tableau et explications des conditions biologiques\n\n\n\ndeux conditions env : stress (low_glucose_low fer) / pas stress\nsuivi temporel à 3 timepoints (peut etre discuter de ce point après car les mesures de do ont été fait a des temps précis et variation de DO entre les reelles et attendus )\n3 replicats biologiques par condition\n5 replicats techniques par replicat biologique",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-Materials-and-methods.html#materials",
+    "href": "chapters/02-Materials-and-methods.html#materials",
+    "title": "2  Materials and Methods",
+    "section": "3.1 Materials",
+    "text": "3.1 Materials\n\n\n\n\n1. Brettner, L. & Geiler-Samerotte, K. Single-cell heterogeneity in ribosome content and the consequences for the growth laws. bioRxiv: The Preprint Server for Biology 2024.04.19.590370 (2024) doi:10.1101/2024.04.19.590370.\n\n\n2. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).\n\n\n3. Chen, S., Zhou, Y., Chen, Y. & Gu, J. Fastp: An ultra-fast all-in-one FASTQ preprocessor. Bioinformatics 34, i884–i890 (2018).\n\n\n4. Martin, M. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal 17, 10–12 (2011).",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
     ]
@@ -44,7 +84,57 @@
     "href": "chapters/03-Results.html",
     "title": "3  Results",
     "section": "",
-    "text": "3.1 Overview\nThis chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.",
+    "text": "3.1 Trimming\n=&gt; peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =&gt; renvoie vers la discussion pour le trimming fait dans l’article de1 - avait presque 90% de saturation =&gt; a verifier si c’est vraiment le cas - et 10 % des sequences avec TSO\nfigure -",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#trimming",
+    "href": "chapters/03-Results.html#trimming",
+    "title": "3  Results",
+    "section": "",
+    "text": "renvoie vers l’annexe pour les multiqc (fastp, cutadapt) avant et apres trimming\n\nmais au final on obtient des resultats tres interessants et propres\n\n\n\nSummary table of Starsolo results\nnumbers of reads before and after trimming\ntaux de saturation …\n=&gt; renvoie vers la discussion pour les taux de saturation",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#starsolo",
+    "href": "chapters/03-Results.html#starsolo",
+    "title": "3  Results",
+    "section": "3.2 StarSolo",
+    "text": "3.2 StarSolo\n-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#genome",
+    "href": "chapters/03-Results.html#genome",
+    "title": "3  Results",
+    "section": "3.3 Genome",
+    "text": "3.3 Genome",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#transcriptome",
+    "href": "chapters/03-Results.html#transcriptome",
+    "title": "3  Results",
+    "section": "3.4 Transcriptome",
+    "text": "3.4 Transcriptome\n\nfigure de % de type of RNA",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#overview",
+    "href": "chapters/03-Results.html#overview",
+    "title": "3  Results",
+    "section": "5.1 Overview",
+    "text": "5.1 Overview\nThis chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -53,8 +143,8 @@
     "objectID": "chapters/03-Results.html#single-cell-rna-seq-analysis",
     "href": "chapters/03-Results.html#single-cell-rna-seq-analysis",
     "title": "3  Results",
-    "section": "3.2 Single-cell RNA-seq Analysis",
-    "text": "3.2 Single-cell RNA-seq Analysis\n\nData Quality and Preprocessing\n\n\nCell Type Identification\n\n\nDifferential Expression Analysis\n\n\nDivision of Labor Patterns",
+    "section": "5.2 Single-cell RNA-seq Analysis",
+    "text": "5.2 Single-cell RNA-seq Analysis\n\nData Quality and Preprocessing\n\n\nCell Type Identification\n\n\nDifferential Expression Analysis\n\n\nDivision of Labor Patterns",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -63,8 +153,8 @@
     "objectID": "chapters/03-Results.html#functional-analysis",
     "href": "chapters/03-Results.html#functional-analysis",
     "title": "3  Results",
-    "section": "3.3 Functional Analysis",
-    "text": "3.3 Functional Analysis\n\nPathway Enrichment\n\n\nGene Set Analysis\n\n\nRegulatory Network Analysis",
+    "section": "5.3 Functional Analysis",
+    "text": "5.3 Functional Analysis\n\nPathway Enrichment\n\n\nGene Set Analysis\n\n\nRegulatory Network Analysis",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -73,8 +163,8 @@
     "objectID": "chapters/03-Results.html#integration-with-previous-studies",
     "href": "chapters/03-Results.html#integration-with-previous-studies",
     "title": "3  Results",
-    "section": "3.4 Integration with Previous Studies",
-    "text": "3.4 Integration with Previous Studies",
+    "section": "5.4 Integration with Previous Studies",
+    "text": "5.4 Integration with Previous Studies",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -83,8 +173,8 @@
     "objectID": "chapters/03-Results.html#summary-of-key-findings",
     "href": "chapters/03-Results.html#summary-of-key-findings",
     "title": "3  Results",
-    "section": "3.5 Summary of Key Findings",
-    "text": "3.5 Summary of Key Findings",
+    "section": "5.5 Summary of Key Findings",
+    "text": "5.5 Summary of Key Findings\n\n\n\n\n1. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -92,11 +182,71 @@
   {
     "objectID": "chapters/04-Discussion.html",
     "href": "chapters/04-Discussion.html",
-    "title": "Msc Bioinformatics thesis",
+    "title": "4  Discussion",
     "section": "",
-    "text": "from plotly.basedatatypes import BaseTraceHierarchyType as _BaseTraceHierarchyType import copy as _copy\nclass Line(_BaseTraceHierarchyType):\n# class properties\n# --------------------\n_parent_path_str = \"violin.marker\"\n_path_str = \"violin.marker.line\"\n_valid_props = {\"color\", \"outliercolor\", \"outlierwidth\", \"width\"}\n\n# color\n# -----\n@property\ndef color(self):\n    \"\"\"\n    Sets the marker.line color. It accepts either a specific color\n    or an array of numbers that are mapped to the colorscale\n    relative to the max and min values of the array or relative to\n    `marker.line.cmin` and `marker.line.cmax` if set.\n\n    The 'color' property is a color and may be specified as:\n      - A hex string (e.g. '#ff0000')\n      - An rgb/rgba string (e.g. 'rgb(255,0,0)')\n      - An hsl/hsla string (e.g. 'hsl(0,100%,50%)')\n      - An hsv/hsva string (e.g. 'hsv(0,100%,100%)')\n      - A named CSS color:\n            aliceblue, antiquewhite, aqua, aquamarine, azure,\n            beige, bisque, black, blanchedalmond, blue,\n            blueviolet, brown, burlywood, cadetblue,\n            chartreuse, chocolate, coral, cornflowerblue,\n            cornsilk, crimson, cyan, darkblue, darkcyan,\n            darkgoldenrod, darkgray, darkgrey, darkgreen,\n            darkkhaki, darkmagenta, darkolivegreen, darkorange,\n            darkorchid, darkred, darksalmon, darkseagreen,\n            darkslateblue, darkslategray, darkslategrey,\n            darkturquoise, darkviolet, deeppink, deepskyblue,\n            dimgray, dimgrey, dodgerblue, firebrick,\n            floralwhite, forestgreen, fuchsia, gainsboro,\n            ghostwhite, gold, goldenrod, gray, grey, green,\n            greenyellow, honeydew, hotpink, indianred, indigo,\n            ivory, khaki, lavender, lavenderblush, lawngreen,\n            lemonchiffon, lightblue, lightcoral, lightcyan,\n            lightgoldenrodyellow, lightgray, lightgrey,\n            lightgreen, lightpink, lightsalmon, lightseagreen,\n            lightskyblue, lightslategray, lightslategrey,\n            lightsteelblue, lightyellow, lime, limegreen,\n            linen, magenta, maroon, mediumaquamarine,\n            mediumblue, mediumorchid, mediumpurple,\n            mediumseagreen, mediumslateblue, mediumspringgreen,\n            mediumturquoise, mediumvioletred, midnightblue,\n            mintcream, mistyrose, moccasin, navajowhite, navy,\n            oldlace, olive, olivedrab, orange, orangered,\n            orchid, palegoldenrod, palegreen, paleturquoise,\n            palevioletred, papayawhip, peachpuff, peru, pink,\n            plum, powderblue, purple, red, rosybrown,\n            royalblue, rebeccapurple, saddlebrown, salmon,\n            sandybrown, seagreen, seashell, sienna, silver,\n            skyblue, slateblue, slategray, slategrey, snow,\n            springgreen, steelblue, tan, teal, thistle, tomato,\n            turquoise, violet, wheat, white, whitesmoke,\n            yellow, yellowgreen\n\n    Returns\n    -------\n    str\n    \"\"\"\n    return self[\"color\"]\n\n@color.setter\ndef color(self, val):\n    self[\"color\"] = val\n\n# outliercolor\n# ------------\n@property\ndef outliercolor(self):\n    \"\"\"\n    Sets the border line color of the outlier sample points.\n    Defaults to marker.color\n\n    The 'outliercolor' property is a color and may be specified as:\n      - A hex string (e.g. '#ff0000')\n      - An rgb/rgba string (e.g. 'rgb(255,0,0)')\n      - An hsl/hsla string (e.g. 'hsl(0,100%,50%)')\n      - An hsv/hsva string (e.g. 'hsv(0,100%,100%)')\n      - A named CSS color:\n            aliceblue, antiquewhite, aqua, aquamarine, azure,\n            beige, bisque, black, blanchedalmond, blue,\n            blueviolet, brown, burlywood, cadetblue,\n            chartreuse, chocolate, coral, cornflowerblue,\n            cornsilk, crimson, cyan, darkblue, darkcyan,\n            darkgoldenrod, darkgray, darkgrey, darkgreen,\n            darkkhaki, darkmagenta, darkolivegreen, darkorange,\n            darkorchid, darkred, darksalmon, darkseagreen,\n            darkslateblue, darkslategray, darkslategrey,\n            darkturquoise, darkviolet, deeppink, deepskyblue,\n            dimgray, dimgrey, dodgerblue, firebrick,\n            floralwhite, forestgreen, fuchsia, gainsboro,\n            ghostwhite, gold, goldenrod, gray, grey, green,\n            greenyellow, honeydew, hotpink, indianred, indigo,\n            ivory, khaki, lavender, lavenderblush, lawngreen,\n            lemonchiffon, lightblue, lightcoral, lightcyan,\n            lightgoldenrodyellow, lightgray, lightgrey,\n            lightgreen, lightpink, lightsalmon, lightseagreen,\n            lightskyblue, lightslategray, lightslategrey,\n            lightsteelblue, lightyellow, lime, limegreen,\n            linen, magenta, maroon, mediumaquamarine,\n            mediumblue, mediumorchid, mediumpurple,\n            mediumseagreen, mediumslateblue, mediumspringgreen,\n            mediumturquoise, mediumvioletred, midnightblue,\n            mintcream, mistyrose, moccasin, navajowhite, navy,\n            oldlace, olive, olivedrab, orange, orangered,\n            orchid, palegoldenrod, palegreen, paleturquoise,\n            palevioletred, papayawhip, peachpuff, peru, pink,\n            plum, powderblue, purple, red, rosybrown,\n            royalblue, rebeccapurple, saddlebrown, salmon,\n            sandybrown, seagreen, seashell, sienna, silver,\n            skyblue, slateblue, slategray, slategrey, snow,\n            springgreen, steelblue, tan, teal, thistle, tomato,\n            turquoise, violet, wheat, white, whitesmoke,\n            yellow, yellowgreen\n\n    Returns\n    -------\n    str\n    \"\"\"\n    return self[\"outliercolor\"]\n\n@outliercolor.setter\ndef outliercolor(self, val):\n    self[\"outliercolor\"] = val\n\n# outlierwidth\n# ------------\n@property\ndef outlierwidth(self):\n    \"\"\"\n    Sets the border line width (in px) of the outlier sample\n    points.\n\n    The 'outlierwidth' property is a number and may be specified as:\n      - An int or float in the interval [0, inf]\n\n    Returns\n    -------\n    int|float\n    \"\"\"\n    return self[\"outlierwidth\"]\n\n@outlierwidth.setter\ndef outlierwidth(self, val):\n    self[\"outlierwidth\"] = val\n\n# width\n# -----\n@property\ndef width(self):\n    \"\"\"\n    Sets the width (in px) of the lines bounding the marker points.\n\n    The 'width' property is a number and may be specified as:\n      - An int or float in the interval [0, inf]\n\n    Returns\n    -------\n    int|float\n    \"\"\"\n    return self[\"width\"]\n\n@width.setter\ndef width(self, val):\n    self[\"width\"] = val\n\n# Self properties description\n# ---------------------------\n@property\ndef _prop_descriptions(self):\n    return \"\"\"\\\n    color\n        Sets the marker.line color. It accepts either a\n        specific color or an array of numbers that are mapped\n        to the colorscale relative to the max and min values of\n        the array or relative to `marker.line.cmin` and\n        `marker.line.cmax` if set.\n    outliercolor\n        Sets the border line color of the outlier sample\n        points. Defaults to marker.color\n    outlierwidth\n        Sets the border line width (in px) of the outlier\n        sample points.\n    width\n        Sets the width (in px) of the lines bounding the marker\n        points.\n    \"\"\"\n\ndef __init__(\n    self,\n    arg=None,\n    color=None,\n    outliercolor=None,\n    outlierwidth=None,\n    width=None,\n    **kwargs,\n):\n    \"\"\"\n    Construct a new Line object\n\n    Parameters\n    ----------\n    arg\n        dict of properties compatible with this constructor or\n        an instance of\n        :class:`plotly.graph_objs.violin.marker.Line`\n    color\n        Sets the marker.line color. It accepts either a\n        specific color or an array of numbers that are mapped\n        to the colorscale relative to the max and min values of\n        the array or relative to `marker.line.cmin` and\n        `marker.line.cmax` if set.\n    outliercolor\n        Sets the border line color of the outlier sample\n        points. Defaults to marker.color\n    outlierwidth\n        Sets the border line width (in px) of the outlier\n        sample points.\n    width\n        Sets the width (in px) of the lines bounding the marker\n        points.\n\n    Returns\n    -------\n    Line\n    \"\"\"\n    super(Line, self).__init__(\"line\")\n\n    if \"_parent\" in kwargs:\n        self._parent = kwargs[\"_parent\"]\n        return\n\n    # Validate arg\n    # ------------\n    if arg is None:\n        arg = {}\n    elif isinstance(arg, self.__class__):\n        arg = arg.to_plotly_json()\n    elif isinstance(arg, dict):\n        arg = _copy.copy(arg)\n    else:\n        raise ValueError(\n            \"\"\"\\\nThe first argument to the plotly.graph_objs.violin.marker.Line constructor must be a dict or an instance of :class:plotly.graph_objs.violin.marker.Line““” )\n    # Handle skip_invalid\n    # -------------------\n    self._skip_invalid = kwargs.pop(\"skip_invalid\", False)\n    self._validate = kwargs.pop(\"_validate\", True)\n\n    # Populate data dict with properties\n    # ----------------------------------\n    _v = arg.pop(\"color\", None)\n    _v = color if color is not None else _v\n    if _v is not None:\n        self[\"color\"] = _v\n    _v = arg.pop(\"outliercolor\", None)\n    _v = outliercolor if outliercolor is not None else _v\n    if _v is not None:\n        self[\"outliercolor\"] = _v\n    _v = arg.pop(\"outlierwidth\", None)\n    _v = outlierwidth if outlierwidth is not None else _v\n    if _v is not None:\n        self[\"outlierwidth\"] = _v\n    _v = arg.pop(\"width\", None)\n    _v = width if width is not None else _v\n    if _v is not None:\n        self[\"width\"] = _v\n\n    # Process unknown kwargs\n    # ----------------------\n    self._process_kwargs(**dict(arg, **kwargs))\n\n    # Reset skip_invalid\n    # ------------------\n    self._skip_invalid = False",
+    "text": "4.1 Interpretation of Key Findings\nautres outils pourrait etre ajouter dans le pipeline",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>04-Discussion.html</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#interpretation-of-key-findings",
+    "href": "chapters/04-Discussion.html#interpretation-of-key-findings",
+    "title": "4  Discussion",
+    "section": "",
+    "text": "Division of Labor Mechanisms\n\n\nBiological Significance\n\n\nTechnical Considerations",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#comparison-with-existing-literature",
+    "href": "chapters/04-Discussion.html#comparison-with-existing-literature",
+    "title": "4  Discussion",
+    "section": "4.2 Comparison with Existing Literature",
+    "text": "4.2 Comparison with Existing Literature\n\nSimilarities with Previous Studies\n\n\nNovel Insights\n\n\nDiscrepancies and Their Implications",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#methodological-strengths-and-limitations",
+    "href": "chapters/04-Discussion.html#methodological-strengths-and-limitations",
+    "title": "4  Discussion",
+    "section": "4.3 Methodological Strengths and Limitations",
+    "text": "4.3 Methodological Strengths and Limitations\n\nTechnical Advantages\n\n\nPotential Limitations\n\n\nFuture Methodological Improvements",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#biological-implications",
+    "href": "chapters/04-Discussion.html#biological-implications",
+    "title": "4  Discussion",
+    "section": "4.4 Biological Implications",
+    "text": "4.4 Biological Implications\n\nEcological Significance\n\n\nEvolutionary Perspectives\n\n\nPotential Applications",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#future-research-directions",
+    "href": "chapters/04-Discussion.html#future-research-directions",
+    "title": "4  Discussion",
+    "section": "4.5 Future Research Directions",
+    "text": "4.5 Future Research Directions\n\nOpen Questions\n\n\nSuggested Follow-up Studies\n\n\nTechnical Improvements",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-Discussion.html#conclusion",
+    "href": "chapters/04-Discussion.html#conclusion",
+    "title": "4  Discussion",
+    "section": "4.6 Conclusion",
+    "text": "4.6 Conclusion\n\n\n\n\n1. Rossello, M., Tandonnet, S. & Almudi, I. BarQC: Quality Control and Preprocessing for SPLiT-Seq Data. doi:10.1101/2025.02.04.635005.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion</span>"
     ]
   },
   {
@@ -164,9 +314,30 @@
     "href": "chapters/06-References.html",
     "title": "Bibliography",
     "section": "",
-    "text": "1. Kuchina, A. et al. Microbial single-cell RNA\nsequencing by split-pool barcoding. Science\n371, eaba5257 (2021).\n\n\n2. Gaisser, K. D. et al. High-throughput\nsingle-cell transcriptomics of bacteria using combinatorial\nbarcoding. Nature Protocols 19, 3048–3084\n(2024).\n\n\n3. Morris, E. K. et al. Choosing and using diversity\nindices: insights for ecological applications from the German\nBiodiversity Exploratories. Ecology and Evolution\n4, 3514–3524 (2014).\n\n\n4. Morris, J. J., Lenski, R. E. & Zinser, E.\nR. The black queen\nhypothesis: Evolution of dependencies through adaptive gene loss.\nmBio 3, e00036–12 (2012).\n\n\n5. Estrela, S., Kerr, B. & Morris, J. J. Transitions in\nindividuality through symbiosis. Current Opinion in\nMicrobiology 31, 191–198 (2016).",
+    "text": "1. Brettner, L. & Geiler-Samerotte, K.\nSingle-cell heterogeneity in ribosome content and the consequences for\nthe growth laws. bioRxiv: The Preprint Server for Biology\n2024.04.19.590370 (2024) doi:10.1101/2024.04.19.590370.\n\n\n2. Nishimura, M., Takahashi, K. & Hosokawa, M.\nRecent advances in single-cell RNA sequencing of bacteria: Techniques,\nchallenges, and applications. Journal of Bioscience and\nBioengineering (2025) doi:10.1016/j.jbiosc.2025.01.008.\n\n\n3. Kuchina, A. et al. Microbial single-cell RNA\nsequencing by split-pool barcoding. Science\n371, eaba5257 (2021).\n\n\n4. Gaisser, K. D. et al. High-throughput\nsingle-cell transcriptomics of bacteria using combinatorial\nbarcoding. Nature Protocols 19, 3048–3084\n(2024).\n\n\n5. Morris, E. K. et al. Choosing and using diversity\nindices: insights for ecological applications from the German\nBiodiversity Exploratories. Ecology and Evolution\n4, 3514–3524 (2014).\n\n\n6. Morris, J. J., Lenski, R. E. & Zinser, E.\nR. The black queen\nhypothesis: Evolution of dependencies through adaptive gene loss.\nmBio 3, e00036–12 (2012).\n\n\n7. Estrela, S., Kerr, B. & Morris, J. J. Transitions in\nindividuality through symbiosis. Current Opinion in\nMicrobiology 31, 191–198 (2016).\n\n\n8. Rossello, M., Tandonnet, S. & Almudi, I.\nBarQC: Quality Control and Preprocessing for SPLiT-Seq Data. doi:10.1101/2025.02.04.635005.\n\n\n9. Ostner, J. et al. BacSC: A general\nworkflow for bacterial single-cell RNA sequencing data analysis. doi:10.1101/2024.06.22.600071.\n\n\n10. Chen, S., Zhou, Y., Chen, Y. & Gu, J. Fastp: An\nultra-fast all-in-one FASTQ preprocessor. Bioinformatics\n34, i884–i890 (2018).\n\n\n11. Martin, M. Cutadapt removes adapter\nsequences from high-throughput sequencing reads.\nEMBnet.journal 17, 10–12 (2011).\n\n\n12. Ewels, P., Magnusson, M., Lundin, S. &\nKäller, M. MultiQC: summarize\nanalysis results for multiple tools and samples in a single report.\nBioinformatics (Oxford, England) 32, 3047–3048\n(2016).\n\n\n13. Kaminow, B., Yunusov, D. & Dobin, A.\nSTARsolo: accurate, fast and versatile mapping/quantification of\nsingle-cell and single-nucleus RNA-seq data. doi:10.1101/2021.05.05.442755.\n\n\n14. Dobin, A. et al. STAR: ultrafast\nuniversal RNA-seq aligner. Bioinformatics (Oxford, England)\n29, 15–21 (2013).\n\n\n15. Kuijpers, L. et al. Split pool\nligation-based single-cell transcriptome sequencing (SPLiT-seq) data\nprocessing pipeline comparison. BMC Genomics\n25, 361 (2024).\n\n\n16. Bray, N. L., Pimentel, H., Melsted, P. &\nPachter, L. Near-optimal\nprobabilistic RNA-seq quantification. Nature Biotechnology\n34, 525–527 (2016).\n\n\n17. Sullivan, D. K. et al. kallisto, bustools and\nkb-python for quantifying bulk, single-cell and single-nucleus\nRNA-seq. Nature Protocols 20, 587–607\n(2025).",
     "crumbs": [
       "Bibliography"
+    ]
+  },
+  {
+    "objectID": "chapters/A-Appendix.html",
+    "href": "chapters/A-Appendix.html",
+    "title": "Msc Bioinformatics thesis",
+    "section": "",
+    "text": "plan de plaque\nlibrairies avec TSO\ntableau choix de profondeur / nombre de cellules",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Annexe A </span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-Materials-and-methods.html#section",
+    "href": "chapters/02-Materials-and-methods.html#section",
+    "title": "2  Materials and Methods",
+    "section": "3.1 ",
+    "text": "3.1 \nattention je vais devoir dire les version des outils utilisés\ngithub,\n\n\n\n\n1. Brettner, L. & Geiler-Samerotte, K. Single-cell heterogeneity in ribosome content and the consequences for the growth laws. bioRxiv: The Preprint Server for Biology 2024.04.19.590370 (2024) doi:10.1101/2024.04.19.590370.\n\n\n2. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).\n\n\n3. Ewels, P., Magnusson, M., Lundin, S. & Käller, M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics (Oxford, England) 32, 3047–3048 (2016).\n\n\n4. Chen, S., Zhou, Y., Chen, Y. & Gu, J. Fastp: An ultra-fast all-in-one FASTQ preprocessor. Bioinformatics 34, i884–i890 (2018).\n\n\n5. Martin, M. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal 17, 10–12 (2011).\n\n\n6. Dobin, A. et al. STAR: ultrafast universal RNA-seq aligner. Bioinformatics (Oxford, England) 29, 15–21 (2013).\n\n\n7. Kaminow, B., Yunusov, D. & Dobin, A. STARsolo: accurate, fast and versatile mapping/quantification of single-cell and single-nucleus RNA-seq data. doi:10.1101/2021.05.05.442755.\n\n\n8. Bray, N. L., Pimentel, H., Melsted, P. & Pachter, L. Near-optimal probabilistic RNA-seq quantification. Nature Biotechnology 34, 525–527 (2016).\n\n\n9. Sullivan, D. K. et al. kallisto, bustools and kb-python for quantifying bulk, single-cell and single-nucleus RNA-seq. Nature Protocols 20, 587–607 (2025).\n\n\n10. Kuijpers, L. et al. Split pool ligation-based single-cell transcriptome sequencing (SPLiT-seq) data processing pipeline comparison. BMC Genomics 25, 361 (2024).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Materials and Methods</span>"
     ]
   }
 ]

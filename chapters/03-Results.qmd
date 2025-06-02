@@ -1,5 +1,10 @@
 # Results
 
+- 4 librairies de tialles pas equivalentes (voir Solène qui explique pourquoi avant pas equivalente exactement )
+- impact l'efficacité des librairies 
+- => conseille : equilibrer les librair
+
+
 ## Trimming
 
 
@@ -14,7 +19,7 @@
 => peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats 
 => renvoie vers la discussion pour le trimming fait dans l'article de [@kuchina2021]
     - avait presque 90% de saturation => a verifier si c'est vraiment le cas 
-    - et 10 % des sequences avec TSO 
+    - et 10 % des sequences avec TSO  (voir Annexe)
 
 -   Summary table of Starsolo results
 -   numbers of reads before and after trimming
@@ -23,10 +28,12 @@
 
 figure - ![](../figures/trimming_quality.png)
 
-## StarSolo
+## STARsolo
 -pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré 
 
-
+commande starsolo suivante comme dans bretn
+permet UMI a une erreur...
+possition des barcodes  
 
 ## Genome
 
@@ -56,6 +63,27 @@ il existe des methodes de filtrages plus ou moins complexes
 # 
 
 housekeeping genes 
+
+
+choix ou non de pooler les replicas techniques ensembles 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
