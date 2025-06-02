@@ -1,6 +1,57 @@
 # Materials and Methods {#sec-materials-and-methods}
 
--   explication de la méthode microSPLiT
+Before to explain the techn we need to present the
+
+## Biological conditions
+
+Population isogenenique de PsR401 application de different conditions env
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+Tableau des conditions biologiques :
+
+-   figure / tableau et explications des conditions biologiques
+
+voir avec Solène comment sont appliqué les stress (des debut ou apres un certain temps )=\> parler de ça en discussion
+
+-   deux conditions env : stress (low_glucose_low fer) / pas stress
+
+-   suivi temporel à 3 timepoints (peut etre discuter de ce point après car les mesures de do ont été fait a des temps précis et variation de DO entre les reelles et attendus )
+
+-   3 replicats biologiques par condition
+
+-   5 replicats techniques par replicat biologique
+
+=\> un nombre cellules visés de 3000 cellules au totale (voir annexes pour le choix cela )
+
+=\> voir annexe pour le plan de plaques
+
+=\> donc 90 echantillons differents
+
+=\> rep bio : voir si variation entre les populations =\> replica techn : permettre d'estimer si variance dans le nombre - utilisation du nombre d'UMIs dans le round1 pour estimer cela =\> voir resultats : pooler ensemble
+
+dans l'hypothèse equilibre parfaite a noté que 33 cellules par conditions
+ce qui est tres faible => peut etre soumis à des variations individuels au qui pourrait rendre difficule evalutaion variation (tirage aléatoire, possible cellules avec faible activi ou inverse (desequilibre))
+
+=\> discussion : renvoie vers l'outils Shiny pour voir les conditions biologiques permet une visualisation plus rapide des donnees
+
+## MicroSPLiT
+
+
+
+
+
+figure du protocole microsplit 
+
+
+
+
+-   explication de la méthode microSPLiT [@brettner2024; @kuchina2021]
+-   pour faire simple : differentes etape : fixation ; ...; 
 
 -   contrairement aux autres methodes, pas d'isolation individuelle des cellules
 
@@ -8,64 +59,83 @@
 
 -   un 4eme round pour rajouté un UMI pour les differentes libraires de sequençage
 
--   sequençage de type Novaseq par la plateforme , et demulteplexé permet d'amelioré la qualité de sequençage
-
--   
+-envoie d'un pool de librairies à la plateforme de sequençage - sequençage de type NovaSeq™ X Plus par la plateforme GenoBIRD , et demulteplexé permet d'amelioré la qualité de sequençage
 
 -   renvoie vers le protocole de kuchina 2021 et bretner 2024 [@brettner2024; @kuchina2021] pour l'explication de la méthode en detail
 
--   => discussion des limites de cette methode dans la partie discussion 
+-   =\> discussion des limites de cette methode dans la partie discussion
 
 -   ce qui est importantes de comprendre c'est que cela repose sur un methodes mathematiques combinatoires mais pas methodes d'isolation en tant que tel .
 
-- un grand nombre de cellules ont été barcodés : plusieurs dizaines ou 100aines  de milliers mais seulemtnn pres de 3000 cellules ont été choisi pour le sequencçage :  
-voir annex pour le tableau de choix du nombre de cellules pour la librairies (est un compromis pour avoir suffissament de cellules potentielles mais pas trop pour ne pas avoir des librairies trop grandes qui pourrait entrainer un profondeur de sequençage pas suffisante )
-=> discussion sur le nombre de cellules choisi pour la librairie 
+-   un grand nombre de cellules ont été barcodés : plusieurs dizaines ou 100aines de milliers mais seulemtnn pres de 3000 cellules ont été choisi pour le sequencçage :\
+    voir annex pour le tableau de choix du nombre de cellules pour la librairies (est un compromis pour avoir suffissament de cellules potentielles mais pas trop pour ne pas avoir des librairies trop grandes qui pourrait entrainer un profondeur de sequençage pas suffisante ) =\> discussion sur le nombre de cellules choisi pour la librairie
 
+## Librairies structures
 
+-stucture de la librairie
 
+-   figure : Final librairies structure
 
-Tableau des conditions biologiques : 
+-   R1 contient la sequence d'interet
 
+-   R2 contient les barcodes
 
+-   polyA ou random_hexamer
 
+-\> key point : dans chauque puit polyA et random
 
+=\> voir annex pour la structure complete avec TSO... =\> discussion sur TSO
 
+-STARsolo permet l'alignements des reads et lectures des barcodes - details de methode d'alignements partielles ou non ... - tailles des reads que j'ai alignés
 
-
--   figure / tableau et explications des conditions biologiques
-
--   stress / pas stress
-
--   suivi temporel à 3 timepoints
-
--   3 replicats biologiques par condition
-
--   5 replicats techniques par replicat biologique
-
-=> un nombre cellules visés de 3000 cellules au totale
-
-=> voir annexe pour le plan de plaques 
-
-
-=> discussion : renvoie vers l'outils Shiny pour voir les conditions biologiques permet une visualisation plus rapide des donnees
+# Pipeline of the analysis
 
 -   figure of the pipeline
+
+
+
+Preprocesing sur le cluster genouest,
+la suite en local et sur le cluster aussi (peut etre)
+tous les scripts sont dispo sur differents depots githubs  
+
+
+-   differentes etapes :
+
+    -   demultiplexage des index de librairies (réalisé par la plateforme de sequençage)
+
+    -   QC control des données avec Andrews, S. (2010). FastQC:  A Quality Control Tool for High Throughput Sequence Data \[Online\]. Available online at: <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/> et avec [@ewels2016]
+
+    -   trimming des données de seqeunçage avec Fastp [@chen2018] et Cutadapt [@martin2011]
+
+    -   aligment des data sur le genome de reference de *Pseudomonas brassicacearum* grace à STARsolo un amelioration de l'outils STAR pour les données single-cell [@dobin2013][@kaminow]
+
+    -   different other tools existe comme pour alignement et lecture des barcodes SPLiTseq/ microSPliT comme Kallisto [@bray2016], [@sullivan2025] mais d'apres le benchmarking de le plus rapide, reproductible est starsolo [@kuijpers2024]
+
+        Although single‐cell sequencing approaches have been developed for several molecular modalities, single‐cell transcriptome sequencing is the most prevalent and widely applied technique. SPLiT‐seq (split‐pool ligation‐based transcriptome sequencing) is one of these single‐cell transcriptome techniques that applies a unique combinatorial‐barcoding approach by splitting and pooling cells into multi‐well plates containing barcodes. This unique approach required the development of dedicated computational tools to preprocess the data and extract the count matrices. Here we compare eight bioinformatic pipelines (alevin‐fry splitp, LR‐splitpipe, SCSit, splitpipe, splitpipeline, SPLiTseq‐demultiplex, STARsolo and zUMI) that have been developed to process SPLiT‐seq data.
+
+    -   Metadata assignation to seura
+
+=\> d'autres étapes ou autres outils pourrait etre ajouter dans le pipeline (voir la partie disccussion)
+
 -   differnetes steps of the pipeline
 -   
 -   assignation des metadonnées (utilisation d'un genome de reference =\> discussion )
 
--stucture de la librairie
 
-- figure : Final librairies structure 
+### Demultiplexing 
+### 
 
-- R1 contient la sequence d'interet 
-- R2 contient les barcodes
+###
 
-=> voir annex pour la structure complete avec TSO... 
-=> discussion sur TSO 
+### STARsolo
+500 go 
+
+attention je vais devoir dire les version des outils utilisés
+
+github,
 
 
--STARsolo permet l'alignements des reads et lectures des barcodes - details de methode d'alignements partielles ou non ... - tailles des reads que j'ai alignés
+differentes etapes mais pas detailler tous ici renvoie vers le codes commenter et les readme pour comprendre en details 
+telechangement des fichiers, decompression .zip ; 4 fichier , analyse indenpendant de la qualité des 4 librair, trimming 
 
-## Materials
+parallelisation pour ganger du temps ... 

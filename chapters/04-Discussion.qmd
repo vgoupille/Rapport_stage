@@ -1,22 +1,38 @@
 # Discussion
 
-- recepetion tardives des resultats 
+-   recepetion tardives des resultats
 
--   mis beaucoup de temps pour le trimming ( 1mois) le temps de comprendre la structure de la librairie et 
+-   mis beaucoup de temps pour le trimming ( 1mois) le temps de comprendre la structure de la librairie et
 
--   alternative à Starsolo =\> BarQC’ [@rossello]
+-   
 
--   Nextflow pour le trimming, QC , et STARsolo serait une bonne idée , et barQC  ; pourrait etre utile pour la communauté 
--  analyse temporelle , metabolique , bulkRNAseq 
+-   
 
-- utilisation pour capturer specifique mRNA (voir article : 2 methodes existes ; et apres aussi peut etre fait )
-- mais je pense deja bioinformatiquement on peut faire des choses pour ameliorer reads utilisables 
+-   analyse temporelle , metabolique , bulkRNAseq
+
+-   utilisation pour capturer specifique mRNA (voir article : 2 methodes existes ; et apres aussi peut etre fait )
+
+-   mais je pense deja bioinformatiquement on peut faire des choses pour ameliorer reads utilisables
+
+-   comparer avec differentes methodes de single cell RNA seq, voir si on observe toujours la meme chose ou pas
+
+-   versionnement des outils utilisés (renv , singularity, conda)
+
+-   rapport fait un template pour rendu propre
+
+-   
+
+autres outils pourrait etre ajouter dans le pipeline comme BarQC alternative à Starsolo pour meilleur la lecture des barcodes (en considerant utilisant des positions non fixe (CIGAR motif) et evaluer la qualité UMIs et repartitions [@rossello],
+
+pour la qualité et contamination : centriguge et recentrifuge [@martí2019; @kim2016]
+
+meme si moins de risque de contamination car cellules fixé ... (deve
+
+-   Nextflow pour le trimming, QC , et STARsolo serait une bonne idée , et barQC ; pourrait etre utile pour la communauté
 
 
-- comparer avec differentes methodes de single cell RNA seq, voir si on observe toujours la meme chose ou pas 
-
-- versionnement des outils utilisés (renv , singularity, conda)
-
+-autono 
+-gestion des datas tailles des 
 ## Interpretation of Key Findings
 
 ### Division of Labor Mechanisms

@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -144,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-Discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">04-Discussion.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,11 +218,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">3.1</span> Overview</a></li>
-  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">3.2</span> Single-cell RNA-seq Analysis</a></li>
-  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">3.3</span> Functional Analysis</a></li>
-  <li><a href="#integration-with-previous-studies" id="toc-integration-with-previous-studies" class="nav-link" data-scroll-target="#integration-with-previous-studies"><span class="header-section-number">3.4</span> Integration with Previous Studies</a></li>
-  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">3.5</span> Summary of Key Findings</a></li>
+  <li><a href="#trimming" id="toc-trimming" class="nav-link active" data-scroll-target="#trimming"><span class="header-section-number">3.1</span> Trimming</a></li>
+  <li><a href="#starsolo" id="toc-starsolo" class="nav-link" data-scroll-target="#starsolo"><span class="header-section-number">3.2</span> StarSolo</a></li>
+  <li><a href="#genome" id="toc-genome" class="nav-link" data-scroll-target="#genome"><span class="header-section-number">3.3</span> Genome</a></li>
+  <li><a href="#transcriptome" id="toc-transcriptome" class="nav-link" data-scroll-target="#transcriptome"><span class="header-section-number">3.4</span> Transcriptome</a></li>
+  <li><a href="#fitrage-des-cellules" id="toc-fitrage-des-cellules" class="nav-link" data-scroll-target="#fitrage-des-cellules"><span class="header-section-number">4</span> Fitrage des cellules</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">5.1</span> Overview</a></li>
+  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">5.2</span> Single-cell RNA-seq Analysis</a></li>
+  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">5.3</span> Functional Analysis</a></li>
+  <li><a href="#integration-with-previous-studies" id="toc-integration-with-previous-studies" class="nav-link" data-scroll-target="#integration-with-previous-studies"><span class="header-section-number">5.4</span> Integration with Previous Studies</a></li>
+  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">5.5</span> Summary of Key Findings</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -228,16 +256,57 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="trimming" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="trimming"><span class="header-section-number">3.1</span> Trimming</h2>
+<ul>
+<li>renvoie vers l’annexe pour les multiqc (fastp, cutadapt) avant et apres trimming</li>
+<li></li>
+<li>mais au final on obtient des resultats tres interessants et propres</li>
+</ul>
+<p>=&gt; peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =&gt; renvoie vers la discussion pour le trimming fait dans l’article de<span class="citation" data-cites="kuchina2021"><sup><a href="06-References.html#ref-kuchina2021" role="doc-biblioref">1</a></sup></span> - avait presque 90% de saturation =&gt; a verifier si c’est vraiment le cas - et 10 % des sequences avec TSO</p>
+<ul>
+<li>Summary table of Starsolo results</li>
+<li>numbers of reads before and after trimming</li>
+<li>taux de saturation …</li>
+<li>=&gt; renvoie vers la discussion pour les taux de saturation</li>
+</ul>
+<p>figure - <img src="../figures/trimming_quality.png" class="img-fluid"></p>
+</section>
+<section id="starsolo" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="starsolo"><span class="header-section-number">3.2</span> StarSolo</h2>
+<p>-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré</p>
+</section>
+<section id="genome" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="genome"><span class="header-section-number">3.3</span> Genome</h2>
+</section>
+<section id="transcriptome" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="transcriptome"><span class="header-section-number">3.4</span> Transcriptome</h2>
 <ul>
 <li>figure de % de type of RNA</li>
 <li><img src="../figures/pourcentage_RNA.png" class="img-fluid"></li>
 </ul>
-<section id="overview" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">3.1</span> Overview</h2>
+</section>
+<section id="fitrage-des-cellules" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Fitrage des cellules</h1>
+<ul>
+<li><p>reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l’article de il existe des methodes de filtrages plus ou moins complexes<br>
+-filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene</p></li>
+<li><p>filtrage avec un threashold</p></li>
+<li><p>dans l’article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule</p></li>
+<li></li>
+<li><p>preprint de … pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)</p></li>
+</ul>
+</section>
+<section id="section" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> </h1>
+<p>housekeeping genes</p>
+<p>choix ou non de pooler les replicas techniques ensembles</p>
+<section id="overview" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.1</span> Overview</h2>
 <p>This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.</p>
 </section>
-<section id="single-cell-rna-seq-analysis" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">3.2</span> Single-cell RNA-seq Analysis</h2>
+<section id="single-cell-rna-seq-analysis" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">5.2</span> Single-cell RNA-seq Analysis</h2>
 <section id="data-quality-and-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="data-quality-and-preprocessing">Data Quality and Preprocessing</h3>
 </section>
@@ -251,8 +320,8 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="division-of-labor-patterns">Division of Labor Patterns</h3>
 </section>
 </section>
-<section id="functional-analysis" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">3.3</span> Functional Analysis</h2>
+<section id="functional-analysis" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">5.3</span> Functional Analysis</h2>
 <section id="pathway-enrichment" class="level3">
 <h3 class="anchored" data-anchor-id="pathway-enrichment">Pathway Enrichment</h3>
 </section>
@@ -263,13 +332,19 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="regulatory-network-analysis">Regulatory Network Analysis</h3>
 </section>
 </section>
-<section id="integration-with-previous-studies" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="integration-with-previous-studies"><span class="header-section-number">3.4</span> Integration with Previous Studies</h2>
+<section id="integration-with-previous-studies" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="integration-with-previous-studies"><span class="header-section-number">5.4</span> Integration with Previous Studies</h2>
 </section>
-<section id="summary-of-key-findings" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">3.5</span> Summary of Key Findings</h2>
+<section id="summary-of-key-findings" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">5.5</span> Summary of Key Findings</h2>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-kuchina2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Kuchina, A. <em>et al.</em> <a href="https://doi.org/10.1126/science.aba5257">Microbial single-cell RNA sequencing by split-pool barcoding</a>. <em>Science</em> <strong>371</strong>, eaba5257 (2021).</div>
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -697,8 +772,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/04-Discussion.html" class="pagination-link" aria-label="04-Discussion.html">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">04-Discussion.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/04-Discussion.html" class="pagination-link" aria-label="Discussion">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

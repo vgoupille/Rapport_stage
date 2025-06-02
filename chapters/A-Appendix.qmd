@@ -1,0 +1,6 @@
+
+
+- plan de plaque 
+- librairies avec TSO 
+- tableau choix de profondeur / nombre de cellules 
+- mettre difference entre experience de kuhina et la notre pour les resultats de Starsolo 
