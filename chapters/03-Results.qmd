@@ -1,7 +1,65 @@
 # Results
 
+## Trimming
+
+
+-   renvoie vers l'annexe pour les multiqc (fastp, cutadapt) avant et apres trimming
+-   
+- mais au final on obtient des resultats tres interessants et propres 
+
+
+
+
+
+=> peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats 
+=> renvoie vers la discussion pour le trimming fait dans l'article de [@kuchina2021]
+    - avait presque 90% de saturation => a verifier si c'est vraiment le cas 
+    - et 10 % des sequences avec TSO 
+
+-   Summary table of Starsolo results
+-   numbers of reads before and after trimming
+-   taux de saturation ...
+-   => renvoie vers la discussion pour les taux de saturation
+
+figure - ![](../figures/trimming_quality.png)
+
+## StarSolo
+-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré 
+
+
+
+## Genome
+
+## Transcriptome
+
 -   figure de % de type of RNA
 -   ![](../figures/pourcentage_RNA.png)
+
+
+# Fitrage des cellules 
+
+- reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de 
+il existe des methodes de filtrages plus ou moins complexes  
+-filtrage sur le types de reads,  globales ou seuils differents entre les differentes conditions biologiques 
+-filtrage sur le nombre de reads par cellule 
+-filtrage sur le nombre de genes exprimés par cellule 
+-filtrage sur le nombre de reads par gene 
+- filtrage avec un threashold 
+
+- dans l'article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule 
+- 
+- preprint de ... pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)
+
+
+
+
+# 
+
+housekeeping genes 
+
+
+
+
 
 ## Overview
 
@@ -10,10 +68,6 @@ This chapter presents the findings of our single-cell RNA-seq analysis of Pseudo
 ## Single-cell RNA-seq Analysis
 
 ### Data Quality and Preprocessing
-
-
-
-
 
 ### Cell Type Identification
 
