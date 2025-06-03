@@ -218,12 +218,11 @@ div.csl-indent {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#interpretation-of-key-findings" id="toc-interpretation-of-key-findings" class="nav-link active" data-scroll-target="#interpretation-of-key-findings"><span class="header-section-number">4.1</span> Interpretation of Key Findings</a></li>
-  <li><a href="#comparison-with-existing-literature" id="toc-comparison-with-existing-literature" class="nav-link" data-scroll-target="#comparison-with-existing-literature"><span class="header-section-number">4.2</span> Comparison with Existing Literature</a></li>
-  <li><a href="#methodological-strengths-and-limitations" id="toc-methodological-strengths-and-limitations" class="nav-link" data-scroll-target="#methodological-strengths-and-limitations"><span class="header-section-number">4.3</span> Methodological Strengths and Limitations</a></li>
-  <li><a href="#biological-implications" id="toc-biological-implications" class="nav-link" data-scroll-target="#biological-implications"><span class="header-section-number">4.4</span> Biological Implications</a></li>
-  <li><a href="#future-research-directions" id="toc-future-research-directions" class="nav-link" data-scroll-target="#future-research-directions"><span class="header-section-number">4.5</span> Future Research Directions</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.6</span> Conclusion</a></li>
+  <li><a href="#comparison-with-existing-literature" id="toc-comparison-with-existing-literature" class="nav-link active" data-scroll-target="#comparison-with-existing-literature"><span class="header-section-number">4.1</span> Comparison with Existing Literature</a></li>
+  <li><a href="#methodological-strengths-and-limitations" id="toc-methodological-strengths-and-limitations" class="nav-link" data-scroll-target="#methodological-strengths-and-limitations"><span class="header-section-number">4.2</span> Methodological Strengths and Limitations</a></li>
+  <li><a href="#biological-implications" id="toc-biological-implications" class="nav-link" data-scroll-target="#biological-implications"><span class="header-section-number">4.3</span> Biological Implications</a></li>
+  <li><a href="#future-research-directions" id="toc-future-research-directions" class="nav-link" data-scroll-target="#future-research-directions"><span class="header-section-number">4.4</span> Future Research Directions</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.5</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/04-Discussion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -252,8 +251,8 @@ div.csl-indent {
 <ul>
 <li><p>recepetion tardives des resultats</p></li>
 <li><p>mis beaucoup de temps pour le trimming ( 1mois) le temps de comprendre la structure de la librairie et</p></li>
-<li><p>alternative à Starsolo =&gt; BarQC’<span class="citation" data-cites="rossello"><sup><a href="06-References.html#ref-rossello" role="doc-biblioref">1</a></sup></span></p></li>
-<li><p>Nextflow pour le trimming, QC , et STARsolo serait une bonne idée , et barQC ; pourrait etre utile pour la communauté</p></li>
+<li></li>
+<li></li>
 <li><p>analyse temporelle , metabolique , bulkRNAseq</p></li>
 <li><p>utilisation pour capturer specifique mRNA (voir article : 2 methodes existes ; et apres aussi peut etre fait )</p></li>
 <li><p>mais je pense deja bioinformatiquement on peut faire des choses pour ameliorer reads utilisables</p></li>
@@ -262,9 +261,13 @@ div.csl-indent {
 <li><p>rapport fait un template pour rendu propre</p></li>
 <li></li>
 </ul>
-<p>autres outils pourrait etre ajouter dans le pipeline</p>
-<section id="interpretation-of-key-findings" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="interpretation-of-key-findings"><span class="header-section-number">4.1</span> Interpretation of Key Findings</h2>
+<p>autres outils pourrait etre ajouter dans le pipeline comme BarQC alternative à Starsolo pour meilleur la lecture des barcodes (en considerant utilisant des positions non fixe (CIGAR motif) et evaluer la qualité UMIs et repartitions<span class="citation" data-cites="rossello"><sup><a href="06-References.html#ref-rossello" role="doc-biblioref">1</a></sup></span>,</p>
+<p>pour la qualité et contamination : centriguge et recentrifuge<span class="citation" data-cites="martí2019 kim2016"><sup><a href="06-References.html#ref-martí2019" role="doc-biblioref">2</a>,<a href="06-References.html#ref-kim2016" role="doc-biblioref">3</a></sup></span></p>
+<p>meme si moins de risque de contamination car cellules fixé … (deve</p>
+<ul>
+<li>Nextflow pour le trimming, QC , et STARsolo serait une bonne idée , et barQC ; pourrait etre utile pour la communauté</li>
+</ul>
+<p>-autono -gestion des datas tailles des ## Interpretation of Key Findings</p>
 <section id="division-of-labor-mechanisms" class="level3">
 <h3 class="anchored" data-anchor-id="division-of-labor-mechanisms">Division of Labor Mechanisms</h3>
 </section>
@@ -274,9 +277,8 @@ div.csl-indent {
 <section id="technical-considerations" class="level3">
 <h3 class="anchored" data-anchor-id="technical-considerations">Technical Considerations</h3>
 </section>
-</section>
-<section id="comparison-with-existing-literature" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="comparison-with-existing-literature"><span class="header-section-number">4.2</span> Comparison with Existing Literature</h2>
+<section id="comparison-with-existing-literature" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="comparison-with-existing-literature"><span class="header-section-number">4.1</span> Comparison with Existing Literature</h2>
 <section id="similarities-with-previous-studies" class="level3">
 <h3 class="anchored" data-anchor-id="similarities-with-previous-studies">Similarities with Previous Studies</h3>
 </section>
@@ -287,8 +289,8 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="discrepancies-and-their-implications">Discrepancies and Their Implications</h3>
 </section>
 </section>
-<section id="methodological-strengths-and-limitations" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="methodological-strengths-and-limitations"><span class="header-section-number">4.3</span> Methodological Strengths and Limitations</h2>
+<section id="methodological-strengths-and-limitations" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="methodological-strengths-and-limitations"><span class="header-section-number">4.2</span> Methodological Strengths and Limitations</h2>
 <section id="technical-advantages" class="level3">
 <h3 class="anchored" data-anchor-id="technical-advantages">Technical Advantages</h3>
 </section>
@@ -299,8 +301,8 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="future-methodological-improvements">Future Methodological Improvements</h3>
 </section>
 </section>
-<section id="biological-implications" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="biological-implications"><span class="header-section-number">4.4</span> Biological Implications</h2>
+<section id="biological-implications" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="biological-implications"><span class="header-section-number">4.3</span> Biological Implications</h2>
 <section id="ecological-significance" class="level3">
 <h3 class="anchored" data-anchor-id="ecological-significance">Ecological Significance</h3>
 </section>
@@ -311,8 +313,8 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="potential-applications">Potential Applications</h3>
 </section>
 </section>
-<section id="future-research-directions" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="future-research-directions"><span class="header-section-number">4.5</span> Future Research Directions</h2>
+<section id="future-research-directions" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="future-research-directions"><span class="header-section-number">4.4</span> Future Research Directions</h2>
 <section id="open-questions" class="level3">
 <h3 class="anchored" data-anchor-id="open-questions">Open Questions</h3>
 </section>
@@ -323,13 +325,19 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="technical-improvements">Technical Improvements</h3>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.6</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.5</span> Conclusion</h2>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-rossello" class="csl-entry" role="listitem">
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">Rossello, M., Tandonnet, S. &amp; Almudi, I. BarQC: Quality Control and Preprocessing for SPLiT-Seq Data. doi:<a href="https://doi.org/10.1101/2025.02.04.635005">10.1101/2025.02.04.635005</a>.</div>
+</div>
+<div id="ref-martí2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Martí, J. M. <a href="https://doi.org/10.1371/journal.pcbi.1006967">Recentrifuge: Robust comparative analysis and contamination removal for metagenomics</a>. <em>PLoS Computational Biology</em> <strong>15</strong>, e1006967 (2019).</div>
+</div>
+<div id="ref-kim2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Kim, D., Song, L., Breitwieser, F. P. &amp; Salzberg, S. L. <a href="https://doi.org/10.1101/gr.210641.116">Centrifuge: Rapid and sensitive classification of metagenomic sequences</a>. <em>Genome Research</em> <strong>26</strong>, 1721–1729 (2016).</div>
 </div>
 </div>
 </section>
