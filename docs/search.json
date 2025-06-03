@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Msc Bioinformatics thesis",
     "section": "",
-    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\n\nAbstract\n\nNulla eget cursus ipsum. Vivamus porttitor leo diam, sed volutpat lectus facilisis sit amet. Maecenas et pulvinar metus. Ut at dignissim tellus. In in tincidunt elit. Etiam vulputate lobortis arcu, vel faucibus leo lobortis ac. Aliquam erat volutpat. In interdum orci ac est euismod euismod. Nunc eleifend tristique risus, at lacinia odio commodo in. Sed aliquet ligula odio, sed tempor neque ultricies sit amet.\nEtiam quis tortor luctus, pellentesque ante a, finibus dolor. Phasellus in nibh et magna pulvinar malesuada. Ut nisl ex, sagittis at sollicitudin et, sollicitudin id nunc. In id porta urna. Proin porta dolor dolor, vel dapibus nisi lacinia in. Pellentesque ante mauris, ornare non euismod a, fermentum ut sapien. Proin sed vehicula enim. Aliquam tortor odio, vestibulum vitae odio in, tempor molestie justo. Praesent maximus lacus nec leo maximus blandit.\n\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
+    "text": "A Master’s thesis submitted in partial fulfillment of the requirements for the Master degree in Bioinformatics at the University of Rennes.\n\nAbstract\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\nNunc ac dignissim magna. Vestibulum vitae egestas elit. Proin feugiat leo quis ante condimentum, eu ornare mauris feugiat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris cursus laoreet ex, dignissim bibendum est posuere iaculis. Suspendisse et maximus elit. In fringilla gravida ornare. Aenean id lectus pulvinar, sagittis felis nec, rutrum risus. Nam vel neque eu arcu blandit fringilla et in quam. Aliquam luctus est sit amet vestibulum eleifend. Phasellus elementum sagittis molestie. Proin tempor lorem arcu, at condimentum purus volutpat eu. Fusce et pellentesque ligula. Pellentesque id tellus at erat luctus fringilla. Suspendisse potenti.\n\n\nKeywords :\nSingle-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords) bacterial population, metabolism, specialization, root colonization",
     "crumbs": [
       "Front matter"
     ]
@@ -84,7 +84,7 @@
     "href": "chapters/03-Results.html",
     "title": "3  Results",
     "section": "",
-    "text": "3.1 Trimming\n=&gt; peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =&gt; renvoie vers la discussion pour le trimming fait dans l’article de1 - avait presque 90% de saturation =&gt; a verifier si c’est vraiment le cas - et 10 % des sequences avec TSO (voir Annexe)\nfigure -",
+    "text": "3.1 Stats sur les reads R1 et R2 :\nReminder about saturation calculation method:",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -93,8 +93,8 @@
     "objectID": "chapters/03-Results.html#trimming",
     "href": "chapters/03-Results.html#trimming",
     "title": "3  Results",
-    "section": "",
-    "text": "renvoie vers l’annexe pour les multiqc (fastp, cutadapt) avant et apres trimming\n\nmais au final on obtient des resultats tres interessants et propres\n\n\n\nSummary table of Starsolo results\nnumbers of reads before and after trimming\ntaux de saturation …\n=&gt; renvoie vers la discussion pour les taux de saturation",
+    "section": "3.2 Trimming",
+    "text": "3.2 Trimming\n\nrenvoie vers l’annexe pour les multiqc (fastp, cutadapt) avant et apres trimming\n\nmais au final on obtient des resultats tres interessants et propres\n\n=&gt; peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =&gt; renvoie vers la discussion pour le trimming fait dans l’article de1 - avait presque 90% de saturation =&gt; a verifier si c’est vraiment le cas - et 10 % des sequences avec TSO (voir Annexe)\n\nSummary table of Starsolo results\nnumbers of reads before and after trimming\ntaux de saturation …\n=&gt; renvoie vers la discussion pour les taux de saturation\n\nfigure -",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -103,8 +103,8 @@
     "objectID": "chapters/03-Results.html#starsolo",
     "href": "chapters/03-Results.html#starsolo",
     "title": "3  Results",
-    "section": "3.2 STARsolo",
-    "text": "3.2 STARsolo\n-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré\ncommande starsolo suivante comme dans bretn permet UMI a une erreur… possition des barcodes",
+    "section": "3.3 STARsolo",
+    "text": "3.3 STARsolo\n-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré\ncommande starsolo suivante comme dans bretn permet UMI a une erreur… possition des barcodes",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -113,8 +113,8 @@
     "objectID": "chapters/03-Results.html#genome",
     "href": "chapters/03-Results.html#genome",
     "title": "3  Results",
-    "section": "3.3 Genome",
-    "text": "3.3 Genome",
+    "section": "3.4 Genome",
+    "text": "3.4 Genome",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -123,8 +123,8 @@
     "objectID": "chapters/03-Results.html#transcriptome",
     "href": "chapters/03-Results.html#transcriptome",
     "title": "3  Results",
-    "section": "3.4 Transcriptome",
-    "text": "3.4 Transcriptome\n\nfigure de % de type of RNA",
+    "section": "3.5 Transcriptome",
+    "text": "3.5 Transcriptome\n\nfigure de % de type of RNA",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -378,6 +378,49 @@
     "text": "5.3 Interpretation of STARsolo Results\nThe STARsolo analysis revealed several key insights about our single-cell RNA-seq data:\n\nSequencing Quality and Mapping\n\nThe sequencing quality is excellent, with over 95% of bases having Q30 quality scores in both barcode/UMI and RNA reads\nA high proportion (85.58%) of reads contained valid cell barcodes, indicating good library preparation\nThe mapping rates are robust:\n\n89.57% of reads mapped to the genome (unique + multiple)\n75.64% of reads mapped to genes (unique + multiple)\n\nThe low unique mapping rate (3.64% to genome, 2.69% to genes) is typical for bacterial RNA-seq due to …\n\n\n\nMapping Terminology\n\nGene mapping: Refers to reads mapped to annotated coding sequences (CDS) only\nGeneFull mapping: Includes reads mapped to all annotated features including:\n\nCoding sequences (CDS)\nUntranslated regions (UTRs)\nNon-coding RNAs\nIntergenic regions\nThis broader mapping approach is particularly relevant for bacterial transcriptomics as it captures the full complexity of the transcriptome\n\n\n\n\nCell Recovery and Expression\n\nWe estimated 27,203 cells in our dataset\nThe sequencing saturation is very low (0.97%), suggesting we could sequence deeper if needed\nCell-level metrics show good coverage:\n\nMean/median reads per cell: 470/381\nMean/median UMIs per cell: 465/378\nMean/median genes per cell: 296/258\n\nWe detected 6,035 genes in total across all cells\n\n\n\nData Quality Assessment\n\nThe high Q30 scores and mapping rates indicate good technical quality\nThe cell-level metrics suggest sufficient coverage for downstream analysis\nThe low sequencing saturation suggests potential for deeper sequencing if needed\nThe high proportion of reads with valid barcodes (85.58%) indicates good library preparation",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#stats-sur-les-reads-r1-et-r2",
+    "href": "chapters/03-Results.html#stats-sur-les-reads-r1-et-r2",
+    "title": "3  Results",
+    "section": "",
+    "text": "On a subset of 1,000,000 reads:\n\nPercentage of reads containing TSO\nPercentage of reads containing polyA\nPercentage of reads containing adapter\nPercentage of reads containing linker -&gt; possibly in appendix",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/B-Appendix.html",
+    "href": "chapters/B-Appendix.html",
+    "title": "Appendix B — Annexe B: erferfrefref",
+    "section": "",
+    "text": "B.1 summary stats and features.stats for Gene\nNumber of Reads,1284475633 Reads With Valid Barcodes,0.85576 Sequencing Saturation,0.0104081 Q30 Bases in CB+UMI,0.955089 Q30 Bases in RNA read,0.957923 Reads Mapped to Genome: Unique+Multiple,0.895694 Reads Mapped to Genome: Unique,0.0363836 Reads Mapped to Gene: Unique+Multipe Gene,0.750574 Reads Mapped to Gene: Unique Gene,0.0233731 Estimated Number of Cells,27268 Unique Reads in Cells Mapped to Gene,11121465 Fraction of Unique Reads in Cells,0.370441 Mean Reads per Cell,407 Median Reads per Cell,331 UMIs in Cells,10998607 Mean UMI per Cell,403 Median UMI per Cell,327 Mean Gene per Cell,253 Median Gene per Cell,221 Total Gene Detected,5894",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Annexe B</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/B-Appendix.html#summary-stats-and-features.stats-for-gene",
+    "href": "chapters/B-Appendix.html#summary-stats-and-features.stats-for-gene",
+    "title": "Appendix B — Annexe B: erferfrefref",
+    "section": "",
+    "text": "nUnmapped      114628761\n                                    nNoFeature       20579292\n                                 nAmbigFeature      934096737\n                         nAmbigFeatureMultimap      934096737\n                                      nTooMany              0\n                                 nNoExactMatch         124864\n                                   nExactMatch     4458742628\n                                        nMatch      964094047\n                                  nMatchUnique       30022209\n                                 nCellBarcodes         689818\n                                         nUMIs       29709734",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Annexe B</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/B-Appendix.html#warning",
+    "href": "chapters/B-Appendix.html#warning",
+    "title": "Appendix B — Annexe B: erferfrefref",
+    "section": "B.2 warning",
+    "text": "B.2 warning\n!!!!! WARNING: while processing sjdbGTFfile=/projects/microsplit/data/processed_data/STARsolo_result/merged_trimmed/merged/raw_data/genome_annotation/genome_annotation_PsR401_fixed.gtf, line: CP125962.1 Genbank exon 298557 300953 . - 0 transcript_id “gene-QLH64_29550”; gene_id “gene-QLH64_29550”; gene_name “QLH64_29550”; exon end = 300953 is larger than the chromosome CP125962.1 length = 299955 , will skip this exon\nLog of the STARsolo run : Alignment statistics: ———————– Number of input reads | 1284475633 Average input read length | 135 Uniquely mapped reads number | 46733841 Uniquely mapped reads % | 3.64% Number of reads mapped to multiple loci | 1103762730 % of reads mapped to multiple loci | 85.93% Number of reads unmapped: other | 128049614 % of reads unmapped: other | 9.97% Mismatch rate per base, % | 0.38% Fri May 30 15:39:42 CEST 2025 - Pipeline completed!\n\nPretest STARSolo on BC_0077 without trimming\n\nPretest STARSolo on BC_0077 without trimming, summary of stats {#tbl-starsolo-summary-pretest-layout-ncol=“1”} -&gt; en annexe\n\n\nMetric\nValue\n\n\n\n\nNumber of Reads\n325,495,590\n\n\nReads With Valid Barcodes\n76.19%\n\n\nSequencing Saturation\n93.70%\n\n\nQ30 Bases in CB+UMI\n92.28%\n\n\nQ30 Bases in RNA read\n86.19%\n\n\nReads Mapped to Genome: Unique+Multiple\n58.16%\n\n\nReads Mapped to Genome: Unique\n2.15%\n\n\nReads Mapped to GeneFull: Unique+Multiple\n48.46%\n\n\nReads Mapped to GeneFull: Unique\n1.49%\n\n\nEstimated Number of Cells\n66,026\n\n\nUnique Reads in Cells Mapped to GeneFull\n3,538,648\n\n\nFraction of Unique Reads in Cells\n73.00%\n\n\nMean Reads per Cell\n53\n\n\nMedian Reads per Cell\n36\n\n\nUMIs in Cells\n202,967\n\n\nMean UMI per Cell\n3\n\n\nMedian UMI per Cell\n2\n\n\nMean GeneFull per Cell\n2\n\n\nMedian GeneFull per Cell\n2\n\n\nTotal GeneFull Detected\n5,295\n\n\n\n\n\n\nMetric\nCount\n\n\n\n\nnUnmapped\n89,425,075\n\n\nnNoFeature\n1,000,851\n\n\nnAmbigFeature\n152,909,678\n\n\nnAmbigFeatureMultimap\n152,443,034\n\n\nnTooMany\n0\n\n\nnNoExactMatch\n185,805\n\n\nnExactMatch\n729,180,878\n\n\nnMatch\n157,719,964\n\n\nnMatchUnique\n4,847,425\n\n\nnCellBarcodes\n168,346\n\n\nnUMIs\n305,287\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\nNumber of Reads\n325,495,590\n\n\nReads With Valid Barcodes\n76.19%\n\n\nSequencing Saturation\n93.70%\n\n\nQ30 Bases in CB+UMI\n92.28%\n\n\nQ30 Bases in RNA read\n86.19%\n\n\nReads Mapped to Genome: Unique+Multiple\n58.16%\n\n\nReads Mapped to Genome: Unique\n2.15%\n\n\nReads Mapped to GeneFull: Unique+Multiple\n48.46%\n\n\nReads Mapped to GeneFull: Unique\n1.49%\n\n\nEstimated Number of Cells\n66,026\n\n\nUnique Reads in Cells Mapped to GeneFull\n3,538,648\n\n\nFraction of Unique Reads in Cells\n73.00%\n\n\nMean Reads per Cell\n53\n\n\nMedian Reads per Cell\n36\n\n\nUMIs in Cells\n202,967\n\n\nMean UMI per Cell\n3\n\n\nMedian UMI per Cell\n2\n\n\nMean GeneFull per Cell\n2\n\n\nMedian GeneFull per Cell\n2\n\n\nTotal GeneFull Detected\n5,295",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Annexe B</span>"
     ]
   }
 ]

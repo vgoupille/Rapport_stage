@@ -1,10 +1,32 @@
 # Results
 
--   4 librairies de tialles pas equivalentes (voir Solène qui explique pourquoi avant pas equivalente exactement )
--   impact l'efficacité des librairies
--   =\> conseille : equilibrer les librair
+- 4 libraries of unequal sizes (see Solène's explanation for why they were not exactly equivalent)
+- This impacts library efficiency 
+- => Recommendation: balance the libraries for optimal results
+
+
+
+
+## Stats sur les reads R1 et R2 : 
+- On a subset of 1,000,000 reads:
+  - Percentage of reads containing TSO
+  - Percentage of reads containing polyA
+  - Percentage of reads containing adapter
+  - Percentage of reads containing linker
+  -> possibly in appendix
+
+
+Reminder about saturation calculation method:
+
+
+
+
+
 
 ## Trimming
+
+ici j'ai suivi les recommendations de kuchina , seulement presenté les resultats Genfull  , mettre plus tard les resultats de Gene
+
 
 -   renvoie vers l'annexe pour les multiqc (fastp, cutadapt) avant et apres trimming
 -   
@@ -182,6 +204,10 @@ The analysis of cell barcodes reveals several important points about our data qu
 
 These results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.
 
+
+## Genfull
+
+
 | Metric                | Count         |
 |-----------------------|---------------|
 | nUnmapped             | 114,628,761   |
@@ -197,6 +223,57 @@ These results indicate overall good library preparation quality, with excellent 
 | nUMIs                 | 34,258,961    |
 
 : STARsolo feature mapping statistics {#tbl-starsolo-features layout-ncol="1"}
+
+### Detailed Interpretation of STARsolo Statistics
+
+Based on the official STAR documentation and explanations from Alex Dobin (STAR developer) [@alexdobin/STAR#1887](https://github.com/alexdobin/STAR/issues/1887), here is a detailed interpretation of our STARsolo statistics:
+
+#### Barcode Statistics (Barcodes.stats)
+Statistics with the "no" prefix indicate reads that are not used for quantification:
+
+- **Barcode Quality** :
+  - `nNoAdapter` : Reads without adapter
+  - `nNoUMI` : Reads without valid UMI
+  - `nNoCB` : Reads without valid cell barcode
+  - `nNinCB` : Reads with 'N' bases in cell barcode
+  - `nNinUMI` : Reads with 'N' bases in UMI
+  - `nUMIhomopolymer` : Reads with homopolymeric UMI
+
+#### Mapping Statistics (Features.stats)
+These statistics refer to the number of reads, except for `nCellBarcodes` and `nUMIs` which represent the number of valid cell barcodes and UMIs respectively.
+
+- **General Mapping** :
+  - `nUnmapped` : Reads not mapped to the genome
+  - `nNoFeature` : Reads not mapped to an annotated feature
+  - `nAmbigFeature` : Reads mapped to multiple features
+  - `nAmbigFeatureMultimap` : Subset of `nAmbigFeature` where reads are mapped to multiple genomic loci
+
+- **Mapping Quality** :
+  - `nExactMatch` : Reads with exact mapping
+  - `nMatch` : Total mapped reads (unique + multiple)
+  - `nMatchUnique` : Reads with unique mapping
+
+#### Sequencing Saturation
+Sequencing saturation is calculated as follows:
+```
+Saturation = 1 - (N_umi / N_reads)
+```
+where:
+- N_umi = number of unique CB/UMI/gene combinations
+- N_reads = number of reads with valid CB/UMI/gene
+
+In our case, the very low saturation (0.97%) indicates that we could sequence deeper to capture more unique molecules.
+
+#### Key Points of Our Analysis
+- The high number of ambiguous mappings (`nAmbigFeature = 936,951,032`) is typical for bacterial data due to the compact nature of the genome
+- The majority of reads have exact mapping (`nExactMatch = 4,471,174,098`), indicating good mapping quality. This possibly includes both unique and multi-mapped reads that match exactly to their reference locations
+- The number of detected cell barcodes (`nCellBarcodes = 699,355`) is high, suggesting good cellular diversity
+- The number of UMIs (`nUMIs = 34,258,961`) indicates good molecular coverage
+
+These metrics suggest that our data is of good technical quality, although the low saturation indicates potential for deeper sequencing.
+
+
+## Genefull summary stats
 
 | Metric                                    | Value         |
 |-------------------------------------------|---------------|

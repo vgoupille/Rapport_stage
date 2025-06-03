@@ -218,10 +218,11 @@ div.csl-indent {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#trimming" id="toc-trimming" class="nav-link active" data-scroll-target="#trimming"><span class="header-section-number">3.1</span> Trimming</a></li>
-  <li><a href="#starsolo" id="toc-starsolo" class="nav-link" data-scroll-target="#starsolo"><span class="header-section-number">3.2</span> STARsolo</a></li>
-  <li><a href="#genome" id="toc-genome" class="nav-link" data-scroll-target="#genome"><span class="header-section-number">3.3</span> Genome</a></li>
-  <li><a href="#transcriptome" id="toc-transcriptome" class="nav-link" data-scroll-target="#transcriptome"><span class="header-section-number">3.4</span> Transcriptome</a></li>
+  <li><a href="#stats-sur-les-reads-r1-et-r2" id="toc-stats-sur-les-reads-r1-et-r2" class="nav-link active" data-scroll-target="#stats-sur-les-reads-r1-et-r2"><span class="header-section-number">3.1</span> Stats sur les reads R1 et R2 :</a></li>
+  <li><a href="#trimming" id="toc-trimming" class="nav-link" data-scroll-target="#trimming"><span class="header-section-number">3.2</span> Trimming</a></li>
+  <li><a href="#starsolo" id="toc-starsolo" class="nav-link" data-scroll-target="#starsolo"><span class="header-section-number">3.3</span> STARsolo</a></li>
+  <li><a href="#genome" id="toc-genome" class="nav-link" data-scroll-target="#genome"><span class="header-section-number">3.4</span> Genome</a></li>
+  <li><a href="#transcriptome" id="toc-transcriptome" class="nav-link" data-scroll-target="#transcriptome"><span class="header-section-number">3.5</span> Transcriptome</a></li>
   <li><a href="#fitrage-des-cellules" id="toc-fitrage-des-cellules" class="nav-link" data-scroll-target="#fitrage-des-cellules"><span class="header-section-number">4</span> Fitrage des cellules</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a>
   <ul class="collapse">
@@ -260,12 +261,25 @@ div.csl-indent {
 
 
 <ul>
-<li>4 librairies de tialles pas equivalentes (voir Solène qui explique pourquoi avant pas equivalente exactement )</li>
-<li>impact l’efficacité des librairies</li>
-<li>=&gt; conseille : equilibrer les librair</li>
+<li>4 libraries of unequal sizes (see Solène’s explanation for why they were not exactly equivalent)</li>
+<li>This impacts library efficiency</li>
+<li>=&gt; Recommendation: balance the libraries for optimal results</li>
 </ul>
-<section id="trimming" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="trimming"><span class="header-section-number">3.1</span> Trimming</h2>
+<section id="stats-sur-les-reads-r1-et-r2" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="stats-sur-les-reads-r1-et-r2"><span class="header-section-number">3.1</span> Stats sur les reads R1 et R2 :</h2>
+<ul>
+<li>On a subset of 1,000,000 reads:
+<ul>
+<li>Percentage of reads containing TSO</li>
+<li>Percentage of reads containing polyA</li>
+<li>Percentage of reads containing adapter</li>
+<li>Percentage of reads containing linker -&gt; possibly in appendix</li>
+</ul></li>
+</ul>
+<p>Reminder about saturation calculation method:</p>
+</section>
+<section id="trimming" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="trimming"><span class="header-section-number">3.2</span> Trimming</h2>
 <ul>
 <li>renvoie vers l’annexe pour les multiqc (fastp, cutadapt) avant et apres trimming</li>
 <li></li>
@@ -280,16 +294,16 @@ div.csl-indent {
 </ul>
 <p>figure - <img src="../figures/trimming_quality.png" class="img-fluid"></p>
 </section>
-<section id="starsolo" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="starsolo"><span class="header-section-number">3.2</span> STARsolo</h2>
+<section id="starsolo" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="starsolo"><span class="header-section-number">3.3</span> STARsolo</h2>
 <p>-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré</p>
 <p>commande starsolo suivante comme dans bretn permet UMI a une erreur… possition des barcodes</p>
 </section>
-<section id="genome" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="genome"><span class="header-section-number">3.3</span> Genome</h2>
+<section id="genome" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="genome"><span class="header-section-number">3.4</span> Genome</h2>
 </section>
-<section id="transcriptome" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="transcriptome"><span class="header-section-number">3.4</span> Transcriptome</h2>
+<section id="transcriptome" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="transcriptome"><span class="header-section-number">3.5</span> Transcriptome</h2>
 <ul>
 <li>figure de % de type of RNA</li>
 <li><img src="../figures/pourcentage_RNA.png" class="img-fluid"></li>
