@@ -226,7 +226,7 @@ div.csl-indent {
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a>
   <ul class="collapse">
   <li><a href="#summary-of-results" id="toc-summary-of-results" class="nav-link" data-scroll-target="#summary-of-results"><span class="header-section-number">5.1</span> Summary of results</a></li>
-  <li><a href="#rapports-de-qualité-multiqc" id="toc-rapports-de-qualité-multiqc" class="nav-link" data-scroll-target="#rapports-de-qualité-multiqc"><span class="header-section-number">5.2</span> Rapports de qualité MultiQC</a></li>
+  <li><a href="#multiqc-quality-reports" id="toc-multiqc-quality-reports" class="nav-link" data-scroll-target="#multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">5.3</span> Overview</a></li>
   <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</a></li>
   <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</a></li>
@@ -311,26 +311,52 @@ div.csl-indent {
 <p>choix ou non de pooler les replicas techniques ensembles</p>
 <section id="summary-of-results" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="summary-of-results"><span class="header-section-number">5.1</span> Summary of results</h2>
-<p>ici inclure un lien vers les html des multiqc avant et apres trimming pour les R1</p>
 </section>
-<section id="rapports-de-qualité-multiqc" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="rapports-de-qualité-multiqc"><span class="header-section-number">5.2</span> Rapports de qualité MultiQC</h2>
-<p>Les rapports détaillés de qualité des séquences sont disponibles en ligne dans le dépôt GitHub du projet. Les analyses montrent une qualité de séquençage élevée avant et après le trimming, avec des métriques détaillées disponibles dans les rapports suivants :</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="multiqc-quality-reports" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</h2>
+<p>Detailed sequence quality reports are available below. Click on each report to view it.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">MultiQC Report R1 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">MultiQC Report R1 After Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MultiQC Report R2 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">MultiQC Report R2 After Trimming</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<details>
+<summary>
+Click to view MultiQC report R1 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
 </div>
-<div class="callout-title-container flex-fill">
-Rapports MultiQC disponibles en ligne
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<details>
+<summary>
+Click to view MultiQC report R1 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<details>
+<summary>
+Click to view MultiQC report R2 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<details>
+<summary>
+Click to view MultiQC report R2 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Les rapports complets de qualité sont accessibles aux adresses suivantes : - <a href="https://github.com/vgoupille/Rapport_stage/blob/main/docs/multiqc_reports/multiqc_report.html">Rapport MultiQC après trimming</a> - <a href="https://github.com/vgoupille/Rapport_stage/blob/main/docs/multiqc_reports/BC_0076_R1_fastqc.html">Rapport FastQC individuel avant trimming (BC_0076_R1)</a></p>
-<p>Ces rapports fournissent une analyse détaillée de la qualité des séquences avant et après le trimming, permettant d’évaluer l’efficacité de notre pipeline de prétraitement.</p>
 </div>
-</div>
-<p>Les métriques clés de qualité sont résumées dans les tableaux ci-dessous.</p>
+<p>Key quality metrics are summarized in the tables below.</p>
 <div id="tbl-example" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -803,77 +829,6 @@ Table&nbsp;5.6: STARsolo summary statistics
 </div>
 </figure>
 </div>
-<section id="final-effective-command-line-of-starsolo" class="level5">
-<h5 class="anchored" data-anchor-id="final-effective-command-line-of-starsolo">Final effective command line of STARsolo:</h5>
-<p><strong>STAR</strong><br>
-<strong>–runThreadN</strong> 64<br>
-<strong>–genomeDir</strong> /path/to/genome_index<br>
-<strong>–readFilesIn</strong><br>
-/path/to/input/merged_trimmed-R1.fastq.gz<br>
-/path/to/input/merged_trimmed-R2.fastq.gz<br>
-<strong>–readFilesCommand</strong> gunzip -c<br>
-<strong>–outFileNamePrefix</strong> /path/to/output/starsolo_output/<br>
-<strong>–outSAMtype</strong> BAM Unsorted<br>
-<strong>–outFilterScoreMinOverLread</strong> 0<br>
-<strong>–outFilterMatchNmin</strong> 50<br>
-<strong>–outFilterMatchNminOverLread</strong> 0<br>
-<strong>–alignSJoverhangMin</strong> 1000<br>
-<strong>–alignSJDBoverhangMin</strong> 1000<br>
-<strong>–soloType</strong> CB_UMI_Complex<br>
-<strong>–soloCBwhitelist</strong><br>
-/path/to/barcodes/barcode_round3.txt<br>
-/path/to/barcodes/barcode_round2.txt<br>
-/path/to/barcodes/barcode_round1.txt<br>
-<strong>–soloFeatures</strong> Gene GeneFull<br>
-<strong>–soloUMIdedup</strong> 1MM_All<br>
-<strong>–soloCBmatchWLtype</strong> 1MM<br>
-<strong>–soloCBposition</strong> 0_10_0_17 0_48_0_55 0_78_0_85<br>
-<strong>–soloUMIposition</strong> 0_0_0_9<br>
-<strong>–soloMultiMappers</strong> Uniform</p>
-</section>
-<section id="starsolo-parameters-explanation" class="level3">
-<h3 class="anchored" data-anchor-id="starsolo-parameters-explanation">STARsolo Parameters Explanation</h3>
-<p>This section details the key parameters used in our STARsolo analysis and their significance:</p>
-<section id="general-star-parameters" class="level4">
-<h4 class="anchored" data-anchor-id="general-star-parameters">General STAR Parameters</h4>
-<ul>
-<li><code>--runThreadN 64</code> : Use of 64 threads for parallel alignment</li>
-<li><code>--genomeDir</code> : Path to the reference genome index</li>
-<li><code>--readFilesIn</code> : Input FASTQ files (R1 and R2)</li>
-<li><code>--readFilesCommand gunzip -c</code> : Command to decompress FASTQ.gz files</li>
-<li><code>--outFileNamePrefix</code> : Prefix for output files</li>
-<li><code>--outSAMtype BAM Unsorted</code> : Unsorted BAM output format</li>
-</ul>
-</section>
-<section id="filtering-parameters" class="level4">
-<h4 class="anchored" data-anchor-id="filtering-parameters">Filtering Parameters</h4>
-<ul>
-<li><code>--outFilterScoreMinOverLread 0</code> : Minimum filtering score relative to read length</li>
-<li><code>--outFilterMatchNmin 50</code> : Minimum number of matching bases for a valid alignment</li>
-<li><code>--outFilterMatchNminOverLread 0</code> : Minimum match ratio relative to read length</li>
-<li><code>--alignSJoverhangMin 1000</code> and <code>--alignSJDBoverhangMin 1000</code> : Strict parameters for splice junction detection</li>
-</ul>
-</section>
-<section id="starsolo-specific-parameters" class="level4">
-<h4 class="anchored" data-anchor-id="starsolo-specific-parameters">STARsolo-specific Parameters</h4>
-<ul>
-<li><code>--soloType CB_UMI_Complex</code> : Analysis type for cell barcodes (CB) and complex UMIs</li>
-<li><code>--soloCBwhitelist</code> : List of valid cell barcodes for the three barcoding rounds</li>
-<li><code>--soloFeatures Gene GeneFull</code> : Analysis of features at both gene and full transcript levels</li>
-<li><code>--soloUMIdedup 1MM_All</code> : UMI deduplication with one mutation tolerance</li>
-<li><code>--soloCBmatchWLtype 1MM</code> : Cell barcode matching with one mutation tolerance</li>
-<li><code>--soloCBposition</code> : Cell barcode positions in reads (3 rounds)
-<ul>
-<li>Round 1: 0_10_0_17</li>
-<li>Round 2: 0_48_0_55</li>
-<li>Round 3: 0_78_0_85</li>
-</ul></li>
-<li><code>--soloUMIposition 0_0_0_9</code> : UMI position in reads</li>
-<li><code>--soloMultiMappers Uniform</code> : Uniform distribution of multi-mapped reads</li>
-</ul>
-<p>These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.</p>
-</section>
-</section>
 </section>
 <section id="overview" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.3</span> Overview</h2>

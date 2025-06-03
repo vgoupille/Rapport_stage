@@ -139,3 +139,70 @@ differentes etapes mais pas detailler tous ici renvoie vers le codes commenter e
 telechangement des fichiers, decompression .zip ; 4 fichier , analyse indenpendant de la qualité des 4 librair, trimming 
 
 parallelisation pour ganger du temps ... 
+
+
+
+
+
+
+##### Final effective command line of STARsolo:
+**STAR** \
+    **--runThreadN** 64 \
+    **--genomeDir** /path/to/genome_index \
+    **--readFilesIn** \
+        /path/to/input/merged_trimmed-R1.fastq.gz \
+        /path/to/input/merged_trimmed-R2.fastq.gz \
+    **--readFilesCommand** gunzip -c \
+    **--outFileNamePrefix** /path/to/output/starsolo_output/ \
+    **--outSAMtype** BAM Unsorted \
+    **--outFilterScoreMinOverLread** 0 \
+    **--outFilterMatchNmin** 50 \
+    **--outFilterMatchNminOverLread** 0 \
+    **--alignSJoverhangMin** 1000 \
+    **--alignSJDBoverhangMin** 1000 \
+    **--soloType** CB_UMI_Complex \
+    **--soloCBwhitelist** \
+        /path/to/barcodes/barcode_round3.txt \
+        /path/to/barcodes/barcode_round2.txt \
+        /path/to/barcodes/barcode_round1.txt \
+    **--soloFeatures** Gene GeneFull \
+    **--soloUMIdedup** 1MM_All \
+    **--soloCBmatchWLtype** 1MM \
+    **--soloCBposition** 0_10_0_17 0_48_0_55 0_78_0_85 \
+    **--soloUMIposition** 0_0_0_9 \
+    **--soloMultiMappers** Uniform
+
+### STARsolo Parameters Explanation
+
+This section details the key parameters used in our STARsolo analysis and their significance:
+
+#### General STAR Parameters
+- `--runThreadN 64` : Use of 64 threads for parallel alignment
+- `--genomeDir` : Path to the reference genome index
+- `--readFilesIn` : Input FASTQ files (R1 and R2)
+- `--readFilesCommand gunzip -c` : Command to decompress FASTQ.gz files
+- `--outFileNamePrefix` : Prefix for output files
+- `--outSAMtype BAM Unsorted` : Unsorted BAM output format
+
+#### Filtering Parameters
+- `--outFilterScoreMinOverLread 0` : Minimum filtering score relative to read length
+- `--outFilterMatchNmin 50` : Minimum number of matching bases for a valid alignment
+- `--outFilterMatchNminOverLread 0` : Minimum match ratio relative to read length
+- `--alignSJoverhangMin 1000` and `--alignSJDBoverhangMin 1000` : Strict parameters for splice junction detection
+
+#### STARsolo-specific Parameters
+- `--soloType CB_UMI_Complex` : Analysis type for cell barcodes (CB) and complex UMIs
+- `--soloCBwhitelist` : List of valid cell barcodes for the three barcoding rounds
+- `--soloFeatures Gene GeneFull` : Analysis of features at both gene and full transcript levels
+- `--soloUMIdedup 1MM_All` : UMI deduplication with one mutation tolerance
+- `--soloCBmatchWLtype 1MM` : Cell barcode matching with one mutation tolerance
+- `--soloCBposition` : Cell barcode positions in reads (3 rounds)
+  - Round 1: 0_10_0_17
+  - Round 2: 0_48_0_55
+  - Round 3: 0_78_0_85
+- `--soloUMIposition 0_0_0_9` : UMI position in reads
+- `--soloMultiMappers Uniform` : Uniform distribution of multi-mapped reads
+
+These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.
+
+
