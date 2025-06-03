@@ -194,8 +194,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><b>Sections</b></h2>
+   
+  <ul class="collapse">
+  <li><a href="#summary-stats-and-features.stats-for-gene" id="toc-summary-stats-and-features.stats-for-gene" class="nav-link active" data-scroll-target="#summary-stats-and-features.stats-for-gene"><span class="header-section-number">B.1</span> summary stats and features.stats for Gene</a></li>
+  <li><a href="#warning" id="toc-warning" class="nav-link" data-scroll-target="#warning"><span class="header-section-number">B.2</span> warning</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/B-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -218,8 +225,266 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="summary-stats-and-features.stats-for-gene" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="summary-stats-and-features.stats-for-gene"><span class="header-section-number">B.1</span> summary stats and features.stats for Gene</h2>
+<pre><code>                                     nUnmapped      114628761
+                                    nNoFeature       20579292
+                                 nAmbigFeature      934096737
+                         nAmbigFeatureMultimap      934096737
+                                      nTooMany              0
+                                 nNoExactMatch         124864
+                                   nExactMatch     4458742628
+                                        nMatch      964094047
+                                  nMatchUnique       30022209
+                                 nCellBarcodes         689818
+                                         nUMIs       29709734</code></pre>
+<p>Number of Reads,1284475633 Reads With Valid Barcodes,0.85576 Sequencing Saturation,0.0104081 Q30 Bases in CB+UMI,0.955089 Q30 Bases in RNA read,0.957923 Reads Mapped to Genome: Unique+Multiple,0.895694 Reads Mapped to Genome: Unique,0.0363836 Reads Mapped to Gene: Unique+Multipe Gene,0.750574 Reads Mapped to Gene: Unique Gene,0.0233731 Estimated Number of Cells,27268 Unique Reads in Cells Mapped to Gene,11121465 Fraction of Unique Reads in Cells,0.370441 Mean Reads per Cell,407 Median Reads per Cell,331 UMIs in Cells,10998607 Mean UMI per Cell,403 Median UMI per Cell,327 Mean Gene per Cell,253 Median Gene per Cell,221 Total Gene Detected,5894</p>
+</section>
+<section id="warning" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="warning"><span class="header-section-number">B.2</span> warning</h2>
+<p>!!!!! WARNING: while processing sjdbGTFfile=/projects/microsplit/data/processed_data/STARsolo_result/merged_trimmed/merged/raw_data/genome_annotation/genome_annotation_PsR401_fixed.gtf, line: CP125962.1 Genbank exon 298557 300953 . - 0 transcript_id “gene-QLH64_29550”; gene_id “gene-QLH64_29550”; gene_name “QLH64_29550”; exon end = 300953 is larger than the chromosome CP125962.1 length = 299955 , will skip this exon</p>
+<p>Log of the STARsolo run : Alignment statistics: ———————– Number of input reads | 1284475633 Average input read length | 135 Uniquely mapped reads number | 46733841 Uniquely mapped reads % | 3.64% Number of reads mapped to multiple loci | 1103762730 % of reads mapped to multiple loci | 85.93% Number of reads unmapped: other | 128049614 % of reads unmapped: other | 9.97% Mismatch rate per base, % | 0.38% Fri May 30 15:39:42 CEST 2025 - Pipeline completed!</p>
+<section id="pretest-starsolo-on-bc_0077-without-trimming" class="level3">
+<h3 class="anchored" data-anchor-id="pretest-starsolo-on-bc_0077-without-trimming">Pretest STARSolo on BC_0077 without trimming</h3>
+<table class="caption-top table">
+<caption>Pretest STARSolo on BC_0077 without trimming, summary of stats {#tbl-starsolo-summary-pretest-layout-ncol=“1”} -&gt; en annexe</caption>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of Reads</td>
+<td>325,495,590</td>
+</tr>
+<tr class="even">
+<td>Reads With Valid Barcodes</td>
+<td>76.19%</td>
+</tr>
+<tr class="odd">
+<td>Sequencing Saturation</td>
+<td>93.70%</td>
+</tr>
+<tr class="even">
+<td>Q30 Bases in CB+UMI</td>
+<td>92.28%</td>
+</tr>
+<tr class="odd">
+<td>Q30 Bases in RNA read</td>
+<td>86.19%</td>
+</tr>
+<tr class="even">
+<td>Reads Mapped to Genome: Unique+Multiple</td>
+<td>58.16%</td>
+</tr>
+<tr class="odd">
+<td>Reads Mapped to Genome: Unique</td>
+<td>2.15%</td>
+</tr>
+<tr class="even">
+<td>Reads Mapped to GeneFull: Unique+Multiple</td>
+<td>48.46%</td>
+</tr>
+<tr class="odd">
+<td>Reads Mapped to GeneFull: Unique</td>
+<td>1.49%</td>
+</tr>
+<tr class="even">
+<td>Estimated Number of Cells</td>
+<td>66,026</td>
+</tr>
+<tr class="odd">
+<td>Unique Reads in Cells Mapped to GeneFull</td>
+<td>3,538,648</td>
+</tr>
+<tr class="even">
+<td>Fraction of Unique Reads in Cells</td>
+<td>73.00%</td>
+</tr>
+<tr class="odd">
+<td>Mean Reads per Cell</td>
+<td>53</td>
+</tr>
+<tr class="even">
+<td>Median Reads per Cell</td>
+<td>36</td>
+</tr>
+<tr class="odd">
+<td>UMIs in Cells</td>
+<td>202,967</td>
+</tr>
+<tr class="even">
+<td>Mean UMI per Cell</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>Median UMI per Cell</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Mean GeneFull per Cell</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Median GeneFull per Cell</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Total GeneFull Detected</td>
+<td>5,295</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>nUnmapped</td>
+<td>89,425,075</td>
+</tr>
+<tr class="even">
+<td>nNoFeature</td>
+<td>1,000,851</td>
+</tr>
+<tr class="odd">
+<td>nAmbigFeature</td>
+<td>152,909,678</td>
+</tr>
+<tr class="even">
+<td>nAmbigFeatureMultimap</td>
+<td>152,443,034</td>
+</tr>
+<tr class="odd">
+<td>nTooMany</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>nNoExactMatch</td>
+<td>185,805</td>
+</tr>
+<tr class="odd">
+<td>nExactMatch</td>
+<td>729,180,878</td>
+</tr>
+<tr class="even">
+<td>nMatch</td>
+<td>157,719,964</td>
+</tr>
+<tr class="odd">
+<td>nMatchUnique</td>
+<td>4,847,425</td>
+</tr>
+<tr class="even">
+<td>nCellBarcodes</td>
+<td>168,346</td>
+</tr>
+<tr class="odd">
+<td>nUMIs</td>
+<td>305,287</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of Reads</td>
+<td>325,495,590</td>
+</tr>
+<tr class="even">
+<td>Reads With Valid Barcodes</td>
+<td>76.19%</td>
+</tr>
+<tr class="odd">
+<td>Sequencing Saturation</td>
+<td>93.70%</td>
+</tr>
+<tr class="even">
+<td>Q30 Bases in CB+UMI</td>
+<td>92.28%</td>
+</tr>
+<tr class="odd">
+<td>Q30 Bases in RNA read</td>
+<td>86.19%</td>
+</tr>
+<tr class="even">
+<td>Reads Mapped to Genome: Unique+Multiple</td>
+<td>58.16%</td>
+</tr>
+<tr class="odd">
+<td>Reads Mapped to Genome: Unique</td>
+<td>2.15%</td>
+</tr>
+<tr class="even">
+<td>Reads Mapped to GeneFull: Unique+Multiple</td>
+<td>48.46%</td>
+</tr>
+<tr class="odd">
+<td>Reads Mapped to GeneFull: Unique</td>
+<td>1.49%</td>
+</tr>
+<tr class="even">
+<td>Estimated Number of Cells</td>
+<td>66,026</td>
+</tr>
+<tr class="odd">
+<td>Unique Reads in Cells Mapped to GeneFull</td>
+<td>3,538,648</td>
+</tr>
+<tr class="even">
+<td>Fraction of Unique Reads in Cells</td>
+<td>73.00%</td>
+</tr>
+<tr class="odd">
+<td>Mean Reads per Cell</td>
+<td>53</td>
+</tr>
+<tr class="even">
+<td>Median Reads per Cell</td>
+<td>36</td>
+</tr>
+<tr class="odd">
+<td>UMIs in Cells</td>
+<td>202,967</td>
+</tr>
+<tr class="even">
+<td>Mean UMI per Cell</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>Median UMI per Cell</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Mean GeneFull per Cell</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Median GeneFull per Cell</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Total GeneFull Detected</td>
+<td>5,295</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -656,4 +921,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/B-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/B-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
