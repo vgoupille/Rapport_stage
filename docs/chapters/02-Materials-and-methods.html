@@ -221,10 +221,7 @@ div.csl-indent {
   <li><a href="#biological-conditions" id="toc-biological-conditions" class="nav-link active" data-scroll-target="#biological-conditions"><span class="header-section-number">2.1</span> Biological conditions</a></li>
   <li><a href="#microsplit" id="toc-microsplit" class="nav-link" data-scroll-target="#microsplit"><span class="header-section-number">2.2</span> MicroSPLiT</a></li>
   <li><a href="#librairies-structures" id="toc-librairies-structures" class="nav-link" data-scroll-target="#librairies-structures"><span class="header-section-number">2.3</span> Librairies structures</a></li>
-  <li><a href="#pipeline-of-the-analysis" id="toc-pipeline-of-the-analysis" class="nav-link" data-scroll-target="#pipeline-of-the-analysis"><span class="header-section-number">3</span> Pipeline of the analysis</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.1</span> </a></li>
-  </ul></li>
+  <li><a href="#pipeline-of-the-analysis" id="toc-pipeline-of-the-analysis" class="nav-link" data-scroll-target="#pipeline-of-the-analysis"><span class="header-section-number">3</span> Pipeline of the analysis</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/02-Materials-and-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -295,12 +292,15 @@ div.csl-indent {
 <p>=&gt; voir annexe pour le plan de plaques</p>
 <p>=&gt; donc 90 echantillons differents</p>
 <p>=&gt; rep bio : voir si variation entre les populations =&gt; replica techn : permettre d’estimer si variance dans le nombre - utilisation du nombre d’UMIs dans le round1 pour estimer cela =&gt; voir resultats : pooler ensemble</p>
+<p>dans l’hypothèse equilibre parfaite a noté que 33 cellules par conditions ce qui est tres faible =&gt; peut etre soumis à des variations individuels au qui pourrait rendre difficule evalutaion variation (tirage aléatoire, possible cellules avec faible activi ou inverse (desequilibre))</p>
 <p>=&gt; discussion : renvoie vers l’outils Shiny pour voir les conditions biologiques permet une visualisation plus rapide des donnees</p>
 </section>
 <section id="microsplit" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="microsplit"><span class="header-section-number">2.2</span> MicroSPLiT</h2>
+<p>figure du protocole microsplit</p>
 <ul>
 <li><p>explication de la méthode microSPLiT<span class="citation" data-cites="brettner2024 kuchina2021"><sup><a href="06-References.html#ref-brettner2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span></p></li>
+<li><p>pour faire simple : differentes etape : fixation ; …;</p></li>
 <li><p>contrairement aux autres methodes, pas d’isolation individuelle des cellules</p></li>
 <li><p>3 rounds de split-pool : le premier round on affecte les differentes conditions biologiques</p></li>
 <li><p>un 4eme round pour rajouté un UMI pour les differentes libraires de sequençage</p></li>
@@ -330,6 +330,10 @@ voir annex pour le tableau de choix du nombre de cellules pour la librairies (es
 <section id="pipeline-of-the-analysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Pipeline of the analysis</h1>
 <ul>
+<li>figure of the pipeline</li>
+</ul>
+<p>Preprocesing sur le cluster genouest, la suite en local et sur le cluster aussi (peut etre) tous les scripts sont dispo sur differents depots githubs</p>
+<ul>
 <li><p>differentes etapes :</p>
 <ul>
 <li><p>demultiplexage des index de librairies (réalisé par la plateforme de sequençage)</p></li>
@@ -341,17 +345,28 @@ voir annex pour le tableau de choix du nombre de cellules pour la librairies (es
 <li><p>Metadata assignation to seura</p></li>
 </ul></li>
 </ul>
-<p>=&gt; d’autres étapes pourrait etre ajouter dans le pipeline (voir la partie disccussion)</p>
+<p>=&gt; d’autres étapes ou autres outils pourrait etre ajouter dans le pipeline (voir la partie disccussion)</p>
 <ul>
-<li>figure of the pipeline</li>
 <li>differnetes steps of the pipeline</li>
 <li></li>
 <li>assignation des metadonnées (utilisation d’un genome de reference =&gt; discussion )</li>
 </ul>
-<section id="section" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="section"><span class="header-section-number">3.1</span> </h2>
+<section id="demultiplexing" class="level3">
+<h3 class="anchored" data-anchor-id="demultiplexing">Demultiplexing</h3>
+</section>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"></h3>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1"></h3>
+</section>
+<section id="starsolo" class="level3">
+<h3 class="anchored" data-anchor-id="starsolo">STARsolo</h3>
+<p>500 go</p>
 <p>attention je vais devoir dire les version des outils utilisés</p>
 <p>github,</p>
+<p>differentes etapes mais pas detailler tous ici renvoie vers le codes commenter et les readme pour comprendre en details telechangement des fichiers, decompression .zip ; 4 fichier , analyse indenpendant de la qualité des 4 librair, trimming</p>
+<p>parallelisation pour ganger du temps …</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
