@@ -1,39 +1,29 @@
 # Results
 
-- 4 librairies de tialles pas equivalentes (voir Solène qui explique pourquoi avant pas equivalente exactement )
-- impact l'efficacité des librairies 
-- => conseille : equilibrer les librair
-
+-   4 librairies de tialles pas equivalentes (voir Solène qui explique pourquoi avant pas equivalente exactement )
+-   impact l'efficacité des librairies
+-   =\> conseille : equilibrer les librair
 
 ## Trimming
 
-
 -   renvoie vers l'annexe pour les multiqc (fastp, cutadapt) avant et apres trimming
 -   
-- mais au final on obtient des resultats tres interessants et propres 
+-   mais au final on obtient des resultats tres interessants et propres
 
-
-
-
-
-=> peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats 
-=> renvoie vers la discussion pour le trimming fait dans l'article de [@kuchina2021]
-    - avait presque 90% de saturation => a verifier si c'est vraiment le cas 
-    - et 10 % des sequences avec TSO  (voir Annexe)
+=\> peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =\> renvoie vers la discussion pour le trimming fait dans l'article de [@kuchina2021] - avait presque 90% de saturation =\> a verifier si c'est vraiment le cas - et 10 % des sequences avec TSO (voir Annexe)
 
 -   Summary table of Starsolo results
 -   numbers of reads before and after trimming
 -   taux de saturation ...
--   => renvoie vers la discussion pour les taux de saturation
+-   =\> renvoie vers la discussion pour les taux de saturation
 
 figure - ![](../figures/trimming_quality.png)
 
 ## STARsolo
--pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré 
 
-commande starsolo suivante comme dans bretn
-permet UMI a une erreur...
-possition des barcodes  
+-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré
+
+commande starsolo suivante comme dans bretn permet UMI a une erreur... possition des barcodes
 
 ## Genome
 
@@ -42,198 +32,236 @@ possition des barcodes
 -   figure de % de type of RNA
 -   ![](../figures/pourcentage_RNA.png)
 
+# Fitrage des cellules
 
-# Fitrage des cellules 
+-   reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de il existe des methodes de filtrages plus ou moins complexes\
+    -filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene
 
-- reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de 
-il existe des methodes de filtrages plus ou moins complexes  
--filtrage sur le types de reads,  globales ou seuils differents entre les differentes conditions biologiques 
--filtrage sur le nombre de reads par cellule 
--filtrage sur le nombre de genes exprimés par cellule 
--filtrage sur le nombre de reads par gene 
-- filtrage avec un threashold 
+-   filtrage avec un threashold
 
-- dans l'article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule 
-- 
-- preprint de ... pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)
+-   dans l'article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule
 
+-   
 
-
+-   preprint de ... pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)
 
 # 
 
-housekeeping genes 
+housekeeping genes
 
-
-choix ou non de pooler les replicas techniques ensembles 
-
-
-
-
-
-
-
-
-
-
-
-
-
+choix ou non de pooler les replicas techniques ensembles
 
 ## Summary of results
-
 
 ## MultiQC Quality Reports
 
 Detailed sequence quality reports are available below. Click on each report to view it.
 
-::: {.panel-tabset}
-
-#### MultiQC Report R1 Before Trimming 
+::: panel-tabset
+#### MultiQC Report R1 Before Trimming
 
 <details>
+
 <summary>Click to view MultiQC report R1 before trimming</summary>
 
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy"></iframe>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
 
 </details>
 
 #### MultiQC Report R1 After Trimming
 
 <details>
+
 <summary>Click to view MultiQC report R1 after trimming</summary>
 
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy"></iframe>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
 
 </details>
 
-
-
-#### MultiQC Report R2 Before Trimming 
+#### MultiQC Report R2 Before Trimming
 
 <details>
+
 <summary>Click to view MultiQC report R2 before trimming</summary>
 
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy"></iframe>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
 
 </details>
 
 #### MultiQC Report R2 After Trimming
 
 <details>
+
 <summary>Click to view MultiQC report R2 after trimming</summary>
 
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy"></iframe>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
 
 </details>
-
-
 :::
 
 Key quality metrics are summarized in the tables below.
 
+| Sample Name | Dups  | GC    | Median len | Seqs         |
+|-------------|-------|-------|------------|--------------|
+| BC_0076_R1  | 94.5% | 55.0% | 241bp      | 631.4M       |
+| BC_0077_R1  | 94.1% | 53.0% | 241bp      | 325.5M       |
+| BC_0079_R1  | 93.8% | 53.0% | 241bp      | 379.1M       |
+| BC_0080_R1  | 94.6% | 54.0% | 241bp      | 397.7M       |
+| **Total**   | \-    | \-    | \-         | **1,733.7M** |
 
-
-| Sample Name  | Dups   | GC     | Median len | Seqs    |
-|--------------|--------|---------|------------|---------|
-| BC_0076_R1  | 94.5%  | 55.0%  | 241bp      | 631.4M  |
-| BC_0077_R1  | 94.1%  | 53.0%  | 241bp      | 325.5M  |
-| BC_0079_R1  | 93.8%  | 53.0%  | 241bp      | 379.1M  |
-| BC_0080_R1  | 94.6%  | 54.0%  | 241bp      | 397.7M  |
-| **Total**   | -      | -      | -          | **1,733.7M** |
 : Before trimming {#tbl-example layout-ncol="1"}
 
+| Sample Name | Dups  | GC    | Median len | Seqs         |
+|-------------|-------|-------|------------|--------------|
+| BC_0076_R1  | 98.7% | 51.0% | 127bp      | 450.8M       |
+| BC_0077_R1  | 98.6% | 51.0% | 157bp      | 248.4M       |
+| BC_0079_R1  | 98.6% | 51.0% | 152bp      | 285.2M       |
+| BC_0080_R1  | 98.7% | 51.0% | 132bp      | 300.1M       |
+| **Total**   | \-    | \-    | \-         | **1,284.5M** |
 
-
-
-| Sample Name  | Dups   | GC    | Median len | Seqs   |
-|--------------|--------|--------|------------|---------|
-| BC_0076_R1  | 98.7%  | 51.0%  | 127bp      | 450.8M  |
-| BC_0077_R1  | 98.6%  | 51.0%  | 157bp      | 248.4M  |
-| BC_0079_R1  | 98.6%  | 51.0%  | 152bp      | 285.2M  |
-| BC_0080_R1  | 98.7%  | 51.0%  | 132bp      | 300.1M  |
-| **Total**   | -      | -      | -          | **1,284.5M** |
 : After trimming {#tbl-example layout-ncol="1"}
 
+| Sample Name | Before Trimming |   | After Trimming |   | Change in |   |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+|  | Median len | Seqs | Median len | Seqs | Length | Sequences |
+| -------------- | ---------------- | ------------ | ---------------- | ------------ | ----------- | ----------- |
+| BC_0076_R1 | 241bp | 631.4M | 127bp | 450.8M | -47.3% | -28.6% |
+| BC_0077_R1 | 241bp | 325.5M | 157bp | 248.4M | -34.9% | -23.7% |
+| BC_0079_R1 | 241bp | 379.1M | 152bp | 285.2M | -36.9% | -24.8% |
+| BC_0080_R1 | 241bp | 397.7M | 132bp | 300.1M | -45.2% | -24.5% |
+| **Mean** | **241bp** | **433.4M** | **142bp** | **321.1M** | \- | \- |
+| **Total** | \- | **1733.7M** | \- | **1284.5M** | **-41.1%** | **-25.4%** |
 
-
-
-
-| Sample Name  | Before Trimming |            | After Trimming |            | Change in |           |
-|--------------|----------------|------------|----------------|------------|-----------|-----------|
-|              | Median len     | Seqs       | Median len     | Seqs      | Length    | Sequences |
-|--------------|----------------|------------|----------------|------------|-----------|-----------|
-| BC_0076_R1  | 241bp          | 631.4M     | 127bp          | 450.8M    | -47.3%    | -28.6%    |
-| BC_0077_R1  | 241bp          | 325.5M     | 157bp          | 248.4M    | -34.9%    | -23.7%    |
-| BC_0079_R1  | 241bp          | 379.1M     | 152bp          | 285.2M    | -36.9%    | -24.8%    |
-| BC_0080_R1  | 241bp          | 397.7M     | 132bp          | 300.1M    | -45.2%    | -24.5%    |
-| **Mean**     | **241bp**      | **433.4M**  | **142bp**      | **321.1M** | -         | -         |
-| **Total**    | -              | **1733.7M** | -              | **1284.5M**| **-41.1%**| **-25.4%**|
 : Summary of sequence metrics before and after trimming, including percentage changes {#tbl-summary layout-ncol="1"}
 
+| Metric              | Count         |
+|---------------------|---------------|
+| nNoAdapter          | 0             |
+| nNoUMI              | 0             |
+| nNoCB               | 67,177        |
+| nNinCB              | 0             |
+| nNinUMI             | 16,893,550    |
+| nUMIhomopolymer     | 1,697,129     |
+| nTooMany            | 0             |
+| nNoMatch            | 163,166,830   |
+| nMismatchesInMultCB | 3,323,192     |
+| nExactMatch         | 1,046,121,284 |
+| nMismatchOneWL      | 53,206,471    |
+| nMismatchToMultWL   | 0             |
 
-
-| Metric                | Count      |
-|----------------------|------------|
-| nNoAdapter           | 0          |
-| nNoUMI              | 0          |
-| nNoCB               | 67,177     |
-| nNinCB              | 0          |
-| nNinUMI             | 16,893,550 |
-| nUMIhomopolymer     | 1,697,129  |
-| nTooMany            | 0          |
-| nNoMatch            | 163,166,830|
-| nMismatchesInMultCB | 3,323,192  |
-| nExactMatch         | 1,046,121,284|
-| nMismatchOneWL      | 53,206,471 |
-| nMismatchToMultWL   | 0          |
 : STARsolo barcode statistics {#tbl-starsolo layout-ncol="1"}
 
-| Metric                | Count      |
-|----------------------|------------|
-| nUnmapped            | 114,628,761|
-| nNoFeature           | 13,153,735 |
-| nAmbigFeature        | 936,951,032|
-| nAmbigFeatureMultimap| 935,077,136|
-| nTooMany             | 0          |
-| nNoExactMatch        | 125,216    |
-| nExactMatch          | 4,471,174,098|
-| nMatch               | 971,519,404|
-| nMatchUnique         | 34,593,349 |
-| nCellBarcodes        | 699,355    |
-| nUMIs                | 34,258,961 |
+### Barcode Statistics Interpretation
+
+The analysis of cell barcodes reveals several important points about our data quality:
+
+- **Barcode Quality**: 
+  - The absence of reads without adapter (`nNoAdapter = 0`) and without UMI (`nNoUMI = 0`) indicates excellent library preparation quality
+  - The relatively low number of reads without cell barcode (`nNoCB = 67,177`) represents less than 0.01% of total reads, which is excellent
+
+- **Barcode Accuracy**:
+  - The majority of reads (1,046,121,284) have a perfectly aligned barcode (`nExactMatch`)
+  - Approximately 53 million reads show a single mismatch (`nMismatchOneWL`)
+  - The absence of reads with multiple matches (`nMismatchToMultWL = 0`) suggests good barcode specificity
+
+- **UMI Quality**:
+  - The number of invalid UMIs (`nNinUMI = 16,893,550`) represents a relatively small proportion of total reads and might be primarily due to sequencing errors at the beginning of reads, which is a common observation in Illumina sequencing
+  - The presence of homopolymers in UMIs (`nUMIhomopolymer = 1,697,129`) is a known phenomenon that can affect molecular counting accuracy, but the relatively low number suggests this is not a major concern
+
+- **Overall Matching**:
+  - The significant number of unmatched reads (`nNoMatch = 163,166,830`) suggests that a substantial portion of reads do not match expected barcodes
+  - This could be due to sequencing errors or potential contamination
+
+These results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.
+
+| Metric                | Count         |
+|-----------------------|---------------|
+| nUnmapped             | 114,628,761   |
+| nNoFeature            | 13,153,735    |
+| nAmbigFeature         | 936,951,032   |
+| nAmbigFeatureMultimap | 935,077,136   |
+| nTooMany              | 0             |
+| nNoExactMatch         | 125,216       |
+| nExactMatch           | 4,471,174,098 |
+| nMatch                | 971,519,404   |
+| nMatchUnique          | 34,593,349    |
+| nCellBarcodes         | 699,355       |
+| nUMIs                 | 34,258,961    |
+
 : STARsolo feature mapping statistics {#tbl-starsolo-features layout-ncol="1"}
 
-| Metric                                        | Value      |
-|----------------------------------------------|------------|
-| Number of Reads                              | 1,284,475,633 |
-| Reads With Valid Barcodes                    | 85.58%     |
-| Sequencing Saturation                        | 0.97%      |
-| Q30 Bases in CB+UMI                         | 95.51%     |
-| Q30 Bases in RNA read                       | 95.79%     |
-| Reads Mapped to Genome: Unique+Multiple     | 89.57%     |
-| Reads Mapped to Genome: Unique              | 3.64%      |
-| Reads Mapped to GeneFull: Unique+Multiple   | 75.64%     |
-| Reads Mapped to GeneFull: Unique            | 2.69%      |
-| Estimated Number of Cells                    | 27,203     |
-| Unique Reads in Cells Mapped to GeneFull    | 12,794,311 |
-| Fraction of Unique Reads in Cells           | 36.98%     |
-| Mean Reads per Cell                         | 470        |
-| Median Reads per Cell                       | 381        |
-| UMIs in Cells                               | 12,663,144 |
-| Mean UMI per Cell                           | 465        |
-| Median UMI per Cell                         | 378        |
-| Mean GeneFull per Cell                      | 296        |
-| Median GeneFull per Cell                    | 258        |
-| Total GeneFull Detected                     | 6,035      |
+| Metric                                    | Value         |
+|-------------------------------------------|---------------|
+| Number of Reads                           | 1,284,475,633 |
+| Reads With Valid Barcodes                 | 85.58%        |
+| Sequencing Saturation                     | 0.97%         |
+| Q30 Bases in CB+UMI                       | 95.51%        |
+| Q30 Bases in RNA read                     | 95.79%        |
+| Reads Mapped to Genome: Unique+Multiple   | 89.57%        |
+| Reads Mapped to Genome: Unique            | 3.64%         |
+| Reads Mapped to GeneFull: Unique+Multiple | 75.64%        |
+| Reads Mapped to GeneFull: Unique          | 2.69%         |
+| Estimated Number of Cells                 | 27,203        |
+| Unique Reads in Cells Mapped to GeneFull  | 12,794,311    |
+| Fraction of Unique Reads in Cells         | 36.98%        |
+| Mean Reads per Cell                       | 470           |
+| Median Reads per Cell                     | 381           |
+| UMIs in Cells                             | 12,663,144    |
+| Mean UMI per Cell                         | 465           |
+| Median UMI per Cell                       | 378           |
+| Mean GeneFull per Cell                    | 296           |
+| Median GeneFull per Cell                  | 258           |
+| Total GeneFull Detected                   | 6,035         |
+
 : STARsolo summary statistics {#tbl-starsolo-summary layout-ncol="1"}
 
+## Interpretation of STARsolo Results
 
+The STARsolo analysis revealed several key insights about our single-cell RNA-seq data:
 
+### Sequencing Quality and Mapping
 
+-   The sequencing quality is excellent, with over 95% of bases having Q30 quality scores in both barcode/UMI and RNA reads
+-   A high proportion (85.58%) of reads contained valid cell barcodes, indicating good library preparation
+-   The mapping rates are robust:
+    -   89.57% of reads mapped to the genome (unique + multiple)
+    -   75.64% of reads mapped to genes (unique + multiple)
+-   The low unique mapping rate (3.64% to genome, 2.69% to genes) is typical for bacterial RNA-seq due to ...
 
+### Mapping Terminology
 
+-   **Gene mapping**: Refers to reads mapped to annotated coding sequences (CDS) only
+-   **GeneFull mapping**: Includes reads mapped to all annotated features including:
+    -   Coding sequences (CDS)
+    -   Untranslated regions (UTRs)
+    -   Non-coding RNAs
+    -   Intergenic regions
+    -   This broader mapping approach is particularly relevant for bacterial transcriptomics as it captures the full complexity of the transcriptome
 
+### Cell Recovery and Expression
+
+-   We estimated 27,203 cells in our dataset
+-   The sequencing saturation is very low (0.97%), suggesting we could sequence deeper if needed
+-   Cell-level metrics show good coverage:
+    -   Mean/median reads per cell: 470/381
+    -   Mean/median UMIs per cell: 465/378
+    -   Mean/median genes per cell: 296/258
+-   We detected 6,035 genes in total across all cells
+
+### Data Quality Assessment
+
+-   The high Q30 scores and mapping rates indicate good technical quality
+-   The cell-level metrics suggest sufficient coverage for downstream analysis
+-   The low sequencing saturation suggests potential for deeper sequencing if needed
+-   The high proportion of reads with valid barcodes (85.58%) indicates good library preparation
 
 ## Overview
 

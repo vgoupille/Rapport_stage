@@ -133,8 +133,8 @@
     "objectID": "chapters/03-Results.html#overview",
     "href": "chapters/03-Results.html#overview",
     "title": "3  Results",
-    "section": "5.3 Overview",
-    "text": "5.3 Overview\nThis chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.",
+    "section": "5.4 Overview",
+    "text": "5.4 Overview\nThis chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -143,8 +143,8 @@
     "objectID": "chapters/03-Results.html#single-cell-rna-seq-analysis",
     "href": "chapters/03-Results.html#single-cell-rna-seq-analysis",
     "title": "3  Results",
-    "section": "5.4 Single-cell RNA-seq Analysis",
-    "text": "5.4 Single-cell RNA-seq Analysis\n\nData Quality and Preprocessing\n\n\nCell Type Identification\n\n\nDifferential Expression Analysis\n\n\nDivision of Labor Patterns",
+    "section": "5.5 Single-cell RNA-seq Analysis",
+    "text": "5.5 Single-cell RNA-seq Analysis\n\nData Quality and Preprocessing\n\n\nCell Type Identification\n\n\nDifferential Expression Analysis\n\n\nDivision of Labor Patterns",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -153,8 +153,8 @@
     "objectID": "chapters/03-Results.html#functional-analysis",
     "href": "chapters/03-Results.html#functional-analysis",
     "title": "3  Results",
-    "section": "5.5 Functional Analysis",
-    "text": "5.5 Functional Analysis\n\nPathway Enrichment\n\n\nGene Set Analysis\n\n\nRegulatory Network Analysis",
+    "section": "5.6 Functional Analysis",
+    "text": "5.6 Functional Analysis\n\nPathway Enrichment\n\n\nGene Set Analysis\n\n\nRegulatory Network Analysis",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -163,8 +163,8 @@
     "objectID": "chapters/03-Results.html#integration-with-previous-studies",
     "href": "chapters/03-Results.html#integration-with-previous-studies",
     "title": "3  Results",
-    "section": "5.6 Integration with Previous Studies",
-    "text": "5.6 Integration with Previous Studies",
+    "section": "5.7 Integration with Previous Studies",
+    "text": "5.7 Integration with Previous Studies",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -173,8 +173,8 @@
     "objectID": "chapters/03-Results.html#summary-of-key-findings",
     "href": "chapters/03-Results.html#summary-of-key-findings",
     "title": "3  Results",
-    "section": "5.7 Summary of Key Findings",
-    "text": "5.7 Summary of Key Findings\n\n\n\n\n1. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).",
+    "section": "5.8 Summary of Key Findings",
+    "text": "5.8 Summary of Key Findings\n\n\n\n\n1. Kuchina, A. et al. Microbial single-cell RNA sequencing by split-pool barcoding. Science 371, eaba5257 (2021).",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
@@ -365,7 +365,17 @@
     "href": "chapters/03-Results.html#multiqc-quality-reports",
     "title": "3  Results",
     "section": "5.2 MultiQC Quality Reports",
-    "text": "5.2 MultiQC Quality Reports\nDetailed sequence quality reports are available below. Click on each report to view it.\n\nMultiQC Report R1 Before TrimmingMultiQC Report R1 After TrimmingMultiQC Report R2 Before TrimmingMultiQC Report R2 After Trimming\n\n\n\n\nClick to view MultiQC report R1 before trimming\n\n\n\n\n\n\n\n\nClick to view MultiQC report R1 after trimming\n\n\n\n\n\n\n\n\nClick to view MultiQC report R2 before trimming\n\n\n\n\n\n\n\n\nClick to view MultiQC report R2 after trimming\n\n\n\n\n\n\n\nKey quality metrics are summarized in the tables below.\n\n\n\nTable 5.1: Before trimming\n\n\n\n\n\n\n\nSample Name\nDups\nGC\nMedian len\nSeqs\n\n\n\n\nBC_0076_R1\n94.5%\n55.0%\n241bp\n631.4M\n\n\nBC_0077_R1\n94.1%\n53.0%\n241bp\n325.5M\n\n\nBC_0079_R1\n93.8%\n53.0%\n241bp\n379.1M\n\n\nBC_0080_R1\n94.6%\n54.0%\n241bp\n397.7M\n\n\nTotal\n-\n-\n-\n1,733.7M\n\n\n\n\n\n\n\n\n\n\n\nTable 5.2: After trimming\n\n\n\n\n\n\n\nSample Name\nDups\nGC\nMedian len\nSeqs\n\n\n\n\nBC_0076_R1\n98.7%\n51.0%\n127bp\n450.8M\n\n\nBC_0077_R1\n98.6%\n51.0%\n157bp\n248.4M\n\n\nBC_0079_R1\n98.6%\n51.0%\n152bp\n285.2M\n\n\nBC_0080_R1\n98.7%\n51.0%\n132bp\n300.1M\n\n\nTotal\n-\n-\n-\n1,284.5M\n\n\n\n\n\n\n\n\n\n\n\nTable 5.3: Summary of sequence metrics before and after trimming, including percentage changes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSample Name\nBefore Trimming\n\nAfter Trimming\n\nChange in\n\n\n\n\n\n\nMedian len\nSeqs\nMedian len\nSeqs\nLength\nSequences\n\n\n————–\n—————-\n————\n—————-\n————\n———–\n———–\n\n\nBC_0076_R1\n241bp\n631.4M\n127bp\n450.8M\n-47.3%\n-28.6%\n\n\nBC_0077_R1\n241bp\n325.5M\n157bp\n248.4M\n-34.9%\n-23.7%\n\n\nBC_0079_R1\n241bp\n379.1M\n152bp\n285.2M\n-36.9%\n-24.8%\n\n\nBC_0080_R1\n241bp\n397.7M\n132bp\n300.1M\n-45.2%\n-24.5%\n\n\nMean\n241bp\n433.4M\n142bp\n321.1M\n-\n-\n\n\nTotal\n-\n1733.7M\n-\n1284.5M\n-41.1%\n-25.4%\n\n\n\n\n\n\n\n\n\n\n\nTable 5.4: STARsolo barcode statistics\n\n\n\n\n\n\n\nMetric\nCount\n\n\n\n\nnNoAdapter\n0\n\n\nnNoUMI\n0\n\n\nnNoCB\n67,177\n\n\nnNinCB\n0\n\n\nnNinUMI\n16,893,550\n\n\nnUMIhomopolymer\n1,697,129\n\n\nnTooMany\n0\n\n\nnNoMatch\n163,166,830\n\n\nnMismatchesInMultCB\n3,323,192\n\n\nnExactMatch\n1,046,121,284\n\n\nnMismatchOneWL\n53,206,471\n\n\nnMismatchToMultWL\n0\n\n\n\n\n\n\n\n\n\n\n\nTable 5.5: STARsolo feature mapping statistics\n\n\n\n\n\n\n\nMetric\nCount\n\n\n\n\nnUnmapped\n114,628,761\n\n\nnNoFeature\n13,153,735\n\n\nnAmbigFeature\n936,951,032\n\n\nnAmbigFeatureMultimap\n935,077,136\n\n\nnTooMany\n0\n\n\nnNoExactMatch\n125,216\n\n\nnExactMatch\n4,471,174,098\n\n\nnMatch\n971,519,404\n\n\nnMatchUnique\n34,593,349\n\n\nnCellBarcodes\n699,355\n\n\nnUMIs\n34,258,961\n\n\n\n\n\n\n\n\n\n\n\nTable 5.6: STARsolo summary statistics\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\nNumber of Reads\n1,284,475,633\n\n\nReads With Valid Barcodes\n85.58%\n\n\nSequencing Saturation\n0.97%\n\n\nQ30 Bases in CB+UMI\n95.51%\n\n\nQ30 Bases in RNA read\n95.79%\n\n\nReads Mapped to Genome: Unique+Multiple\n89.57%\n\n\nReads Mapped to Genome: Unique\n3.64%\n\n\nReads Mapped to GeneFull: Unique+Multiple\n75.64%\n\n\nReads Mapped to GeneFull: Unique\n2.69%\n\n\nEstimated Number of Cells\n27,203\n\n\nUnique Reads in Cells Mapped to GeneFull\n12,794,311\n\n\nFraction of Unique Reads in Cells\n36.98%\n\n\nMean Reads per Cell\n470\n\n\nMedian Reads per Cell\n381\n\n\nUMIs in Cells\n12,663,144\n\n\nMean UMI per Cell\n465\n\n\nMedian UMI per Cell\n378\n\n\nMean GeneFull per Cell\n296\n\n\nMedian GeneFull per Cell\n258\n\n\nTotal GeneFull Detected\n6,035",
+    "text": "5.2 MultiQC Quality Reports\nDetailed sequence quality reports are available below. Click on each report to view it.\n\nMultiQC Report R1 Before TrimmingMultiQC Report R1 After TrimmingMultiQC Report R2 Before TrimmingMultiQC Report R2 After Trimming\n\n\n\n\nClick to view MultiQC report R1 before trimming\n\n\n\n\n\n\n\n\nClick to view MultiQC report R1 after trimming\n\n\n\n\n\n\n\n\nClick to view MultiQC report R2 before trimming\n\n\n\n\n\n\n\n\nClick to view MultiQC report R2 after trimming\n\n\n\n\n\n\n\nKey quality metrics are summarized in the tables below.\n\n\n\nTable 5.1: Before trimming\n\n\n\n\n\n\n\nSample Name\nDups\nGC\nMedian len\nSeqs\n\n\n\n\nBC_0076_R1\n94.5%\n55.0%\n241bp\n631.4M\n\n\nBC_0077_R1\n94.1%\n53.0%\n241bp\n325.5M\n\n\nBC_0079_R1\n93.8%\n53.0%\n241bp\n379.1M\n\n\nBC_0080_R1\n94.6%\n54.0%\n241bp\n397.7M\n\n\nTotal\n-\n-\n-\n1,733.7M\n\n\n\n\n\n\n\n\n\n\n\nTable 5.2: After trimming\n\n\n\n\n\n\n\nSample Name\nDups\nGC\nMedian len\nSeqs\n\n\n\n\nBC_0076_R1\n98.7%\n51.0%\n127bp\n450.8M\n\n\nBC_0077_R1\n98.6%\n51.0%\n157bp\n248.4M\n\n\nBC_0079_R1\n98.6%\n51.0%\n152bp\n285.2M\n\n\nBC_0080_R1\n98.7%\n51.0%\n132bp\n300.1M\n\n\nTotal\n-\n-\n-\n1,284.5M\n\n\n\n\n\n\n\n\n\n\n\nTable 5.3: Summary of sequence metrics before and after trimming, including percentage changes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSample Name\nBefore Trimming\n\nAfter Trimming\n\nChange in\n\n\n\n\n\n\nMedian len\nSeqs\nMedian len\nSeqs\nLength\nSequences\n\n\n————–\n—————-\n————\n—————-\n————\n———–\n———–\n\n\nBC_0076_R1\n241bp\n631.4M\n127bp\n450.8M\n-47.3%\n-28.6%\n\n\nBC_0077_R1\n241bp\n325.5M\n157bp\n248.4M\n-34.9%\n-23.7%\n\n\nBC_0079_R1\n241bp\n379.1M\n152bp\n285.2M\n-36.9%\n-24.8%\n\n\nBC_0080_R1\n241bp\n397.7M\n132bp\n300.1M\n-45.2%\n-24.5%\n\n\nMean\n241bp\n433.4M\n142bp\n321.1M\n-\n-\n\n\nTotal\n-\n1733.7M\n-\n1284.5M\n-41.1%\n-25.4%\n\n\n\n\n\n\n\n\n\n\n\nTable 5.4: STARsolo barcode statistics\n\n\n\n\n\n\n\nMetric\nCount\n\n\n\n\nnNoAdapter\n0\n\n\nnNoUMI\n0\n\n\nnNoCB\n67,177\n\n\nnNinCB\n0\n\n\nnNinUMI\n16,893,550\n\n\nnUMIhomopolymer\n1,697,129\n\n\nnTooMany\n0\n\n\nnNoMatch\n163,166,830\n\n\nnMismatchesInMultCB\n3,323,192\n\n\nnExactMatch\n1,046,121,284\n\n\nnMismatchOneWL\n53,206,471\n\n\nnMismatchToMultWL\n0\n\n\n\n\n\n\n\n\n\nBarcode Statistics Interpretation\nThe analysis of cell barcodes reveals several important points about our data quality:\n\nBarcode Quality:\n\nThe absence of reads without adapter (nNoAdapter = 0) and without UMI (nNoUMI = 0) indicates excellent library preparation quality\nThe relatively low number of reads without cell barcode (nNoCB = 67,177) represents less than 0.01% of total reads, which is excellent\n\nBarcode Accuracy:\n\nThe majority of reads (1,046,121,284) have a perfectly aligned barcode (nExactMatch)\nApproximately 53 million reads show a single mismatch (nMismatchOneWL)\nThe absence of reads with multiple matches (nMismatchToMultWL = 0) suggests good barcode specificity\n\nUMI Quality:\n\nThe number of invalid UMIs (nNinUMI = 16,893,550) represents a relatively small proportion of total reads and might be primarily due to sequencing errors at the beginning of reads, which is a common observation in Illumina sequencing\nThe presence of homopolymers in UMIs (nUMIhomopolymer = 1,697,129) is a known phenomenon that can affect molecular counting accuracy, but the relatively low number suggests this is not a major concern\n\nOverall Matching:\n\nThe significant number of unmatched reads (nNoMatch = 163,166,830) suggests that a substantial portion of reads do not match expected barcodes\nThis could be due to sequencing errors or potential contamination\n\n\nThese results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.\n\n\n\nTable 5.5: STARsolo feature mapping statistics\n\n\n\n\n\n\n\nMetric\nCount\n\n\n\n\nnUnmapped\n114,628,761\n\n\nnNoFeature\n13,153,735\n\n\nnAmbigFeature\n936,951,032\n\n\nnAmbigFeatureMultimap\n935,077,136\n\n\nnTooMany\n0\n\n\nnNoExactMatch\n125,216\n\n\nnExactMatch\n4,471,174,098\n\n\nnMatch\n971,519,404\n\n\nnMatchUnique\n34,593,349\n\n\nnCellBarcodes\n699,355\n\n\nnUMIs\n34,258,961\n\n\n\n\n\n\n\n\n\n\n\nTable 5.6: STARsolo summary statistics\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\nNumber of Reads\n1,284,475,633\n\n\nReads With Valid Barcodes\n85.58%\n\n\nSequencing Saturation\n0.97%\n\n\nQ30 Bases in CB+UMI\n95.51%\n\n\nQ30 Bases in RNA read\n95.79%\n\n\nReads Mapped to Genome: Unique+Multiple\n89.57%\n\n\nReads Mapped to Genome: Unique\n3.64%\n\n\nReads Mapped to GeneFull: Unique+Multiple\n75.64%\n\n\nReads Mapped to GeneFull: Unique\n2.69%\n\n\nEstimated Number of Cells\n27,203\n\n\nUnique Reads in Cells Mapped to GeneFull\n12,794,311\n\n\nFraction of Unique Reads in Cells\n36.98%\n\n\nMean Reads per Cell\n470\n\n\nMedian Reads per Cell\n381\n\n\nUMIs in Cells\n12,663,144\n\n\nMean UMI per Cell\n465\n\n\nMedian UMI per Cell\n378\n\n\nMean GeneFull per Cell\n296\n\n\nMedian GeneFull per Cell\n258\n\n\nTotal GeneFull Detected\n6,035",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-Results.html#interpretation-of-starsolo-results",
+    "href": "chapters/03-Results.html#interpretation-of-starsolo-results",
+    "title": "3  Results",
+    "section": "5.3 Interpretation of STARsolo Results",
+    "text": "5.3 Interpretation of STARsolo Results\nThe STARsolo analysis revealed several key insights about our single-cell RNA-seq data:\n\nSequencing Quality and Mapping\n\nThe sequencing quality is excellent, with over 95% of bases having Q30 quality scores in both barcode/UMI and RNA reads\nA high proportion (85.58%) of reads contained valid cell barcodes, indicating good library preparation\nThe mapping rates are robust:\n\n89.57% of reads mapped to the genome (unique + multiple)\n75.64% of reads mapped to genes (unique + multiple)\n\nThe low unique mapping rate (3.64% to genome, 2.69% to genes) is typical for bacterial RNA-seq due to …\n\n\n\nMapping Terminology\n\nGene mapping: Refers to reads mapped to annotated coding sequences (CDS) only\nGeneFull mapping: Includes reads mapped to all annotated features including:\n\nCoding sequences (CDS)\nUntranslated regions (UTRs)\nNon-coding RNAs\nIntergenic regions\nThis broader mapping approach is particularly relevant for bacterial transcriptomics as it captures the full complexity of the transcriptome\n\n\n\n\nCell Recovery and Expression\n\nWe estimated 27,203 cells in our dataset\nThe sequencing saturation is very low (0.97%), suggesting we could sequence deeper if needed\nCell-level metrics show good coverage:\n\nMean/median reads per cell: 470/381\nMean/median UMIs per cell: 465/378\nMean/median genes per cell: 296/258\n\nWe detected 6,035 genes in total across all cells\n\n\n\nData Quality Assessment\n\nThe high Q30 scores and mapping rates indicate good technical quality\nThe cell-level metrics suggest sufficient coverage for downstream analysis\nThe low sequencing saturation suggests potential for deeper sequencing if needed\nThe high proportion of reads with valid barcodes (85.58%) indicates good library preparation",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
     ]
