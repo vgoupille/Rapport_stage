@@ -1,0 +1,43 @@
+# Notes
+
+## 03/06/2025
+
+
+sur mon scratch , j'ai resultats starsoloBC_0077 sans trimming particulier lancer le 27/04/2025
+
+Alignment statistics:
+-----------------------
+                          Number of input reads |	325495590
+                      Average input read length |	241
+                   Uniquely mapped reads number |	7011335
+                        Uniquely mapped reads % |	2.15%
+        Number of reads mapped to multiple loci |	182291253
+             % of reads mapped to multiple loci |	56.00%
+                Number of reads unmapped: other |	135300421
+                     % of reads unmapped: other |	41.57%
+                      Mismatch rate per base, % |	0.76%
+dim. avril 27 00:25:32 CEST 2025 - Pipeline completed!
+
+j'ai recup tous sur mon ssd , les logs aussi sauf le .bam (fichier d'annotation allignement) issu de starsolo car trop lourd 
+
+-------
+
+sur le project ecogeno , j'ai lancer le trimming car besoin de beaucoup de Go de stockage pour les 6 etapes de trimming qui genere beaucoup de fichier fastq.gz intermediaires, il reste sur cette espace uniquement les fichiers originaux dans raw_data : NTS-412.zip et NTS_412.fastq.gz ainsi que les fichiers decompressé individuels (unzipped) et les fichiers trimmers (29_05_2025). 
+
+-j'ai recuperé les logs des slurms aussi 
+- pas recuperer le .bam (fichier d'annotation allignement) issu de starsolo car trop lourd 250go 
+
+
+-------
+sur le projet microsplit j'ai tous mes scripts et logs utiles 
+------
+
+sur mon espace personnelle, j'ai tout mes scripts de test microsplit supplementaires, analyses BacSC, analyse seurat, scanpy sur les données de kuchina .... et aussi des test ipynb 
+
+
+
+
+
+
+
+
