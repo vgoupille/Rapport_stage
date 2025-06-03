@@ -227,11 +227,12 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#summary-of-results" id="toc-summary-of-results" class="nav-link" data-scroll-target="#summary-of-results"><span class="header-section-number">5.1</span> Summary of results</a></li>
   <li><a href="#multiqc-quality-reports" id="toc-multiqc-quality-reports" class="nav-link" data-scroll-target="#multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">5.3</span> Overview</a></li>
-  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</a></li>
-  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</a></li>
-  <li><a href="#integration-with-previous-studies" id="toc-integration-with-previous-studies" class="nav-link" data-scroll-target="#integration-with-previous-studies"><span class="header-section-number">5.6</span> Integration with Previous Studies</a></li>
-  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">5.7</span> Summary of Key Findings</a></li>
+  <li><a href="#interpretation-of-starsolo-results" id="toc-interpretation-of-starsolo-results" class="nav-link" data-scroll-target="#interpretation-of-starsolo-results"><span class="header-section-number">5.3</span> Interpretation of STARsolo Results</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">5.4</span> Overview</a></li>
+  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">5.5</span> Single-cell RNA-seq Analysis</a></li>
+  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">5.6</span> Functional Analysis</a></li>
+  <li><a href="#integration-with-previous-studies" id="toc-integration-with-previous-studies" class="nav-link" data-scroll-target="#integration-with-previous-studies"><span class="header-section-number">5.7</span> Integration with Previous Studies</a></li>
+  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">5.8</span> Summary of Key Findings</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
@@ -489,13 +490,13 @@ Table&nbsp;5.3: Summary of sequence metrics before and after trimming, including
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 17%">
-<col style="width: 13%">
-<col style="width: 17%">
-<col style="width: 13%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -659,6 +660,33 @@ Table&nbsp;5.4: STARsolo barcode statistics
 </div>
 </figure>
 </div>
+<section id="barcode-statistics-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="barcode-statistics-interpretation">Barcode Statistics Interpretation</h3>
+<p>The analysis of cell barcodes reveals several important points about our data quality:</p>
+<ul>
+<li><strong>Barcode Quality</strong>:
+<ul>
+<li>The absence of reads without adapter (<code>nNoAdapter = 0</code>) and without UMI (<code>nNoUMI = 0</code>) indicates excellent library preparation quality</li>
+<li>The relatively low number of reads without cell barcode (<code>nNoCB = 67,177</code>) represents less than 0.01% of total reads, which is excellent</li>
+</ul></li>
+<li><strong>Barcode Accuracy</strong>:
+<ul>
+<li>The majority of reads (1,046,121,284) have a perfectly aligned barcode (<code>nExactMatch</code>)</li>
+<li>Approximately 53 million reads show a single mismatch (<code>nMismatchOneWL</code>)</li>
+<li>The absence of reads with multiple matches (<code>nMismatchToMultWL = 0</code>) suggests good barcode specificity</li>
+</ul></li>
+<li><strong>UMI Quality</strong>:
+<ul>
+<li>The number of invalid UMIs (<code>nNinUMI = 16,893,550</code>) represents a relatively small proportion of total reads and might be primarily due to sequencing errors at the beginning of reads, which is a common observation in Illumina sequencing</li>
+<li>The presence of homopolymers in UMIs (<code>nUMIhomopolymer = 1,697,129</code>) is a known phenomenon that can affect molecular counting accuracy, but the relatively low number suggests this is not a major concern</li>
+</ul></li>
+<li><strong>Overall Matching</strong>:
+<ul>
+<li>The significant number of unmatched reads (<code>nNoMatch = 163,166,830</code>) suggests that a substantial portion of reads do not match expected barcodes</li>
+<li>This could be due to sequencing errors or potential contamination</li>
+</ul></li>
+</ul>
+<p>These results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.</p>
 <div id="tbl-starsolo-features" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -830,12 +858,67 @@ Table&nbsp;5.6: STARsolo summary statistics
 </figure>
 </div>
 </section>
-<section id="overview" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.3</span> Overview</h2>
+</section>
+<section id="interpretation-of-starsolo-results" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="interpretation-of-starsolo-results"><span class="header-section-number">5.3</span> Interpretation of STARsolo Results</h2>
+<p>The STARsolo analysis revealed several key insights about our single-cell RNA-seq data:</p>
+<section id="sequencing-quality-and-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="sequencing-quality-and-mapping">Sequencing Quality and Mapping</h3>
+<ul>
+<li>The sequencing quality is excellent, with over 95% of bases having Q30 quality scores in both barcode/UMI and RNA reads</li>
+<li>A high proportion (85.58%) of reads contained valid cell barcodes, indicating good library preparation</li>
+<li>The mapping rates are robust:
+<ul>
+<li>89.57% of reads mapped to the genome (unique + multiple)</li>
+<li>75.64% of reads mapped to genes (unique + multiple)</li>
+</ul></li>
+<li>The low unique mapping rate (3.64% to genome, 2.69% to genes) is typical for bacterial RNA-seq due to …</li>
+</ul>
+</section>
+<section id="mapping-terminology" class="level3">
+<h3 class="anchored" data-anchor-id="mapping-terminology">Mapping Terminology</h3>
+<ul>
+<li><strong>Gene mapping</strong>: Refers to reads mapped to annotated coding sequences (CDS) only</li>
+<li><strong>GeneFull mapping</strong>: Includes reads mapped to all annotated features including:
+<ul>
+<li>Coding sequences (CDS)</li>
+<li>Untranslated regions (UTRs)</li>
+<li>Non-coding RNAs</li>
+<li>Intergenic regions</li>
+<li>This broader mapping approach is particularly relevant for bacterial transcriptomics as it captures the full complexity of the transcriptome</li>
+</ul></li>
+</ul>
+</section>
+<section id="cell-recovery-and-expression" class="level3">
+<h3 class="anchored" data-anchor-id="cell-recovery-and-expression">Cell Recovery and Expression</h3>
+<ul>
+<li>We estimated 27,203 cells in our dataset</li>
+<li>The sequencing saturation is very low (0.97%), suggesting we could sequence deeper if needed</li>
+<li>Cell-level metrics show good coverage:
+<ul>
+<li>Mean/median reads per cell: 470/381</li>
+<li>Mean/median UMIs per cell: 465/378</li>
+<li>Mean/median genes per cell: 296/258</li>
+</ul></li>
+<li>We detected 6,035 genes in total across all cells</li>
+</ul>
+</section>
+<section id="data-quality-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="data-quality-assessment">Data Quality Assessment</h3>
+<ul>
+<li>The high Q30 scores and mapping rates indicate good technical quality</li>
+<li>The cell-level metrics suggest sufficient coverage for downstream analysis</li>
+<li>The low sequencing saturation suggests potential for deeper sequencing if needed</li>
+<li>The high proportion of reads with valid barcodes (85.58%) indicates good library preparation</li>
+</ul>
+</section>
+</section>
+<section id="overview" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.4</span> Overview</h2>
 <p>This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.</p>
 </section>
-<section id="single-cell-rna-seq-analysis" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</h2>
+<section id="single-cell-rna-seq-analysis" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">5.5</span> Single-cell RNA-seq Analysis</h2>
 <section id="data-quality-and-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="data-quality-and-preprocessing">Data Quality and Preprocessing</h3>
 </section>
@@ -849,8 +932,8 @@ Table&nbsp;5.6: STARsolo summary statistics
 <h3 class="anchored" data-anchor-id="division-of-labor-patterns">Division of Labor Patterns</h3>
 </section>
 </section>
-<section id="functional-analysis" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</h2>
+<section id="functional-analysis" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">5.6</span> Functional Analysis</h2>
 <section id="pathway-enrichment" class="level3">
 <h3 class="anchored" data-anchor-id="pathway-enrichment">Pathway Enrichment</h3>
 </section>
@@ -861,11 +944,11 @@ Table&nbsp;5.6: STARsolo summary statistics
 <h3 class="anchored" data-anchor-id="regulatory-network-analysis">Regulatory Network Analysis</h3>
 </section>
 </section>
-<section id="integration-with-previous-studies" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="integration-with-previous-studies"><span class="header-section-number">5.6</span> Integration with Previous Studies</h2>
+<section id="integration-with-previous-studies" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="integration-with-previous-studies"><span class="header-section-number">5.7</span> Integration with Previous Studies</h2>
 </section>
-<section id="summary-of-key-findings" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">5.7</span> Summary of Key Findings</h2>
+<section id="summary-of-key-findings" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">5.8</span> Summary of Key Findings</h2>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">

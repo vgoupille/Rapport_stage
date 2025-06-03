@@ -367,6 +367,76 @@ voir annex pour le tableau de choix du nombre de cellules pour la librairies (es
 <p>github,</p>
 <p>differentes etapes mais pas detailler tous ici renvoie vers le codes commenter et les readme pour comprendre en details telechangement des fichiers, decompression .zip ; 4 fichier , analyse indenpendant de la qualité des 4 librair, trimming</p>
 <p>parallelisation pour ganger du temps …</p>
+<section id="final-effective-command-line-of-starsolo" class="level5">
+<h5 class="anchored" data-anchor-id="final-effective-command-line-of-starsolo">Final effective command line of STARsolo:</h5>
+<p><strong>STAR</strong><br>
+<strong>–runThreadN</strong> 64<br>
+<strong>–genomeDir</strong> /path/to/genome_index<br>
+<strong>–readFilesIn</strong><br>
+/path/to/input/merged_trimmed-R1.fastq.gz<br>
+/path/to/input/merged_trimmed-R2.fastq.gz<br>
+<strong>–readFilesCommand</strong> gunzip -c<br>
+<strong>–outFileNamePrefix</strong> /path/to/output/starsolo_output/<br>
+<strong>–outSAMtype</strong> BAM Unsorted<br>
+<strong>–outFilterScoreMinOverLread</strong> 0<br>
+<strong>–outFilterMatchNmin</strong> 50<br>
+<strong>–outFilterMatchNminOverLread</strong> 0<br>
+<strong>–alignSJoverhangMin</strong> 1000<br>
+<strong>–alignSJDBoverhangMin</strong> 1000<br>
+<strong>–soloType</strong> CB_UMI_Complex<br>
+<strong>–soloCBwhitelist</strong><br>
+/path/to/barcodes/barcode_round3.txt<br>
+/path/to/barcodes/barcode_round2.txt<br>
+/path/to/barcodes/barcode_round1.txt<br>
+<strong>–soloFeatures</strong> Gene GeneFull<br>
+<strong>–soloUMIdedup</strong> 1MM_All<br>
+<strong>–soloCBmatchWLtype</strong> 1MM<br>
+<strong>–soloCBposition</strong> 0_10_0_17 0_48_0_55 0_78_0_85<br>
+<strong>–soloUMIposition</strong> 0_0_0_9<br>
+<strong>–soloMultiMappers</strong> Uniform</p>
+</section>
+</section>
+<section id="starsolo-parameters-explanation" class="level3">
+<h3 class="anchored" data-anchor-id="starsolo-parameters-explanation">STARsolo Parameters Explanation</h3>
+<p>This section details the key parameters used in our STARsolo analysis and their significance:</p>
+<section id="general-star-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="general-star-parameters">General STAR Parameters</h4>
+<ul>
+<li><code>--runThreadN 64</code> : Use of 64 threads for parallel alignment</li>
+<li><code>--genomeDir</code> : Path to the reference genome index</li>
+<li><code>--readFilesIn</code> : Input FASTQ files (R1 and R2)</li>
+<li><code>--readFilesCommand gunzip -c</code> : Command to decompress FASTQ.gz files</li>
+<li><code>--outFileNamePrefix</code> : Prefix for output files</li>
+<li><code>--outSAMtype BAM Unsorted</code> : Unsorted BAM output format</li>
+</ul>
+</section>
+<section id="filtering-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="filtering-parameters">Filtering Parameters</h4>
+<ul>
+<li><code>--outFilterScoreMinOverLread 0</code> : Minimum filtering score relative to read length</li>
+<li><code>--outFilterMatchNmin 50</code> : Minimum number of matching bases for a valid alignment</li>
+<li><code>--outFilterMatchNminOverLread 0</code> : Minimum match ratio relative to read length</li>
+<li><code>--alignSJoverhangMin 1000</code> and <code>--alignSJDBoverhangMin 1000</code> : Strict parameters for splice junction detection</li>
+</ul>
+</section>
+<section id="starsolo-specific-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="starsolo-specific-parameters">STARsolo-specific Parameters</h4>
+<ul>
+<li><code>--soloType CB_UMI_Complex</code> : Analysis type for cell barcodes (CB) and complex UMIs</li>
+<li><code>--soloCBwhitelist</code> : List of valid cell barcodes for the three barcoding rounds</li>
+<li><code>--soloFeatures Gene GeneFull</code> : Analysis of features at both gene and full transcript levels</li>
+<li><code>--soloUMIdedup 1MM_All</code> : UMI deduplication with one mutation tolerance</li>
+<li><code>--soloCBmatchWLtype 1MM</code> : Cell barcode matching with one mutation tolerance</li>
+<li><code>--soloCBposition</code> : Cell barcode positions in reads (3 rounds)
+<ul>
+<li>Round 1: 0_10_0_17</li>
+<li>Round 2: 0_48_0_55</li>
+<li>Round 3: 0_78_0_85</li>
+</ul></li>
+<li><code>--soloUMIposition 0_0_0_9</code> : UMI position in reads</li>
+<li><code>--soloMultiMappers Uniform</code> : Uniform distribution of multi-mapped reads</li>
+</ul>
+<p>These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -401,6 +471,7 @@ voir annex pour le tableau de choix du nombre de cellules pour la librairies (es
 <div class="csl-left-margin">10. </div><div class="csl-right-inline">Kuijpers, L. <em>et al.</em> <a href="https://doi.org/10.1186/s12864-024-10285-3">Split pool ligation-based single-cell transcriptome sequencing (SPLiT-seq) data processing pipeline comparison</a>. <em>BMC Genomics</em> <strong>25</strong>, 361 (2024).</div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
