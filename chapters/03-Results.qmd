@@ -38,8 +38,8 @@ ici j'ai suivi les recommendations de kuchina , seulement presenté les resultat
 -   numbers of reads before and after trimming
 -   taux de saturation ...
 -   =\> renvoie vers la discussion pour les taux de saturation
-
-figure - ![](../figures/trimming_quality.png)
+<!-- 
+// figure - ![](../figures/trimming_quality.png) -->
 
 ## STARsolo
 
@@ -51,8 +51,8 @@ commande starsolo suivante comme dans bretn permet UMI a une erreur... possition
 
 ## Transcriptome
 
--   figure de % de type of RNA
--   ![](../figures/pourcentage_RNA.png)
+<!-- -   figure de % de type of RNA
+-   ![](../figures/pourcentage_RNA.png) -->
 
 # Fitrage des cellules
 
@@ -339,6 +339,112 @@ The STARsolo analysis revealed several key insights about our single-cell RNA-se
 -   The cell-level metrics suggest sufficient coverage for downstream analysis
 -   The low sequencing saturation suggests potential for deeper sequencing if needed
 -   The high proportion of reads with valid barcodes (85.58%) indicates good library preparation
+
+
+
+
+### filter 
+
+Nous on prend tout les barcodes pas ceux qui sont filtré donc les 820, 800 barcodes 
+
+<!-- 
+
+filtrer seulement les CDS 
+
+r$> # show the number of cells
+    ncol(seurat_object)
+[1] 820800
+
+r$> # show the number of genes
+    nrow(seurat_object)
+[1] 4856
+
+
+
+
+ Filter the cells with less than 200 counts
+    seurat_object_filtered <- subset(seurat_object, subset = nCount_RNA > 200)
+
+r$> # Show the number of cells after filtering
+    ncol(seurat_object_filtered)
+[1] 65059
+
+
+
+r$> # show the max and min of the counts
+    max(seurat_object_filtered$nCount_RNA)
+[1] 9452.001
+
+r$> min(seurat_object_filtered$nCount_RNA)
+[1] 200
+
+r$> mean(seurat_object_filtered$nCount_RNA)
+[1] 416.7303
+
+r$> median(seurat_object_filtered$nCount_RNA)
+[1] 323
+
+ -->
+
+<!-- 
+r$> # show the max and min of the genes
+    max(seurat_object_filtered$nFeature_RNA)
+[1] 1971
+
+r$> min(seurat_object_filtered$nFeature_RNA)
+[1] 92
+ seurat_object_filtered
+
+An object of class Seurat 
+4856 features across 65059 samples within 1 assay 
+Active assay: RNA (4856 features, 0 variable features)
+ 1 layer present: counts
+
+
+
+
+ -->
+
+## apres starsolo mettre le nombre de reads avec valid barcodes dans la table 
+
+
+
+
+
+
+
+
+
+### genome 
+circular representation of c-bacterial genome and read alignment
+voir comment faire ce type de figure et l'article qui l'avait fait 
+
+
+###
+
+Attention j'ai filtré pour ne garder que les CDS mais certains pas annotés 
+plutot exclure les tRNA et rRNA 
+
+In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).
+
+
+dans l'article de kuchina ils ont filtré les cellules en fonction du nombre de reads et de genes :
+
+“Processing of data from the heat shock experiment Clustering and data analysis for the speciesmixing experiment with heat shock treatment was performed using Scanpy (59). We only kept transcriptomes that had a **number of total reads higher than 200**. Then, we removed the **ribosomal and tRNA reads from the data**, retaining only reads that represented the mRNA counts for both species. We further filtered cells based on the mRNA counts, **retaining cells expressing >100 reads and >100 genes**, and additionally filtered the genes, retaining the **genes expressed in >5 cells**. We then applied standard Scanpy normalization and scaling, dimensionality reduction, and clustering, as described in the Scanpy tutorial (59, 60). The clusters were produced by the Louvain graph-clustering method and manually inspected for the top differentially expressed genes. After inspection, three pairs of transcriptionally similar clusters with fewer differentially expressed genes were merged, resulting in clusters 1, 2, and 3 in Fig. 1D.” ([Kuchina et al., 2021, p. 8](zotero://select/library/items/AWDKBVJW)) ([pdf](zotero://open-pdf/library/items/YFM8QJY6?page=9&annotation=LXF2XHIY))
+
+
+
+
+
+
+# Initialize the Seurat object with the raw (non-normalized data).
+pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
+
+
+
+https://rnabioco.github.io/cellar/previous/2019/docs/2_filtering_QC.html
+
+
 
 ## Overview
 

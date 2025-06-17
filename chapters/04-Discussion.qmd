@@ -1,5 +1,25 @@
 # Discussion
 
+We applied microSPLiT to P. brassicacearum growing in two different conditions in rich medium (M9F) and in minimal medium (M9).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -   recepetion tardives des resultats
 
 -   mis beaucoup de temps pour le trimming ( 1mois) le temps de comprendre la structure de la librairie et
