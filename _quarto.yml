@@ -65,6 +65,7 @@ format:
     cross-references: true
     toc: true
     number-sections: true
+    notebook-links: inline  # Display links under graphs
     navbar:
       background: $theme-main
       search: true
@@ -87,5 +88,13 @@ format:
 
   bioinformatics-Msc-thesis-pdf:
     cross-references: true 
+    notebook-links: inline  # Display links under graphs
     # TODO: add a reference to the figure
+    chrome-args: ["--headless=new", "--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage"]
+    execute:
+      echo: false
+      eval: true
+    format:
+      pdf:
+        chrome-args: ["--headless=new"]
     

@@ -1,4 +1,36 @@
+# Appendix A {#sec-appendix-a}
 
+## Media composition {#sec-appendix-media}
+
+The following table details the composition of the culture media used in this study.
+
+| Component    | M9F (mL) | M9 (mL)  |
+|--------------|----------|----------|
+| Base M9      | 125      | 125      |
+| Glucose 1M   | 2.5      | 0.25     |
+| MgSO4 1M     | 0.25     | 0.25     |
+| CaCl2 1M     | 0.0125   | 0.0125   |
+| FeCl3 100mM  | 0.1277   | 0        |
+| **Vf (mL)**  | **127.7625** | **125.5125** |
+
+: Media composition for bacterial culture experiments {#tbl-media}
+
+The M9 medium represents low nutrient conditions with minimal glucose and iron concentrations, while M9F medium provides high nutrient availability with elevated glucose and iron levels.
+
+## Growth curves data {#sec-appendix-growth}
+
+The following table presents the optical density (OD) measurements for each culture condition and biological replicate at the three timepoints.
+
+| Culture Medium | Rep Bio | OD1 (T1) | OD2 (T2) | OD3 (T3) |
+|----------------|---------|----------|----------|----------|
+| M9             | A       | 0.130    | 0.280    | 0.260    |
+| M9             | B       | 0.130    | 0.280    | 0.260    |
+| M9             | C       | 0.130    | 0.328    | 0.260    |
+| M9F            | A       | 0.173    | 0.588    | 0.773    |
+| M9F            | B       | 0.208    | 0.627    | 0.834    |
+| M9F            | C       | 0.168    | 0.603    | 0.740    |
+
+: Growth curves data for bacterial culture experiments {#tbl-growth-curves}
 
 - plan de plaque 
 - librairies avec TSO 
