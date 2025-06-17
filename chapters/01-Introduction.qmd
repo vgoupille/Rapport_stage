@@ -13,6 +13,8 @@ The goal of this internship is to explore \[\[scRNA-seq\]\] (single-cell RNA-seq
 -   differentes methodes de single cell RNA seq (voir diapo et citations )
 -   voir annexes pour les differentes methodes
 -   nous focus sur microSPLiT stratégie qui est derivé de la SPLiTseq pour les eucaryotes (=\> voir matériels et methodes pour l'explication de la méthode )[@nishimura2025]
+It's a high-throughput single-cell RNA sequencing method for bacteria. 
+The microSPLiT technology was developed from SPLiT-seq16, a combinatorial split-pool scRNA-seq technology for eukaryotic cells.
 
 -nombreux defi pour les bactéries : faire la liste ici
 
@@ -23,3 +25,17 @@ et pour le moment pas d'outils pour le moment vraiment adaptés ... [@ostner]
 =\> QUESTIONS BIOLOGIQUES IMPORTANT :
 
 DOL 2 hypotheses : noises / specialized cells
+
+
+
+
+
+
+
+- seurat object 
+
+- d'abord filtrer les cellules par Sample_ID (meilleurs signal probablement)
+- ensuite recuperer seulement CDS 
+
+
+ouverture : est ce que methode permet de capturer efficacement en condition de stress 
