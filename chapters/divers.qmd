@@ -1146,3 +1146,76 @@ ANAGTATGGTAGAGGGTGGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTG
 +
 I#99IIIIIIIIIIIIIIIII9I*IIIIII9III9II9II*II9I9IIIIIII**I9III9I9IIIIIIIII
 vgoupille@genossh:/projects/ecogeno/DEV/2025_GoupilleValentin$ 
+
+
+
+
+
+
+
+Tu as raison, je me suis trompé dans l’interprétation :  
+Dans les fichiers Cutadapt, la valeur "input" dans "read_counts" correspond au nombre de reads pour chaque fichier (R1 et R2), et non la somme des deux.  
+Donc, **Total R1 = "input"** (et Total R2 = "input" aussi, car paired-end).
+
+Corrigeons le tableau :
+
+### Valeurs corrigées
+
+#### BC_0076
+- Total R1 = 631 393 326
+- R1 avec TSO retiré = 153 472 373
+- Pourcentage = (153 472 373 / 631 393 326) × 100 ≈ **24,3 %**
+
+#### BC_0077
+- Total R1 = 325 495 590
+- R1 avec TSO retiré = 90 142 002
+- Pourcentage = (90 142 002 / 325 495 590) × 100 ≈ **27,7 %**
+
+#### BC_0079
+- Total R1 = 379 108 253
+- R1 avec TSO retiré = 102 386 519
+- Pourcentage = (102 386 519 / 379 108 253) × 100 ≈ **27,0 %**
+
+#### BC_0080
+- Total R1 = 397 654 767
+- R1 avec TSO retiré = 99 430 515
+- Pourcentage = (99 430 515 / 397 654 767) × 100 ≈ **25,0 %**
+
+---
+
+| Échantillon | Total R1         | R1 avec TSO retiré | Pourcentage (%) |
+|-------------|------------------|--------------------|-----------------|
+| BC_0076     | 631 393 326      | 153 472 373        | 24,3            |
+| BC_0077     | 325 495 590      | 90 142 002         | 27,7            |
+| BC_0079     | 379 108 253      | 102 386 519        | 27,0            |
+| BC_0080     | 397 654 767      | 99 430 515         | 25,0            |
+
+Merci pour ta vigilance !  
+Dis-moi si tu veux le code pour automatiser ce calcul sur tous tes fichiers.
+
+
+
+
+Here is a concise explanation in English, suitable for your "Materials and Methods" section, describing preprocessing (trimming), quality control, and STARsolo alignment on the GenOuest cluster.  
+Je commente en anglais pour t’aider à l’intégrer facilement.
+
+---
+
+**Preprocessing, Quality Control, and Alignment on the GenOuest Cluster**
+
+All preprocessing and alignment steps were performed on the GenOuest high-performance computing cluster to ensure efficient handling of large sequencing datasets.
+
+- **Trimming and Quality Control:**  
+  Raw sequencing reads were first subjected to quality control using FastQC and MultiQC to assess overall read quality and identify potential technical artifacts. Trimming was performed using Fastp and Cutadapt in a multi-step pipeline. This included removal of template-switching oligo (TSO) sequences from R1, trimming of low-quality bases and polyG/polyX tails, polyA and adapter removal, and final length filtering. All steps were executed in paired-end mode to maintain synchronization between R1 and R2 files. After each trimming step, quality control was repeated to ensure the effectiveness of the process and to monitor improvements in read quality.
+
+- **Alignment with STARsolo:**  
+  High-quality, trimmed reads were aligned to the *Pseudomonas brassicacearum* reference genome using STARsolo, an extension of the STAR aligner optimized for single-cell RNA-seq data. STARsolo was chosen for its speed, reproducibility, and compatibility with the microSPLiT protocol. The alignment process included barcode and UMI extraction, as well as gene quantification at the single-cell level.
+
+- **Cluster Environment:**  
+  All analyses were automated using SLURM job scripts to efficiently utilize the computational resources of the GenOuest cluster. Resource usage (CPU, memory) was monitored and optimized for each step. The complete pipeline and scripts are available in the project’s GitHub repository.
+
+---
+
+// This paragraph summarizes the preprocessing (trimming), quality control, and STARsolo alignment steps, specifying that all analyses were performed on the GenOuest cluster, and highlights the use of FastQC, Fastp, Cutadapt, and STARsolo, as well as the automation with SLURM.
+
+Si tu veux une version plus détaillée ou plus courte, ou l’intégrer à un endroit précis, précise-le !
