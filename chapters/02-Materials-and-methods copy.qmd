@@ -127,9 +127,11 @@ on choisi de sequencer la plus petite librairie, celle avec 3000 cellules afin d
 
 
 
+comptage des cellules , 
 
 
 
+Instead of lysing bacteria and releasing the transcripts from each cell into a barcoding reaction vessel, in microSPLiT, each cell is the vessel enclosing its own transcripts. The procedure starts with the collection of cells in bulk and the fixation of the bacterial suspension with formaldehyde. It then proceeds with permeabilization by using sequential mild detergent and lysozyme treatments (Fig. 1a). Fixation is critical because it both preserves the cellular transcriptomic state and covalently cross-links the transcripts with the proteins inside the cells to prevent leakage after permeabilization. The permeabilization step ensures that the externally supplied enzymes and oligonucleotides can access the RNA transcripts in the fixed intracellular milieu. While sufficient permeabilization is crucial to the efficiency of barcoding, it is also critical to preserve the physical integrity of the fixed cells to maintain the single-cell resolution of the method. We emphasize that for a successful microSPLiT experiment, the cells, after permeabilization, must still exist as intact, individual units to permit several split and pool steps and hold together the cross-linked RNA.
 
 
 

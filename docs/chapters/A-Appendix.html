@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -200,7 +254,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#sec-appendix-media" id="toc-sec-appendix-media" class="nav-link active" data-scroll-target="#sec-appendix-media"><span class="header-section-number">A.1</span> Media composition</a></li>
   <li><a href="#sec-appendix-growth" id="toc-sec-appendix-growth" class="nav-link" data-scroll-target="#sec-appendix-growth"><span class="header-section-number">A.2</span> Growth curves data</a></li>
-  <li><a href="#sec-appendix-tso" id="toc-sec-appendix-tso" class="nav-link" data-scroll-target="#sec-appendix-tso"><span class="header-section-number">A.3</span> TSO removal statistics</a></li>
+  <li><a href="#sec-appendix-nishimura" id="toc-sec-appendix-nishimura" class="nav-link" data-scroll-target="#sec-appendix-nishimura"><span class="header-section-number">A.3</span> Overview of single-cell RNA-seq methods in bacteria</a></li>
+  <li><a href="#microsplit-sequencing-library-preparation" id="toc-microsplit-sequencing-library-preparation" class="nav-link" data-scroll-target="#microsplit-sequencing-library-preparation"><span class="header-section-number">A.4</span> MicroSPLiT sequencing library preparation</a></li>
+  <li><a href="#sec-appendix-tso" id="toc-sec-appendix-tso" class="nav-link" data-scroll-target="#sec-appendix-tso"><span class="header-section-number">A.5</span> TSO removal statistics</a></li>
+  <li><a href="#sec-appendix-trimming-steps" id="toc-sec-appendix-trimming-steps" class="nav-link" data-scroll-target="#sec-appendix-trimming-steps"><span class="header-section-number">A.6</span> Trimming pipeline steps</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -349,8 +406,34 @@ Table&nbsp;A.2: Growth curves data for bacterial culture experiments
 </figure>
 </div>
 </section>
-<section id="sec-appendix-tso" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-tso"><span class="header-section-number">A.3</span> TSO removal statistics</h2>
+<section id="sec-appendix-nishimura" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-nishimura"><span class="header-section-number">A.3</span> Overview of single-cell RNA-seq methods in bacteria</h2>
+<div id="fig-nishimura_review" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]." alt="Overview of bacterial single-cell RNA sequencing approaches">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nishimura_review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/nishimura_review.jpg" class="img-fluid figure-img" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]." alt="Overview of bacterial single-cell RNA sequencing approaches">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nishimura_review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.1: Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">1</a></sup></span>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="microsplit-sequencing-library-preparation" class="level2" data-number="A.4">
+<h2 data-number="A.4" class="anchored" data-anchor-id="microsplit-sequencing-library-preparation"><span class="header-section-number">A.4</span> MicroSPLiT sequencing library preparation</h2>
+<div id="fig-protocol-p2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="MicroSPLiT sequencing library preparation." alt="MicroSPLiT sequencing library preparation">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-protocol-p2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/protocol_p2.png" class="img-fluid figure-img" data-fig-cap="MicroSPLiT sequencing library preparation." alt="MicroSPLiT sequencing library preparation">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-protocol-p2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.2: MicroSPLiT sequencing library preparation. a, Selected sub-libraries with barcoded cells are lysed. Because cDNA molecules primed with both random hexamer and poly-dT primers undergo the same downstream reactions, only one of them is shown for clarity. b, After lysis, cDNA is purified via streptavidin beads. The cells then undergo an additional RT and template switching step. The template switch primer has two RNA G bases and a locked nucleic acid G base (‘rGrG+G’) sequence to facilitate the binding. c, cDNA is amplified, and size is selected to eliminate the unwanted short product (‘dimer’) from the cDNA amplification product. At this point, the size and concentration of the cDNA product are quantified (Part 2, Step 127). d, The library then undergoes fragmentation and adapter ligation. The desired sequencing product containing the barcodes is amplified with the primers for both the third barcode adapter and the ligation adapter, which contain Read 1 (R1) and Read 2 (R2) sequences. Illumina P5 and P7 sequence adapters and a final sub-library index are also appended at this final PCR step . e, A 0.5–0.7× double size selection then selects out unwanted fragments. The final product’s concentration and size are measured before sequencing .
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-appendix-tso" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-tso"><span class="header-section-number">A.5</span> TSO removal statistics</h2>
 <p>The following table summarizes the number of R1 reads before and after TSO removal for each sample, as well as the corresponding percentage.</p>
 <div id="tbl-tso-removal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -398,6 +481,120 @@ Table&nbsp;A.3: TSO removal statistics for each sample. The table shows the tota
 </figure>
 </div>
 <p>// Table added to summarize TSO removal efficiency for each sample. // … existing code …</p>
+</section>
+<section id="sec-appendix-trimming-steps" class="level2" data-number="A.6">
+<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-trimming-steps"><span class="header-section-number">A.6</span> Trimming pipeline steps</h2>
+<p>The following steps were performed sequentially for read trimming, as implemented in the custom pipeline (see process_sample.sh). Each step is performed in paired-end mode to maintain synchronization between R1 and R2 files.</p>
+<ol type="1">
+<li><p><strong>TSO trimming (Cutadapt):</strong><br>
+Removal of template-switching oligo (TSO) sequences from R1 using Cutadapt. This step targets TSO sequences at the 5’ end of cDNA reads to eliminate technical artifacts.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-g</span> <span class="st">"AAGCAGTGGTATCAACGCAGAGTGAATGGG; min_overlap=6; max_errors=0.2"</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-g</span> <span class="st">"CAGAGTGAATGGG; min_overlap=6; max_errors=0.2"</span> <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--pair-filter</span><span class="op">=</span>both <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-m</span> 20: <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R1_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-paired-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R2_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${r1_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> <span class="st">"</span><span class="va">${r2_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report</span><span class="op">=</span>full <span class="dt">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Initial quality and adapter trimming (Fastp):</strong><br>
+Removal of low-quality bases, polyG/polyX tails, and adapter sequences using Fastp. This step also removes the TruSeq Read 2 adapter and I7 adapter at the end of R1 if present.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-I</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${r1_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-O</span> <span class="st">"</span><span class="va">${r2_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--html</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_report.html"</span> <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_report.json"</span> <span class="dt">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report_title</span> <span class="st">"microSplit Initial Fastp Report - </span><span class="va">${sample_name}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--compression</span> 4 <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span> <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--unpaired1</span> <span class="st">"</span><span class="va">${unpaired1}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">--unpaired2</span> <span class="st">"</span><span class="va">${unpaired2}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">--length_required</span> 91 <span class="dt">\</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">--dont_overwrite</span> <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_front1</span> 0 <span class="dt">\</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_front2</span> 0 <span class="dt">\</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_tail1</span> 0 <span class="dt">\</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_tail2</span> 0 <span class="dt">\</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_poly_g</span> <span class="dt">\</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">--poly_g_min_len</span> 10 <span class="dt">\</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_poly_x</span> <span class="dt">\</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">--poly_x_min_len</span> 12 <span class="dt">\</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">--detect_adapter_for_pe</span> <span class="dt">\</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>ATCTCGTATGCCGTCTTCTGCTTGA <span class="dt">\</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>PolyA trimming (Cutadapt):</strong><br>
+Removal of polyA stretches (≥12 nt) from R1 using Cutadapt, targeting polyA sequences introduced during library preparation.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"A{12}; min_overlap=12; max_errors=0.2"</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--pair-filter</span><span class="op">=</span>both <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-m</span> 20: <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R1_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-paired-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R2_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${r1_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> <span class="st">"</span><span class="va">${r2_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report</span><span class="op">=</span>full <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This step trims polyA15 and longer stretches that may remain after the previous steps.</p></li>
+<li><p><strong>Specific adapter trimming (Cutadapt):</strong><br>
+Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt (corresponds to the linker sequence).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"CCACAGTCTCAAGCAC; min_overlap=6; max_errors=0.1"</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--pair-filter</span><span class="op">=</span>both <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-m</span> 20: <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R1_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-paired-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R2_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${r1_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> <span class="st">"</span><span class="va">${r2_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report</span><span class="op">=</span>full <span class="dt">\</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Linker and additional adapter trimming (Cutadapt):</strong><br>
+Removal of linker and additional adapter sequences (e.g., CCACAGTCTCAAGCACGTGGAT, AGTCGTACGCCGATGCGAAACATCGGCCAC, AGATCGGAAGAGCACACGTCTGAACTCCAGTCA) from R1 using Cutadapt, to further clean the reads.<br>
+This step ensures that any remaining linker or adapter sequences are removed for certain libraries.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"CCACAGTCTCAAGCACGTGGAT; min_overlap=6; max_errors=0.2"</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"AGTCGTACGCCGATGCGAAACATCGGCCAC; min_overlap=6; max_errors=0.2"</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"AGATCGGAAGAGCACACGTCTGAACTCCAGTCA; min_overlap=6; max_errors=0.2"</span> <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--pair-filter</span><span class="op">=</span>both <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">-m</span> 20: <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R1_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--too-short-paired-output</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_R2_too_short.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${r1_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> <span class="st">"</span><span class="va">${r2_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report</span><span class="op">=</span>full <span class="dt">\</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Final quality and length filtering (Fastp):</strong><br>
+Final trimming with Fastp, including additional adapter removal, trimming of fixed bases from the 5’ and 3’ ends, and filtering for minimum read length to ensure high-quality output for downstream analysis.<br>
+This step trims R1 at the end to keep only cDNA.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-I</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${r1_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-O</span> <span class="st">"</span><span class="va">${r2_output}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_front1</span> 10 <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_front2</span> 0 <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_tail1</span> 16 <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--trim_tail2</span> 0 <span class="dt">\</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--length_required</span> 25 <span class="dt">\</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--detect_adapter_for_pe</span> <span class="dt">\</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>AAGCAGTGGTATCAACGCAGAGTGAATGGG <span class="dt">\</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>CCACAGTCTCAAGCACGTGGAT <span class="dt">\</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>AGTCGTACGCCGATGCGAAACATCGGCCAC <span class="dt">\</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>AGATCGGAAGAGCACACGTCTGAACTCCAGTCA <span class="dt">\</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">--html</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_report.html"</span> <span class="dt">\</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_report.json"</span> <span class="dt">\</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report_title</span> <span class="st">"microSplit Final Fastp Report - </span><span class="va">${sample_name}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">--compression</span> 4 <span class="dt">\</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.</p>
 <ul>
 <li>plan de plaque</li>
 <li>librairies avec TSO</li>
@@ -406,6 +603,11 @@ Table&nbsp;A.3: TSO removal statistics for each sample. The table shows the tota
 </ul>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-nishimura2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
