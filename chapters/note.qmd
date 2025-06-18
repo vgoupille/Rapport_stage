@@ -1,5 +1,15 @@
 # Notes
 
+# comptage des cellules pour taux de collision  
+
+
+
+
+
+
+
+
+
 ## 03/06/2025
 
 

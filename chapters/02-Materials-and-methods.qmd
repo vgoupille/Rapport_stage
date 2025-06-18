@@ -1,7 +1,6 @@
 # Materials and Methods {#sec-materials-and-methods}
 
-## Bacterial culture 
-
+## Bacterial culture
 
 ```{mermaid}
 %%| fig-cap: "Experimental design for bacterial culture"
@@ -56,7 +55,6 @@ graph TD
     classDef measurement fill:#e0f2f1,stroke:#004d40,stroke-width:2px
 ```
 
-
 An isogenic population of *P. brassicacearum* PR401 was initially cultured on petri dishes and then transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression (@fig-experimental-design).
 
 Two distinct culture conditions were applied to the bacteria: M9 medium containing low glucose and low iron concentrations, and M9F medium containing high glucose and high iron concentrations (see @tbl-media for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD) at regular intervals. The growth curves obtained from these measurements are presented (@fig-growth-curves) and (@tbl-growth-curves). This experimental design resulted in a total of 18 conditions: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.
@@ -65,24 +63,63 @@ Two distinct culture conditions were applied to the bacteria: M9 medium containi
 
 Growth curves for each condition showing the optical density (OD) measurements over time for M9 and M9F media across three biological replicates (Rep A, B, C) at three time points (T1, T2, T3).
 
-The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium (high glucose and iron) exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium (low glucose and iron) which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed excellent reproducibility validating the experimental design. 
+The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium (high glucose and iron) exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium (low glucose and iron) which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed excellent reproducibility validating the experimental design.
 
-Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq analysis using the microSPLiT protocol.
+Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq analysis using the Microbial split-pool ligation transcriptomics (microSPLiT) protocol [@gaisser2024; @kuchina2021].
 
 ## microSPLiT protocol
 
-![Schematic representation of the microSPLiT protocol showing the barcoding workflow for single-cell RNA-seq. @gaisser2024 ](../figures/protocol.png){#fig-protocol .lightbox fig-cap="microSPLiT Protocol"}
+MicroSPLiT [@gaisser2024; @kuchina2021] is a high-throughput single-cell RNA sequencing method for bacteria, capable of profiling transcriptional states in hundreds of thousands of cells per experiment without the need for specialized equipment [@nishimura2025]. Unlike other single-cell RNA-seq approaches that require physical isolation of individual cells (e.g., plate-based or droplet-based methods), microSPLiT uses a split-pool barcoding strategy to uniquely label transcripts within each cell. (see @fig-nishimura_review for an overview of single-cell RNA-seq methods in bacteria)
 
-pas fou rexpliquer en mieux et simple , juste focus sur elements importants 
-The microSPLiT (microbial Split-Pool Ligation Transcriptomics) protocol enables single-cell RNA sequencing of bacteria by performing barcoding reactions inside individual cells rather than in separate reaction vessels . This approach maintains single-cell resolution throughout the entire process, from cell fixation to library preparation. The protocol involves multiple rounds of split-pool barcoding where cells are distributed into 96-well plates, barcoded, pooled, and redistributed for subsequent rounds, creating unique barcode combinations that identify individual cells. This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.
+The microSPLiT strategy will not be described in detail here; for more information on the protocol, see @gaisser2024. Only the key steps necessary for a general understanding of the method are presented below.
 
-### microSPLiT library and read structure
-<!-- 
-![microSPLiT library and read structure](../figures/microsplit_library_structure.png){#fig-library-structure fig-cap="microSPLiT library and read structure"}
-(@teichlab2024)
-final library structure :  -->
+![MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5′ phosphate for future ligation at their 5′ end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5′ phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5′ biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3). @gaisser2024](../figures/protocol.png){#fig-protocol .lightbox fig-cap="microSPLiT Protocol"}
 
-split en 4 sous librairies pour meilleur sequençage 
+## Fixation and permeabilization
+
+The first step is fixation of the bacterial suspension with formaldehyde @fig-protocol immediately after sampling the 18 conditions @fig-experimental-design. This preserves the transcriptomic state and cross-links RNA to proteins, preventing leakage of each cell's transcriptome.
+Next, cells are permeabilized using mild detergent and lysozyme, allowing enzymes and oligonucleotides to access intracellular RNA for barcoding.
+
+> Note: Adequate permeabilization is essential for efficient barcoding, but over-permeabilization can compromise cell integrity. For successful single-cell resolution, cells must remain intact after permeabilization to allow multiple split-pool steps and retain cross-linked RNA. @fig-protocol
+
+## mRNA enrichment
+
+After permeabilization, the transcripts in the fixed and permeabilized cells undergo in situ polyadenylation with the addition of a poly(A) polymerase (PAP) and ATP. This step enriches for mRNA in the total barcoded RNA pool because, under these conditions, PAP preferentially polyadenylates mRNA as opposed to ribosomique RNA (rRNA) @fig-protocol.
+
+## Barcoding 
+
+ **The protocol utilizes several rounds of split-pool barcoding where cells are distributed into 96-well plates, barcoded, pooled, and redistributed for subsequent rounds, creating unique barcode combinations that identify individual cells.**
+
+ **This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.**
+
+### Barcoding round 1 (R1) to identify the condition and the technical replicate
+
+Each of the 18 samples is split into 5 technical replicates for barcoding, resulting in 90 subsamples. These technical replicates are then distributed into individual wells of a 96-well plate (6 wells not used), with each well containing uniquely barcoded primers @fig-protocol. In each well, mRNA is reverse transcribed into cDNA using a mix of barcoded poly(T) and random hexamer primers.
+The primers used in each well contain either a dT15 sequence to capture polyadenylated mRNA or six random nucleotides to bind any RNA, followed by a universal sequence for subsequent ligation steps. By assigning each technical replicate to a specific well, all cells in the same well receive the same unique barcode during reverse transcription. This allows each technical replicate and condition to be identified later based on the first barcode.
+
+### Barcoding rounds 2 (R2) and 3 (R3) for unique cell and transcript identification
+
+Cells are then pooled, washed and randomly redistributed into a new 96-well plate (round 2 (R2) ligation working plate) containing a second set of well-specific barcodes, which are appended to the first barcode on the cDNA through an in-cell ligation reaction @fig-protocol. Due to the random redistribution of cells, each well of the second-round plate is likely to contain a mix of cells with different first-round barcodes, resulting in highly diverse barcode combinations. The ligation reaction is carried out by the T4 DNA ligase, which requires double-stranded DNA. Therefore, in the second barcoding plate, each barcode is first hybridized to a short linker oligonucleotide whose overhang is complementary to the universal sequence at the 5′ end of the RT barcodes. @fig-protocol.
+
+> Note: After the ligation step, some barcodes may remain unreacted in the solution. To prevent these free barcodes from attaching non-specifically to DNA from other cells during pooling, a blocker strand is added. This blocker has a longer complementary region to the linker, allowing it to displace any unreacted barcodes from the linker and thus ensures that only correctly ligated barcodes remain attached to the cDNA. @fig-protocol
+
+Cells are then pooled again, and a split-ligation-pool cycle is repeated for the second time. Cells are randomly distributed into a third 96-well plate (round 3 (R3) ligation working plate), which is loaded with barcoded oligonucleotides containing the third cell barcode annealed with a linker, a 10-base unique molecular identifier (UMI), a universal PCR handle and a 5′ biotin molecule. The ligation reaction is stopped by adding a second blocker strand and EDTA. 
+
+> Note: In our experiment, only 95 out of the 96 wells of the R3 plate are used to minimize potential bias in cell distribution. This setup allows for 90 × 96 × 95 = 820,800 possible barcode combinations, enabling the identification of up to 820,800 individual cells.
+
+## Sub-library and sequencing preparation
+
+The pooled cells are washed, counted, and divided into multiple sub-libraries. Only sub-libraries containing approximately 3,000 cells were selected for sequencing, in order to maximize sequencing depth per cell and minimize barcode collision rates which is the probability that two cells receive the same barcode combination.
+
+After lysis and cDNA purification on streptavidin beads (@fig-protocol-p2), a second reverse transcription is performed to improve cDNA yield, during which a template switch oligo (TSO) is added to introduce a 3′ adapter. The resulting cDNA is then amplified by PCR. Following amplification, a size selection step removes short byproducts such as adapter or barcode dimers, ensuring that only high-quality cDNA fragments are retained for sequencing.
+
+To optimize sequencing depth, the final library was split into four sub-libraries, each receiving a distinct index during adapter ligation: BC_0076 (CAGATC), BC_0077 (ACTTGA), BC_0078 (TAGCTT), and BC_0079 (GGCTAC). These indexes were used solely to improve sequencing quality and balance on the NovaSeq platform, without introducing any experimental or technical variation between sub-libraries.
+
+## Sequencing and demultiplexing sub-libraries
+
+Sequencing was performed on a NovaSeq instrument (GenoBIRD platform) in paired-end mode. The sequencing facility performed demultiplexing sub-libraries, resulting in eight FASTQ files (R1 and R2 for each index). R1 files contain the cDNA sequences, while R2 files contain the cell barcodes (from the three split-pool rounds) and unique molecular identifiers (UMIs).
+
+
 
 ## Pipeline for microSPLiT data processing
 
@@ -102,57 +139,49 @@ split en 4 sous librairies pour meilleur sequençage
     H --> I[Differential expression analysis]
 ```
 
+### Preprocessing of the sequencing data
 
+#### Demultiplexing of libraries
 
-All preprocessing, quality control, and alignment steps were performed on the GenOuest high-performance computing cluster using SLURM job scripts to ensure efficient and reproducible analysis of large-scale sequencing data.
+The sequencing facility provided two types of files: raw Illumina BCL files (250 GB) and demultiplexed paired-end FASTQ files (150 GB). For all downstream analyses, only the demultiplexed FASTQ files were used, as the index sequences had already been removed by the platform.
 
-  
-### Sequencing and demultiplexing of libraries
+-   For each index, two paired-end FASTQ files were generated :
+    -   **R1** contains the cDNA sequence of interest (transcriptome).
+    -   **R2** contains the cell barcodes and unique molecular identifiers (UMIs).
 
-Sequencing was performed on a NovaSeq instrument (Genobird platform) using four different indexes, in paired-end mode. The sequencing facility provided two types of files: raw Illumina BCL files (250 GB) and demultiplexed paired-end FASTQ files (150 GB). For all downstream analyses, only the demultiplexed FASTQ files were used, as the index sequences had already been removed by the platform.
+[@babraham]All quality control, trimming, and alignment steps were performed on the GenOuest high-performance computing cluster using SLURM job scripts to ensure efficient and reproducible analysis of large-scale sequencing data.
 
-For each index, two paired-end FASTQ files were generated:
-    - **R1** contains the cDNA sequence of interest (transcriptome).
-    - **R2** contains the cell barcodes and unique molecular identifiers (UMIs).
+#### Quality control and trimming
 
-### Quality control and trimming
+Read quality was initially assessed for all four libraries (R1 and R2) using FastQC [@babraham] and MultiQC[@ewels2016]. Then, trimming was performed with Cutadapt [@martin2011] and Fastp [@chen2018] to retain only the cDNA portion in R1 and to filter R2 for valid barcodes. After trimming, read quality was reassessed with FastQC [@babraham] and MultiQC [@chen2018], and results were merged in unique files (R1 and R2).
 
-- Read quality was assessed using FastQC and MultiQC for all four libraries, on both R1 and R2 files.
-- Trimming was performed with Fastp and Cutadapt to retain only the cDNA portions in R1, while R2 was filtered to keep only sequences with valid barcodes, for all four libraries.
-- See the appendix for the detailed script.
-- After trimming, read quality was reassessed with FastQC and MultiQC for all four libraries (R1 and R2), and the results were merged for global quality assessment.
+Read trimming followed a custom multi-step pipeline (see Appendix Section @sec-appendix-trimming-steps for details):
 
-### Trimming pipeline
+-   **TSO trimming (R1 only):** Removal of template-switching oligo (TSO) sequences from the 5' end of cDNA reads using Cutadapt (24–28% of reads affected @tbl-tso-removal).
+-   **Initial quality and polyG/polyX trimming (R1 and R2):** Removal of low-quality bases and polyG/polyX tails with Fastp, addressing artifacts from two-color chemistry.
+-   **PolyA trimming (R1 only):** Removal of polyA stretches (≥15 nt) from R1 using Cutadapt, targeting protocol-specific artifacts.
+-   **Adapter and linker trimming (R1 only):** Sequential removal of specific adapters and linker sequences (e.g., CCACAGTCTCAAGCAC, AGTCGTACGCCGATGCGAAACATCGGCCAC, AGATCGGAAGAGCACACGTCTGAACTCCAGTCA) with Cutadapt, including those from random hexamer priming.
+-   **Final quality and length filtering (R1 and R2):** Additional filtering with Fastp to retain only high-quality, sufficiently long reads.
 
-Read trimming was performed using a custom multi-step pipeline (see Appendix for the full script) using  Cutadapt [@martin2011] and Fastp [@chen2018]. Each step was designed to address specific technical artifacts and to maximize read quality for downstream analysis:
+All steps were performed in paired-end mode to maintain synchronization between R1 and R2.
 
-- **TSO trimming (R1 only):** Removal of template-switching oligo (TSO) sequences from R1 using Cutadapt, as these are present at the 5' end of cDNA reads (represents approximately 24–28% of the reads) (see Appendix Table @tbl-tso-removal for detailed statistics).
+#### STARsolo alignment and barcode reading
 
-TruSeq Read 2 adapter sequence
-et I7 in
-
-- **Initial quality and polyG/polyX trimming (R1 and R2):** Removal of low-quality bases and polyG/polyX tails with Fastp on both R1 and R2. PolyG tails are a common artifact in NovaSeq and NextSeq data due to the two-color chemistry, which can miscall G bases at the end of reads when signal intensity drops. This step is essential to avoid false sequence content and improve downstream alignment.
-- **PolyA trimming (R1 only):** Removal of polyA stretches (polyA15) from R1 using Cutadapt, specifically targeting polyA sequences located immediately downstream of the cDNA insert, as introduced by the microSPLiT protocol. This step does not remove sequences generated by random hexamer priming. For reads generated by random hexamers, specific linker sequences are used as anchors to trim the right end of the read, ensuring accurate removal of non-informative regions.
-- **Adapter and linker trimming (R1 only):** Sequential removal of specific adapters and linker sequences (e.g., CCACAGTCTCAAGCAC, AGTCGTACGCCGATGCGAAACATCGGCCAC, AGATCGGAAGAGCACACGTCTGAACTCCAGTCA) from R1 with Cutadapt. This step also targets sequences generated by random hexamer priming, using the linker sequences as anchors to trim the right end of the read. These sequences can result from library preparation artifacts or short inserts.
-- **Final quality and length filtering (R1 and R2):** Additional quality and length filtering with Fastp on both R1 and R2 to ensure only high-quality, sufficiently long reads are retained.
-
-All steps were performed in paired-end mode to maintain synchronization between R1 and R2. Resource usage (CPU, memory) was monitored and logged for each sample. The pipeline is fully automated and compatible with SLURM-based clusters.
-
-*The complete bash script is provided in the Appendix (see Appendix X).*
-
-### STARsolo alignment and barcode reading
+Barcode extraction for downstream analysis was performed directly from the R2 files using STARsolo, which recognizes the CB_UMI_Complex structure specific to the microSPLiT protocol.
 
 
 
 
 
 
-    -   demultiplexage des index de librairies (réalisé par la plateforme de sequençage)
 
-    -   QC control des données avec Andrews, S. (2010). FastQC:  A Quality Control Tool for High Throughput Sequence Data [Online]. Available online at: <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/> et avec [@ewels2016]
+```         
+-   demultiplexage des index de librairies (réalisé par la plateforme de sequençage)
 
-    -   trimming des données de seqeunçage avec Fastp [@chen2018] et Cutadapt [@martin2011]
+-   QC control des données avec Andrews, S. (2010). FastQC:  A Quality Control Tool for High Throughput Sequence Data [Online]. Available online at: <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/> et avec [@ewels2016]
 
-    -   aligment des data sur le genome de reference de *Pseudomonas brassicacearum* grace à STARsolo un amelioration de l'outils STAR pour les données single-cell [@dobin2013][@kaminow]
+-   trimming des données de seqeunçage avec Fastp [@chen2018] et Cutadapt [@martin2011]
 
-    -   different other tools existe comme pour alignement et lecture des barcodes SPLiTseq/ microSPliT comme Kallisto [@bray2016], [@sullivan2025] mais d'apres le benchmarking de le plus rapide, reproductible est starsolo [@kuijpers2024]
+-   aligment des data sur le genome de reference de *Pseudomonas brassicacearum* grace à STARsolo un amelioration de l'outils STAR pour les données single-cell [@dobin2013][@kaminow]
+
+-   different other tools existe comme pour alignement et lecture des barcodes SPLiTseq/ microSPliT comme Kallisto [@bray2016], [@sullivan2025] mais d'apres le benchmarking de le plus rapide, reproductible est starsolo [@kuijpers2024]
