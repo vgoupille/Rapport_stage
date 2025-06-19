@@ -3,12 +3,12 @@
 ## Bacterial culture
 
 ```{mermaid}
-%%| fig-cap: "Experimental design for bacterial culture. The workflow illustrates the progression from initial culture of *P. brassicacearum* R401 on petri dishes to liquid culture in two different media: M9 (low glucose and iron) and M9F (high glucose and iron). Each medium condition was replicated three times (Rep A, B, C) and growth was monitored at three timepoints (T1, T2, T3) by optical density measurements. This design resulted in 18 total experimental conditions (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq analysis."
-%%| fig-width: 6
-%%| fig-height: 4
+%%| fig-width: 4
+%%| fig-height: 3
 %%| label: fig-experimental-design
+%%| fig-cap: "Experimental design for bacterial culture"
 graph TD
-    A["Start culture *P. brassicacearum PR401* in petri dish"] --> B{"transfer to liquid medium"}
+    A["Start culture <br> *P. brassicacearum PR401* <br> in petri dish"] --> B{"transfer to liquid medium"}
     B --> C["**M9** : Low glucose and iron"]
     B --> D["**M9F** : High glucose and iron"]
     C --> E{3 biological replicates}
@@ -55,11 +55,20 @@ graph TD
     classDef measurement fill:#e0f2f1,stroke:#004d40,stroke-width:2px
 ```
 
+ *The workflow illustrates the progression from initial culture of P. brassicacearum R401 on petri dishes to liquid culture in two different media: M9 (low glucose and iron) and M9F (high glucose and iron). Each medium condition was replicated three times (Rep A, B, C) and growth was monitored at three timepoints (T1, T2, T3) by optical density measurements. This design resulted in 18 total experimental conditions (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq analysis.*
+
+
+
+
 An isogenic^[An isogenic population refers to a group of organisms that are genetically identical, derived from a single ancestral cell or clone.] population of *P. brassicacearum* R401 was initially cultured on petri dishes and then transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression (@fig-experimental-design).
 
 Two distinct culture conditions were applied to the bacteria: M9 medium containing low glucose and low iron concentrations, and M9F medium containing high glucose and high iron concentrations (see @tbl-media for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD) at regular intervals. The growth curves obtained from these measurements are presented (@fig-growth-curves) and (@tbl-growth-curves). This experimental design resulted in a total of 18 conditions: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.
+<!-- 
+{{< embed ../data/data_growth.ipynb#plot_growth >}} -->
 
-{{< embed ../data/data_growth.ipynb#plot_growth >}}
+![Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).](../figures/growth_curves.png){#fig-growth-curves fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron)."}
+
+*Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C).*
 
 The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium (high glucose and iron) exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium (low glucose and iron) which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed excellent reproducibility validating the experimental design.
 
@@ -76,7 +85,9 @@ The microSPLiT strategy will not be described in detail here; for more informati
 :::
 
 
-![MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5' phosphate for future ligation at their 5' end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5' phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5' biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3). @gaisser2024](../figures/protocol.png){#fig-protocol .lightbox fig-cap="microSPLiT Protocol"}
+![MicroSPLiT in-cell cDNA barcoding scheme.](../figures/protocol.png){#fig-protocol}
+
+*a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5' phosphate for future ligation at their 5' end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5' phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5' biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3). @gaisser2024*
 
 ### Fixation and permeabilization
 
@@ -136,7 +147,9 @@ Sequencing was performed on a NovaSeq^TM^ X plus instrument at GenoBIRD platform
 
 ## Pipeline for microSPLiT data processing
 
-![Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. @fig-pipeline](../figures/pipeline.png){#fig-pipeline .lightbox fig-cap="Pipeline for microSPLiT data processing"}
+![Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.](../figures/pipeline.png){#fig-pipeline fig-cap="Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing."}
+
+*The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. @fig-pipeline*
 
 ### Preprocessing of the sequencing data
 

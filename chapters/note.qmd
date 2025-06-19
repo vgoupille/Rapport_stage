@@ -45,9 +45,54 @@ sur le projet microsplit j'ai tous mes scripts et logs utiles
 sur mon espace personnelle, j'ai tout mes scripts de test microsplit supplementaires, analyses BacSC, analyse seurat, scanpy sur les données de kuchina .... et aussi des test ipynb 
 
 
-
-
-
+```{mermaid}
+graph TD
+    A["Start culture <br> *P. brassicacearum PR401* <br> in petri dish"] --> B{"transfer to liquid medium"}
+    B --> C["**M9** : Low glucose and iron"]
+    B --> D["**M9F** : High glucose and iron"]
+    C --> E{3 biological replicates}
+    D --> F{3 biological replicates}
+    E --> G[**Rep A**]
+    E --> H[**Rep B**]
+    E --> I[**Rep C**]
+    F --> J[**Rep A**]
+    F --> K[**Rep B**]
+    F --> L[**Rep C**]
+    G --> M[OD : **T1**, **T2**, **T3**]
+    H --> N[OD : **T1**, **T2**, **T3**]
+    I --> O[OD : **T1**, **T2**, **T3**]
+    J --> P[OD : **T1**, **T2**, **T3**]
+    K --> Q[OD : **T1**, **T2**, **T3**]
+    L --> R[OD : **T1**, **T2**, **T3**]
+    
+    %% Color styling
+    A:::start
+    B:::decision
+    C:::m9f
+    D:::m9
+    E:::replicate
+    F:::replicate
+    G:::rep
+    H:::rep
+    I:::rep
+    J:::rep
+    K:::rep
+    L:::rep
+    M:::measurement
+    N:::measurement
+    O:::measurement
+    P:::measurement
+    Q:::measurement
+    R:::measurement
+    
+    classDef start fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef m9 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef m9f fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef replicate fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef rep fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef measurement fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+```
 
 
 

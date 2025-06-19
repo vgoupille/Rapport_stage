@@ -43,7 +43,7 @@ div.csl-indent {
 }</style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -61,9 +61,6 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-aa42bd5397b87ae3001db572b235c885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -100,9 +97,6 @@ div.csl-indent {
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather|Source Code Pro" rel="stylesheet">
 
 
@@ -257,14 +251,14 @@ div.csl-indent {
 
 <section id="bacterial-culture" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="bacterial-culture"><span class="header-section-number">2.1</span> Bacterial culture</h2>
-<div class="cell" data-fig-width="6" data-fig-height="4" data-layout-align="default">
+<div class="cell" data-fig-width="4" data-fig-height="3" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-experimental-design" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-experimental-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-experimental-design">graph TD
-    A["Start culture *P. brassicacearum PR401* in petri dish"] --&gt; B{"transfer to liquid medium"}
+    A["Start culture &lt;br&gt; *P. brassicacearum PR401* &lt;br&gt; in petri dish"] --&gt; B{"transfer to liquid medium"}
     B --&gt; C["**M9** : Low glucose and iron"]
     B --&gt; D["**M9F** : High glucose and iron"]
     C --&gt; E{3 biological replicates}
@@ -313,30 +307,27 @@ div.csl-indent {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-experimental-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Experimental design for bacterial culture. The workflow illustrates the progression from initial culture of <em>P. brassicacearum</em> R401 on petri dishes to liquid culture in two different media: M9 (low glucose and iron) and M9F (high glucose and iron). Each medium condition was replicated three times (Rep A, B, C) and growth was monitored at three timepoints (T1, T2, T3) by optical density measurements. This design resulted in 18 total experimental conditions (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq analysis.
+Figure&nbsp;2.1: Experimental design for bacterial culture
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p><em>The workflow illustrates the progression from initial culture of P. brassicacearum R401 on petri dishes to liquid culture in two different media: M9 (low glucose and iron) and M9F (high glucose and iron). Each medium condition was replicated three times (Rep A, B, C) and growth was monitored at three timepoints (T1, T2, T3) by optical density measurements. This design resulted in 18 total experimental conditions (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq analysis.</em></p>
 <p>An isogenic<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> population of <em>P. brassicacearum</em> R401 was initially cultured on petri dishes and then transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression (<a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
-<p>Two distinct culture conditions were applied to the bacteria: M9 medium containing low glucose and low iron concentrations, and M9F medium containing high glucose and high iron concentrations (see <a href="A-Appendix.html#tbl-media" class="quarto-xref">Table&nbsp;<span>A.1</span></a> for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD) at regular intervals. The growth curves obtained from these measurements are presented (<a href="#fig-growth-curves" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>) and (<a href="A-Appendix.html#tbl-growth-curves" class="quarto-xref">Table&nbsp;<span>A.2</span></a>). This experimental design resulted in a total of 18 conditions: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/valentingoupille/Documents/Rapport_stage/data/data_growth.ipynb" data-notebook-cellid="cell-fig-growth-curves">
-<div id="cell-fig-growth-curves" class="cell" data-tags="[&quot;plot_growth&quot;]" data-notebook-link="true" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div id="fig-growth-curves" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>Two distinct culture conditions were applied to the bacteria: M9 medium containing low glucose and low iron concentrations, and M9F medium containing high glucose and high iron concentrations (see <a href="A-Appendix.html#tbl-media" class="quarto-xref">Table&nbsp;<span>A.1</span></a> for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD) at regular intervals. The growth curves obtained from these measurements are presented (<a href="#fig-growth-curves" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>) and (<a href="A-Appendix.html#tbl-growth-curves" class="quarto-xref">Table&nbsp;<span>A.2</span></a>). This experimental design resulted in a total of 18 conditions: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions. <!-- 
+{{< embed ../data/data_growth.ipynb#plot_growth >}} --></p>
+<div id="fig-growth-curves" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-Materials-and-methods_files/figure-html/..-data-data_growth-fig-growth-curves-output-1.png" class="img-fluid figure-img">
+<img src="../figures/growth_curves.png" class="img-fluid figure-img" data-fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Bacterial growth dynamics of <em>P. brassicacearum</em> R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron). Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C).
+Figure&nbsp;2.2: Bacterial growth dynamics of <em>P. brassicacearum</em> R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).
 </figcaption>
 </figure>
 </div>
-</div>
-</div>
-</div>
+<p><em>Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C).</em></p>
 <p>The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium (high glucose and iron) exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium (low glucose and iron) which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed excellent reproducibility validating the experimental design.</p>
 <p>Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq analysis using the Microbial split-pool ligation transcriptomics (microSPLiT) protocol<span class="citation" data-cites="gaisser2024 kuchina2021"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span>.</p>
 </section>
@@ -356,16 +347,17 @@ Information
 <p>The microSPLiT strategy will not be described in detail here; for more information, see Gaisser protocol.<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>. Only the key steps necessary for a general understanding of the method are presented below.</p>
 </div>
 </div>
-<div id="fig-protocol" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="microSPLiT Protocol">
+<div id="fig-protocol" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-protocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/protocol.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5’ phosphate for future ligation at their 5’ end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5’ phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5’ biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3). @gaisser2024"><img src="../figures/protocol.png" class="img-fluid figure-img" data-fig-cap="microSPLiT Protocol"></a>
+<img src="../figures/protocol.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-protocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5’ phosphate for future ligation at their 5’ end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5’ phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5’ biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3).<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>
+Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme.
 </figcaption>
 </figure>
 </div>
+<p><em>a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5’ phosphate for future ligation at their 5’ end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5’ phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5’ biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3).<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span></em></p>
 <section id="fixation-and-permeabilization" class="level3">
 <h3 class="anchored" data-anchor-id="fixation-and-permeabilization">Fixation and permeabilization</h3>
 <p>The first step is fixation of the bacterial suspension with formaldehyde <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> immediately after sampling the 18 conditions <a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. This preserves the transcriptomic state and cross-links RNA to proteins, preventing leakage of each cell’s transcriptome. Next, cells are permeabilized using mild detergent and lysozyme, allowing enzymes and oligonucleotides to access intracellular RNA for barcoding.</p>
@@ -458,16 +450,17 @@ Warning
 </section>
 <section id="pipeline-for-microsplit-data-processing" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="pipeline-for-microsplit-data-processing"><span class="header-section-number">2.3</span> Pipeline for microSPLiT data processing</h2>
-<div id="fig-pipeline" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Pipeline for microSPLiT data processing">
+<div id="fig-pipeline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/pipeline.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. Figure&nbsp;fig-pipeline"><img src="../figures/pipeline.png" class="img-fluid figure-img" data-fig-cap="Pipeline for microSPLiT data processing"></a>
+<img src="../figures/pipeline.png" class="img-fluid figure-img" data-fig-cap="Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. <a href="#fig-pipeline" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>
+Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.
 </figcaption>
 </figure>
 </div>
+<p><em>The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. <a href="#fig-pipeline" class="quarto-xref">Figure&nbsp;<span>2.4</span></a></em></p>
 <section id="preprocessing-of-the-sequencing-data" class="level3">
 <h3 class="anchored" data-anchor-id="preprocessing-of-the-sequencing-data">Preprocessing of the sequencing data</h3>
 <p>All quality control, trimming, alignment, barcode reading and generation of cell-gene count matrix steps were performed on the GenOuest high-performance computing cluster using SLURM job scripts and parallelization to ensure efficient and reproducible analysis of large-scale sequencing data.</p>
@@ -1022,40 +1015,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/02-Materials-and-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/02-Materials-and-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
