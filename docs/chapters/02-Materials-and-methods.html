@@ -313,16 +313,16 @@ div.csl-indent {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-experimental-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Experimental design for bacterial culture
+Figure&nbsp;2.1: Experimental design for bacterial culture. The workflow illustrates the progression from initial culture of <em>P. brassicacearum</em> R401 on petri dishes to liquid culture in two different media: M9 (low glucose and iron) and M9F (high glucose and iron). Each medium condition was replicated three times (Rep A, B, C) and growth was monitored at three timepoints (T1, T2, T3) by optical density measurements. This design resulted in 18 total experimental conditions (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq analysis.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>An isogenic population of <em>P. brassicacearum</em> PR401 was initially cultured on petri dishes and then transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression (<a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
+<p>An isogenic<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> population of <em>P. brassicacearum</em> R401 was initially cultured on petri dishes and then transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression (<a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
 <p>Two distinct culture conditions were applied to the bacteria: M9 medium containing low glucose and low iron concentrations, and M9F medium containing high glucose and high iron concentrations (see <a href="A-Appendix.html#tbl-media" class="quarto-xref">Table&nbsp;<span>A.1</span></a> for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD) at regular intervals. The growth curves obtained from these measurements are presented (<a href="#fig-growth-curves" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>) and (<a href="A-Appendix.html#tbl-growth-curves" class="quarto-xref">Table&nbsp;<span>A.2</span></a>). This experimental design resulted in a total of 18 conditions: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/Users/valentingoupille/Documents/Rapport_stage/data/data_growth.ipynb" data-notebook-cellid="cell-fig-growth-curves">
-<div id="cell-fig-growth-curves" class="cell" data-tags="[&quot;plot_growth&quot;]" data-notebook-link="true" data-execution_count="39">
+<div id="cell-fig-growth-curves" class="cell" data-tags="[&quot;plot_growth&quot;]" data-notebook-link="true" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-growth-curves" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -330,21 +330,32 @@ Figure&nbsp;2.1: Experimental design for bacterial culture
 <img src="02-Materials-and-methods_files/figure-html/..-data-data_growth-fig-growth-curves-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Growth of the different bacterial populations over time
+Figure&nbsp;2.2: Bacterial growth dynamics of <em>P. brassicacearum</em> R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron). Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>Growth curves for each condition showing the optical density (OD) measurements over time for M9 and M9F media across three biological replicates (Rep A, B, C) at three time points (T1, T2, T3).</p>
 <p>The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium (high glucose and iron) exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium (low glucose and iron) which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed excellent reproducibility validating the experimental design.</p>
 <p>Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq analysis using the Microbial split-pool ligation transcriptomics (microSPLiT) protocol<span class="citation" data-cites="gaisser2024 kuchina2021"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span>.</p>
 </section>
 <section id="microsplit-protocol" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="microsplit-protocol"><span class="header-section-number">2.2</span> microSPLiT protocol</h2>
-<p>MicroSPLiT<span class="citation" data-cites="gaisser2024 kuchina2021"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span> is a high-throughput single-cell RNA sequencing method for bacteria, capable of profiling transcriptional states in hundreds of thousands of cells per experiment without the need for specialized equipment<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">3</a></sup></span>. Unlike other single-cell RNA-seq approaches that require physical isolation of individual cells (e.g., plate-based or droplet-based methods), microSPLiT uses a split-pool barcoding strategy to uniquely label transcripts within each cell. (see <a href="A-Appendix.html#fig-nishimura_review" class="quarto-xref">Figure&nbsp;<span>A.1</span></a> for an overview of single-cell RNA-seq methods in bacteria)</p>
-<p>The microSPLiT strategy will not be described in detail here; for more information on the protocol, see<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>. Only the key steps necessary for a general understanding of the method are presented below.</p>
+<p>MicroSPLiT<span class="citation" data-cites="gaisser2024 kuchina2021"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span> is a high-throughput single-cell RNA sequencing method for bacteria, capable of profiling transcriptional states in hundreds of thousands of cells per experiment without the need for specialized equipment<span class="citation" data-cites="gaisser2024 nishimura2025"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-nishimura2025" role="doc-biblioref">3</a></sup></span>. Unlike other single-cell RNA-seq approaches that require physical isolation of individual cells (e.g., plate-based or droplet-based methods), microSPLiT uses a split-pool barcoding strategy to uniquely label transcripts within each cell. (see <a href="A-Appendix.html#fig-nishimura_review" class="quarto-xref">Figure&nbsp;<span>A.1</span></a> for an overview of single-cell RNA-seq methods in bacteria)</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The microSPLiT strategy will not be described in detail here; for more information, see Gaisser protocol.<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>. Only the key steps necessary for a general understanding of the method are presented below.</p>
+</div>
+</div>
 <div id="fig-protocol" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="microSPLiT Protocol">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-protocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -358,9 +369,19 @@ Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells ar
 <section id="fixation-and-permeabilization" class="level3">
 <h3 class="anchored" data-anchor-id="fixation-and-permeabilization">Fixation and permeabilization</h3>
 <p>The first step is fixation of the bacterial suspension with formaldehyde <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> immediately after sampling the 18 conditions <a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. This preserves the transcriptomic state and cross-links RNA to proteins, preventing leakage of each cell’s transcriptome. Next, cells are permeabilized using mild detergent and lysozyme, allowing enzymes and oligonucleotides to access intracellular RNA for barcoding.</p>
-<blockquote class="blockquote">
-<p>Note: Adequate permeabilization is essential for efficient barcoding, but over-permeabilization can compromise cell integrity. For successful single-cell resolution, cells must remain intact after permeabilization to allow multiple split-pool steps and retain cross-linked RNA. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a></p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Adequate permeabilization is essential for efficient barcoding, but over-permeabilization can compromise cell integrity. For successful single-cell resolution, cells must remain intact after permeabilization to allow multiple split-pool steps and retain cross-linked RNA. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a></p>
+</div>
+</div>
 </section>
 <section id="mrna-enrichment" class="level3">
 <h3 class="anchored" data-anchor-id="mrna-enrichment">mRNA enrichment</h3>
@@ -368,7 +389,19 @@ Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells ar
 </section>
 <section id="barcoding" class="level3">
 <h3 class="anchored" data-anchor-id="barcoding">Barcoding</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>The protocol utilizes several rounds of split-pool barcoding where cells are distributed into 96-well plates, barcoded, pooled, and redistributed for subsequent rounds, creating unique barcode combinations that identify individual cells.</strong></p>
+</div>
+</div>
 <section id="barcoding-round-1-r1-to-identify-the-condition-and-the-technical-replicate" class="level4">
 <h4 class="anchored" data-anchor-id="barcoding-round-1-r1-to-identify-the-condition-and-the-technical-replicate">Barcoding round 1 (R1) to identify the condition and the technical replicate</h4>
 <p>Each of the 18 samples is split into 5 technical replicates for barcoding, resulting in 90 subsamples. These technical replicates are then distributed into individual wells of a 96-well plate (6 wells not used), with each well containing uniquely barcoded primers <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>. In each well, mRNA is reverse transcribed into cDNA using a mix of barcoded poly(T) and random hexamer primers. The primers used in each well contain either a dT15 sequence to capture polyadenylated mRNA or six random nucleotides to bind any RNA, followed by a universal sequence for subsequent ligation steps. By assigning each technical replicate to a specific well, all cells in the same well receive the same unique barcode during reverse transcription. This allows each technical replicate and condition to be identified later based on the first barcode.</p>
@@ -376,13 +409,33 @@ Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells ar
 <section id="barcoding-rounds-2-r2-and-3-r3-for-unique-cell-and-transcript-identification" class="level4">
 <h4 class="anchored" data-anchor-id="barcoding-rounds-2-r2-and-3-r3-for-unique-cell-and-transcript-identification">Barcoding rounds 2 (R2) and 3 (R3) for unique cell and transcript identification</h4>
 <p>Cells are then pooled, washed and randomly redistributed into a new 96-well plate (round 2 (R2) ligation working plate) containing a second set of well-specific barcodes, which are appended to the first barcode on the cDNA through an in-cell ligation reaction <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>. Due to the random redistribution of cells, each well of the second-round plate is likely to contain a mix of cells with different first-round barcodes, resulting in highly diverse barcode combinations. The ligation reaction is carried out by the T4 DNA ligase, which requires double-stranded DNA. Therefore, in the second barcoding plate, each barcode is first hybridized to a short linker oligonucleotide whose overhang is complementary to the universal sequence at the 5’ end of the RT barcodes. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>.</p>
-<blockquote class="blockquote">
-<p>Note: After the ligation step, some barcodes may remain unreacted in the solution. To prevent these free barcodes from attaching non-specifically to DNA from other cells during pooling, a blocker strand is added. This blocker has a longer complementary region to the linker, allowing it to displace any unreacted barcodes from the linker and thus ensures that only correctly ligated barcodes remain attached to the cDNA. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a></p>
-</blockquote>
-<p>Cells are then pooled again, and a split-ligation-pool cycle is repeated for the second time. Cells are randomly distributed into a third 96-well plate (round 3 (R3) ligation working plate), which is loaded with barcoded oligonucleotides containing the third cell barcode annealed with a linker, a 10-base unique molecular identifier (UMI), a universal PCR handle and a 5’ biotin molecule. The ligation reaction is stopped by adding a second blocker strand and EDTA.</p>
-<blockquote class="blockquote">
-<p>Note: In our experiment, only 95 out of the 96 wells of the R3 plate are used to minimize potential bias in cell distribution. This setup allows for 90 × 96 × 95 = 820,800 possible barcode combinations, enabling the identification of up to 820,800 individual cells.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After the ligation step, some barcodes may remain unreacted in the solution. To prevent these free barcodes from attaching non-specifically to DNA from other cells during pooling, a blocker strand is added. This blocker has a longer complementary region to the linker, allowing it to displace any unreacted barcodes from the linker and thus ensures that only correctly ligated barcodes remain attached to the cDNA. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a></p>
+</div>
+</div>
+<p>Cells are then pooled again, and a split-ligation-pool cycle is repeated for the second time. Cells are randomly distributed into a third 96-well plate (round 3 (R3) ligation working plate), which is loaded with barcoded oligonucleotides containing the third cell barcode annealed with a linker, a 10-base Unique Molecular Identifier (UMI), a universal PCR handle and a 5’ biotin<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> molecule. The ligation reaction is stopped by adding a second blocker strand and EDTA.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In our experiment, only 95 out of the 96 wells of the R3 plate are used to minimize potential bias in cell distribution. This setup allows for 90 × 96 × 95 = <strong>820,800 possible barcode combinations</strong>, enabling the identification of up to 820,800 individual cells.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="sub-library-and-sequencing-preparation" class="level3">
@@ -393,7 +446,7 @@ Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells ar
 </section>
 <section id="sequencing-and-demultiplexing-sub-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="sequencing-and-demultiplexing-sub-libraries">Sequencing and demultiplexing sub-libraries</h3>
-<p>Sequencing was performed on a NovaSeq<sup>TM</sup> X plus instrument at GenoBIRD platform in paired-end mode. The library pool was loaded onto all lanes of the flowcell at a final concentration of 200 pM with 20% PhiX. The sequencing program consisted of 241 cycles for Read 1, 6 cycles for Index i7 and 91 cycles for Read 2. The sequencing facility performed demultiplexing of sub-libraries, resulting in eight FASTQ files (R1 and R2 for each index). R1 files contain the cDNA sequences, while R2 files contain the cell barcodes (from the three split-pool rounds) and unique molecular identifiers (UMIs).</p>
+<p>Sequencing was performed on a NovaSeq<sup>TM</sup> X plus instrument at GenoBIRD platform in paired-end mode. The library pool was loaded onto all lanes of the flowcell at a final concentration of 200 pM with 20% PhiX<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The sequencing program consisted of 241 cycles for Read 1, 6 cycles for Index i7 and 91 cycles for Read 2. The sequencing facility performed demultiplexing of sub-libraries, resulting in eight FASTQ files (R1 and R2 for each index). R1 files contain the cDNA sequences, while R2 files contain the cell barcodes (from the three split-pool rounds) and unique molecular identifiers (UMIs).</p>
 <ul>
 <li>For each index, two paired-end FASTQ files were generated :
 <ul>
@@ -405,30 +458,15 @@ Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme. a, Bacterial cells ar
 </section>
 <section id="pipeline-for-microsplit-data-processing" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="pipeline-for-microsplit-data-processing"><span class="header-section-number">2.3</span> Pipeline for microSPLiT data processing</h2>
-<div class="cell" data-fig-width="6" data-fig-height="4" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-pipeline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-pipeline" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Pipeline for microSPLiT data processing">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<pre class="mermaid mermaid-js" data-label="fig-pipeline">    graph TD
-        A[FASTQ files] --&gt; B[Quality Control]
-    B --&gt; C[Quality Control]
-    C --&gt; D[Trimming]
-    D --&gt; E[Alignment]
-    E --&gt; F[Barcode reading]
-    F --&gt; G[Cell clustering]
-    G --&gt; H[Cell type annotation]
-    H --&gt; I[Differential expression analysis]
-</pre>
-</div>
+<a href="../figures/pipeline.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. Figure&nbsp;fig-pipeline"><img src="../figures/pipeline.png" class="img-fluid figure-img" data-fig-cap="Pipeline for microSPLiT data processing"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: Pipeline for microSPLiT data processing
+Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. <a href="#fig-pipeline" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>
 </figcaption>
 </figure>
-</div>
-</div>
 </div>
 <section id="preprocessing-of-the-sequencing-data" class="level3">
 <h3 class="anchored" data-anchor-id="preprocessing-of-the-sequencing-data">Preprocessing of the sequencing data</h3>
@@ -437,9 +475,17 @@ Figure&nbsp;2.4: Pipeline for microSPLiT data processing
 <h4 class="anchored" data-anchor-id="quality-control-and-trimming">Quality control and trimming</h4>
 <p>Read quality was initially assessed for all four libraries (R1 and R2) using FastQC<span class="citation" data-cites="babraham"><sup><a href="06-References.html#ref-babraham" role="doc-biblioref">4</a></sup></span> and MultiQC<span class="citation" data-cites="ewels2016"><sup><a href="06-References.html#ref-ewels2016" role="doc-biblioref">5</a></sup></span>. Trimming was then performed with Cutadapt<span class="citation" data-cites="martin2011"><sup><a href="06-References.html#ref-martin2011" role="doc-biblioref">6</a></sup></span> and Fastp<span class="citation" data-cites="chen2018"><sup><a href="06-References.html#ref-chen2018" role="doc-biblioref">7</a></sup></span> to clean the sequencing data. For R2 files, trimming focused on filtering for valid barcodes. For R1 files, trimming removed various artifacts: template-switching oligo (TSO) sequences at the 5’ end, adapter sequences, and 3’ artifacts including polyG stretches (NovaSeq-specific artifacts) and potential R1 complement sequences when cDNA was short. Only reads with a minimum length of 25 bp were kept. The detailed trimming pipeline is described in Appendix Section <a href="A-Appendix.html#sec-appendix-trimming-steps" class="quarto-xref"><span>Section A.6</span></a>. After trimming, read quality was reassessed with FastQC<span class="citation" data-cites="babraham"><sup><a href="06-References.html#ref-babraham" role="doc-biblioref">4</a></sup></span> and MultiQC<span class="citation" data-cites="chen2018"><sup><a href="06-References.html#ref-chen2018" role="doc-biblioref">7</a></sup></span>, and results were merged into unique files (R1 and R2).</p>
 </section>
+<section id="quality-control-after-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-after-trimming">Quality control after trimming</h4>
+<p>After trimming, a quality control step was performed to ensure that the remaining reads were of high quality and suitable for downstream analysis. This step involved checking the distribution of read lengths, GC content, and other relevant metrics.</p>
+</section>
+<section id="merge-files" class="level4">
+<h4 class="anchored" data-anchor-id="merge-files">Merge files</h4>
+<p>After quality control, the files from all four libraries (R1 and R2 for each index) were merged into a single file for each index. This step ensured that all cells from all conditions and technical replicates were included in the analysis.</p>
+</section>
 <section id="alignment-barcode-reading-and-generation-of-cell-gene-count-matrix" class="level4">
 <h4 class="anchored" data-anchor-id="alignment-barcode-reading-and-generation-of-cell-gene-count-matrix">Alignment, barcode reading and generation of cell-gene count matrix</h4>
-<p>The alignment and quantification pipeline was implemented using STARsolo<span class="citation" data-cites="dobin2013 kaminow"><sup><a href="06-References.html#ref-dobin2013" role="doc-biblioref">8</a>,<a href="06-References.html#ref-kaminow" role="doc-biblioref">9</a></sup></span>, an extension of the STAR aligner specifically designed for single-cell RNA-seq data. STARsolo was chosen based on benchmarking studies showing it offers the best combination of speed and reproducibility for SPLiT-seq / microSPLiT data analysis<span class="citation" data-cites="kuijpers2024"><sup><a href="06-References.html#ref-kuijpers2024" role="doc-biblioref">10</a></sup></span>. The implementation followed the recommendations outlined in<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span> for optimal microSPLiT data processing. Complete pipeline scripts and parameters are detailed in Appendix Section <a href="A-Appendix.html#sec-appendix-starsolo" class="quarto-xref"><span>Section A.7</span></a>.</p>
+<p>The alignment and quantification pipeline was implemented using STARsolo<span class="citation" data-cites="dobin2013 kaminow"><sup><a href="06-References.html#ref-dobin2013" role="doc-biblioref">8</a>,<a href="06-References.html#ref-kaminow" role="doc-biblioref">9</a></sup></span>, an extension of the STAR aligner specifically designed for single-cell RNA-seq data. STARsolo was chosen based on benchmarking studies showing it offers the best combination of speed and reproducibility for SPLiT-seq / microSPLiT data analysis<span class="citation" data-cites="kuijpers2024"><sup><a href="06-References.html#ref-kuijpers2024" role="doc-biblioref">10</a></sup></span>. The implementation followed the recommendations outlined in Gaisser et al<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span> for optimal microSPLiT data processing. Complete pipeline scripts and parameters are detailed in Appendix Section <a href="A-Appendix.html#sec-appendix-starsolo" class="quarto-xref"><span>Section A.7</span></a>.</p>
 <p><strong>Reference genome and annotation.</strong> The reference genome of <em>Pseudomonas brassicacearum</em> R401: <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030064105.1/">ASM3006410v1 (GCA_030064105.1)</a> and its <a href="https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/">annotation</a> were downloaded from GenBank. The GFF3 annotation file was converted to GTF format using gffread (Cufflinks<span class="citation" data-cites="trapnell2010"><sup><a href="06-References.html#ref-trapnell2010" role="doc-biblioref">11</a></sup></span> package) for compatibility with STARsolo.</p>
 <p><strong>Correcting GTF file for compatibility with STAR.</strong> The conversion was verified to ensure all required fields were present, particularly confirming that genes were labeled as ‘exon’ features rather than ‘CDS’ descriptors, and that chromosome names matched between reference sequence and annotation files. This correction was performed to ensure proper compatibility with STARsolo.</p>
 <p><strong>Alignment parameters.</strong> The pipeline used optimized parameters for microSPLiT data: minimum 50 matching bases for valid alignment and 1 mismatch tolerance for both barcode and UMI matching. The complex barcode structure (R2) was configured with positions 0_10_0_17, 0_48_0_55, and 0_78_0_85 for the three barcoding rounds, and UMI position 0_0_0_9.</p>
@@ -470,26 +516,20 @@ Figure&nbsp;2.4: Pipeline for microSPLiT data processing
 <p><strong>Doublet estimation.</strong> Based on the doublet rate of 0.34% reported by Kuchina et al.<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>, we estimated approximately 10.2 potential doublets among the 3,000 selected cells (0.34 × 3000/100). To remove potential doublets, cells were filtered using arbitrary thresholds: cells with nCount &gt; 5000 or nFeature &gt; 1500 were excluded, as these thresholds typically indicate doublet contamination in single-cell RNA-seq data (3 cells removed).</p>
 <p><strong>Gene filtering.</strong> Only mRNA sequences were retained for analysis, excluding ribosomal RNA and transfer RNA sequences etc. Additionally, genes were required to be expressed in a minimum of 5 cells to ensure statistical reliability in downstream analyses.</p>
 <p><strong>Final dataset.</strong> After applying these filtering criteria, the final processed dataset contained high-quality single-cell transcriptomes ready for differential expression analysis and cell state characterization.</p>
-<blockquote class="blockquote">
-<p>Note: The filtering thresholds used in this study were chosen arbitrarily, as each single-cell RNA-seq study typically defines its own filtering criteria. These choices may have implications for the interpretation of results, particularly regarding the representation of different cell states and the detection of rare cell populations. The potential biases introduced by these filtering strategies will be discussed in the Results and Discussion sections, as this is a common limitation across single-cell RNA-seq studies in the field.</p>
-</blockquote>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The filtering thresholds used in this study were chosen arbitrarily, as each single-cell RNA-seq study typically defines its own filtering criteria. These choices may have implications for the interpretation of results, particularly regarding the representation of different cell states and the detection of rare cell populations. The potential biases introduced by these filtering strategies will be discussed in the Results and Discussion sections, as this is a common limitation across single-cell RNA-seq studies in the field.</p>
+</div>
+</div>
 <p>-retiré un replica tech aussi (voir annexe ) au total on conserve : x cellules , avec x genes</p>
-</section>
-</section>
-<section id="integration-of-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="integration-of-the-data">Integration of the data</h3>
-</section>
-<section id="clustering" class="level3">
-<h3 class="anchored" data-anchor-id="clustering">Clustering</h3>
-</section>
-<section id="differential-expression-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="differential-expression-analysis">Differential expression analysis</h3>
-</section>
-<section id="co-expression-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="co-expression-analysis">Co-expression analysis</h3>
-</section>
-<section id="diffusion-pseudotime-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="diffusion-pseudotime-analysis">Diffusion pseudotime analysis</h3>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -540,6 +580,15 @@ Figure&nbsp;2.4: Pipeline for microSPLiT data processing
 </div>
 </div>
 </section>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>An isogenic population refers to a group of organisms that are genetically identical, derived from a single ancestral cell or clone.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Biotin is a small vitamin molecule that binds with extremely high affinity to streptavidin. This biotin-streptavidin interaction is used for the selective capture and purification of biotinylated cDNA molecules on streptavidin-coated beads during the library preparation process.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>PhiX is a control library containing a known viral genome sequence that is spiked into sequencing runs to monitor sequencing quality, calibrate base calling, and provide a reference for quality control metrics. It helps ensure accurate sequencing performance and data quality assessment.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

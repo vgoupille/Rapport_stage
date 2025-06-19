@@ -4,7 +4,7 @@ project:
   output-dir: docs  # GitHub Pages serves from 'docs' by default
 book:
   title: "Msc Bioinformatics thesis"
-  subtitle: "Study of Division of Labor in Pseudomonas throught single-cell RNA-seq"
+  subtitle: "Study of Division of Labor in Pseudomonas through single-cell RNA-seq"
   author: 
     - name: "Valentin Goupille"
       affiliation: "Ecobio UMR 6553 CNRS-University of Rennes"
