@@ -738,7 +738,7 @@ Parfait, Valentin ! Voici une version mise à jour de ton script, où :
 
 ✅ Nouveauté :
 
-1. Si le read R1 contient une queue polyA (≥15 A consécutifs) → on coupe à l’amont de cette queue, et on supprime le reste du read (comme un hard clipping).
+1. Si le read R1 contient une queue polyA (>=15 A consécutifs) → on coupe à l’amont de cette queue, et on supprime le reste du read (comme un hard clipping).
 2. Sinon, on applique ensuite les règles précédentes (avec erreurs autorisées sur motifs).
 
 ⸻
@@ -746,7 +746,7 @@ Parfait, Valentin ! Voici une version mise à jour de ton script, où :
 🧬 Nouveau comportement :
 
 Priorité	Règle appliquée sur R1	Action
-1️⃣	PolyA (≥15 A) détecté	Couper à l’amont de la queue + supprimer tout le reste
+1️⃣	PolyA (>=15 A) détecté	Couper à l’amont de la queue + supprimer tout le reste
 2️⃣	Motif CCACAG... détecté avec ≤1 erreur	Supprimer 8 nt en amont
 3️⃣	Motif AGTCGTAC... détecté avec ≤1 erreur	Supprimer 38 nt en amont
 4️⃣	Motif AGATCGGAAG... détecté avec ≤1 erreur	Supprimer 86 nt en amont
@@ -810,7 +810,7 @@ with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
             rec1.seq = rec1.seq[:cut]
             rec1.letter_annotations["phred_quality"] = rec1.letter_annotations["phred_quality"][:cut]
 
-        # Ne garder que les séquences R1 ≥ 20 nt
+        # Ne garder que les séquences R1 >= 20 nt
         if len(rec1.seq) >= 20:
             SeqIO.write(rec1, out_R1, "fastq")
             SeqIO.write(rec2, out_R2, "fastq")
@@ -819,7 +819,7 @@ with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
 ⸻
 
 📌 Résumé
-	•	PolyA ≥15 → prioritaire sur tous les autres motifs.
+	•	PolyA >=15 → prioritaire sur tous les autres motifs.
 	•	Si aucun motif trouvé, le read est conservé tel quel (si longueur suffisante).
 	•	Synchronisation avec R2 garantie.
 
@@ -846,7 +846,7 @@ D’accord, Valentin ! Voici une version finale du script qui inclut :
 ⸻
 
 ✅ Ce que fait le script :
-	1.	PolyA (≥15 A) : Si trouvé, on coupe la séquence avant la queue polyA et on supprime tout après.
+	1.	PolyA (>=15 A) : Si trouvé, on coupe la séquence avant la queue polyA et on supprime tout après.
 	2.	Autres motifs : Si un motif est trouvé, on coupe 15 bases avant le motif.
 	3.	Statistiques : Un fichier log.txt sera généré, contenant des informations sur le nombre de reads traités, le nombre de trims effectués, et les motifs détectés.
 
@@ -904,7 +904,7 @@ with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
 
         log_stats["total_reads"] += 1  # Incrémente le compteur de reads traités
 
-        # Priorité 1 : Détecter PolyA (≥15 A)
+        # Priorité 1 : Détecter PolyA (>=15 A)
         polyA_pos = find_polyA(seq, min_len=15)
         if polyA_pos is not None:
             cut = polyA_pos  # On coupe avant la queue polyA
@@ -924,7 +924,7 @@ with open_in(input_R1) as handle_R1, open_in(input_R2) as handle_R2, \
             rec1.seq = rec1.seq[:cut]
             rec1.letter_annotations["phred_quality"] = rec1.letter_annotations["phred_quality"][:cut]
 
-        # Ne garder que les séquences R1 ≥ 20 nt
+        # Ne garder que les séquences R1 >= 20 nt
         if len(rec1.seq) >= 20:
             SeqIO.write(rec1, out_R1, "fastq")
             SeqIO.write(rec2, out_R2, "fastq")

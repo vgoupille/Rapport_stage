@@ -7,6 +7,9 @@ format: gfm
 ```{r}
 #| include: false
 # Create pdf and png version of template
+# Set CRAN mirror
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
 # Check and install required packages if needed
 if (!require("pdftools")) {
   install.packages("pdftools")

@@ -39,3 +39,9 @@ DOL 2 hypotheses : noises / specialized cells
 
 
 ouverture : est ce que methode permet de capturer efficacement en condition de stress 
+
+
+**This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.**
+
+
+operon , facteur sigma , new genome annotatipn ... 

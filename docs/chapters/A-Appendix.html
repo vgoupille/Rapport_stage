@@ -258,6 +258,7 @@ div.csl-indent {
   <li><a href="#microsplit-sequencing-library-preparation" id="toc-microsplit-sequencing-library-preparation" class="nav-link" data-scroll-target="#microsplit-sequencing-library-preparation"><span class="header-section-number">A.4</span> MicroSPLiT sequencing library preparation</a></li>
   <li><a href="#sec-appendix-tso" id="toc-sec-appendix-tso" class="nav-link" data-scroll-target="#sec-appendix-tso"><span class="header-section-number">A.5</span> TSO removal statistics</a></li>
   <li><a href="#sec-appendix-trimming-steps" id="toc-sec-appendix-trimming-steps" class="nav-link" data-scroll-target="#sec-appendix-trimming-steps"><span class="header-section-number">A.6</span> Trimming pipeline steps</a></li>
+  <li><a href="#sec-appendix-starsolo" id="toc-sec-appendix-starsolo" class="nav-link" data-scroll-target="#sec-appendix-starsolo"><span class="header-section-number">A.7</span> Final effective command line of STARsolo</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -408,7 +409,7 @@ Table&nbsp;A.2: Growth curves data for bacterial culture experiments
 </section>
 <section id="sec-appendix-nishimura" class="level2" data-number="A.3">
 <h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-nishimura"><span class="header-section-number">A.3</span> Overview of single-cell RNA-seq methods in bacteria</h2>
-<div id="fig-nishimura_review" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]." alt="Overview of bacterial single-cell RNA sequencing approaches">
+<div id="fig-nishimura_review" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Overview of bacterial single-cell RNA sequencing approaches" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025].">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nishimura_review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../figures/nishimura_review.jpg" class="img-fluid figure-img" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]." alt="Overview of bacterial single-cell RNA sequencing approaches">
@@ -421,7 +422,7 @@ Figure&nbsp;A.1: Overview of bacterial single-cell RNA sequencing approaches. (A
 </section>
 <section id="microsplit-sequencing-library-preparation" class="level2" data-number="A.4">
 <h2 data-number="A.4" class="anchored" data-anchor-id="microsplit-sequencing-library-preparation"><span class="header-section-number">A.4</span> MicroSPLiT sequencing library preparation</h2>
-<div id="fig-protocol-p2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="MicroSPLiT sequencing library preparation." alt="MicroSPLiT sequencing library preparation">
+<div id="fig-protocol-p2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="MicroSPLiT sequencing library preparation" data-fig-cap="MicroSPLiT sequencing library preparation.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-protocol-p2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../figures/protocol_p2.png" class="img-fluid figure-img" data-fig-cap="MicroSPLiT sequencing library preparation." alt="MicroSPLiT sequencing library preparation">
@@ -528,7 +529,7 @@ Removal of low-quality bases, polyG/polyX tails, and adapter sequences using Fas
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>ATCTCGTATGCCGTCTTCTGCTTGA <span class="dt">\</span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">--adapter_sequence</span><span class="op">=</span>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>PolyA trimming (Cutadapt):</strong><br>
-Removal of polyA stretches (≥12 nt) from R1 using Cutadapt, targeting polyA sequences introduced during library preparation.</p>
+Removal of polyA stretches (&gt;=12 nt) and all downstream sequences from R1 using Cutadapt, targeting polyA sequences introduced during library preparation. This step cleans reads with short cDNA that extend into the R2 complementary region, using polyA as a repeat sequence (read_polyA from the library).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"A{12}; min_overlap=12; max_errors=0.2"</span> <span class="dt">\</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--pair-filter</span><span class="op">=</span>both <span class="dt">\</span></span>
@@ -542,7 +543,7 @@ Removal of polyA stretches (≥12 nt) from R1 using Cutadapt, targeting polyA se
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This step trims polyA15 and longer stretches that may remain after the previous steps.</p></li>
 <li><p><strong>Specific adapter trimming (Cutadapt):</strong><br>
-Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt (corresponds to the linker sequence).</p>
+Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt (corresponds to the round 2 linker sequence). This step uses the round 2 linker barcode as a reference point and eliminates everything behind it, particularly useful for cleaning random hexamer sequences with short cDNA that extend into R2 complementary sequences.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"CCACAGTCTCAAGCAC; min_overlap=6; max_errors=0.1"</span> <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--pair-filter</span><span class="op">=</span>both <span class="dt">\</span></span>
@@ -555,7 +556,7 @@ Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--report</span><span class="op">=</span>full <span class="dt">\</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Linker and additional adapter trimming (Cutadapt):</strong><br>
-Removal of linker and additional adapter sequences (e.g., CCACAGTCTCAAGCACGTGGAT, AGTCGTACGCCGATGCGAAACATCGGCCAC, AGATCGGAAGAGCACACGTCTGAACTCCAGTCA) from R1 using Cutadapt, to further clean the reads.<br>
+Removal of linker and additional adapter sequences from R1 using Cutadapt, to further clean the reads. This includes TruSeq Read 2 adapter (AGATCGGAAGAGCACACGTCTGAACTCCAGTCA), Round 3 linker (AGTCGTACGCCGATGCGAAACATCGGCCAC), and Round 2 linker (CCACAGTCTCAAGCACGTGGAT).<br>
 This step ensures that any remaining linker or adapter sequences are removed for certain libraries.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-a</span> <span class="st">"CCACAGTCTCAAGCACGTGGAT; min_overlap=6; max_errors=0.2"</span> <span class="dt">\</span></span>
@@ -572,7 +573,7 @@ This step ensures that any remaining linker or adapter sequences are removed for
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">--json</span> <span class="st">"</span><span class="va">${output_dir}</span><span class="st">/</span><span class="va">${sample_name}</span><span class="st">_stats.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Final quality and length filtering (Fastp):</strong><br>
 Final trimming with Fastp, including additional adapter removal, trimming of fixed bases from the 5’ and 3’ ends, and filtering for minimum read length to ensure high-quality output for downstream analysis.<br>
-This step trims R1 at the end to keep only cDNA.</p>
+This step trims R1 at both 5’ and 3’ ends to keep only cDNA and ensure clean sequences for downstream analysis.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> <span class="st">"</span><span class="va">${r1_input}</span><span class="st">"</span> <span class="dt">\</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-I</span> <span class="st">"</span><span class="va">${r2_input}</span><span class="st">"</span> <span class="dt">\</span></span>
@@ -594,6 +595,82 @@ This step trims R1 at the end to keep only cDNA.</p>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">--compression</span> 4 <span class="dt">\</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
+</section>
+<section id="sec-appendix-starsolo" class="level2" data-number="A.7">
+<h2 data-number="A.7" class="anchored" data-anchor-id="sec-appendix-starsolo"><span class="header-section-number">A.7</span> Final effective command line of STARsolo</h2>
+<section id="computing-environment" class="level3">
+<h3 class="anchored" data-anchor-id="computing-environment">Computing Environment</h3>
+<p>The STARsolo analysis was performed on the GenOuest high-performance computing cluster using the following specifications: - <strong>Node type</strong>: bigmem (high-memory node) - <strong>Memory allocation</strong>: 500GB RAM - <strong>CPU threads</strong>: 64 parallel threads</p>
+</section>
+<section id="starsolo-command-line" class="level3">
+<h3 class="anchored" data-anchor-id="starsolo-command-line">STARsolo Command Line</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">STAR</span> <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>--runThreadN 64 <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>--genomeDir /path/to/genome_index <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>--readFilesIn <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>/path/to/input/merged_trimmed-R1.fastq.gz <span class="dt">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>/path/to/input/merged_trimmed-R2.fastq.gz <span class="dt">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>--readFilesCommand gunzip <span class="at">-c</span> <span class="dt">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>--outFileNamePrefix /path/to/output/starsolo_output/ <span class="dt">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>--outSAMtype BAM Unsorted <span class="dt">\</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>--outFilterScoreMinOverLread 0 <span class="dt">\</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>--outFilterMatchNmin 50 <span class="dt">\</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>--outFilterMatchNminOverLread 0 <span class="dt">\</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>--alignSJoverhangMin 1000 <span class="dt">\</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>--alignSJDBoverhangMin 1000 <span class="dt">\</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>--soloType CB_UMI_Complex <span class="dt">\</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>--soloCBwhitelist <span class="dt">\</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>/path/to/barcodes/barcode_round3.txt <span class="dt">\</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>/path/to/barcodes/barcode_round2.txt <span class="dt">\</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>/path/to/barcodes/barcode_round1.txt <span class="dt">\</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>--soloFeatures Gene GeneFull <span class="dt">\</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>--soloUMIdedup 1MM_All <span class="dt">\</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>--soloCBmatchWLtype 1MM <span class="dt">\</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>--soloCBposition 0_10_0_17 0_48_0_55 0_78_0_85 <span class="dt">\</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>--soloUMIposition 0_0_0_9 <span class="dt">\</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>--soloMultiMappers Uniform</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="starsolo-parameters-explanation" class="level3">
+<h3 class="anchored" data-anchor-id="starsolo-parameters-explanation">STARsolo Parameters Explanation</h3>
+<p>This section details the key parameters used in our STARsolo analysis and their significance:</p>
+<section id="general-star-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="general-star-parameters">General STAR Parameters</h4>
+<ul>
+<li><code>--runThreadN 64</code> : Use of 64 threads for parallel alignment</li>
+<li><code>--genomeDir</code> : Path to the reference genome index</li>
+<li><code>--readFilesIn</code> : Input FASTQ files (R1 and R2)</li>
+<li><code>--readFilesCommand gunzip -c</code> : Command to decompress FASTQ.gz files</li>
+<li><code>--outFileNamePrefix</code> : Prefix for output files</li>
+<li><code>--outSAMtype BAM Unsorted</code> : Unsorted BAM output format</li>
+</ul>
+</section>
+<section id="filtering-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="filtering-parameters">Filtering Parameters</h4>
+<ul>
+<li><code>--outFilterScoreMinOverLread 0</code> : Minimum filtering score relative to read length</li>
+<li><code>--outFilterMatchNmin 50</code> : Minimum number of matching bases for a valid alignment</li>
+<li><code>--outFilterMatchNminOverLread 0</code> : Minimum match ratio relative to read length</li>
+<li><code>--alignSJoverhangMin 1000</code> and <code>--alignSJDBoverhangMin 1000</code> : Maximum values for splice junction detection (set to maximum since bacterial genomes lack splicing)</li>
+</ul>
+</section>
+<section id="starsolo-specific-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="starsolo-specific-parameters">STARsolo-specific Parameters</h4>
+<ul>
+<li><code>--soloType CB_UMI_Complex</code> : Analysis type for cell barcodes (CB) and complex UMIs</li>
+<li><code>--soloCBwhitelist</code> : List of valid cell barcodes for the three barcoding rounds</li>
+<li><code>--soloFeatures Gene GeneFull</code> : Analysis of features at both gene and full transcript levels</li>
+<li><code>--soloUMIdedup 1MM_All</code> : UMI deduplication with one mutation tolerance</li>
+<li><code>--soloCBmatchWLtype 1MM</code> : Cell barcode matching with one mutation tolerance</li>
+<li><code>--soloCBposition</code> : Cell barcode positions in reads (3 rounds)
+<ul>
+<li>Round 1: 0_10_0_17</li>
+<li>Round 2: 0_48_0_55</li>
+<li>Round 3: 0_78_0_85</li>
+</ul></li>
+<li><code>--soloUMIposition 0_0_0_9</code> : UMI position in reads</li>
+<li><code>--soloMultiMappers Uniform</code> : Uniform distribution of multi-mapped reads</li>
+</ul>
+<p>These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.</p>
 <p>Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.</p>
 <ul>
 <li>plan de plaque</li>
@@ -608,6 +685,8 @@ This step trims R1 at the end to keep only cDNA.</p>
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
 </div>
 </div>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

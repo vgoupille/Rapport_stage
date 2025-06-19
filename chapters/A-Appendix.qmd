@@ -41,7 +41,7 @@ The following table presents the optical density (OD) measurements for each cult
 
 ## MicroSPLiT sequencing library preparation
 
-![MicroSPLiT sequencing library preparation. a, Selected sub-libraries with barcoded cells are lysed. Because cDNA molecules primed with both random hexamer and poly-dT primers undergo the same downstream reactions, only one of them is shown for clarity. b, After lysis, cDNA is purified via streptavidin beads. The cells then undergo an additional RT and template switching step. The template switch primer has two RNA G bases and a locked nucleic acid G base (‘rGrG+G’) sequence to facilitate the binding. c, cDNA is amplified, and size is selected to eliminate the unwanted short product (‘dimer’) from the cDNA amplification product. At this point, the size and concentration of the cDNA product are quantified (Part 2, Step 127). d, The library then undergoes fragmentation and adapter ligation. The desired sequencing product containing the barcodes is amplified with the primers for both the third barcode adapter and the ligation adapter, which contain Read 1 (R1) and Read 2 (R2) sequences. Illumina P5 and P7 sequence adapters and a final sub-library index are also appended at this final PCR step . e, A 0.5–0.7× double size selection then selects out unwanted fragments. The final product’s concentration and size are measured before sequencing .](../figures/protocol_p2.png){#fig-protocol-p2 fig-alt="MicroSPLiT sequencing library preparation" fig-cap="MicroSPLiT sequencing library preparation."}
+![MicroSPLiT sequencing library preparation. a, Selected sub-libraries with barcoded cells are lysed. Because cDNA molecules primed with both random hexamer and poly-dT primers undergo the same downstream reactions, only one of them is shown for clarity. b, After lysis, cDNA is purified via streptavidin beads. The cells then undergo an additional RT and template switching step. The template switch primer has two RNA G bases and a locked nucleic acid G base ('rGrG+G') sequence to facilitate the binding. c, cDNA is amplified, and size is selected to eliminate the unwanted short product ('dimer') from the cDNA amplification product. At this point, the size and concentration of the cDNA product are quantified (Part 2, Step 127). d, The library then undergoes fragmentation and adapter ligation. The desired sequencing product containing the barcodes is amplified with the primers for both the third barcode adapter and the ligation adapter, which contain Read 1 (R1) and Read 2 (R2) sequences. Illumina P5 and P7 sequence adapters and a final sub-library index are also appended at this final PCR step . e, A 0.5–0.7× double size selection then selects out unwanted fragments. The final product's concentration and size are measured before sequencing .](../figures/protocol_p2.png){#fig-protocol-p2 fig-alt="MicroSPLiT sequencing library preparation" fig-cap="MicroSPLiT sequencing library preparation."}
 
 
 
@@ -113,7 +113,7 @@ The following steps were performed sequentially for read trimming, as implemente
    ```
 
 3. **PolyA trimming (Cutadapt):**  
-   Removal of polyA stretches (≥12 nt) from R1 using Cutadapt, targeting polyA sequences introduced during library preparation.
+   Removal of polyA stretches (>=12 nt) and all downstream sequences from R1 using Cutadapt, targeting polyA sequences introduced during library preparation. This step cleans reads with short cDNA that extend into the R2 complementary region, using polyA as a repeat sequence (read_polyA from the library).
    ```bash
    cutadapt -j ${SLURM_CPUS_PER_TASK} \
        -a "A{12}; min_overlap=12; max_errors=0.2" \
@@ -130,7 +130,7 @@ The following steps were performed sequentially for read trimming, as implemente
    This step trims polyA15 and longer stretches that may remain after the previous steps.
 
 4. **Specific adapter trimming (Cutadapt):**  
-   Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt (corresponds to the linker sequence).
+   Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt (corresponds to the round 2 linker sequence). This step uses the round 2 linker barcode as a reference point and eliminates everything behind it, particularly useful for cleaning random hexamer sequences with short cDNA that extend into R2 complementary sequences.
    ```bash
    cutadapt -j ${SLURM_CPUS_PER_TASK} \
        -a "CCACAGTCTCAAGCAC; min_overlap=6; max_errors=0.1" \
@@ -146,7 +146,7 @@ The following steps were performed sequentially for read trimming, as implemente
    ```
 
 5. **Linker and additional adapter trimming (Cutadapt):**  
-   Removal of linker and additional adapter sequences (e.g., CCACAGTCTCAAGCACGTGGAT, AGTCGTACGCCGATGCGAAACATCGGCCAC, AGATCGGAAGAGCACACGTCTGAACTCCAGTCA) from R1 using Cutadapt, to further clean the reads.  
+   Removal of linker and additional adapter sequences from R1 using Cutadapt, to further clean the reads. This includes TruSeq Read 2 adapter (AGATCGGAAGAGCACACGTCTGAACTCCAGTCA), Round 3 linker (AGTCGTACGCCGATGCGAAACATCGGCCAC), and Round 2 linker (CCACAGTCTCAAGCACGTGGAT).  
    This step ensures that any remaining linker or adapter sequences are removed for certain libraries.
    ```bash
    cutadapt -j ${SLURM_CPUS_PER_TASK} \
@@ -166,7 +166,7 @@ The following steps were performed sequentially for read trimming, as implemente
 
 6. **Final quality and length filtering (Fastp):**  
    Final trimming with Fastp, including additional adapter removal, trimming of fixed bases from the 5' and 3' ends, and filtering for minimum read length to ensure high-quality output for downstream analysis.  
-   This step trims R1 at the end to keep only cDNA.
+   This step trims R1 at both 5' and 3' ends to keep only cDNA and ensure clean sequences for downstream analysis.
    ```bash
    fastp \
        -i "${r1_input}" \
@@ -189,6 +189,83 @@ The following steps were performed sequentially for read trimming, as implemente
        --compression 4 \
        --verbose
    ```
+
+
+
+## Final effective command line of STARsolo {#sec-appendix-starsolo}
+
+### Computing Environment
+
+The STARsolo analysis was performed on the GenOuest high-performance computing cluster using the following specifications:
+- **Node type**: bigmem (high-memory node)
+- **Memory allocation**: 500GB RAM
+- **CPU threads**: 64 parallel threads
+
+### STARsolo Command Line
+
+```bash
+STAR \
+--runThreadN 64 \
+--genomeDir /path/to/genome_index \
+--readFilesIn \
+/path/to/input/merged_trimmed-R1.fastq.gz \
+/path/to/input/merged_trimmed-R2.fastq.gz \
+--readFilesCommand gunzip -c \
+--outFileNamePrefix /path/to/output/starsolo_output/ \
+--outSAMtype BAM Unsorted \
+--outFilterScoreMinOverLread 0 \
+--outFilterMatchNmin 50 \
+--outFilterMatchNminOverLread 0 \
+--alignSJoverhangMin 1000 \
+--alignSJDBoverhangMin 1000 \
+--soloType CB_UMI_Complex \
+--soloCBwhitelist \
+/path/to/barcodes/barcode_round3.txt \
+/path/to/barcodes/barcode_round2.txt \
+/path/to/barcodes/barcode_round1.txt \
+--soloFeatures Gene GeneFull \
+--soloUMIdedup 1MM_All \
+--soloCBmatchWLtype 1MM \
+--soloCBposition 0_10_0_17 0_48_0_55 0_78_0_85 \
+--soloUMIposition 0_0_0_9 \
+--soloMultiMappers Uniform
+```
+
+### STARsolo Parameters Explanation
+
+This section details the key parameters used in our STARsolo analysis and their significance:
+
+#### General STAR Parameters
+
+-   `--runThreadN 64` : Use of 64 threads for parallel alignment
+-   `--genomeDir` : Path to the reference genome index
+-   `--readFilesIn` : Input FASTQ files (R1 and R2)
+-   `--readFilesCommand gunzip -c` : Command to decompress FASTQ.gz files
+-   `--outFileNamePrefix` : Prefix for output files
+-   `--outSAMtype BAM Unsorted` : Unsorted BAM output format
+
+#### Filtering Parameters
+
+-   `--outFilterScoreMinOverLread 0` : Minimum filtering score relative to read length
+-   `--outFilterMatchNmin 50` : Minimum number of matching bases for a valid alignment
+-   `--outFilterMatchNminOverLread 0` : Minimum match ratio relative to read length
+-   `--alignSJoverhangMin 1000` and `--alignSJDBoverhangMin 1000` : Maximum values for splice junction detection (set to maximum since bacterial genomes lack splicing)
+
+#### STARsolo-specific Parameters
+
+-   `--soloType CB_UMI_Complex` : Analysis type for cell barcodes (CB) and complex UMIs
+-   `--soloCBwhitelist` : List of valid cell barcodes for the three barcoding rounds
+-   `--soloFeatures Gene GeneFull` : Analysis of features at both gene and full transcript levels
+-   `--soloUMIdedup 1MM_All` : UMI deduplication with one mutation tolerance
+-   `--soloCBmatchWLtype 1MM` : Cell barcode matching with one mutation tolerance
+-   `--soloCBposition` : Cell barcode positions in reads (3 rounds)
+    -   Round 1: 0_10_0_17
+    -   Round 2: 0_48_0_55
+    -   Round 3: 0_78_0_85
+-   `--soloUMIposition 0_0_0_9` : UMI position in reads
+-   `--soloMultiMappers Uniform` : Uniform distribution of multi-mapped reads
+
+These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.
 
 Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.
 
