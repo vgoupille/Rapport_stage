@@ -51,3 +51,102 @@ sur mon espace personnelle, j'ai tout mes scripts de test microsplit supplementa
 
 
 
+```{mermaid}
+%%| fig-cap: "Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment."
+%%| fig-width: 3
+%%| fig-height: 2
+%%| label: fig-pipeline
+%%| cache: false
+
+graph TD
+    %% Input files
+    subgraph "Input Samples"
+        A1[BC_0076 FASTQ<br/>R1 + R2 files]
+        A2[BC_0077 FASTQ<br/>R1 + R2 files]
+        A3[BC_0078 FASTQ<br/>R1 + R2 files]
+        A4[BC_0079 FASTQ<br/>R1 + R2 files]
+    end
+
+    %% Preprocessing block
+    subgraph "Preprocessing"
+        B[Quality Control<br/>FastQC & MultiQC]
+        C[Trimming<br/>Cutadapt & Fastp]
+        D[Post-trimming QC]
+        E[Merge R1 & R2 Files]
+        F[2 merged FASTQ<br/>1 R1 + 1 R2]
+    end
+
+    %% Alignment block
+    subgraph "Alignment & Quantification"
+        G[STARsolo<br/>Alignment + Barcode Reading<br/>+ Cell-Gene Matrix]
+    end
+
+    %% Object conversion
+    subgraph "Data Structuring"
+        H[Data Conversion<br/>Seurat / AnnData objects]
+        H1[add metadata]
+    end
+
+    %% Filtering and integration
+    subgraph "Data Curation"
+        I[Quality Control & Filtering<br/>Cell & Gene filtering]
+        J[Data Integration<br/>Normalization & Batch correction]
+    end
+
+    %% Parallel data preparation
+    subgraph "Type of analysis"
+        L1[Single-cell]
+        L2[Pseudobulk]
+    end
+
+    %% Clustering section
+    subgraph "Single-cell analysis"
+        K[Sub/population clustering]
+        P[Diffusion Pseudotime<br/>Trajectory inference]
+    end
+
+    %% Combined analysis
+    subgraph "Expression Analysis"
+        M[Differential Expression<br/>Co-expression Analysis<br/>Gene Ontology Analysis]
+    end
+
+    %% Flow connections
+    A1 --> B
+    A2 --> B
+    A3 --> B
+    A4 --> B
+    B --> C --> D --> E --> F --> G --> H --> H1 --> I --> J --> L1
+    J --> L2
+    L1 --> K
+    L1 --> P
+    K --> M
+    L2 --> M
+
+    %% Color styling
+    class A1,A2,A3,A4 input
+    class B,C,D,E preprocessing
+    class F merged
+    class G alignment
+    class H,H1 conversion
+    class I filtering
+    class J integration
+    class K clustering
+    class L1,L2 preparation
+    class M analysis
+    class P trajectory
+
+    classDef input fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef preprocessing fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef merged fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef alignment fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef conversion fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef filtering fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef integration fill:#f1f8e9,stroke:#689f38,stroke-width:2px
+    classDef clustering fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef preparation fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef analysis fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+    classDef trajectory fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+``` 
+
+
+
