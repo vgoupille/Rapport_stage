@@ -3,19 +3,30 @@
 We applied microSPLiT to P. brassicacearum growing in two different conditions in rich medium (M9F) and in minimal medium (M9).
 
 
+-d'autres methodes de filtrage , log log comme dans... 
+
+While other tools exist for alignment and barcode reading in SPLiT-seq/microSPLiT protocols, such as Kallisto [@bray2016; @sullivan2025],  The pipeline could be further improved with additional quality verification steps and implementation of workflow management systems such as Nextflow and nf-core for enhanced reproducibility and scalability.
 
 
 
+    -   different other tools existe comme pour alignement et lecture des barcodes SPLiTseq/ microSPliT comme Kallisto [@bray2016], [@sullivan2025] mais d'apres le benchmarking de le plus rapide, reproductible est starsolo [@kuijpers2024]
+
+
+pleins parametre pour etre change, unique alignement 
+peut de rRNA je trouve par rapport a autre articles 
 
 
 
+To remove empty and low gene detection  barcodes, we applied the “knee” detection filter previously described in Brettner et al. 202435. These quality-thresholded gene-by-barcode matrices were then converted to the R datatype, Seurat Objects, using the Seurat R package for further analyses83.
 
 
+- biais de la methode 
+- coloration fluorescences pour voir marqueur , cell states , i
 
+-agotation oiu pas 
 
-
-
-
+-discuter du pipeline bac 
+-voir 
 
 
 
