@@ -3,9 +3,15 @@
 # comptage des cellules pour taux de collision  
 
 
+### Examples of Bacterial DOL
+
+Bacteria provide compelling examples of DOL through various mechanisms. *Myxococcus xanthus* demonstrates sophisticated intraspecific specialization during fruiting body formation, where genetically identical cells differentiate into distinct functional types: some cells lyse to provide nutrients, others develop into spores for long-term survival, while peripheral rod cells remain outside the structure to respond to environmental changes. This division of labor enables the population to survive adverse conditions through collective action, with each cell type contributing specialized functions that benefit the entire group.
+
+Another striking example of intraspecific DOL occurs in filamentous cyanobacteria such as *Anabaena* and *Nostoc*, where genetically identical cells differentiate into photosynthetic vegetative cells and nitrogen-fixing heterocysts. This specialization resolves the biochemical incompatibility between photosynthesis and nitrogen fixation, allowing the population to perform both essential functions simultaneously. These examples illustrate how intraspecific DOL can emerge through regulatory mechanisms and provide significant fitness advantages to clonal populations.
 
 
 
+The emergence of intraspecific DOL is likely driven by environmental heterogeneity, spatial gradients, variable selection pressures, and cell-to-cell communication, creating microenvironments where functional specialization provides fitness advantages.
 
 
 
