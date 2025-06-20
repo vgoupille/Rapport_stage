@@ -14,46 +14,79 @@ Building upon these fundamental principles, microbial communities provide excell
 
 *Classification of pairwise and three-way interactions as DOL. Interactions can be uni- or bidirectional as well as occur within one or between two microbial species. Arrows indicate fitness benefits that are exchanged between interaction partners that can be direct (straight line) or indirect (dashed line). For an interaction to classify as DOL, four main criteria need to be fulfilled, which is only the case in closed (reciprocal) interactions (green), yet not in open (linear) interactions (red). (a) Mutually beneficial (reciprocal) interaction within two conspecific genotypes. (b) Mutually beneficial (reciprocal) interaction within two heterospecific genotypes. (c) Mutually beneficial (reciprocal) interaction between three different species. (d) Unidirectional interaction between two members of the same species. (e) Unidirectional interaction between three members of three different species. (f) Unidirectional interaction between two members of two different species. (g) Unidirectional (linear) interaction chain between members of three different species.*
 
-Interspecific DOL has been well-characterized in various ecosystems, with numerous examples of cross-feeding and mutualistic interactions documented in the human gut microbiome, soil communities, and marine environments [@rafieenia2022]. In contrast, intraspecific DOL within clonal bacterial populations remains less explored, despite its potential importance for understanding population-level adaptation and functional diversity.
+## Interspecific Division of Labor in Root Microbiota
+
+Interspecific DOL has been well-characterized in various ecosystems, with numerous examples of cross-feeding and mutualistic interactions documented in the human gut microbiome and soil communities [@rafieenia2022].
+
+The root microbiota represents a particularly well-studied example of interspecific DOL. Roots of healthy plants host diverse bacteria that are collectively referred to as the bacterial root microbiota. Unlike their multicellular eukaryotic hosts that evolved diverse cell-types to achieve distinct biological functions and promote a division of labour, unicellular organisms such as bacteria rely on metabolic exchange(s) with their surrounding biotic environment to establish and maintain their ecological niches. Recent reports [@mataigne2021; @mataigne2022], indicate that metabolic interdependencies and cross-feeding exchanges are widespread among taxonomically diverse bacteria and likely drive microbial co-existence within complex bacterial communities[@estrela2016; @adkins-jablonsky2021]
+
+The root environment presents unique challenges and opportunities for bacterial colonization. The rhizosphere, the soil region directly influenced by root exudates, represents a nutrient-rich but competitive environment where bacteria must balance resource acquisition with defense against competitors. This complex ecosystem provides an ideal setting for studying how bacterial populations adapt through functional specialization and metabolic cooperation.
 
 ## Intraspecific Division of Labor: An Emerging Research Area
 
-The traditional view of biological populations assumed that all individuals within a clonal population behave identically. However, evidence has accumulated over decades showing that even genetically identical organisms can exhibit functional heterogeneity, leading to population-level benefits through task specialization [@lópez-pagán2025]. While intraspecific division of labor has been well-documented in multicellular organisms and social insects, its study in bacterial populations represents a more recent and growing field of research.
-
-![Examples of benefits and sources of intraspecific division of labour between
-intra-populations based on metabolic complementation and costly "common good" metabolite
-production.](../figures/intraspecific_dol.png){#fig-intraspecific-dol width="60%" fig-align="center"}
-
-
-*From the left to the right, co-metabolism within an isogenic bacterial population (A) and production of antimicrobials targeting other bacteria (B) can be considered as division of labour in a population. These mechanisms of division of labour can be based on differential transcription between bacteria (C) within a population and/or genetic variations between intra-populations (D).*
+While interspecific DOL has been extensively studied in various ecosystems, intraspecific DOL within clonal bacterial populations remains less explored, despite its potential importance for understanding population-level adaptation and functional diversity. The traditional view of biological populations assumed that all individuals within a clonal population behave identically. However, evidence has accumulated over decades showing that even genetically identical organisms can exhibit functional heterogeneity, leading to population-level benefits through task specialization [@lópez-pagán2025]. While intraspecific division of labor has been well-documented in multicellular organisms and social insects, its study in bacterial populations represents a more recent and growing field of research.
 
 ### Sources of Variation in Intraspecific DOL
 
-As illustrated in the figure above, intraspecific DOL can manifest through different mechanisms that create functional specialization within populations. For an interaction to qualify as DOL, the participating individuals must exhibit functional specialization, which can arise through three main mechanisms that correspond to the variation sources shown in the figure.
+Intraspecific DOL emerges through diverse mechanisms that create functional specialization within populations. These mechanisms can be broadly categorized into genetic and phenotypic sources of variation, though they often interact and overlap in complex ways that blur traditional boundaries between heritable and non-heritable traits.
 
-**Epigenetic mechanisms** create phenotypic heterogeneity within isogenic populations without environmental stimuli, including stochastic gene expression, error-prone protein synthesis, and epigenetic modifications. These mechanisms are particularly adaptive in rapidly changing environments, allowing populations to hedge their bets by maintaining multiple phenotypes simultaneously. For example, *Salmonella typhimurium* populations can simultaneously contain virulent (ttss-1 ON) and avirulent (ttss-1 OFF) subpopulations, where the virulent cells cause gut inflammation that benefits the entire population. This type of variation corresponds to the differential transcription patterns shown in the figure (panel C).
+Genetic mechanisms represent the most straightforward source of variation, where heritable mutations lead to gain or loss of function [@giri2019], or horizontal gene transfer introduces new capabilities[@cyriaque2024]. These changes create stable subpopulations with distinct functional profiles that persist across generations. Mutations in regulatory genes can create subpopulations with different metabolic preferences, allowing the population to exploit diverse resources simultaneously. A particularly striking example involves auxotrophic bacteria - organisms that have lost genes coding for essential molecules through mutations. These mutants can survive by relying on helper organisms that provide the missing compounds [@pande2014; @morris2012]. While this creates dependency, it also reduces metabolic costs and enables specialization within the population, allowing different mutants to thrive collectively in challenging environments.
 
-**Regulatory mechanisms** involve phenotypic differentiation in response to environmental stimuli, such as microenvironmental sensing of oxygen, pH, nutrient availability, or surface attachment. This leads to physiological adaptation to optimal states for specific conditions without genetic changes, with automatic positive assortment as cells remain in similar environments. Examples include filamentous cyanobacteria where some cells become nitrogen-fixing heterocysts while others remain photosynthetic, or *Bacillus subtilis* colonies where cells differentiate into surfactin-producers and matrix-producers during colony expansion. These regulatory changes also result in differential transcription patterns (panel C) but are environmentally induced rather than stochastic.
+However, genetic variation is not the only driver of functional specialization. Gene expression-based mechanisms involve more complex regulation of protein synthesis and can create transient or reversible[@dekkers1998] functional specialization that may eventually become genetically encoded. Random fluctuations in gene expression due to the inherent noise [@raj2008; @chowdhury2021; @keren2015] in biological systems can lead to phenotypic heterogeneity even among genetically identical cells. This noise-driven variation can create functional diversity that benefits the population as a whole. Building upon this concept, the novel theory of noise-averaging cooperation (NAC)[@lopez2022] explains how stochastic metabolic noise can drive the emergence of cross-feeding interactions and metabolic interdependencies. Due to their small size, bacteria experience substantial noise in metabolic regulation, which limits individual growth rates. To compensate, related bacteria can share metabolites to 'average out' this noise and improve collective growth. This metabolite sharing, or 'leakage', can then facilitate the evolution of metabolic interdependencies and even drive speciation through gene deletions, as predicted by the Black Queen Hypothesis [@morris2012]. The Black Queen Hypothesis, proposed by Morris and colleagues, suggests that in environments where certain functions are costly to maintain but beneficial to the community, some organisms may lose these functions (becoming "leaky") while others retain them, creating metabolic interdependencies. NAC thus provides a mechanistic link between stochastic gene expression noise and the emergence of genetic specialization within populations, bridging the gap between phenotypic and genetic mechanisms of variation.
 
-**Genetic mechanisms** involve heritable changes that create phenotypic differences, including loss-of-function mutations that inactivate genes leading to metabolic dependencies, gain-of-function mutations that acquire new capabilities, horizontal gene transfer that acquires genes from other organisms, and antagonistic pleiotropy where mutations improve one trait while degrading another. These mechanisms can lead to stable cooperative interactions, such as auxotrophic bacteria that trade essential metabolites or antibiotic-resistant strains that protect sensitive neighbors. Genetic variations between intra-populations (panel D) provide the most stable form of specialization as they are heritable across generations. The relative importance of these mechanisms depends on environmental conditions, population structure, and evolutionary timescales. Understanding which mechanisms drive DOL in specific systems is crucial for predicting population dynamics and evolutionary trajectories.
+Environmental regulation further complicates this picture, as differential gene expression driven by microenvironmental cues and cellular perception of local conditions [@korshoj2024] can create spatial or temporal patterns of functional specialization within populations. These environmentally-induced variations can become stabilized through genetic changes if they confer consistent fitness benefits, illustrating how phenotypic plasticity can drive evolutionary innovation.
 
-This intraspecific division of labor can manifest through several mechanisms:
+These mechanisms often interact and overlap, making it challenging to distinguish between them. Factors such as growth/defense trade-offs, physiological state, growth stage, and even cell lysis can contribute to functional heterogeneity within populations. Importantly, phenotypic variation can provide the substrate for genetic evolution - stochastic gene expression patterns that confer fitness benefits may become stabilized through genetic changes over time. This evolutionary perspective highlights how the division of labor within populations can emerge through a complex interplay of immediate phenotypic responses and long-term genetic adaptation. The resolution of measurement techniques and the capacity to detect variation between cells (now possible with single-cell technologies) are crucial for understanding these complex interactions and their evolutionary implications.
 
--   **Metabolic cooperation**: Individuals specialize in different metabolic tasks to benefit the group
--   **Noisy regulation**: Gene expression varies stochastically between identical individuals
--   **Bet-hedging strategies**: Random expression of stress-related genes allows some individuals to survive unpredictable changes
 
-The conditions under which such patterns arise remain poorly understood, but their advantages are clear: DOL allows populations to diminish the costs associated with certain functions and enables the cohabitation of various specialized individuals within the population to respond as a whole to environmental constraints and thrive.
 
-### Bacterial Systems: A Special Case
 
-Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, auxotrophic bacteria[^01-introduction-2] (i.e., bacteria lacking genes coding for a molecule essential for their survival) have been extensively studied as examples of metabolic specialization [@morris2012].
 
-[^01-introduction-2]: Auxotrophic bacteria are microorganisms that have lost the ability to synthesize certain essential compounds (such as amino acids, vitamins, or nucleotides) and must obtain them from their environment or from other organisms.
+• Enzymes spécifiques de voies métaboliques
 
-Auxotroph bacteria can take advantage of leaky functions of helper organisms to fulfill their needs for specific compounds [@morris2014; @estrela2016]. With reduced genetic material, the beneficiary organism's fitness is improved, though at the risk of becoming dependent on the presence of helpers in their environment [@cooper2018].
+• Facteurs de virulence ou de stress
+
+• Gènes liés au quorum sensing (_luxR, lasI_…)
+
+• Transporteurs de fer (sidérophores)
+
+
+Comme tu analyses **Pseudomonas brassicacearum en stress de fer**, il serait intéressant de vérifier :
+
+• L’expression des gènes de **sidérophores** (_pch_, _ent_, _pyoverdine_)
+
+• La régulation de **facteurs sigma** (_rpoS_, _rpoN_)
+
+• La présence de **différenciation métabolique** entre sous-populations
 
 ## Model Organism: Pseudomonas brassicacearum R401
+
+
+
+Successful establishment of bacteria at roots is driven by multiple independent biological processes
+involved in both host-microbe (i.e., signal recognition, chemotaxis, surface attachment, biofilm
+formation, virulence factors) and microbe-microbe interactions (i.e., production of antimicrobials or
+public goods) (Knights et al. 2021). Therefore, we postulate that the simultaneous activation of these
+diverse processes is costly and that cooperation between genetically identical strains is key for
+promoting bacterial pervasiveness at roots. Consistent with this hypothesis, we recently
+demonstrated that the robust root coloniser Pseudomonas brassicacearum R401 (hereafter referred
+to as PsR401) deploys multiple independent strategies that co-function to promote colonisation and
+persistence at roots (Getzke et al., 2023). Notably, we identified two independent processes involved
+in microbe-microbe competition – namely the production of an antimicrobial and of a molecule
+scavenging the micronutrient iron – that act additively to promote strain competitiveness at roots
+(Getzke et al., 2023). We identified a third bacterial locus in PsR401 involved in the production of a
+phytotoxin that promotes both pathogenicity and root colonisation in mono-association experiments
+with A. thaliana (unpublished, see below). Our work provides proof-of-concept data illustrating that
+PsR401 deploys diverse exo-metabolites during root microbiota establishment that have versatile
+functions in host-microbe and microbe-microbe interactions. Together with earlier work (Gu et al.
+2020, Harbort et al 2020), it also delineates iron as a major micronutrient modulating strain
+competitiveness and proliferation at roots. Given that the public good iron becomes rate-limiting in
+the root compartment and that production of the above-mentioned processes are all modulated by
+iron availability (Lim et al., 2012; Palma et al., 2003, Mo et al. 1991), we anticipate that division of
+labour between bacterial intra-populations is bolstered under iron limiting conditions such as those
+found in the root habitat.
+
+
 
 Our study focuses on *Pseudomonas brassicacearum* R401 (PsR401), a robust root colonizer of *Arabidopsis thaliana* that can act as an opportunistic pathogen. This strain represents an excellent model for studying intraspecific DOL due to its complex colonization strategies and environmental adaptability.
 
@@ -71,11 +104,7 @@ These processes are all modulated by iron availability, which becomes rate-limit
 
 ## Single-Cell Technologies: Unveiling Cellular Heterogeneity
 
-New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.
-
-### The Single-Cell Revolution
-
-Single-cell technologies have revolutionized our understanding of cellular diversity in eukaryotic systems. Methods such as scRNA-seq, scATAC-seq, scMetabolomics, and spatial omics have provided unprecedented insights into cellular heterogeneity and functional specialization.
+Single-cell technologies have revolutionized our understanding of cellular diversity in eukaryotic systems. Methods such as scRNA-seq, scATAC-seq, scMetabolomics, and spatial omics have provided unprecedented insights into cellular heterogeneity and functional specialization. These new technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.
 
 ### Technical Challenges in Bacterial Single-Cell RNA-seq
 
@@ -116,3 +145,5 @@ We employ the microSPLiT technology [@kuchina2021], a high-throughput single-cel
 The experimental setup includes: - **Controlled conditions**: Iron-limiting and glucose-limiting environments - **Time course analysis**: During exponential growth phase - **Multiple replicates**: Biological and technical replicates for robust analysis - **High-throughput sequencing**: Targeting \~3,000 cells with \~1.5 billion reads
 
 This approach will provide mechanistic insights into whether and how a robust bacterial root colonizer can partition tasks within intra-populations to achieve greater functional diversity, minimize energetic costs, and adapt to environmental constraints.
+
+The ANR DivIDE project seeks to understand the mechanisms of division of labor in bacterial populations, with WP2 focusing on transcriptional variation supporting intraspecific DOL. This internship represents a first approach to exploring these complex interactions at the single-cell level.
