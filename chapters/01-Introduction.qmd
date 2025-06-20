@@ -2,29 +2,42 @@
 
 ## Division of Labor: A Fundamental Biological Principle
 
-The survival of organisms in evolving environments is driven by their fitness[^01-introduction-1], where the cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms must compete, cooperate, and/or specialize based on how well their traits enable resource acquisition and utilization in their biotic and abiotic environment. Division of Labor (DOL) represents one such strategy - the specialization of tasks of entities, optimizing resource use and enhancing collective performance [@cooper2018]. Division of labour, is very common in nature and exists on all levels of biological organization. It occurs when different individuals, cells or tissues become specialised to perform complementary tasks that benefit the whole organism or social group [@taborsky2025].
-
-The efficiency gains from DOL arise because specialization eliminates the trade-offs associated with performing multiple functions simultaneously. This fundamental principle operates throughout biological systems. Molecular evolution demonstrates this through enzyme specialization, where gene duplication events allow proteins to evolve increased specificity for distinct catalytic functions. Multicellular organisms exemplify DOL through cellular differentiation, where specialized cell types and tissues perform complementary functions that support the entire organism. Perhaps the most sophisticated manifestation occurs in eusocial insect societies, which display both reproductive specialization (queens versus workers) and functional caste systems among workers, mirroring the germline-soma division observed in multicellular organisms [@giri2019].
+The survival of organisms in evolving environments is driven by their fitness[^01-introduction-1], where the cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms must compete, cooperate, and/or specialize based on how well their traits enable resource acquisition and utilization in their biotic and abiotic environment. Division of Labor (DOL) represents one such strategy - the specialization of tasks of entities, optimizing resource use and enhancing collective performance [@cooper2018]. This fundamental principle operates throughout biological systems, from molecular evolution where gene duplication enables enzyme specialization, to multicellular organisms where cellular differentiation creates specialized tissues, to eusocial insect societies with their reproductive and functional caste systems [@giri2019]. Division of labour occurs when different individuals, cells or tissues become specialised to perform complementary tasks that benefit the whole organism or social group [@taborsky2025].
 
 [^01-introduction-1]: Fitness refers to the ability of an organism to survive and reproduce in its environment, measured by its reproductive success and contribution to future generations.
 
 ## Division of Labor in Microbial Communities
 
-Building upon these fundamental principles, microbial communities provide excellent examples of DOL in action. These communities exhibit DOL at two distinct levels [@giri2019].
-
-(@fig-microbial-dol):
-
-**Interspecific DOL**: Different microbial species engage in mutualistic interactions, such as cross-feeding, where one species produces metabolites that benefit others. This form of cooperation is well-documented in various ecosystems, including the human gut microbiome and soil communities.
-
-**Intraspecific DOL**: Less explored but equally important is the potential for functional specialization within genetically identical bacterial populations. Isogenic bacterial cells may exhibit functional specialization within a population, leading to metabolic cooperation and enhanced collective fitness.
+Building upon these fundamental principles, microbial communities provide excellent examples of DOL in action. Giri and colleagues have attempted to define the concept of DOL specifically within microbial communities, identifying key criteria that distinguish true DOL from other types of ecological interactions [@giri2019]. Microbial interactions can be classified based on their directionality and the species involved (@fig-microbial-dol). Interactions can be unidirectional or bidirectional, and can occur within the same species (intraspecific) or between different species (interspecific). For an interaction to qualify as true DOL, it must involve reciprocal fitness benefits between partners, where both participants gain from the interaction. The figure below illustrates this distinction, showing how closed (reciprocal) interactions provide mutual fitness benefits, while open (linear) interactions represent parasitic or unidirectional relationships that do not qualify as DOL.
 
 ![Division of Labor in Microbial Communities](../figures/dol_bacteria.png){#fig-microbial-dol width="60%" fig-align="center"}
 
-Classification of pairwise and three-way interactions as DOL. Interactions can be uni- or bidirectional as well as occur within one or between two microbial species. Arrows indicate fitness benefits that are exchanged between interaction partners that can be direct (straight line) or indirect (dashed line). For an interaction to classify as DOL, four main criteria need to be fulfilled, which is only the case in closed (reciprocal) interactions (green), yet not in open (linear) interactions (red). (a) Mutually beneficial (reciprocal) interaction within two conspecific genotypes. (b) Mutually beneficial (reciprocal) interaction within two heterospecific genotypes. (c) Mutually beneficial (reciprocal) interaction between three different species. (d) Unidirectional interaction between two members of the same species. (e) Unidirectional interaction between three members of three different species. (f) Unidirectional interaction between two members of two different species. (g) Unidirectional (linear) interaction chain between members of three different species.
+*Classification of pairwise and three-way interactions as DOL. Interactions can be uni- or bidirectional as well as occur within one or between two microbial species. Arrows indicate fitness benefits that are exchanged between interaction partners that can be direct (straight line) or indirect (dashed line). For an interaction to classify as DOL, four main criteria need to be fulfilled, which is only the case in closed (reciprocal) interactions (green), yet not in open (linear) interactions (red). (a) Mutually beneficial (reciprocal) interaction within two conspecific genotypes. (b) Mutually beneficial (reciprocal) interaction within two heterospecific genotypes. (c) Mutually beneficial (reciprocal) interaction between three different species. (d) Unidirectional interaction between two members of the same species. (e) Unidirectional interaction between three members of three different species. (f) Unidirectional interaction between two members of two different species. (g) Unidirectional (linear) interaction chain between members of three different species.*
 
-## Intraspecific Division of Labor: A New Paradigm
+Interspecific DOL has been well-characterized in various ecosystems, with numerous examples of cross-feeding and mutualistic interactions documented in the human gut microbiome, soil communities, and marine environments [@rafieenia2022]. In contrast, intraspecific DOL within clonal bacterial populations remains less explored, despite its potential importance for understanding population-level adaptation and functional diversity.
 
-The traditional view of biological populations assumed that all individuals within a clonal population behave identically. However, emerging evidence suggests that even genetically identical organisms can exhibit functional heterogeneity, leading to population-level benefits through task specialization. This intraspecific division of labor can manifest through several mechanisms:
+## Intraspecific Division of Labor: An Emerging Research Area
+
+The traditional view of biological populations assumed that all individuals within a clonal population behave identically. However, evidence has accumulated over decades showing that even genetically identical organisms can exhibit functional heterogeneity, leading to population-level benefits through task specialization [@lópez-pagán2025]. While intraspecific division of labor has been well-documented in multicellular organisms and social insects, its study in bacterial populations represents a more recent and growing field of research.
+
+![Examples of benefits and sources of intraspecific division of labour between
+intra-populations based on metabolic complementation and costly "common good" metabolite
+production.](../figures/intraspecific_dol.png){#fig-intraspecific-dol width="60%" fig-align="center"}
+
+
+*From the left to the right, co-metabolism within an isogenic bacterial population (A) and production of antimicrobials targeting other bacteria (B) can be considered as division of labour in a population. These mechanisms of division of labour can be based on differential transcription between bacteria (C) within a population and/or genetic variations between intra-populations (D).*
+
+### Sources of Variation in Intraspecific DOL
+
+As illustrated in the figure above, intraspecific DOL can manifest through different mechanisms that create functional specialization within populations. For an interaction to qualify as DOL, the participating individuals must exhibit functional specialization, which can arise through three main mechanisms that correspond to the variation sources shown in the figure.
+
+**Epigenetic mechanisms** create phenotypic heterogeneity within isogenic populations without environmental stimuli, including stochastic gene expression, error-prone protein synthesis, and epigenetic modifications. These mechanisms are particularly adaptive in rapidly changing environments, allowing populations to hedge their bets by maintaining multiple phenotypes simultaneously. For example, *Salmonella typhimurium* populations can simultaneously contain virulent (ttss-1 ON) and avirulent (ttss-1 OFF) subpopulations, where the virulent cells cause gut inflammation that benefits the entire population. This type of variation corresponds to the differential transcription patterns shown in the figure (panel C).
+
+**Regulatory mechanisms** involve phenotypic differentiation in response to environmental stimuli, such as microenvironmental sensing of oxygen, pH, nutrient availability, or surface attachment. This leads to physiological adaptation to optimal states for specific conditions without genetic changes, with automatic positive assortment as cells remain in similar environments. Examples include filamentous cyanobacteria where some cells become nitrogen-fixing heterocysts while others remain photosynthetic, or *Bacillus subtilis* colonies where cells differentiate into surfactin-producers and matrix-producers during colony expansion. These regulatory changes also result in differential transcription patterns (panel C) but are environmentally induced rather than stochastic.
+
+**Genetic mechanisms** involve heritable changes that create phenotypic differences, including loss-of-function mutations that inactivate genes leading to metabolic dependencies, gain-of-function mutations that acquire new capabilities, horizontal gene transfer that acquires genes from other organisms, and antagonistic pleiotropy where mutations improve one trait while degrading another. These mechanisms can lead to stable cooperative interactions, such as auxotrophic bacteria that trade essential metabolites or antibiotic-resistant strains that protect sensitive neighbors. Genetic variations between intra-populations (panel D) provide the most stable form of specialization as they are heritable across generations. The relative importance of these mechanisms depends on environmental conditions, population structure, and evolutionary timescales. Understanding which mechanisms drive DOL in specific systems is crucial for predicting population dynamics and evolutionary trajectories.
+
+This intraspecific division of labor can manifest through several mechanisms:
 
 -   **Metabolic cooperation**: Individuals specialize in different metabolic tasks to benefit the group
 -   **Noisy regulation**: Gene expression varies stochastically between identical individuals
@@ -40,11 +53,11 @@ Bacteria are unicellular organisms with therefore little option to specialize an
 
 Auxotroph bacteria can take advantage of leaky functions of helper organisms to fulfill their needs for specific compounds [@morris2014; @estrela2016]. With reduced genetic material, the beneficiary organism's fitness is improved, though at the risk of becoming dependent on the presence of helpers in their environment [@cooper2018].
 
-## 1.3 Model Organism: Pseudomonas brassicacearum R401
+## Model Organism: Pseudomonas brassicacearum R401
 
 Our study focuses on *Pseudomonas brassicacearum* R401 (PsR401), a robust root colonizer of *Arabidopsis thaliana* that can act as an opportunistic pathogen. This strain represents an excellent model for studying intraspecific DOL due to its complex colonization strategies and environmental adaptability.
 
-### 1.4.1 Colonization Strategies
+### Colonization Strategies
 
 PsR401 deploys multiple independent strategies for root colonization and persistence:
 
@@ -52,19 +65,19 @@ PsR401 deploys multiple independent strategies for root colonization and persist
 -   **Siderophore production**: Enhances iron acquisition and competitiveness by sequestering iron
 -   **Phytotoxin production**: Promotes both pathogenicity and root colonization
 
-### 1.4.2 Iron as a Key Limiting Factor
+### Iron as a Key Limiting Factor
 
 These processes are all modulated by iron availability, which becomes rate-limiting in the root compartment. Iron acts as a "public good" in the rhizosphere - all bacteria require it, but it is scarce in the environment. Given that the production of antimicrobials, siderophores, and phytotoxines is energetically costly and iron-dependent, we hypothesize that division of labor between bacterial intra-populations is bolstered under iron-limiting conditions.
 
-## 1.5 Single-Cell Technologies: Unveiling Cellular Heterogeneity
+## Single-Cell Technologies: Unveiling Cellular Heterogeneity
 
 New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.
 
-### 1.5.1 The Single-Cell Revolution
+### The Single-Cell Revolution
 
 Single-cell technologies have revolutionized our understanding of cellular diversity in eukaryotic systems. Methods such as scRNA-seq, scATAC-seq, scMetabolomics, and spatial omics have provided unprecedented insights into cellular heterogeneity and functional specialization.
 
-### 1.5.2 Technical Challenges in Bacterial Single-Cell RNA-seq
+### Technical Challenges in Bacterial Single-Cell RNA-seq
 
 However, applying these technologies to bacterial systems presents unique challenges:
 
@@ -75,7 +88,7 @@ However, applying these technologies to bacterial systems presents unique challe
 -   **Operon structure**: Bacterial operons require specific approaches for complete capture
 -   **Small RNA detection**: Regulatory sRNAs are challenging to detect due to their short length
 
-### 1.5.3 Methodological Approaches
+### Methodological Approaches
 
 Several approaches have been developed to address these challenges:
 
@@ -83,9 +96,9 @@ Several approaches have been developed to address these challenges:
 -   **Split-pool barcoding**: High throughput with moderate sensitivity (microSPLiT)
 -   **Droplet-based methods**: Balance between throughput and sensitivity
 
-## 1.6 Research Objectives and Experimental Approach
+## Research Objectives and Experimental Approach
 
-### 1.6.1 Primary Research Question
+### Primary Research Question
 
 The goal of this internship is to explore scRNA-seq (single-cell RNA-seq) datasets of *Pseudomonas brassicacearum*, a root colonizer. The student will analyze sample datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.
 
@@ -96,7 +109,7 @@ This question addresses two main biological hypotheses:
 1.  **Noisy regulation hypothesis**: Gene expression varies stochastically between identical cells
 2.  **Specialized cells hypothesis**: Certain cells become functionally specialized under specific conditions
 
-### 1.6.2 Experimental Design
+### Experimental Design
 
 We employ the microSPLiT technology [@kuchina2021], a high-throughput single-cell RNA sequencing method for bacteria developed from SPLiT-seq for eukaryotic cells. This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.
 
