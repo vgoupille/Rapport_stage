@@ -218,7 +218,12 @@ div.csl-indent {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#litterature-review" id="toc-litterature-review" class="nav-link active" data-scroll-target="#litterature-review"><span class="header-section-number">1.1</span> Litterature review</a></li>
+  <li><a href="#division-of-labor-a-fundamental-biological-principle" id="toc-division-of-labor-a-fundamental-biological-principle" class="nav-link active" data-scroll-target="#division-of-labor-a-fundamental-biological-principle"><span class="header-section-number">1.1</span> Division of Labor: A Fundamental Biological Principle</a></li>
+  <li><a href="#division-of-labor-in-microbial-communities" id="toc-division-of-labor-in-microbial-communities" class="nav-link" data-scroll-target="#division-of-labor-in-microbial-communities"><span class="header-section-number">1.2</span> Division of Labor in Microbial Communities</a></li>
+  <li><a href="#intraspecific-division-of-labor-a-new-paradigm" id="toc-intraspecific-division-of-labor-a-new-paradigm" class="nav-link" data-scroll-target="#intraspecific-division-of-labor-a-new-paradigm"><span class="header-section-number">1.3</span> Intraspecific Division of Labor: A New Paradigm</a></li>
+  <li><a href="#model-organism-pseudomonas-brassicacearum-r401" id="toc-model-organism-pseudomonas-brassicacearum-r401" class="nav-link" data-scroll-target="#model-organism-pseudomonas-brassicacearum-r401"><span class="header-section-number">1.4</span> 1.3 Model Organism: Pseudomonas brassicacearum R401</a></li>
+  <li><a href="#single-cell-technologies-unveiling-cellular-heterogeneity" id="toc-single-cell-technologies-unveiling-cellular-heterogeneity" class="nav-link" data-scroll-target="#single-cell-technologies-unveiling-cellular-heterogeneity"><span class="header-section-number">1.5</span> 1.5 Single-Cell Technologies: Unveiling Cellular Heterogeneity</a></li>
+  <li><a href="#research-objectives-and-experimental-approach" id="toc-research-objectives-and-experimental-approach" class="nav-link" data-scroll-target="#research-objectives-and-experimental-approach"><span class="header-section-number">1.6</span> 1.6 Research Objectives and Experimental Approach</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/01-Introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -244,57 +249,140 @@ div.csl-indent {
 </header>
 
 
-<section id="litterature-review" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="litterature-review"><span class="header-section-number">1.1</span> Litterature review</h2>
-<p>deddfefde<span class="citation" data-cites="kuchina2021 gaisser2024"><sup><a href="06-References.html#ref-kuchina2021" role="doc-biblioref">1</a>,<a href="06-References.html#ref-gaisser2024" role="doc-biblioref">2</a></sup></span> Internship description</p>
-<p>The survival of organisms in evolving environments is driven by their fitness. The cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms will have to compete, cooperate and/or specialize as a result of how fit their traits are considering their biotic and abiotic environment. Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, [[auxotrophic bacteria]] (i.e bacteria lacking genes coding for a molecule essential for their survival) have been studied (Morris et al., 2012).<span class="citation" data-cites="morris2012"><sup><a href="06-References.html#ref-morris2012" role="doc-biblioref">3</a></sup></span></p>
-<p>Auxotroph bacteria can take advantage of leaky functions of helper’s organisms to fulfill their needs in specific compounds (Morris et al., 2014, Estrela et al., 2016).<span class="citation" data-cites="morris2014 estrela2016"><sup><a href="06-References.html#ref-morris2014" role="doc-biblioref">4</a>,<a href="06-References.html#ref-estrela2016" role="doc-biblioref">5</a></sup></span> With a reduced genetic material, the beneficiary organism fitness is improved, at the risk of being dependent on the helpers presence in their environment. The conditions in which patterns of such [[division of labor (DOL)]] arise are still obscure, but its advantages for bacterial population are clear: DOL allows to diminish the cost associated to certain functions and the possibility of cohabitation of various mutants/specialized cells within the population to respond as a whole to environmental constraints, and thrive. New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell -omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.</p>
-<p>The goal of this internship is to explore scRNA-seq (single-cell RNA-seq) datasets of Pseudomonas brassicacearum, a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.&nbsp; The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.</p>
+<section id="division-of-labor-a-fundamental-biological-principle" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="division-of-labor-a-fundamental-biological-principle"><span class="header-section-number">1.1</span> Division of Labor: A Fundamental Biological Principle</h2>
+<p>The survival of organisms in evolving environments is driven by their fitness<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, where the cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms must compete, cooperate, and/or specialize based on how well their traits enable resource acquisition and utilization in their biotic and abiotic environment. Division of Labor (DOL) represents one such strategy - the specialization of tasks of entities, optimizing resource use and enhancing collective performance<span class="citation" data-cites="cooper2018"><sup><a href="06-References.html#ref-cooper2018" role="doc-biblioref">1</a></sup></span>. Division of labour, is very common in nature and exists on all levels of biological organization. It occurs when different individuals, cells or tissues become specialised to perform complementary tasks that benefit the whole organism or social group<span class="citation" data-cites="taborsky2025"><sup><a href="06-References.html#ref-taborsky2025" role="doc-biblioref">2</a></sup></span>.</p>
+<p>The efficiency gains from DOL arise because specialization eliminates the trade-offs associated with performing multiple functions simultaneously. This fundamental principle operates throughout biological systems. Molecular evolution demonstrates this through enzyme specialization, where gene duplication events allow proteins to evolve increased specificity for distinct catalytic functions. Multicellular organisms exemplify DOL through cellular differentiation, where specialized cell types and tissues perform complementary functions that support the entire organism. Perhaps the most sophisticated manifestation occurs in eusocial insect societies, which display both reproductive specialization (queens versus workers) and functional caste systems among workers, mirroring the germline-soma division observed in multicellular organisms<span class="citation" data-cites="giri2019"><sup><a href="06-References.html#ref-giri2019" role="doc-biblioref">3</a></sup></span>.</p>
+</section>
+<section id="division-of-labor-in-microbial-communities" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="division-of-labor-in-microbial-communities"><span class="header-section-number">1.2</span> Division of Labor in Microbial Communities</h2>
+<p>Building upon these fundamental principles, microbial communities provide excellent examples of DOL in action. These communities exhibit DOL at two distinct levels<span class="citation" data-cites="giri2019"><sup><a href="06-References.html#ref-giri2019" role="doc-biblioref">3</a></sup></span>.</p>
+<p>(<a href="#fig-microbial-dol" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>):</p>
+<p><strong>Interspecific DOL</strong>: Different microbial species engage in mutualistic interactions, such as cross-feeding, where one species produces metabolites that benefit others. This form of cooperation is well-documented in various ecosystems, including the human gut microbiome and soil communities.</p>
+<p><strong>Intraspecific DOL</strong>: Less explored but equally important is the potential for functional specialization within genetically identical bacterial populations. Isogenic bacterial cells may exhibit functional specialization within a population, leading to metabolic cooperation and enhanced collective fitness.</p>
+<div id="fig-microbial-dol" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-microbial-dol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/dol_bacteria.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-microbial-dol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Division of Labor in Microbial Communities
+</figcaption>
+</figure>
+</div>
+<p>Classification of pairwise and three-way interactions as DOL. Interactions can be uni- or bidirectional as well as occur within one or between two microbial species. Arrows indicate fitness benefits that are exchanged between interaction partners that can be direct (straight line) or indirect (dashed line). For an interaction to classify as DOL, four main criteria need to be fulfilled, which is only the case in closed (reciprocal) interactions (green), yet not in open (linear) interactions (red). (a) Mutually beneficial (reciprocal) interaction within two conspecific genotypes. (b) Mutually beneficial (reciprocal) interaction within two heterospecific genotypes. (c) Mutually beneficial (reciprocal) interaction between three different species. (d) Unidirectional interaction between two members of the same species. (e) Unidirectional interaction between three members of three different species. (f) Unidirectional interaction between two members of two different species. (g) Unidirectional (linear) interaction chain between members of three different species.</p>
+</section>
+<section id="intraspecific-division-of-labor-a-new-paradigm" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="intraspecific-division-of-labor-a-new-paradigm"><span class="header-section-number">1.3</span> Intraspecific Division of Labor: A New Paradigm</h2>
+<p>The traditional view of biological populations assumed that all individuals within a clonal population behave identically. However, emerging evidence suggests that even genetically identical organisms can exhibit functional heterogeneity, leading to population-level benefits through task specialization. This intraspecific division of labor can manifest through several mechanisms:</p>
 <ul>
-<li>differentes methodes de single cell RNA seq (voir diapo et citations )</li>
-<li>voir annexes pour les differentes methodes</li>
-<li>nous focus sur microSPLiT stratégie qui est derivé de la SPLiTseq pour les eucaryotes (=&gt; voir matériels et methodes pour l’explication de la méthode )<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">6</a></sup></span> It’s a high-throughput single-cell RNA sequencing method for bacteria. The microSPLiT technology was developed from SPLiT-seq16, a combinatorial split-pool scRNA-seq technology for eukaryotic cells.</li>
+<li><strong>Metabolic cooperation</strong>: Individuals specialize in different metabolic tasks to benefit the group</li>
+<li><strong>Noisy regulation</strong>: Gene expression varies stochastically between identical individuals</li>
+<li><strong>Bet-hedging strategies</strong>: Random expression of stress-related genes allows some individuals to survive unpredictable changes</li>
 </ul>
-<p>-nombreux defi pour les bactéries : faire la liste ici</p>
-<p>et pour le moment pas d’outils pour le moment vraiment adaptés …<span class="citation" data-cites="ostner"><sup><a href="06-References.html#ref-ostner" role="doc-biblioref">7</a></sup></span></p>
+<p>The conditions under which such patterns arise remain poorly understood, but their advantages are clear: DOL allows populations to diminish the costs associated with certain functions and enables the cohabitation of various specialized individuals within the population to respond as a whole to environmental constraints and thrive.</p>
+<section id="bacterial-systems-a-special-case" class="level3">
+<h3 class="anchored" data-anchor-id="bacterial-systems-a-special-case">Bacterial Systems: A Special Case</h3>
+<p>Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, auxotrophic bacteria<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (i.e., bacteria lacking genes coding for a molecule essential for their survival) have been extensively studied as examples of metabolic specialization<span class="citation" data-cites="morris2012"><sup><a href="06-References.html#ref-morris2012" role="doc-biblioref">4</a></sup></span>.</p>
+<p>Auxotroph bacteria can take advantage of leaky functions of helper organisms to fulfill their needs for specific compounds<span class="citation" data-cites="morris2014 estrela2016"><sup><a href="06-References.html#ref-morris2014" role="doc-biblioref">5</a>,<a href="06-References.html#ref-estrela2016" role="doc-biblioref">6</a></sup></span>. With reduced genetic material, the beneficiary organism’s fitness is improved, though at the risk of becoming dependent on the presence of helpers in their environment<span class="citation" data-cites="cooper2018"><sup><a href="06-References.html#ref-cooper2018" role="doc-biblioref">1</a></sup></span>.</p>
+</section>
+</section>
+<section id="model-organism-pseudomonas-brassicacearum-r401" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="model-organism-pseudomonas-brassicacearum-r401"><span class="header-section-number">1.4</span> 1.3 Model Organism: Pseudomonas brassicacearum R401</h2>
+<p>Our study focuses on <em>Pseudomonas brassicacearum</em> R401 (PsR401), a robust root colonizer of <em>Arabidopsis thaliana</em> that can act as an opportunistic pathogen. This strain represents an excellent model for studying intraspecific DOL due to its complex colonization strategies and environmental adaptability.</p>
+<section id="colonization-strategies" class="level3">
+<h3 class="anchored" data-anchor-id="colonization-strategies">1.4.1 Colonization Strategies</h3>
+<p>PsR401 deploys multiple independent strategies for root colonization and persistence:</p>
 <ul>
-<li>voir mon diapo pour toute l’introduction , les figures ET LA LOGIQUE</li>
+<li><strong>Antimicrobial production</strong>: Suppresses competitors in the rhizosphere</li>
+<li><strong>Siderophore production</strong>: Enhances iron acquisition and competitiveness by sequestering iron</li>
+<li><strong>Phytotoxin production</strong>: Promotes both pathogenicity and root colonization</li>
 </ul>
-<p>=&gt; QUESTIONS BIOLOGIQUES IMPORTANT :</p>
-<p>DOL 2 hypotheses : noises / specialized cells</p>
+</section>
+<section id="iron-as-a-key-limiting-factor" class="level3">
+<h3 class="anchored" data-anchor-id="iron-as-a-key-limiting-factor">1.4.2 Iron as a Key Limiting Factor</h3>
+<p>These processes are all modulated by iron availability, which becomes rate-limiting in the root compartment. Iron acts as a “public good” in the rhizosphere - all bacteria require it, but it is scarce in the environment. Given that the production of antimicrobials, siderophores, and phytotoxines is energetically costly and iron-dependent, we hypothesize that division of labor between bacterial intra-populations is bolstered under iron-limiting conditions.</p>
+</section>
+</section>
+<section id="single-cell-technologies-unveiling-cellular-heterogeneity" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="single-cell-technologies-unveiling-cellular-heterogeneity"><span class="header-section-number">1.5</span> 1.5 Single-Cell Technologies: Unveiling Cellular Heterogeneity</h2>
+<p>New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.</p>
+<section id="the-single-cell-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="the-single-cell-revolution">1.5.1 The Single-Cell Revolution</h3>
+<p>Single-cell technologies have revolutionized our understanding of cellular diversity in eukaryotic systems. Methods such as scRNA-seq, scATAC-seq, scMetabolomics, and spatial omics have provided unprecedented insights into cellular heterogeneity and functional specialization.</p>
+</section>
+<section id="technical-challenges-in-bacterial-single-cell-rna-seq" class="level3">
+<h3 class="anchored" data-anchor-id="technical-challenges-in-bacterial-single-cell-rna-seq">1.5.2 Technical Challenges in Bacterial Single-Cell RNA-seq</h3>
+<p>However, applying these technologies to bacterial systems presents unique challenges:</p>
 <ul>
-<li><p>seurat object</p></li>
-<li><p>d’abord filtrer les cellules par Sample_ID (meilleurs signal probablement)</p></li>
-<li><p>ensuite recuperer seulement CDS</p></li>
+<li><strong>Lack of poly-A tails</strong>: Bacterial mRNAs lack poly-A tails, requiring alternative capture methods</li>
+<li><strong>High rRNA content</strong>: rRNA constitutes up to 95% of bacterial RNA, necessitating effective depletion strategies</li>
+<li><strong>Low RNA content</strong>: Bacterial cells contain much less RNA than mammalian cells</li>
+<li><strong>Cell wall complexity</strong>: Diverse cell wall structures complicate RNA extraction</li>
+<li><strong>Operon structure</strong>: Bacterial operons require specific approaches for complete capture</li>
+<li><strong>Small RNA detection</strong>: Regulatory sRNAs are challenging to detect due to their short length</li>
 </ul>
-<p>ouverture : est ce que methode permet de capturer efficacement en condition de stress</p>
-<p><strong>This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.</strong></p>
-<p>operon , facteur sigma , new genome annotatipn …</p>
+</section>
+<section id="methodological-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="methodological-approaches">1.5.3 Methodological Approaches</h3>
+<p>Several approaches have been developed to address these challenges:</p>
+<ul>
+<li><strong>Plate-based methods</strong>: High sensitivity but low throughput (hundreds of cells)</li>
+<li><strong>Split-pool barcoding</strong>: High throughput with moderate sensitivity (microSPLiT)</li>
+<li><strong>Droplet-based methods</strong>: Balance between throughput and sensitivity</li>
+</ul>
+</section>
+</section>
+<section id="research-objectives-and-experimental-approach" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="research-objectives-and-experimental-approach"><span class="header-section-number">1.6</span> 1.6 Research Objectives and Experimental Approach</h2>
+<section id="primary-research-question" class="level3">
+<h3 class="anchored" data-anchor-id="primary-research-question">1.6.1 Primary Research Question</h3>
+<p>The goal of this internship is to explore scRNA-seq (single-cell RNA-seq) datasets of <em>Pseudomonas brassicacearum</em>, a root colonizer. The student will analyze sample datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.</p>
+<p>The central question of this study is: <strong>Is there functional specialization (DOL) within clonal populations of PsR401?</strong></p>
+<p>This question addresses two main biological hypotheses:</p>
+<ol type="1">
+<li><strong>Noisy regulation hypothesis</strong>: Gene expression varies stochastically between identical cells</li>
+<li><strong>Specialized cells hypothesis</strong>: Certain cells become functionally specialized under specific conditions</li>
+</ol>
+</section>
+<section id="experimental-design" class="level3">
+<h3 class="anchored" data-anchor-id="experimental-design">1.6.2 Experimental Design</h3>
+<p>We employ the microSPLiT technology<span class="citation" data-cites="kuchina2021"><sup><a href="06-References.html#ref-kuchina2021" role="doc-biblioref">7</a></sup></span>, a high-throughput single-cell RNA sequencing method for bacteria developed from SPLiT-seq for eukaryotic cells. This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.</p>
+<p>The experimental setup includes: - <strong>Controlled conditions</strong>: Iron-limiting and glucose-limiting environments - <strong>Time course analysis</strong>: During exponential growth phase - <strong>Multiple replicates</strong>: Biological and technical replicates for robust analysis - <strong>High-throughput sequencing</strong>: Targeting ~3,000 cells with ~1.5 billion reads</p>
+<p>This approach will provide mechanistic insights into whether and how a robust bacterial root colonizer can partition tasks within intra-populations to achieve greater functional diversity, minimize energetic costs, and adapt to environmental constraints.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-kuchina2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Kuchina, A. <em>et al.</em> <a href="https://doi.org/10.1126/science.aba5257">Microbial single-cell RNA sequencing by split-pool barcoding</a>. <em>Science</em> <strong>371</strong>, eaba5257 (2021).</div>
+<div id="ref-cooper2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Cooper, G. A. &amp; West, S. A. <a href="https://doi.org/10.1038/s41559-018-0564-9">Division of labour and the evolution of extreme specialization</a>. <em>Nature Ecology &amp; Evolution</em> <strong>2</strong>, 1161–1167 (2018).</div>
 </div>
-<div id="ref-gaisser2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Gaisser, K. D. <em>et al.</em> <a href="https://doi.org/10.1038/s41596-024-01007-w">High-throughput single-cell transcriptomics of bacteria using combinatorial barcoding</a>. <em>Nature Protocols</em> <strong>19</strong>, 3048–3084 (2024).</div>
+<div id="ref-taborsky2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Taborsky, M., Fewell, J. H., Gilles, R. &amp; Taborsky, B. <a href="https://doi.org/10.1098/rstb.2023.0261">Division of labour as key driver of social evolution</a>. <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> <strong>380</strong>, 20230261 (2025).</div>
+</div>
+<div id="ref-giri2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Giri, S., Waschina, S., Kaleta, C. &amp; Kost, C. <a href="https://doi.org/10.1016/j.jmb.2019.06.023">Defining division of labor in microbial communities</a>. <em>Journal of Molecular Biology</em> <strong>431</strong>, 4712–4731 (2019).</div>
 </div>
 <div id="ref-morris2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Morris, J. J., Lenski, R. E. &amp; Zinser, E. R. <a href="https://doi.org/10.1128/mBio.00036-12">The black queen hypothesis: Evolution of dependencies through adaptive gene loss</a>. <em>mBio</em> <strong>3</strong>, e00036–12 (2012).</div>
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Morris, J. J., Lenski, R. E. &amp; Zinser, E. R. <a href="https://doi.org/10.1128/mBio.00036-12">The black queen hypothesis: Evolution of dependencies through adaptive gene loss</a>. <em>mBio</em> <strong>3</strong>, e00036–12 (2012).</div>
 </div>
 <div id="ref-morris2014" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Morris, E. K. <em>et al.</em> <a href="https://doi.org/10.1002/ece3.1155">Choosing and using diversity indices: insights for ecological applications from the German Biodiversity Exploratories</a>. <em>Ecology and Evolution</em> <strong>4</strong>, 3514–3524 (2014).</div>
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Morris, E. K. <em>et al.</em> <a href="https://doi.org/10.1002/ece3.1155">Choosing and using diversity indices: insights for ecological applications from the German Biodiversity Exploratories</a>. <em>Ecology and Evolution</em> <strong>4</strong>, 3514–3524 (2014).</div>
 </div>
 <div id="ref-estrela2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Estrela, S., Kerr, B. &amp; Morris, J. J. <a href="https://doi.org/10.1016/j.mib.2016.04.007">Transitions in individuality through symbiosis</a>. <em>Current Opinion in Microbiology</em> <strong>31</strong>, 191–198 (2016).</div>
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Estrela, S., Kerr, B. &amp; Morris, J. J. <a href="https://doi.org/10.1016/j.mib.2016.04.007">Transitions in individuality through symbiosis</a>. <em>Current Opinion in Microbiology</em> <strong>31</strong>, 191–198 (2016).</div>
 </div>
-<div id="ref-nishimura2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
-</div>
-<div id="ref-ostner" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Ostner, J. <em>et al.</em> BacSC: A general workflow for bacterial single-cell RNA sequencing data analysis. doi:<a href="https://doi.org/10.1101/2024.06.22.600071">10.1101/2024.06.22.600071</a>.</div>
+<div id="ref-kuchina2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Kuchina, A. <em>et al.</em> <a href="https://doi.org/10.1126/science.aba5257">Microbial single-cell RNA sequencing by split-pool barcoding</a>. <em>Science</em> <strong>371</strong>, eaba5257 (2021).</div>
 </div>
 </div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Fitness refers to the ability of an organism to survive and reproduce in its environment, measured by its reproductive success and contribution to future generations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Auxotrophic bacteria are microorganisms that have lost the ability to synthesize certain essential compounds (such as amino acids, vitamins, or nucleotides) and must obtain them from their environment or from other organisms.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

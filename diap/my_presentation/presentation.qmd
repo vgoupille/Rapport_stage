@@ -1,0 +1,455 @@
+---
+title: "Study of Division of Labor in Pseudomonas through single-cell RNA-seq"
+subtitle: "From population-level to single-cell analysis"
+author: "Valentin Goupille"
+date: "2025-04-09"
+format:
+  revealjs:
+    theme: simple
+    transition: slide
+    slide-number: true
+    footer: "Presentation of the internship"
+    highlight-style: github
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    callout-appearance: simple
+    callout-icon: true
+    css: styles.css
+---
+
+## Introduction
+
+::: callout-note
+## Division of Labor (DOL)
+**The specialization of tasks within a group, optimizing resource use and enhancing collective performance.**
+
+- Economic origin introduced by Adam Smith in 1776
+
+-  Societal and biological concepts
+:::
+
+::: {.notes}
+**Origin of the Concept**: First described by Adam Smith (1776) in economics, studying pin factories where workers specialized in specific tasks.
+:::
+
+::: {.fragment style="font-size: 0.7em; text-align: left; padding-left: 2em;"}
+- **Example**: Ant colonies exhibit task specialization among individuals
+:::
+::: {.fragment style="text-align: center;"}
+![Division of labor in ant colonies](figure/ants.png){width=30%}
+
+:::
+
+------------------------------------------------------------------------
+
+## DOL in Multicellular Organisms
+
+::: {style="font-size: 0.6em;"}
+-  Specialization of **organs**, **tissues** and **cells** 
+    -   **Example**: In plants like C4 species, **bundle sheath** and **mesophyll** cells perform distinct functions to optimize **photosynthesis**
+  
+::: {style="text-align: center;"}
+![C4 plant anatomy](figure/C4PlantAnatomy.png){width=60%}
+
+:::
+  
+:::
+
+
+
+------------------------------------------------------------------------
+
+## Division of Labor (DOL) in Microbial Communities
+
+::: {.columns}
+::: {.column width="50%"}
+![](figure/image-8-x56-y237.png){width="100%"}
+:::
+::: {.column width="50%"}
+::: {.fragment style="font-size: 0.7em;"}
+-   **Interspecific DOL**:
+    -  Different microbial species engage in mutualistic interactions, such as **cross-feeding**
+:::
+
+::: {.fragment style="font-size: 0.7em;"}
+-   **Intraspecific DOL**:
+    -   **Isogenic** bacterial cells may exhibit functional specialization within a population
+:::
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+## Intraspecific DOL {data-transition="zoom"}
+
+![](figure/isogenicpop.png){width="100%"}
+
+
+
+## ANR Project: DivIDE {data-transition-speed="slow"}
+
+::: {style="text-align: center;"}
+![DivIDE and the differents Work Packages](figure/divide2.png){width="60%" fig-align="center"}
+:::
+
+
+------------------------------------------------------------------------
+
+## Species of interest:
+::: {.columns style="font-size: 0.7em;"}
+  - **_Pseudomonas brassicacearum R401_**  (PsR401) 
+    -  **Root colonizer** of  **_Arabidopsis thaliana_** and **Opportunistic pathogen**
+       -  **Lacks T3SS**
+       -  **Phytotoxin Production**
+       -  **Competition with Other Microbes**:
+          -   Antimicrobial Production
+          -   **Siderophore Production**: Enhances competitiveness by sequestering iron
+:::  
+
+::: callout-warning
+## Scientific Question
+-   **Is there functional specialization (DOL) within clonal populations of PsR401?**
+:::
+
+::: {.notes}
+
+Type III Secretion Systems
+- available RB mutant library (WP1)
+-  **_Pseudomonas brassicacearum_** R401 is a dominant plant microbiota member but can be detrimental under laboratory conditions.
+-  However, in natural soil conditions, R401 does not cause disease, suggesting it requires specific environmental conditions to become pathogenic.
+
+Together with earlier work (Gu et al. 2020, Harbort et al 2020), it also delineates iron as a major micronutrient modulating strain competitiveness and proliferation at roots. Given that the public good iron becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability (Lim et al., 2012; Palma et al., 2003, Mo et al. 1991), we anticipate that division of labour between bacterial intra-populations is bolstered under iron limiting conditions such as those found in the root habitat.
+:::
+
+------------------------------------------------------------------------
+
+## 🧩 WP2 – Transcriptional Analysis of DOL
+
+
+
+::: callout-note
+Goal: **identify molecular signatures of DOL by analyzing transcriptional heterogeneity in PsR401**
+:::
+
+### Experimental Setup
+
+- Use **single-cell RNA-seq**
+
+- **Compare gene expression profiles under different environmental constraints**
+
+------------------------------------------------------------------------
+
+
+## Single-cell technologies
+
+::: {style="font-size: 0.7em;"}
+- Very developed in eukaryotes : 
+  - scRNA-seq, scATAC-seq, scMetabolomics and spatial omics...
+:::
+
+::: {style="text-align: center;"}
+![Spatial omics in mice](figure/mice.jpg){width="30%"}
+
+:::
+
+------------------------------------------------------------------------
+
+## Technical Challenges in Bacterial scRNA-seq
+
+::: callout-warning
+
+- No polyA tail on mRNA
+    
+- Very low RNA content per cell
+    
+- High rRNA content
+    
+- Cell wall makes lysis difficult
+    
+- ...
+:::
+
+::: {.notes}
+- small RNAs
+- Operon Structure
+- ...
+:::
+
+
+------------------------------------------------------------------------
+
+## Bacterial scRNA-seq Methodologies
+
+::: {style="font-size: 0.7em;"}
+- 3 main methods:
+:::
+
+::: {style="text-align: center;"}
+![ScRNA-seq methods in bacteria](figure/image-2-x30-y254.png){width="50%"}
+:::
+
+------------------------------------------------------------------------
+
+## Our Focus: microSPLiT
+
+-   **Workflow**: Cell fixation, permeabilization, reverse transcription, split-pool barcoding.
+
+::: {style="text-align: center;"}
+![MicroSPliT workflow](figure/microsplit2.png){width="30%"}
+:::
+
+------------------------------------------------------------------------
+
+## Protocol
+::: {.columns style="font-size: 0.7em;"}
+-   **Conditions**:
+  -  Control
+  -  Iron-limiting/Glucose-limiting
+    
+- Controlled homogeneous environment (no plant interaction)
+    
+- Time course during exponential phase
+    
+- Multiple biological and technical replicates
+- Sequencing depth: **1.5 billion reads** (Illumina NovaSeq) for **3000 cells in total**
+:::
+
+::: callout-warning
+- Can **scRNA-seq reveal transcriptional heterogeneity**?
+- Is there **functional specialization (DoL)** within clonal populations of PSR401?
+- Are certain **cells specialized under stress** (e.g. iron/glucose limitation)?  
+- Is this driven by **noisy gene expression** or **regulated mechanisms**?
+:::
+
+
+
+
+
+::: {.notes}
+-  Identify and quantify gene expression patterns as **a proxy for functional specialization**
+-  
+-   **Noisy Regulation**:
+          -   Gene expression may vary stochastically between identical cells
+  - **Hypothesis**: 
+    -   **Intraspecific DOL**:
+        -   **Isogenic** bacterial cells may exhibit functional specialization within a population
+            -   **Metabolic Cooperation**:
+                -   Cells may coordinate their metabolic activities
+            -   **Noisy Regulation**:
+                -   Gene expression may vary stochastically between identical cells
+:::
+
+------------------------------------------------------------------------
+
+## Bioinformatics Analysis – My Role
+
+- **Awaiting sequencing results**...
+- But I already explored and tested some tools
+
+------------------------------------------------------------------------
+
+## 1. Preprocessing Pipeline
+
+::: {style="font-size: 0.7em;"}
+
+- **Quality Control of read counts**
+- **Demultiplexing**
+- **Alignment to the reference genome of _PsR401_**
+- **Quantification of the reads**
+
+- **STARsolo** 
+  - alignment, demultiplexing, quantification...
+  - Optimal tool based on benchmarking (Zhang et al., 2023)
+  - Handles multi-mapping and unique reads
+  - **Output**: **Count matrix (genes × cells)**
+:::
+
+------------------------------------------------------------------------
+
+## 2. Quality Control of cells
+
+
+::: {style="font-size: 0.7em;"}
+
+
+- **Removal of rRNA/tRNA** 
+- **Low-quality cell filtering**:
+  - Number of genes/UMIs
+  - Manual thresholds
+  - Remove potential doublets
+  - Using **Scanpy/Seurat**
+:::
+
+::: callout-warning
+Careful evaluation of filtering thresholds required
+:::
+------------------------------------------------------------------------
+
+## 2. Quality Control of cells...
+
+::: callout-warning
+- **Key Considerations for Filtering**
+  - **Iterative threshold evaluation**:
+    - Compare different filtering parameters
+    - **Balance between removing low-quality cells and preserving biological signal**
+    - Consider potential **latent cell states** in low-expression cells
+:::
+
+------------------------------------------------------------------------
+
+## 3. Downstream Analysis
+
+::: {.columns}
+::: {.column width="50%" style="font-size: 0.7em;"}
+
+- On **Seurat** or **Scanpy**
+- **Normalization**: SCTransform or log-normalization
+- **Dimensionality reduction**: PCA, UMAP
+- **Integration**:
+  - Comparison of methods (CCA, Harmony, RPCA)
+- **Clustering**: Louvain, Leiden
+- **Differential expression** between clusters/conditions
+- **Pseudo-bulk** analysis 
+:::
+::: {.column width="50%"}
+![Example of analysis](figure/analysis.png){width=100%}
+:::
+:::
+
+
+
+
+------------------------------------------------------------------------
+
+## 3. Downstream Analysis
+
+- **Metabolic inference**: pathway activation
+  
+::: {style="text-align: center;"}
+![Example of metabolic inference](figure/metabo_inference.png){width=35% fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+## Alternative: BacSC Workflow
+
+::: {.columns}
+::: {.column width="50%"}
+- **Advantages**:
+  - Adaptive filtering
+  - Variance stabilization
+  - Optimized clustering/DE
+- **Limitations**:
+  - Developed for BACseq (not SPLiT)
+  - Still a preprint
+:::
+::: {.column width="50%"}
+::: {style="text-align: center;"}
+![BacSC Workflow](figure/bacsc.png){width="80%"}
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Conclusions & Next Steps
+
+::: {style="font-size: 0.7em;"}
+- Awaiting sequencing results
+- Preprocessing pipeline explored (STARsolo)
+- Quality control strategies tested
+- Seurat vs Scanpy comparison
+- Integration methods benchmarking planned
+- BacSC pipeline evaluation
+:::
+
+------------------------------------------------------------------------
+
+# Thank you for your attention!
+
+Questions?
+
+
+
+
+
+
+<!-- 
+
+------------------------------------------------------------------------
+
+
+## Microbial Strategies for Population-Level Resilience
+
+::: {style="font-size: 0.6em; margin: 0 auto; width: 80%;"}
+| Concept                      | Description                                                                                       | Example Behavior                                            | Key Feature                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------- |
+| 🧩 **Metabolic Cooperation** | Cells **specialize** in different metabolic tasks to benefit the group.                           | One cell produces siderophores, another breaks down sugars. | **Functional division of labor** |
+| 🎲 **Bet-Hedging**           | Random expression of stress-related genes allows **some cells** to survive unpredictable changes. | A few cells express stress genes before stress appears.     | **Phenotypic diversification**   |
+| 🔀 **Noisy Regulation**      | Gene expression **varies stochastically** between identical cells.                                | Random fluctuations in gene activity, not coordinated.      | **Uncoordinated heterogeneity**  |
+:::
+
+------------------------------------------------------------------------
+
+
+
+
+
+**Possible Microbial Strategies for Population-Level Resilience**
+
+::: {style="font-size: 0.5em; margin: 0 auto; width: 80%;"}
+| Concept                      | Description                                                                                       | Example Behavior                                            | Key Feature                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------- |
+| 🧩 **Metabolic Cooperation** | Cells **specialize** in different metabolic tasks to benefit the group.                           | One cell produces siderophores, another produces antibiotics | **Functional division of labor** |
+| 🔀 **Noisy Regulation**      | Gene expression **varies stochastically** between identical cells.                                | Random fluctuations in gene activity, not coordinated.      | **Uncoordinated heterogeneity**  |
+| 🎲 **Bet-Hedging**           | Random expression of stress-related genes allows **some cells** to survive unpredictable changes. | A few cells express stress genes before stress appears.     | **Phenotypic diversification**   |
+
+:::
+
+
+
+
+------------------------------------------------------------------------
+
+## Research Hypotheses
+
+::: callout-note
+## H2 (WP2)
+In a population of *Pseudomonas brassicacearum* (PsR401), individuals activate different biological and metabolic processes, promoting intra-population functional diversity and allowing a rapid division of labour to colonise the environment (with a particular focus on the root-environment)
+:::
+
+------------------------------------------------------------------------
+
+
+::: {style="font-size: 0.7em;"}
+### Key Questions
+
+1. **Functional Specialization**
+   - Is there functional specialization (DoL) within clonal populations of PsR401?
+   - How does this specialization manifest at the transcriptional level?
+   - What are the key metabolic pathways involved?
+
+2. **Environmental Response**
+   - Are certain cells specialized under stress conditions?
+   - How do iron and glucose limitations affect cell specialization?
+   - What is the role of the root environment in shaping this specialization?
+
+3. **Regulatory Mechanisms**
+   - Is this driven by noisy gene expression or regulated mechanisms?
+   - How do cells coordinate their metabolic activities?
+   - What are the signaling pathways involved?
+:::
+
+------------------------------------------------------------------------
+
+
+## 2. Quality Control of cells (suite)
+
+
+### Ambient RNA Removal
+
+- Evaluate and adapt tools like **SoupX**, **DecontX**, **scAR**
+- Note: These tools are primarily designed for droplet-based methods (10X)
+
+------------------------------------------------------------------------ -->

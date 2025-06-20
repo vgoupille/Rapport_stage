@@ -1,0 +1,12 @@
+/* Custom styles for the presentation */
+.reveal h1 {
+  font-size: 1.6em;
+}
+
+.reveal h2 {
+  font-size: 1.3em;
+}
+
+.reveal .callout-header {
+  font-size: 1.2em;
+} 

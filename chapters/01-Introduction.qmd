@@ -1,47 +1,105 @@
 # Introduction {#sec-intro}
 
-## Litterature review
+## Division of Labor: A Fundamental Biological Principle
 
-deddfefde[@kuchina2021; @gaisser2024] Internship description
+The survival of organisms in evolving environments is driven by their fitness[^01-introduction-1], where the cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms must compete, cooperate, and/or specialize based on how well their traits enable resource acquisition and utilization in their biotic and abiotic environment. Division of Labor (DOL) represents one such strategy - the specialization of tasks of entities, optimizing resource use and enhancing collective performance [@cooper2018]. Division of labour, is very common in nature and exists on all levels of biological organization. It occurs when different individuals, cells or tissues become specialised to perform complementary tasks that benefit the whole organism or social group [@taborsky2025].
 
-The survival of organisms in evolving environments is driven by their fitness. The cost-benefit ratio of traits is constantly balanced and gives rise to different populational evolutionary strategies. To succeed, organisms will have to compete, cooperate and/or specialize as a result of how fit their traits are considering their biotic and abiotic environment. Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, \[\[auxotrophic bacteria\]\] (i.e bacteria lacking genes coding for a molecule essential for their survival) have been studied (Morris et al., 2012). [@morris2012]
+The efficiency gains from DOL arise because specialization eliminates the trade-offs associated with performing multiple functions simultaneously. This fundamental principle operates throughout biological systems. Molecular evolution demonstrates this through enzyme specialization, where gene duplication events allow proteins to evolve increased specificity for distinct catalytic functions. Multicellular organisms exemplify DOL through cellular differentiation, where specialized cell types and tissues perform complementary functions that support the entire organism. Perhaps the most sophisticated manifestation occurs in eusocial insect societies, which display both reproductive specialization (queens versus workers) and functional caste systems among workers, mirroring the germline-soma division observed in multicellular organisms [@giri2019].
 
-Auxotroph bacteria can take advantage of leaky functions of helper’s organisms to fulfill their needs in specific compounds (Morris et al., 2014, Estrela et al., 2016).[@morris2014; @estrela2016] With a reduced genetic material, the beneficiary organism fitness is improved, at the risk of being dependent on the helpers presence in their environment. The conditions in which patterns of such \[\[division of labor (DOL)\]\] arise are still obscure, but its advantages for bacterial population are clear: DOL allows to diminish the cost associated to certain functions and the possibility of cohabitation of various mutants/specialized cells within the population to respond as a whole to environmental constraints, and thrive. New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell -omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.
+[^01-introduction-1]: Fitness refers to the ability of an organism to survive and reproduce in its environment, measured by its reproductive success and contribution to future generations.
 
-The goal of this internship is to explore scRNA-seq (single-cell RNA-seq) datasets of Pseudomonas brassicacearum, a root colonizer. The student will analyse samples datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.  The intern will have to implement transcriptomic data analyses from ultra-high throughput sequence run(s). Thus the main aim of the intern will be to set up bioinformatic workflow(s) from existing tools to produce interpretable results.
+## Division of Labor in Microbial Communities
 
--   differentes methodes de single cell RNA seq (voir diapo et citations )
--   voir annexes pour les differentes methodes
--   nous focus sur microSPLiT stratégie qui est derivé de la SPLiTseq pour les eucaryotes (=\> voir matériels et methodes pour l'explication de la méthode )[@nishimura2025]
-It's a high-throughput single-cell RNA sequencing method for bacteria. 
-The microSPLiT technology was developed from SPLiT-seq16, a combinatorial split-pool scRNA-seq technology for eukaryotic cells.
+Building upon these fundamental principles, microbial communities provide excellent examples of DOL in action. These communities exhibit DOL at two distinct levels [@giri2019].
 
--nombreux defi pour les bactéries : faire la liste ici
+(@fig-microbial-dol):
 
-et pour le moment pas d'outils pour le moment vraiment adaptés ... [@ostner]
+**Interspecific DOL**: Different microbial species engage in mutualistic interactions, such as cross-feeding, where one species produces metabolites that benefit others. This form of cooperation is well-documented in various ecosystems, including the human gut microbiome and soil communities.
 
--   voir mon diapo pour toute l'introduction , les figures ET LA LOGIQUE
+**Intraspecific DOL**: Less explored but equally important is the potential for functional specialization within genetically identical bacterial populations. Isogenic bacterial cells may exhibit functional specialization within a population, leading to metabolic cooperation and enhanced collective fitness.
 
-=\> QUESTIONS BIOLOGIQUES IMPORTANT :
+![Division of Labor in Microbial Communities](../figures/dol_bacteria.png){#fig-microbial-dol width="60%" fig-align="center"}
 
-DOL 2 hypotheses : noises / specialized cells
+Classification of pairwise and three-way interactions as DOL. Interactions can be uni- or bidirectional as well as occur within one or between two microbial species. Arrows indicate fitness benefits that are exchanged between interaction partners that can be direct (straight line) or indirect (dashed line). For an interaction to classify as DOL, four main criteria need to be fulfilled, which is only the case in closed (reciprocal) interactions (green), yet not in open (linear) interactions (red). (a) Mutually beneficial (reciprocal) interaction within two conspecific genotypes. (b) Mutually beneficial (reciprocal) interaction within two heterospecific genotypes. (c) Mutually beneficial (reciprocal) interaction between three different species. (d) Unidirectional interaction between two members of the same species. (e) Unidirectional interaction between three members of three different species. (f) Unidirectional interaction between two members of two different species. (g) Unidirectional (linear) interaction chain between members of three different species.
 
+## Intraspecific Division of Labor: A New Paradigm
 
+The traditional view of biological populations assumed that all individuals within a clonal population behave identically. However, emerging evidence suggests that even genetically identical organisms can exhibit functional heterogeneity, leading to population-level benefits through task specialization. This intraspecific division of labor can manifest through several mechanisms:
 
+-   **Metabolic cooperation**: Individuals specialize in different metabolic tasks to benefit the group
+-   **Noisy regulation**: Gene expression varies stochastically between identical individuals
+-   **Bet-hedging strategies**: Random expression of stress-related genes allows some individuals to survive unpredictable changes
 
+The conditions under which such patterns arise remain poorly understood, but their advantages are clear: DOL allows populations to diminish the costs associated with certain functions and enables the cohabitation of various specialized individuals within the population to respond as a whole to environmental constraints and thrive.
 
+### Bacterial Systems: A Special Case
 
+Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, auxotrophic bacteria[^01-introduction-2] (i.e., bacteria lacking genes coding for a molecule essential for their survival) have been extensively studied as examples of metabolic specialization [@morris2012].
 
-- seurat object 
+[^01-introduction-2]: Auxotrophic bacteria are microorganisms that have lost the ability to synthesize certain essential compounds (such as amino acids, vitamins, or nucleotides) and must obtain them from their environment or from other organisms.
 
-- d'abord filtrer les cellules par Sample_ID (meilleurs signal probablement)
-- ensuite recuperer seulement CDS 
+Auxotroph bacteria can take advantage of leaky functions of helper organisms to fulfill their needs for specific compounds [@morris2014; @estrela2016]. With reduced genetic material, the beneficiary organism's fitness is improved, though at the risk of becoming dependent on the presence of helpers in their environment [@cooper2018].
 
+## 1.3 Model Organism: Pseudomonas brassicacearum R401
 
-ouverture : est ce que methode permet de capturer efficacement en condition de stress 
+Our study focuses on *Pseudomonas brassicacearum* R401 (PsR401), a robust root colonizer of *Arabidopsis thaliana* that can act as an opportunistic pathogen. This strain represents an excellent model for studying intraspecific DOL due to its complex colonization strategies and environmental adaptability.
 
+### 1.4.1 Colonization Strategies
 
-**This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.**
+PsR401 deploys multiple independent strategies for root colonization and persistence:
 
+-   **Antimicrobial production**: Suppresses competitors in the rhizosphere
+-   **Siderophore production**: Enhances iron acquisition and competitiveness by sequestering iron
+-   **Phytotoxin production**: Promotes both pathogenicity and root colonization
 
-operon , facteur sigma , new genome annotatipn ... 
+### 1.4.2 Iron as a Key Limiting Factor
+
+These processes are all modulated by iron availability, which becomes rate-limiting in the root compartment. Iron acts as a "public good" in the rhizosphere - all bacteria require it, but it is scarce in the environment. Given that the production of antimicrobials, siderophores, and phytotoxines is energetically costly and iron-dependent, we hypothesize that division of labor between bacterial intra-populations is bolstered under iron-limiting conditions.
+
+## 1.5 Single-Cell Technologies: Unveiling Cellular Heterogeneity
+
+New technologies allow us to access within-species diversity and study the possible metabolic specialization between cells. Single-cell omics have been developed for this purpose in human health and are now applied to microbial systems. However, analyzing such datasets still requires custom pipelines to respond to the specificity of bacterial biology and technical challenges.
+
+### 1.5.1 The Single-Cell Revolution
+
+Single-cell technologies have revolutionized our understanding of cellular diversity in eukaryotic systems. Methods such as scRNA-seq, scATAC-seq, scMetabolomics, and spatial omics have provided unprecedented insights into cellular heterogeneity and functional specialization.
+
+### 1.5.2 Technical Challenges in Bacterial Single-Cell RNA-seq
+
+However, applying these technologies to bacterial systems presents unique challenges:
+
+-   **Lack of poly-A tails**: Bacterial mRNAs lack poly-A tails, requiring alternative capture methods
+-   **High rRNA content**: rRNA constitutes up to 95% of bacterial RNA, necessitating effective depletion strategies
+-   **Low RNA content**: Bacterial cells contain much less RNA than mammalian cells
+-   **Cell wall complexity**: Diverse cell wall structures complicate RNA extraction
+-   **Operon structure**: Bacterial operons require specific approaches for complete capture
+-   **Small RNA detection**: Regulatory sRNAs are challenging to detect due to their short length
+
+### 1.5.3 Methodological Approaches
+
+Several approaches have been developed to address these challenges:
+
+-   **Plate-based methods**: High sensitivity but low throughput (hundreds of cells)
+-   **Split-pool barcoding**: High throughput with moderate sensitivity (microSPLiT)
+-   **Droplet-based methods**: Balance between throughput and sensitivity
+
+## 1.6 Research Objectives and Experimental Approach
+
+### 1.6.1 Primary Research Question
+
+The goal of this internship is to explore scRNA-seq (single-cell RNA-seq) datasets of *Pseudomonas brassicacearum*, a root colonizer. The student will analyze sample datasets from various nutritional conditions to determine if DOL can be detected within this species as a strategy for efficient root colonization.
+
+The central question of this study is: **Is there functional specialization (DOL) within clonal populations of PsR401?**
+
+This question addresses two main biological hypotheses:
+
+1.  **Noisy regulation hypothesis**: Gene expression varies stochastically between identical cells
+2.  **Specialized cells hypothesis**: Certain cells become functionally specialized under specific conditions
+
+### 1.6.2 Experimental Design
+
+We employ the microSPLiT technology [@kuchina2021], a high-throughput single-cell RNA sequencing method for bacteria developed from SPLiT-seq for eukaryotic cells. This method allows for the analysis of transcriptomic heterogeneity within bacterial populations at single-cell resolution, providing insights into gene expression patterns and cellular diversity that would be masked in bulk RNA-seq approaches.
+
+The experimental setup includes: - **Controlled conditions**: Iron-limiting and glucose-limiting environments - **Time course analysis**: During exponential growth phase - **Multiple replicates**: Biological and technical replicates for robust analysis - **High-throughput sequencing**: Targeting \~3,000 cells with \~1.5 billion reads
+
+This approach will provide mechanistic insights into whether and how a robust bacterial root colonizer can partition tasks within intra-populations to achieve greater functional diversity, minimize energetic costs, and adapt to environmental constraints.
