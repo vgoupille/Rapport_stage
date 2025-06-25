@@ -1,5 +1,13 @@
 # Results
 
+beucoup de mal avec la methode : nombre de cellules reel ? 
+control 
+
+
+
+
+
+
 - 4 libraries of unequal sizes (see Solène's explanation for why they were not exactly equivalent)
 - This impacts library efficiency 
 - => Recommendation: balance the libraries for optimal results

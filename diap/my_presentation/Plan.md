@@ -716,3 +716,131 @@ infer metaboli
 Thank you! 🙌
 
 Questions?
+
+
+
+
+
+## *PsR401* an interesting Model to Study DOL
+
+Successful establishment of bacteria at roots is driven by multiple independent biological processes involved in both host-microbe (i.e., signal recognition, chemotaxis, surface attachment, biofilm formation, virulence factors)[@lópez-pagán2025] and microbe-microbe interactions (i.e., production of antimicrobials or public goods) [@knights2021]. Therefore, we postulate that the simultaneous activation of these diverse processes is costly and that cooperation between genetically identical strains is key for promoting bacterial pervasiveness at roots. Consistent with this hypothesis, it was recently demonstrated that the robust root coloniser *Pseudomonas brassicacearum R401* (hereafter referred to as *PsR401*) deploys multiple independent strategies that co-function to promote colonisation and persistence at roots [@getzke2023].
+
+This opportunistic pathogen [@getzke2024]^[in natural soil conditions, R401 does not cause disease, suggesting it requires specific environmental conditions to become pathogenic. Unlike many pathogenic bacteria, R401 lacks genes for a type III secretion system (T3SS) and does not overgrow or suppress plant immune responses.] acts as a potent antagonist that relies on the combined action of three distinct exometabolites to suppress competitors and promote root colonization [@mesny2023; @getzke2023; @chesneau2025]. First, *PsR401* produces an antimicrobial compound that directly inhibits competing microbes. Second, it synthesizes pyoverdine, an iron-chelating siderophore that sequesters this essential micronutrient from the environment. Iron represents a critical limiting resource in the root compartment, and siderophores like pyoverdine are differentially exploitable, preventing other microbes from obtaining essential iron resources [@joshi2006]. Third, *PsR401* produces a phytotoxin called Brassicapeptin [@getzke2024] that promotes both pathogenicity and root colonisation in mono-association experiments with *Arabidopsis thaliana*.
+
+Our work provides proof-of-concept data illustrating that *PsR401* deploys diverse exo-metabolites during root microbiota establishment that have versatile functions in host-microbe and microbe-microbe interactions. Together with earlier work [@gu2020; @harbort2020], it also delineates iron as a major micronutrient modulating strain competitiveness and proliferation at roots[@cao2024]. Given that the public good iron becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability [@lim2012; @palma2003; @mo1991], we anticipate that division of labour between bacterial intra-populations is bolstered under iron limiting conditions such as those found in the root habitat.
+
+## Objectives and hypotheses
+
+Genetically tractable: available RB mutant library (WP1)
+
+
+
+
+
+
+
+
+Successful establishment of bacteria at roots is driven by multiple independent biological processes involved in both host-microbe (i.e., signal recognition, chemotaxis, surface attachment, biofilm formation, virulence factors) and microbe-microbe interactions (i.e., production of antimicrobials or public goods) [@knights2021] [@lópez-pagán2025]. Therefore, we postulate that the simultaneous activation of these diverse processes is costly and that cooperation between genetically identical strains is key for promoting bacterial pervasiveness at roots. Consistent with this hypothesis, it was recently demonstrated that the robust root coloniser *Pseudomonas brassicacearum R401* (hereafter referred to as *PsR401*) deploys multiple independent strategies that co-function to promote colonisation and persistence at roots [@getzke2023]. This opportunistic pathogen [@getzke2024] of the plant model *Arabidopsis thaliana*, (mettre en note de bas de page :**However, in natural soil conditions, R401 does not cause disease, suggesting it requires specific environmental conditions to become pathogenic.** aplusieurs particularité : Unlike many pathogenic bacteria, R401 lacks genes for a type III secretion system (T3SS) and does not overgrow or suppress plant immune responses
+
+Notably, two independent processes involved in microbe-microbe competition [@mesny2023]– namely the production of an antimicrobial and of a molecule scavenging the micronutrient iron – that act additively to promote strain competitiveness at roots [@getzke2023] [\@chesneau2025]
+
+Resource competition represents an important mechanism for indirect microbial antagonism (Hassani et al, 2018). The ability to rapidly utilize a limited resource can be detrimental for a less competitive microbe. Additionally, microbes can sequester resources, preventing utilization by other community members. Siderophores chelate soil iron for microbial uptake and are differentially exploitable to prevent other microbes to obtain essential iron resources (Joshi et al, 2006).
+
+For instance, pyoverdine is an iron-chelator produced by some A. thaliana root-associated bacteria contributing to their competitiveness (Getzke et al, 2023).
+
+A third bacterial locus in *PsR401* involved in the production of a phytotoxin (Brassicapeptin) [@getzke2024] that promotes both pathogenicity and root colonisation in mono-association experiments with *Arabidopsis thaliana*
+
+Our work provides proof-of-concept data illustrating that *PsR401* deploys diverse exo-metabolites during root microbiota establishment that have versatile functions in host-microbe and microbe-microbe interactions. Together with earlier work [@gu2020; @harbort2020], it also delineates iron as a major micronutrient modulating strain competitiveness and proliferation at roots[@cao2024]. Given that the public good iron becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability [@lim2012; @palma2003; @mo1991], we anticipate that division of labour between bacterial intra-populations is bolstered under iron limiting conditions such as those found in the root habitat.
+
+
+
+
+
+
+
+
+## *PsR401* an interesting Model to Study DOL
+
+Successful establishment of bacteria at roots is driven by multiple independent biological processes involved in both host-microbe (i.e., signal recognition, chemotaxis, surface attachment, biofilm formation, virulence factors)[@lópez-pagán2025] and microbe-microbe interactions (i.e., production of antimicrobials or public goods) [@knights2021]. Therefore, we postulate that the simultaneous activation of these diverse processes is costly and that cooperation between genetically identical strains is key for promoting bacterial pervasiveness at roots. Consistent with this hypothesis, it was recently demonstrated that the robust root coloniser *Pseudomonas brassicacearum R401* (hereafter referred to as *PsR401*) deploys multiple independent strategies that co-function to promote colonisation and persistence at roots [@getzke2023]. Unlike many pathogenic bacteria, *PsR401* lacks genes for a type III secretion system (T3SS) [](https://www.mpg.de/21973198/how-salt-stress-weakens-plants) and does not overgrow or suppress plant immune responses [@jian2024; @dodds2024]. This opportunistic pathogen [@getzke2024] of the plant model *Arabidopsis thaliana* acts as a potent antagonist that relies on the combined action of three distinct exometabolites to suppress competitors and promote root colonization. 
+
+First, this Gram-negative bacteria produces a phytotoxin called Brassicapeptin [@getzke2024; @chesneau2025] that promotes both pathogenicity and root colonisation in mono-association experiments with *A. thaliana*. Second, *PsR401* produces an antimicrobial [@getzke2023] compound : 2,4-diacetylphloroglucinol (DAPG) that directly inhibits competing microbes Third, it synthesizes pyoverdine [@getzke2023], an iron-chelating siderophore that sequesters this essential micronutrient from the environment. Iron represents a critical limiting resource in the root compartment[@cao2024], and siderophores like pyoverdine are differentially exploitable, preventing other microbes from obtaining essential iron resources [@joshi2006]. 
+Resource competition represents an important mechanism for indirect microbial antagonism (Hassani et al, 2018). The ability to rapidly utilize a limited resource can be detrimental for a less competitive microbe. Additionally, microbes can sequester resources, preventing utilization by other community members. Siderophores chelate soil iron for microbial uptake and are differentially exploitable to prevent other microbes to obtain essential iron resources (Joshi et al, 2006).
+
+
+Our work provides proof-of-concept data illustrating that *PsR401* deploys diverse exo-metabolites during root microbiota establishment that have versatile functions in host-microbe and microbe-microbe interactions. Together with earlier work [@gu2020; @harbort2020], it also delineates iron as a major micronutrient modulating strain competitiveness and proliferation at roots[@cao2024]. Given that the public good iron becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability [@lim2012; @palma2003; @mo1991], we anticipate that division of labour between bacterial intra-populations is bolstered under iron limiting conditions such as those found in the root habitat.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## *PsR401* an interesting Model to Study DOL
+
+Successful establishment of bacteria at roots is driven by multiple independent biological processes involved in both host-microbe (i.e., signal recognition, chemotaxis, surface attachment, biofilm formation, virulence factors)[@lópez-pagán2025] and microbe-microbe interactions (i.e., production of antimicrobials or public goods) [@knights2021]. Therefore, we postulate that the simultaneous activation of these diverse processes is costly and that cooperation between genetically identical strains is key for promoting bacterial pervasiveness at roots. Consistent with this hypothesis, it was recently demonstrated that the robust root coloniser *Pseudomonas brassicacearum R401* (hereafter referred to as *PsR401*) deploys multiple independent strategies that co-function to promote colonisation and persistence at roots [@getzke2023]. Unlike many pathogenic bacteria, *PsR401* lacks genes for a type III secretion system (T3SS) [](https://www.mpg.de/21973198/how-salt-stress-weakens-plants) and does not overgrow or suppress plant immune responses [@jian2024; @dodds2024]. This opportunistic pathogen [@getzke2024] of the plant model *Arabidopsis thaliana* acts as a potent antagonist that relies on the combined action of three distinct exometabolites to suppress competitors and promote root colonization. 
+
+First, this Gram-negative bacteria produces a phytotoxin called Brassicapeptin [@getzke2024; @chesneau2025] that promotes both pathogenicity and root colonisation in mono-association experiments with *A. thaliana*. Second, *PsR401* produces an antimicrobial [@getzke2023] compound : 2,4-diacetylphloroglucinol (DAPG) that directly inhibits competing microbes Third, it synthesizes pyoverdine [@getzke2023], an iron-chelating siderophore that sequesters this essential micronutrient from the environment. Iron represents a critical limiting resource in the root compartment[@cao2024], and siderophores like pyoverdine are differentially exploitable, preventing other microbes from obtaining essential iron resources [@joshi2006]. 
+Resource competition represents an important mechanism for indirect microbial antagonism (Hassani et al, 2018). The ability to rapidly utilize a limited resource can be detrimental for a less competitive microbe. Additionally, microbes can sequester resources, preventing utilization by other community members. Siderophores chelate soil iron for microbial uptake and are differentially exploitable to prevent other microbes to obtain essential iron resources (Joshi et al, 2006).
+
+
+Our work provides proof-of-concept data illustrating that *PsR401* deploys diverse exo-metabolites during root microbiota establishment that have versatile functions in host-microbe and microbe-microbe interactions. Together with earlier work [@gu2020; @harbort2020], it also delineates iron as a major micronutrient modulating strain competitiveness and proliferation at roots[@cao2024]. Given that the public good iron becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability [@lim2012; @palma2003; @mo1991], we anticipate that division of labour between bacterial intra-populations is bolstered under iron limiting conditions such as those found in the root habitat.
+
+
+
+
+
+
+
+
+
+
+
+## Objectives and hypotheses
+
+Genetically tractable: available RB mutant library (WP1)
+
+
+
+
+
+
+
+
+
+
+First, this Gram-negative bacteria produces a phytotoxin called Brassicapeptin [@getzke2024; @chesneau2025] that promotes both pathogenicity and root colonisation in mono-association experiments with *A. thaliana*. Second, *PsR401* produces an antimicrobial [@getzke2023] compound : 2,4-diacetylphloroglucinol (DAPG) that directly inhibits competing microbes Third, it synthesizes pyoverdine [@getzke2023], an iron-chelating siderophore that sequesters this essential micronutrient from the environment. Iron represents a critical limiting resource in the root compartment[@cao2024], and siderophores like pyoverdine are differentially exploitable, preventing other microbes from obtaining essential iron resources [@joshi2006]. 
+Resource competition represents an important mechanism for indirect microbial antagonism (Hassani et al, 2018). The ability to rapidly utilize a limited resource can be detrimental for a less competitive microbe. Additionally, microbes can sequester resources, preventing utilization by other community members. Siderophores chelate soil iron for microbial uptake and are differentially exploitable to prevent other microbes to obtain essential iron resources (Joshi et al, 2006).
+
+it also delineates iron as a major micronutrient modulating strain competitiveness and proliferation at roots[@gu2020; @harbort2020]. Given that the public good iron becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability [@lim2012; @palma2003; @mo1991], we anticipate that division of labour between bacterial intra-populations is bolstered under iron limiting conditions such as those found in the root habitat.
+
+
+
+
+Objectives and hypotheses
+
+Genetically tractable: available RB mutant library (WP1)
+
+
+
+Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DOL) among genetically identical PsR401 cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.
+
+
+
+
+Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DOL) among genetically identical PsR401 cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.
+
+
+
+
+
+
+Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment, and that the production of key metabolites—such as toxins, antimicrobials, and siderophores—is tightly regulated by iron availability [@lim2012], we propose that division of labour (DoL) among genetically identical PsR401 cells is reinforced under iron-limiting conditions characteristic of the root environment. In such contexts, phenotypic heterogeneity—whether arising from intrinsic gene expression noise or environmentally induced regulatory responses—may lead to the emergence of subpopulations specialised in distinct, yet complementary, metabolic functions. These include toxin secretion, antimicrobial defence, or siderophore-mediated iron acquisition, ultimately enhancing the collective fitness and competitiveness of the population.
