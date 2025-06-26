@@ -286,6 +286,34 @@ y_padding = (global_y_max - global_y_min) * 0.05
 global_x_lim = (global_x_min - x_padding, global_x_max + x_padding)
 global_y_lim = (global_y_min - y_padding, global_y_max + y_padding)
 
+# Calculate global density limits for consistent y-axis scaling in density plots
+global_density_max = 0
+for medium in culture_mediums_ordered:
+    mask = adata.obs["CultureMedium"] == medium
+    medium_data = adata.obs.loc[mask]
+
+    if len(medium_data) > 1:
+        # Calculate histogram density
+        hist, bins = np.histogram(
+            medium_data["n_counts"], bins=30, density=True, range=global_x_lim
+        )
+        hist_max = hist.max()
+
+        # Calculate KDE density
+        from scipy.stats import gaussian_kde
+
+        kde = gaussian_kde(medium_data["n_counts"])
+        x_range = np.linspace(global_x_lim[0], global_x_lim[1], 100)
+        kde_density = kde(x_range)
+        kde_max = kde_density.max()
+
+        # Take the maximum of both
+        medium_max = max(hist_max, kde_max)
+        global_density_max = max(global_density_max, medium_max)
+
+# Add 10% padding to density y-axis
+global_density_y_lim = (0, global_density_max * 1.1)
+
 for i, medium in enumerate(culture_mediums_ordered):
     # Calculate correct indices for 2-row layout
     col_idx = i % n_cols
@@ -387,8 +415,9 @@ for i, medium in enumerate(culture_mediums_ordered):
     ax_density.grid(True, alpha=0.3, linestyle="--")
     ax_density.legend(fontsize=8)
 
-    # Set consistent x-axis limits for all density plots
+    # Set consistent x-axis and y-axis limits for all density plots
     ax_density.set_xlim(global_x_lim)
+    ax_density.set_ylim(global_density_y_lim)
 
 # Hide empty subplots
 for i in range(n_mediums * 2, len(axes_flat)):
@@ -1313,107 +1342,6 @@ axes = axes.flatten()
 
 handles, labels = None, None
 
-# Boucle par facette (ODt)
-for i, odt in enumerate(odts):
-    ax = axes[i]
-    data_odt = df[df["ODt"] == odt]
-
-    for j, repbio in enumerate(repbios):
-        data_subset = data_odt[data_odt["RepBio"] == repbio]
-        values = data_subset["n_counts"].dropna()
-
-        if len(values) < 2:
-            continue  # KDE échoue avec <2 points
-
-        # Densité limitée au min/max
-        kde = gaussian_kde(values, bw_method=0.3)
-        x_vals = np.linspace(values.min(), values.max(), 100)
-        density = kde(x_vals)
-
-        # Normaliser pour que tous les violons aient la même largeur max
-        width = 0.4
-        density = density / density.max() * width
-
-        # Tracer le "violon"
-        ax.fill_betweenx(
-            x_vals, j - density, j + density, color="lightblue", alpha=0.7, linewidth=1
-        )
-
-    # Stripplot pour les points
-    sns.stripplot(
-        data=data_odt,
-        x="RepBio",
-        y="n_counts",
-        hue="RepTech_suffix",
-        dodge=True,
-        jitter=0.25,
-        size=4,
-        ax=ax,
-        alpha=0.9,
-        edgecolor="white",
-        linewidth=0.4,
-        palette=palette,
-        order=repbios,
-    )
-
-    # Récupère la légende une fois
-    if handles is None and ax.get_legend() is not None:
-        handles, labels = ax.get_legend_handles_labels()
-    if ax.get_legend():
-        ax.legend_.remove()
-
-    ax.set_title(f"ODt = {odt}")
-    ax.set_xticks(range(len(repbios)))
-    ax.set_xticklabels(repbios, rotation=45)
-
-# Enlève les axes inutilisés si nb ODt < n_rows × n_cols
-for j in range(len(odts), len(axes)):
-    fig.delaxes(axes[j])
-
-# Légende commune
-if handles is not None:
-    fig.legend(
-        handles,
-        labels,
-        title="RepTech_suffix",
-        loc="center left",
-        bbox_to_anchor=(1.02, 0.5),
-    )
-
-plt.tight_layout()
-plt.show()
-
-
-# %%
-import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-from scipy.stats import gaussian_kde
-
-# Preprocessing
-df = adata.obs.copy()
-df["n_counts"] = adata.obs["n_counts"]
-df["RepTech_suffix"] = df["RepTech"].astype(str).str.split("_").str[-1]
-df["ODt"] = df["ODt"].astype(str)
-df["RepBio"] = df["RepBio"].astype(str)
-df["RepTech_suffix"] = df["RepTech_suffix"].astype(str)
-
-# Paramètres
-col_wrap = 3
-palette = sns.color_palette("dark")
-repbios = sorted(df["RepBio"].unique())
-odts = sorted(df["ODt"].unique())
-repbio_to_pos = {repbio: i for i, repbio in enumerate(repbios)}
-
-# Setup grid
-n_cols = col_wrap
-n_rows = int(np.ceil(len(odts) / col_wrap))
-fig, axes = plt.subplots(n_rows, n_cols, figsize=(4 * n_cols, 4 * n_rows), sharey=True)
-axes = axes.flatten()
-
-handles, labels = None, None
-
 for i, odt in enumerate(odts):
     ax = axes[i]
     data_odt = df[df["ODt"] == odt]
@@ -1473,7 +1401,7 @@ for i, odt in enumerate(odts):
 
     ax.set_title(f"ODt = {odt}")
     ax.set_xticks(range(len(repbios)))
-    ax.set_xticklabels(repbios, rotation=0)  # Changed rotation from 45 to 0
+    ax.set_xticklabels(repbios, rotation=45)
 
 # Supprimer axes vides
 for j in range(len(odts), len(axes)):
@@ -1489,7 +1417,7 @@ if handles is not None:
         bbox_to_anchor=(1.02, 0.5),
     )
 
-plt.tight_layout(rect=[0, 0, 0.95, 1])
+plt.tight_layout()
 plt.show()
 
 
@@ -1532,6 +1460,32 @@ y_padding = (global_y_max - global_y_min) * 0.05
 
 global_x_lim = (global_x_min - x_padding, global_x_max + x_padding)
 global_y_lim = (global_y_min - y_padding, global_y_max + y_padding)
+
+# Calculate global density limits for consistent y-axis scaling in density plots
+global_density_max = 0
+for medium in culture_mediums_ordered:
+    mask = adata.obs["CultureMedium"] == medium
+    medium_data = adata.obs.loc[mask]
+
+    if len(medium_data) > 1:
+        # Calculate histogram density
+        hist, bins = np.histogram(
+            medium_data["n_counts"], bins=30, density=True, range=global_x_lim
+        )
+        hist_max = hist.max()
+
+        # Calculate KDE density
+        kde = gaussian_kde(medium_data["n_counts"])
+        x_range = np.linspace(global_x_lim[0], global_x_lim[1], 100)
+        kde_density = kde(x_range)
+        kde_max = kde_density.max()
+
+        # Take the maximum of both
+        medium_max = max(hist_max, kde_max)
+        global_density_max = max(global_density_max, medium_max)
+
+# Add 10% padding to density y-axis
+global_density_y_lim = (0, global_density_max * 1.1)
 
 for i, medium in enumerate(culture_mediums_ordered):
     # Calculate correct indices for 2-row layout
@@ -1634,8 +1588,9 @@ for i, medium in enumerate(culture_mediums_ordered):
     ax_density.grid(True, alpha=0.3, linestyle="--")
     ax_density.legend(fontsize=8)
 
-    # Set consistent x-axis limits for all density plots
+    # Set consistent x-axis and y-axis limits for all density plots
     ax_density.set_xlim(global_x_lim)
+    ax_density.set_ylim(global_density_y_lim)
 
 # Hide empty subplots
 for i in range(n_mediums * 2, len(axes_flat)):
@@ -1675,4 +1630,233 @@ for medium in culture_mediums_ordered:
         corr = np.corrcoef(medium_data["n_counts"], medium_data["n_genes"])[0, 1]
         print(f"   🔗 Correlation n_counts vs n_genes: {corr:.3f}")
 
+# %%
+# %%
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from scipy.stats import gaussian_kde
+
+# Preprocessing
+df = adata.obs.copy()
+df["n_counts"] = adata.obs["n_counts"]
+df["RepTech_suffix"] = df["RepTech"].astype(str).str.split("_").str[-1]
+df["ODt"] = df["ODt"].astype(str)
+df["RepBio"] = df["RepBio"].astype(str)
+df["RepTech_suffix"] = df["RepTech_suffix"].astype(str)
+
+# Paramètres
+col_wrap = 3
+palette = sns.color_palette("dark")
+repbios = sorted(df["RepBio"].unique())
+odts = sorted(df["ODt"].unique())
+repbio_to_pos = {repbio: i for i, repbio in enumerate(repbios)}
+
+# Setup grid
+n_cols = col_wrap
+n_rows = int(np.ceil(len(odts) / col_wrap))
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(4 * n_cols, 4 * n_rows), sharey=True)
+axes = axes.flatten()
+
+handles, labels = None, None
+
+for i, odt in enumerate(odts):
+    ax = axes[i]
+    data_odt = df[df["ODt"] == odt]
+
+    for j, repbio in enumerate(repbios):
+        data_subset = data_odt[data_odt["RepBio"] == repbio]
+        values = data_subset["n_counts"].dropna()
+
+        if len(values) < 2:
+            continue
+
+        # KDE clippée
+        kde = gaussian_kde(values, bw_method=0.3)
+        x_vals = np.linspace(values.min(), values.max(), 100)
+        density = kde(x_vals)
+        width = 0.4
+        density = density / density.max() * width
+
+        # Tracé du violon
+        ax.fill_betweenx(
+            x_vals, j - density, j + density, color="lightblue", alpha=0.7, linewidth=1
+        )
+
+        # ➕ Affiche le nombre de points
+        ax.text(
+            j,
+            -100,
+            f"(n = {len(values)})",
+            ha="center",
+            va="bottom",
+            fontsize=6,
+            fontweight="bold",
+            color="black",
+        )
+
+    # Stripplot
+    sns.stripplot(
+        data=data_odt,
+        x="RepBio",
+        y="n_counts",
+        hue="RepTech_suffix",
+        dodge=True,
+        jitter=0.25,
+        size=4,
+        ax=ax,
+        alpha=0.9,
+        edgecolor="white",
+        linewidth=0.4,
+        palette=palette,
+        order=repbios,
+    )
+
+    if handles is None and ax.get_legend() is not None:
+        handles, labels = ax.get_legend_handles_labels()
+    if ax.get_legend():
+        ax.legend_.remove()
+
+    ax.set_title(f"ODt = {odt}")
+    ax.set_xticks(range(len(repbios)))
+    ax.set_xticklabels(repbios, rotation=45)
+
+# Supprimer axes vides
+for j in range(len(odts), len(axes)):
+    fig.delaxes(axes[j])
+
+# Légende commune
+if handles is not None:
+    fig.legend(
+        handles,
+        labels,
+        title="RepTech_suffix",
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+    )
+
+plt.tight_layout()
+plt.show()
+# %%
+# %%
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from scipy.stats import gaussian_kde
+
+# Preprocessing
+df = adata.obs.copy()
+df["n_counts"] = adata.obs["n_counts"]
+df["RepTech_suffix"] = df["RepTech"].astype(str).str.split("_").str[-1]
+df["ODt"] = df["ODt"].astype(str)
+df["RepBio"] = df["RepBio"].astype(str)
+df["RepTech_suffix"] = df["RepTech_suffix"].astype(str)
+
+# Paramètres
+col_wrap = 3
+palette = sns.color_palette("dark")
+repbios = sorted(df["RepBio"].unique())
+odts = sorted(df["ODt"].unique())
+repbio_to_pos = {repbio: i for i, repbio in enumerate(repbios)}
+
+# Groupes à colorer
+group_vert = ["M9F_A", "M9F_B", "M9F_C"]
+group_rouge = ["M9_A", "M9_B", "M9_C"]
+
+# Setup grid
+n_cols = col_wrap
+n_rows = int(np.ceil(len(odts) / col_wrap))
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(4 * n_cols, 4 * n_rows), sharey=True)
+axes = axes.flatten()
+
+handles, labels = None, None
+
+for i, odt in enumerate(odts):
+    ax = axes[i]
+    data_odt = df[df["ODt"] == odt]
+
+    for j, repbio in enumerate(repbios):
+        data_subset = data_odt[data_odt["RepBio"] == repbio]
+        values = data_subset["n_counts"].dropna()
+
+        if len(values) < 2:
+            continue
+
+        # KDE clippée
+        kde = gaussian_kde(values, bw_method=0.3)
+        x_vals = np.linspace(values.min(), values.max(), 100)
+        density = kde(x_vals)
+        width = 0.4
+        density = density / density.max() * width
+
+        # Tracé du violon
+        ax.fill_betweenx(
+            x_vals, j - density, j + density, color="lightblue", alpha=0.7, linewidth=1
+        )
+
+        # ➕ Affiche le nombre de points
+        ax.text(
+            j,
+            -100,
+            f"(n = {len(values)})",
+            ha="center",
+            va="bottom",
+            fontsize=6,
+            fontweight="bold",
+            color="black",
+        )
+
+    # Stripplot
+    sns.stripplot(
+        data=data_odt,
+        x="RepBio",
+        y="n_counts",
+        hue="RepTech_suffix",
+        dodge=True,
+        jitter=0.25,
+        size=4,
+        ax=ax,
+        alpha=0.9,
+        edgecolor="white",
+        linewidth=0.4,
+        palette=palette,
+        order=repbios,
+    )
+
+    if handles is None and ax.get_legend() is not None:
+        handles, labels = ax.get_legend_handles_labels()
+    if ax.get_legend():
+        ax.legend_.remove()
+
+    ax.set_title(f"ODt = {odt}")
+    ax.set_xticks(range(len(repbios)))
+    ax.set_xticklabels(repbios, rotation=0)
+
+    # 🎨 Colorer les étiquettes X selon le groupe
+    tick_labels = ax.get_xticklabels()
+    for tick_label in tick_labels:
+        label_text = tick_label.get_text()
+        if label_text in group_vert:
+            tick_label.set_color("green")
+        elif label_text in group_rouge:
+            tick_label.set_color("red")
+
+# Supprimer axes vides
+for j in range(len(odts), len(axes)):
+    fig.delaxes(axes[j])
+
+# Légende commune
+if handles is not None:
+    fig.legend(
+        handles,
+        labels,
+        title="RepTech_suffix",
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+    )
+
+plt.tight_layout(rect=[0, 0, 0.95, 1])
+plt.show()
 # %%
