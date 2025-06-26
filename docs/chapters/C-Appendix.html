@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></div>
+    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -218,6 +218,204 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- add a white page after the appendix -->
+<p>R2 before trimming</p>
+<div id="tbl-example" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;C.1: R1 before trimming
+</figcaption>
+<div aria-describedby="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sample Name</th>
+<th style="text-align: left;">Dups</th>
+<th style="text-align: left;">GC</th>
+<th style="text-align: left;">Median len</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BC_0076_R2</td>
+<td style="text-align: left;">88.9%</td>
+<td style="text-align: left;">54.0%</td>
+<td style="text-align: left;">91bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0077_R2</td>
+<td style="text-align: left;">18.6%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">91bp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BC_0079_R2</td>
+<td style="text-align: left;">20.3%</td>
+<td style="text-align: left;">54.0%</td>
+<td style="text-align: left;">91bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0080_R2</td>
+<td style="text-align: left;">88.1%</td>
+<td style="text-align: left;">54.0%</td>
+<td style="text-align: left;">91bp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>R2 after trimming</p>
+<div id="tbl-example" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;C.2: R1 after trimming
+</figcaption>
+<div aria-describedby="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sample Name</th>
+<th style="text-align: left;">Dups</th>
+<th style="text-align: left;">GC</th>
+<th style="text-align: left;">Median len</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BC_0080_R2</td>
+<td style="text-align: left;">92.0%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">90bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0079_R2</td>
+<td style="text-align: left;">23.5%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">90bp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BC_0077_R2</td>
+<td style="text-align: left;">21.4%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">90bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0076_R2</td>
+<td style="text-align: left;">92.9%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">90bp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div id="tbl-example" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;C.3: Before trimming
+</figcaption>
+<div aria-describedby="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sample Name</th>
+<th style="text-align: left;">Dups</th>
+<th style="text-align: left;">GC</th>
+<th style="text-align: left;">Median len</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BC_0076_R1</td>
+<td style="text-align: left;">94.5%</td>
+<td style="text-align: left;">55.0%</td>
+<td style="text-align: left;">241bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0077_R1</td>
+<td style="text-align: left;">94.1%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">241bp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BC_0079_R1</td>
+<td style="text-align: left;">93.8%</td>
+<td style="text-align: left;">53.0%</td>
+<td style="text-align: left;">241bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0080_R1</td>
+<td style="text-align: left;">94.6%</td>
+<td style="text-align: left;">54.0%</td>
+<td style="text-align: left;">241bp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div id="tbl-example" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;C.4: After trimming
+</figcaption>
+<div aria-describedby="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sample Name</th>
+<th style="text-align: left;">Dups</th>
+<th style="text-align: left;">GC</th>
+<th style="text-align: left;">Median len</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BC_0076_R1</td>
+<td style="text-align: left;">98.7%</td>
+<td style="text-align: left;">51.0%</td>
+<td style="text-align: left;">127bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0077_R1</td>
+<td style="text-align: left;">98.6%</td>
+<td style="text-align: left;">51.0%</td>
+<td style="text-align: left;">157bp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BC_0079_R1</td>
+<td style="text-align: left;">98.6%</td>
+<td style="text-align: left;">51.0%</td>
+<td style="text-align: left;">152bp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BC_0080_R1</td>
+<td style="text-align: left;">98.7%</td>
+<td style="text-align: left;">51.0%</td>
+<td style="text-align: left;">132bp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
 
 
 

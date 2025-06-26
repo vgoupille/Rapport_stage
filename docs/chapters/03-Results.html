@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -276,7 +256,7 @@ window.Quarto = {
   <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">5.6</span> Summary of Key Findings</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -885,6 +865,41 @@ Figure&nbsp;3.2: Genome and transcriptome description (obtained with fastqc)
 </section>
 <section id="fitrage-des-cellules" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Fitrage des cellules</h1>
+<div id="fig-filter_100UMI" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-filter_100UMI" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/filter_100UMI_scatter_CutureMedium.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Scatter plot of the number of UMI per cell before and after filtering
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-filter_100UMI" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/filter_100UMI_violin_CultureMedium.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Violin plot of the number of UMI per cell before and after filtering
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Filtering of cells with less than 100 UMI per cell
+</figcaption>
+</figure>
+</div>
 <ul>
 <li><p>reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l’article de il existe des methodes de filtrages plus ou moins complexes<br>
 -filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene</p></li>
@@ -954,8 +969,6 @@ Click to view MultiQC report R2 after trimming
 <p>le choix de filtration sera discuté apres</p>
 <p>because the reads depth is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (voir figure, reuslttas comme deja observé chez )</p>
 <p>Single-cell analysis Two separate libraries were concatenated after filtering, log-normalized by 600 counts per cell, and scaled to unit variance and zero mean. Subsequently, ComBat(70) was run for batch effect correction. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. To create a volcano plot from this data, either the |score| or -log(adjusted p-value) was plotted on the y-axis against the log-fold change on the x axis. Lists of defense genes from DefenseFinder(39), host response genes upregulated after phage treatment, and CPS genes were used to assign colors to each point. Host response genes were taken as the top 15 distinct genes identified in the phage-treated sample only clustering analysis relative to the untreated sample. Initial CPS gene annotations were mapped by and received from Dr.&nbsp;Laurie Comstock (University of Chicago). Calculation of co-expression scores To assess the co-expression between two genes A and B, first, probabilities of expression of individual genes were calculated as fractions of cells having above-zero normalized non-scaled expression values p(A) and p(B), respectively. Then, the probability of simultaneous expression of the two genes, p(A&amp;B), was calculated as a fraction of cells having above-zero normalized non-scaled expression values for both inspected genes. Co-expression score was calculated as a ratio of p(A&amp;B) to the multiplication of p(A) and p(B). Values close to 1 indicate independent expression of genes; values above 1 indicate co-expression, and values below 1 indicate mutually exclusive expression of genes. To define a border of a CPS operon, mean co-expression values were calculated between genes adjacent to the CPS operon and core genes of a CPS operon. Co-expression between gene sets (e.g., CPS operons) was calculated similarly to genes, with probability of expression calculated as a fraction of cells having above-zero normalized non-scaled expression values for any of genes within a set. Diffusion pseudotime analysis The data was first subsetted into the phage-treated sample alone. A root cell was defined using adata.uns[‘iroot’] = np.flatnonzero(adata.obs[‘louvan’]==0)[1], which selected a random indexed cell from the untreated cluster within all phage-treated cells. Scanpy diffusion maps were created prior to running the existing diffusion pseudotime tool with 0 branchings and 10 diffusion components. For downstream analysis using pseudotime values, 5 bins of equal size were created to group cells into pseudotime ranges (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, and 0.8-1.0). Differential expression analysis was run to identify the top 10 distinct B. fragilis genes within each pseudotime bin, and the Clusters of Orthologous Groups (COGs) database was used to define functional categories for these genes. Duplicate genes were removed. Raw mean expression for each of these genes, grouped by functional category, was calculated using the adata.raw.X matrix.</p>
-<p>[<span class="citation" data-cites="gupta"><sup><a href="06-References.html#ref-gupta" role="doc-biblioref">1</a></sup></span>]<span class="citation" data-cites="cyriaque2024"><sup><a href="06-References.html#ref-cyriaque2024" role="doc-biblioref">2</a></sup></span><span class="citation" data-cites="brettner2024a"><sup><a href="06-References.html#ref-brettner2024a" role="doc-biblioref">3</a></sup></span><span class="citation" data-cites="brettner2024b"><sup><a href="06-References.html#ref-brettner2024b" role="doc-biblioref">4</a></sup></span></p>
-<p><span class="citation" data-cites="korshoj2024"><sup><a href="06-References.html#ref-korshoj2024" role="doc-biblioref">5</a></sup></span></p>
 </section>
 <section id="single-cell-rna-seq-analysis" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</h2>
@@ -982,23 +995,6 @@ Click to view MultiQC report R2 after trimming
 <h2 data-number="5.6" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">5.6</span> Summary of Key Findings</h2>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-gupta" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Gupta, A. <em>et al.</em> Combinatorial phenotypic landscape enables bacterial resistance to phage infection. doi:<a href="https://doi.org/10.1101/2025.01.13.632860">10.1101/2025.01.13.632860</a>.</div>
-</div>
-<div id="ref-cyriaque2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Cyriaque, V. <em>et al.</em> <a href="https://doi.org/10.1038/s41467-024-49793-x">Single-cell RNA sequencing reveals plasmid constrains bacterial population heterogeneity and identifies a non-conjugating subpopulation</a>. <em>Nature Communications</em> <strong>15</strong>, 5853 (2024).</div>
-</div>
-<div id="ref-brettner2024a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Brettner, L., Eder, R., Schmidlin, K. &amp; Geiler-Samerotte, K. <a href="https://doi.org/10.1002/yea.3927">An ultra high-throughput, massively multiplexable, single-cell RNA-seq platform in yeasts</a>. <em>Yeast</em> <strong>41</strong>, 242–255 (2024).</div>
-</div>
-<div id="ref-brettner2024b" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Brettner, L. &amp; Geiler-Samerotte, K. Single-cell heterogeneity in ribosome content and the consequences for the growth laws. <em>bioRxiv: The Preprint Server for Biology</em> 2024.04.19.590370 (2024) doi:<a href="https://doi.org/10.1101/2024.04.19.590370">10.1101/2024.04.19.590370</a>.</div>
-</div>
-<div id="ref-korshoj2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Korshoj, L. E. &amp; Kielian, T. <a href="https://doi.org/10.1038/s41467-024-54581-8">Bacterial single-cell RNA sequencing captures biofilm transcriptional heterogeneity and differential responses to immune pressure</a>. <em>Nature Communications</em> <strong>15</strong>, 10184 (2024).</div>
-</div>
-</div>
 </section>
 </section>
 

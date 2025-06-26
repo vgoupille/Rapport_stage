@@ -337,6 +337,22 @@ Proportion of UMI counts from each major type of RNA (mRNA, RNA, tRNA) in (A) E.
 
 # Fitrage des cellules
 
+
+
+
+
+
+
+::: {#fig-filter_100UMI layout-ncol=2}
+![Scatter plot of the number of UMI per cell before and after filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
+
+![Violin plot of the number of UMI per cell before and after filtering](../figures/filter_100UMI_violin_CultureMedium.png){#fig-violin}
+
+Filtering of cells with less than 100 UMI per cell
+:::
+
+
+
 -   reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de il existe des methodes de filtrages plus ou moins complexes\
     -filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene
 
