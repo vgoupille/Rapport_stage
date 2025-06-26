@@ -96,6 +96,49 @@ div.csl-indent {
 </script>
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather|Source Code Pro" rel="stylesheet">
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -218,28 +261,19 @@ div.csl-indent {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#stats-sur-les-reads-r1-et-r2" id="toc-stats-sur-les-reads-r1-et-r2" class="nav-link active" data-scroll-target="#stats-sur-les-reads-r1-et-r2"><span class="header-section-number">3.1</span> Stats sur les reads R1 et R2 :</a></li>
-  <li><a href="#trimming" id="toc-trimming" class="nav-link" data-scroll-target="#trimming"><span class="header-section-number">3.2</span> Trimming</a></li>
-  <li><a href="#starsolo" id="toc-starsolo" class="nav-link" data-scroll-target="#starsolo"><span class="header-section-number">3.3</span> STARsolo</a></li>
-  <li><a href="#genome" id="toc-genome" class="nav-link" data-scroll-target="#genome"><span class="header-section-number">3.4</span> Genome</a></li>
-  <li><a href="#transcriptome" id="toc-transcriptome" class="nav-link" data-scroll-target="#transcriptome"><span class="header-section-number">3.5</span> Transcriptome</a></li>
+  <li><a href="#preprocessing-of-the-sequencing-data" id="toc-preprocessing-of-the-sequencing-data" class="nav-link active" data-scroll-target="#preprocessing-of-the-sequencing-data"><span class="header-section-number">3.1</span> Preprocessing of the sequencing data</a></li>
+  <li><a href="#genfull" id="toc-genfull" class="nav-link" data-scroll-target="#genfull"><span class="header-section-number">3.2</span> Genfull</a></li>
+  <li><a href="#genefull-summary-stats" id="toc-genefull-summary-stats" class="nav-link" data-scroll-target="#genefull-summary-stats"><span class="header-section-number">3.3</span> Genefull summary stats</a></li>
+  <li><a href="#interpretation-of-starsolo-results" id="toc-interpretation-of-starsolo-results" class="nav-link" data-scroll-target="#interpretation-of-starsolo-results"><span class="header-section-number">3.4</span> Interpretation of STARsolo Results</a></li>
   <li><a href="#fitrage-des-cellules" id="toc-fitrage-des-cellules" class="nav-link" data-scroll-target="#fitrage-des-cellules"><span class="header-section-number">4</span> Fitrage des cellules</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a>
   <ul class="collapse">
   <li><a href="#summary-of-results" id="toc-summary-of-results" class="nav-link" data-scroll-target="#summary-of-results"><span class="header-section-number">5.1</span> Summary of results</a></li>
   <li><a href="#multiqc-quality-reports" id="toc-multiqc-quality-reports" class="nav-link" data-scroll-target="#multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</a></li>
-  <li><a href="#genfull" id="toc-genfull" class="nav-link" data-scroll-target="#genfull"><span class="header-section-number">5.3</span> Genfull</a></li>
-  <li><a href="#genefull-summary-stats" id="toc-genefull-summary-stats" class="nav-link" data-scroll-target="#genefull-summary-stats"><span class="header-section-number">5.4</span> Genefull summary stats</a></li>
-  <li><a href="#interpretation-of-starsolo-results" id="toc-interpretation-of-starsolo-results" class="nav-link" data-scroll-target="#interpretation-of-starsolo-results"><span class="header-section-number">5.5</span> Interpretation of STARsolo Results</a></li>
-  <li><a href="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" id="toc-apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="nav-link" data-scroll-target="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">5.6</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</a></li>
-  </ul></li>
-  <li><a href="#initialize-the-seurat-object-with-the-raw-non-normalized-data." id="toc-initialize-the-seurat-object-with-the-raw-non-normalized-data." class="nav-link" data-scroll-target="#initialize-the-seurat-object-with-the-raw-non-normalized-data."><span class="header-section-number">6</span> Initialize the Seurat object with the raw (non-normalized data).</a>
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">6.1</span> Overview</a></li>
-  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">6.2</span> Single-cell RNA-seq Analysis</a></li>
-  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">6.3</span> Functional Analysis</a></li>
-  <li><a href="#integration-with-previous-studies" id="toc-integration-with-previous-studies" class="nav-link" data-scroll-target="#integration-with-previous-studies"><span class="header-section-number">6.4</span> Integration with Previous Studies</a></li>
-  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">6.5</span> Summary of Key Findings</a></li>
+  <li><a href="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" id="toc-apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="nav-link" data-scroll-target="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">5.3</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</a></li>
+  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</a></li>
+  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</a></li>
+  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">5.6</span> Summary of Key Findings</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="../data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
@@ -266,340 +300,133 @@ div.csl-indent {
 </header>
 
 
-<p>beucoup de mal avec la methode : nombre de cellules reel ? control</p>
+<p>This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.</p>
+<p>plan :</p>
 <ul>
-<li>4 libraries of unequal sizes (see Solène’s explanation for why they were not exactly equivalent)</li>
-<li>This impacts library efficiency</li>
-<li>=&gt; Recommendation: balance the libraries for optimal results</li>
-</ul>
-<section id="stats-sur-les-reads-r1-et-r2" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="stats-sur-les-reads-r1-et-r2"><span class="header-section-number">3.1</span> Stats sur les reads R1 et R2 :</h2>
+<li>trimming and quality control</li>
+<li>starsolo</li>
+<li>genome and transcriptome description</li>
+<li>filtering</li>
+<li>Anndata
 <ul>
-<li>On a subset of 1,000,000 reads:
+<li>all the conditions comparison</li>
+<li>selection of three conditions
 <ul>
-<li>Percentage of reads containing TSO</li>
-<li>Percentage of reads containing polyA</li>
-<li>Percentage of reads containing adapter</li>
-<li>Percentage of reads containing linker -&gt; possibly in appendix</li>
+<li>for each :
+<ul>
+<li>clustering</li>
+<li>differential expresion analysis</li>
+<li>GO</li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
-<p>Reminder about saturation calculation method:</p>
-</section>
-<section id="trimming" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="trimming"><span class="header-section-number">3.2</span> Trimming</h2>
-<p>ici j’ai suivi les recommendations de kuchina , seulement presenté les resultats Genfull , mettre plus tard les resultats de Gene</p>
-<ul>
-<li>renvoie vers l’annexe pour les multiqc (fastp, cutadapt) avant et apres trimming</li>
-<li></li>
-<li>mais au final on obtient des resultats tres interessants et propres</li>
-</ul>
-<p>=&gt; peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =&gt; renvoie vers la discussion pour le trimming fait dans l’article de<span class="citation" data-cites="kuchina2021"><sup><a href="06-References.html#ref-kuchina2021" role="doc-biblioref">1</a></sup></span> - avait presque 90% de saturation =&gt; a verifier si c’est vraiment le cas - et 10 % des sequences avec TSO (voir Annexe)</p>
-<ul>
-<li>Summary table of Starsolo results</li>
-<li>numbers of reads before and after trimming</li>
-<li>taux de saturation …</li>
-<li>=&gt; renvoie vers la discussion pour les taux de saturation <!-- 
-// figure - ![](../figures/trimming_quality.png) --></li>
-</ul>
-</section>
-<section id="starsolo" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="starsolo"><span class="header-section-number">3.3</span> STARsolo</h2>
-<p>-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré</p>
-<p>commande starsolo suivante comme dans bretn permet UMI a une erreur… possition des barcodes</p>
-</section>
-<section id="genome" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="genome"><span class="header-section-number">3.4</span> Genome</h2>
-</section>
-<section id="transcriptome" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="transcriptome"><span class="header-section-number">3.5</span> Transcriptome</h2>
-<!-- -   figure de % de type of RNA
--   ![](../figures/pourcentage_RNA.png) -->
-</section>
-<section id="fitrage-des-cellules" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Fitrage des cellules</h1>
-<ul>
-<li><p>reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l’article de il existe des methodes de filtrages plus ou moins complexes<br>
--filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene</p></li>
-<li><p>filtrage avec un threashold</p></li>
-<li><p>dans l’article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule</p></li>
-<li></li>
-<li><p>preprint de … pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)</p></li>
-</ul>
-</section>
-<section id="section" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> </h1>
-<p>housekeeping genes</p>
-<p>choix ou non de pooler les replicas techniques ensembles</p>
-<section id="summary-of-results" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="summary-of-results"><span class="header-section-number">5.1</span> Summary of results</h2>
-</section>
-<section id="multiqc-quality-reports" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</h2>
-<p>Detailed sequence quality reports are available below. Click on each report to view it.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">MultiQC Report R1 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">MultiQC Report R1 After Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MultiQC Report R2 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">MultiQC Report R2 After Trimming</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<details>
-<summary>
-Click to view MultiQC report R1 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<details>
-<summary>
-Click to view MultiQC report R1 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<details>
-<summary>
-Click to view MultiQC report R2 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<details>
-<summary>
-Click to view MultiQC report R2 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-</div>
-</div>
-<p>Key quality metrics are summarized in the tables below.</p>
-<div id="tbl-example" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.1: Before trimming
-</figcaption>
-<div aria-describedby="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>=&gt; don’t do all the analysis for the moment</p>
+<section id="preprocessing-of-the-sequencing-data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="preprocessing-of-the-sequencing-data"><span class="header-section-number">3.1</span> Preprocessing of the sequencing data</h2>
+<section id="trimming-and-quality-control-of-fastq-files" class="level3">
+<h3 class="anchored" data-anchor-id="trimming-and-quality-control-of-fastq-files">Trimming and quality control of fastq files</h3>
+<div id="fig-adaptateur" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-adaptateur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Sample Name</th>
-<th style="text-align: left;">Dups</th>
-<th style="text-align: left;">GC</th>
-<th style="text-align: left;">Median len</th>
-<th style="text-align: left;">Seqs</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">BC_0076_R1</td>
-<td style="text-align: left;">94.5%</td>
-<td style="text-align: left;">55.0%</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">631.4M</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BC_0077_R1</td>
-<td style="text-align: left;">94.1%</td>
-<td style="text-align: left;">53.0%</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">325.5M</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BC_0079_R1</td>
-<td style="text-align: left;">93.8%</td>
-<td style="text-align: left;">53.0%</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">379.1M</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BC_0080_R1</td>
-<td style="text-align: left;">94.6%</td>
-<td style="text-align: left;">54.0%</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">397.7M</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Total</strong></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;"><strong>1,733.7M</strong></td>
-</tr>
-</tbody>
-</table>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-adaptateur" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-before" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/adaptateur_R1_BC76_bf_trimm.png" class="img-fluid figure-img" data-ref-parent="fig-adaptateur">
 </div>
-</div>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) before trimming
+</figcaption>
 </figure>
 </div>
-<div id="tbl-example" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.2: After trimming
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-adaptateur" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-after" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/adaptateur_R1_BC76_after_trimm.png" class="img-fluid figure-img" data-ref-parent="fig-adaptateur">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) after trimming
 </figcaption>
-<div aria-describedby="tbl-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Sample Name</th>
-<th style="text-align: left;">Dups</th>
-<th style="text-align: left;">GC</th>
-<th style="text-align: left;">Median len</th>
-<th style="text-align: left;">Seqs</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">BC_0076_R1</td>
-<td style="text-align: left;">98.7%</td>
-<td style="text-align: left;">51.0%</td>
-<td style="text-align: left;">127bp</td>
-<td style="text-align: left;">450.8M</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BC_0077_R1</td>
-<td style="text-align: left;">98.6%</td>
-<td style="text-align: left;">51.0%</td>
-<td style="text-align: left;">157bp</td>
-<td style="text-align: left;">248.4M</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BC_0079_R1</td>
-<td style="text-align: left;">98.6%</td>
-<td style="text-align: left;">51.0%</td>
-<td style="text-align: left;">152bp</td>
-<td style="text-align: left;">285.2M</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BC_0080_R1</td>
-<td style="text-align: left;">98.7%</td>
-<td style="text-align: left;">51.0%</td>
-<td style="text-align: left;">132bp</td>
-<td style="text-align: left;">300.1M</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Total</strong></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;"><strong>1,284.5M</strong></td>
-</tr>
-</tbody>
-</table>
+</figure>
 </div>
 </div>
 </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adaptateur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Adapter content before and after trimming (BC_0076)
+</figcaption>
 </figure>
 </div>
 <div id="tbl-summary" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.3: Summary of sequence metrics before and after trimming, including percentage changes
+Table&nbsp;3.1: Summary of sequence metrics before and after trimming, including percentage changes
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
 <colgroup>
+<col style="width: 21%">
 <col style="width: 14%">
 <col style="width: 14%">
 <col style="width: 14%">
 <col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 19%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Sample Name</th>
-<th style="text-align: left;">Before Trimming</th>
-<th style="text-align: left;"></th>
-<th style="text-align: left;">After Trimming</th>
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Change in</th>
-<th style="text-align: left;"></th>
+<th style="text-align: left;">BC_0076</th>
+<th style="text-align: left;">BC_0077</th>
+<th style="text-align: left;">BC_0079</th>
+<th style="text-align: left;">BC_0080</th>
+<th style="text-align: left;"><span class="math inline">Mean</span>/Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Median len</td>
-<td style="text-align: left;">Seqs</td>
-<td style="text-align: left;">Median len</td>
-<td style="text-align: left;">Seqs</td>
-<td style="text-align: left;">Length</td>
-<td style="text-align: left;">Sequences</td>
+<td style="text-align: left;">R1 length before trimming</td>
+<td style="text-align: left;">241bp</td>
+<td style="text-align: left;">241bp</td>
+<td style="text-align: left;">241bp</td>
+<td style="text-align: left;">241bp</td>
+<td style="text-align: left;"><span class="math inline">241bp</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">————–</td>
-<td style="text-align: left;">—————-</td>
-<td style="text-align: left;">————</td>
-<td style="text-align: left;">—————-</td>
-<td style="text-align: left;">————</td>
-<td style="text-align: left;">———–</td>
-<td style="text-align: left;">———–</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BC_0076_R1</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">631.4M</td>
+<td style="text-align: left;">R1 length after trimming</td>
 <td style="text-align: left;">127bp</td>
-<td style="text-align: left;">450.8M</td>
-<td style="text-align: left;">-47.3%</td>
-<td style="text-align: left;">-28.6%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BC_0077_R1</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">325.5M</td>
 <td style="text-align: left;">157bp</td>
-<td style="text-align: left;">248.4M</td>
-<td style="text-align: left;">-34.9%</td>
-<td style="text-align: left;">-23.7%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BC_0079_R1</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">379.1M</td>
 <td style="text-align: left;">152bp</td>
-<td style="text-align: left;">285.2M</td>
-<td style="text-align: left;">-36.9%</td>
-<td style="text-align: left;">-24.8%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BC_0080_R1</td>
-<td style="text-align: left;">241bp</td>
-<td style="text-align: left;">397.7M</td>
 <td style="text-align: left;">132bp</td>
-<td style="text-align: left;">300.1M</td>
-<td style="text-align: left;">-45.2%</td>
-<td style="text-align: left;">-24.5%</td>
+<td style="text-align: left;"><span class="math inline">142bp</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Mean</strong></td>
-<td style="text-align: left;"><strong>241bp</strong></td>
-<td style="text-align: left;"><strong>433.4M</strong></td>
-<td style="text-align: left;"><strong>142bp</strong></td>
-<td style="text-align: left;"><strong>321.1M</strong></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
+<td style="text-align: left;">R1 number of sequences before trimming</td>
+<td style="text-align: left;">631.4M</td>
+<td style="text-align: left;">325.5M</td>
+<td style="text-align: left;">379.1M</td>
+<td style="text-align: left;">397.7M</td>
+<td style="text-align: left;"><strong>1733.7M</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Total</strong></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;"><strong>1733.7M</strong></td>
-<td style="text-align: left;">-</td>
+<td style="text-align: left;">R1 number of sequences after trimming</td>
+<td style="text-align: left;">450.8M</td>
+<td style="text-align: left;">248.4M</td>
+<td style="text-align: left;">285.2M</td>
+<td style="text-align: left;">300.1M</td>
 <td style="text-align: left;"><strong>1284.5M</strong></td>
-<td style="text-align: left;"><strong>-41.1%</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Change in number of sequences</td>
+<td style="text-align: left;">-28.6%</td>
+<td style="text-align: left;">-23.7%</td>
+<td style="text-align: left;">-24.8%</td>
+<td style="text-align: left;">-24.5%</td>
 <td style="text-align: left;"><strong>-25.4%</strong></td>
 </tr>
 </tbody>
@@ -609,10 +436,27 @@ Table&nbsp;5.3: Summary of sequence metrics before and after trimming, including
 </div>
 </figure>
 </div>
+<p>description : - permis de retirer les TSO, polyG, polyA … - r1 aussi supprimer les polyG (voir github ou annexe)<br>
+- 4 libraries of unequal sizes (see Solène’s explanation for why they were not exactly equivalent) - This impacts library efficiency - =&gt; Recommendation: balance the libraries for optimal results - - discussion taille des différentes biblioteques (pas equilibré) =&gt; influence sur la qualité de sequençage probablement mais pas que</p>
+<p>-on voit aussi que ces eux qui possèdent la plus forte diminution de la taille des reads R1</p>
+<p>pareil pour la biblioteque BC_0080 , concordance avec le fait de ces deux biblioteque possède un taux de duplication plus faible que les autres sur les barcodes je crois 25 contre 97 (voir annexe )</p>
+<ul>
+<li><p>BC_0076 aparrition de polyG plus tot cf github : voit polyG plus en amont et plus haut pour cette biblio (epuissement de reactif donc plus d’erreur de sequençage GGGGG)</p></li>
+<li><p>mais au final on obtient des resultats tres interessants et propres</p></li>
+<li><p>discussion sur le nombre de reads que l’on supprime 25 % c’est bien , a la fin on garde 1.284.5B reads</p></li>
+<li><p>discussion sur le qualité</p></li>
+<li></li>
+<li><p>multiqc (juste pour la version online) =&gt; mettre les guillemets</p></li>
+</ul>
+</section>
+<section id="starsolo" class="level3">
+<h3 class="anchored" data-anchor-id="starsolo">STARsolo</h3>
+<p>-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré</p>
+<p>commande starsolo suivante comme dans bretn permet UMI a une erreur… possition des barcodes</p>
 <div id="tbl-starsolo" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.4: STARsolo barcode statistics
+Table&nbsp;3.2: STARsolo barcode statistics
 </figcaption>
 <div aria-describedby="tbl-starsolo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
@@ -680,6 +524,7 @@ Table&nbsp;5.4: STARsolo barcode statistics
 </div>
 </figure>
 </div>
+</section>
 <section id="barcode-statistics-interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="barcode-statistics-interpretation">Barcode Statistics Interpretation</h3>
 <p>The analysis of cell barcodes reveals several important points about our data quality:</p>
@@ -709,12 +554,12 @@ Table&nbsp;5.4: STARsolo barcode statistics
 <p>These results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.</p>
 </section>
 </section>
-<section id="genfull" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="genfull"><span class="header-section-number">5.3</span> Genfull</h2>
+<section id="genfull" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="genfull"><span class="header-section-number">3.2</span> Genfull</h2>
 <div id="tbl-starsolo-features" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.5: STARsolo feature mapping statistics
+Table&nbsp;3.3: STARsolo feature mapping statistics
 </figcaption>
 <div aria-describedby="tbl-starsolo-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
@@ -834,12 +679,12 @@ Table&nbsp;5.5: STARsolo feature mapping statistics
 </section>
 </section>
 </section>
-<section id="genefull-summary-stats" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="genefull-summary-stats"><span class="header-section-number">5.4</span> Genefull summary stats</h2>
+<section id="genefull-summary-stats" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="genefull-summary-stats"><span class="header-section-number">3.3</span> Genefull summary stats</h2>
 <div id="tbl-starsolo-summary" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.6: STARsolo summary statistics
+Table&nbsp;3.4: STARsolo summary statistics
 </figcaption>
 <div aria-describedby="tbl-starsolo-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
@@ -940,8 +785,8 @@ Table&nbsp;5.6: STARsolo summary statistics
 </figure>
 </div>
 </section>
-<section id="interpretation-of-starsolo-results" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="interpretation-of-starsolo-results"><span class="header-section-number">5.5</span> Interpretation of STARsolo Results</h2>
+<section id="interpretation-of-starsolo-results" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="interpretation-of-starsolo-results"><span class="header-section-number">3.4</span> Interpretation of STARsolo Results</h2>
 <p>The STARsolo analysis revealed several key insights about our single-cell RNA-seq data:</p>
 <section id="sequencing-quality-and-mapping" class="level3">
 <h3 class="anchored" data-anchor-id="sequencing-quality-and-mapping">Sequencing Quality and Mapping</h3>
@@ -996,99 +841,126 @@ Table&nbsp;5.6: STARsolo summary statistics
 <section id="filter" class="level3">
 <h3 class="anchored" data-anchor-id="filter">filter</h3>
 <p>Nous on prend tout les barcodes pas ceux qui sont filtré donc les 820, 800 barcodes</p>
-<!-- 
-
-filtrer seulement les CDS 
-
-r$> # show the number of cells
-    ncol(seurat_object)
-[1] 820800
-
-r$> # show the number of genes
-    nrow(seurat_object)
-[1] 4856
-
-
-
-
- Filter the cells with less than 200 counts
-    seurat_object_filtered <- subset(seurat_object, subset = nCount_RNA > 200)
-
-r$> # Show the number of cells after filtering
-    ncol(seurat_object_filtered)
-[1] 65059
-
-
-
-r$> # show the max and min of the counts
-    max(seurat_object_filtered$nCount_RNA)
-[1] 9452.001
-
-r$> min(seurat_object_filtered$nCount_RNA)
-[1] 200
-
-r$> mean(seurat_object_filtered$nCount_RNA)
-[1] 416.7303
-
-r$> median(seurat_object_filtered$nCount_RNA)
-[1] 323
-
- -->
-<!-- 
-r$> # show the max and min of the genes
-    max(seurat_object_filtered$nFeature_RNA)
-[1] 1971
-
-r$> min(seurat_object_filtered$nFeature_RNA)
-[1] 92
- seurat_object_filtered
-
-An object of class Seurat 
-4856 features across 65059 samples within 1 assay 
-Active assay: RNA (4856 features, 0 variable features)
- 1 layer present: counts
-
-
-
-
- -->
+</section>
+<section id="genome-and-transcriptome-description" class="level3">
+<h3 class="anchored" data-anchor-id="genome-and-transcriptome-description">Genome and transcriptome description</h3>
+<div id="fig-genome-transcriptome" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-genome-transcriptome" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-genome" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-genome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/genome_description.png" class="img-fluid figure-img" data-ref-parent="fig-genome-transcriptome">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-genome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) genome
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-genome-transcriptome" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-transcriptome" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/transcriptome_description.png" class="img-fluid figure-img" data-ref-parent="fig-genome-transcriptome">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) transcriptome
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Genome and transcriptome description (obtained with fastqc)
+</figcaption>
+</figure>
+</div>
+<p>Abundances of different types of RNA.</p>
+<p>Proportion of UMI counts from each major type of RNA (mRNA, RNA, tRNA) in (A) E. coli, (B) B. subtilis cells from the heat shock experiment shown in main Fig. 1. (C) tRNA and ncRNA UMI counts per cell for both species. (mRNA and rRNA UMI counts are shown in Fig. 1 of the main paper). (D) Number of unique genes per cell for both species. (E-F) Distribution of mean UMI counts per gene for (E) E. coli and (F) B. subtilis cells. Lines on the bottom correspond to single genes.</p>
 </section>
 </section>
-<section id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">5.6</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</h2>
-<section id="genome-1" class="level3">
-<h3 class="anchored" data-anchor-id="genome-1">genome</h3>
-<p>circular representation of c-bacterial genome and read alignment voir comment faire ce type de figure et l’article qui l’avait fait</p>
+<section id="fitrage-des-cellules" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Fitrage des cellules</h1>
+<ul>
+<li><p>reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l’article de il existe des methodes de filtrages plus ou moins complexes<br>
+-filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene</p></li>
+<li><p>filtrage avec un threashold</p></li>
+<li><p>dans l’article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule</p></li>
+<li></li>
+<li><p>preprint de … pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)</p></li>
+</ul>
 </section>
-<section id="section-1" class="level3">
-<h3 class="anchored" data-anchor-id="section-1"></h3>
-<p>Attention j’ai filtré pour ne garder que les CDS mais certains pas annotés plutot exclure les tRNA et rRNA</p>
+<section id="section" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> </h1>
+<p>housekeeping genes</p>
+<p>choix ou non de pooler les replicas techniques ensembles</p>
+<section id="summary-of-results" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="summary-of-results"><span class="header-section-number">5.1</span> Summary of results</h2>
+</section>
+<section id="multiqc-quality-reports" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</h2>
+<p>Detailed sequence quality reports are available below. Click on each report to view it.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">MultiQC Report R1 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">MultiQC Report R1 After Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MultiQC Report R2 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">MultiQC Report R2 After Trimming</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<details>
+<summary>
+Click to view MultiQC report R1 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<details>
+<summary>
+Click to view MultiQC report R1 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<details>
+<summary>
+Click to view MultiQC report R2 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<details>
+<summary>
+Click to view MultiQC report R2 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">5.3</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</h2>
 <p>In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).</p>
 <p>dans l’article de kuchina ils ont filtré les cellules en fonction du nombre de reads et de genes :</p>
 <p>“Processing of data from the heat shock experiment Clustering and data analysis for the speciesmixing experiment with heat shock treatment was performed using Scanpy (59). We only kept transcriptomes that had a <strong>number of total reads higher than 200</strong>. Then, we removed the <strong>ribosomal and tRNA reads from the data</strong>, retaining only reads that represented the mRNA counts for both species. We further filtered cells based on the mRNA counts, <strong>retaining cells expressing &gt;100 reads and &gt;100 genes</strong>, and additionally filtered the genes, retaining the <strong>genes expressed in &gt;5 cells</strong>. We then applied standard Scanpy normalization and scaling, dimensionality reduction, and clustering, as described in the Scanpy tutorial (59, 60). The clusters were produced by the Louvain graph-clustering method and manually inspected for the top differentially expressed genes. After inspection, three pairs of transcriptionally similar clusters with fewer differentially expressed genes were merged, resulting in clusters 1, 2, and 3 in Fig. 1D.” (<a href="zotero://select/library/items/AWDKBVJW">Kuchina et al., 2021, p.&nbsp;8</a>) (<a href="zotero://open-pdf/library/items/YFM8QJY6?page=9&amp;annotation=LXF2XHIY">pdf</a>)</p>
-</section>
-</section>
-</section>
-<section id="initialize-the-seurat-object-with-the-raw-non-normalized-data." class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Initialize the Seurat object with the raw (non-normalized data).</h1>
-<p>pbmc &lt;- CreateSeuratObject(counts = pbmc.data, project = “pbmc3k”, min.cells = 3, min.features = 200)</p>
-<p>https://rnabioco.github.io/cellar/previous/2019/docs/2_filtering_QC.html</p>
 <p>le choix de filtration sera discuté apres</p>
 <p>because the reads depth is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (voir figure, reuslttas comme deja observé chez )</p>
 <p>Single-cell analysis Two separate libraries were concatenated after filtering, log-normalized by 600 counts per cell, and scaled to unit variance and zero mean. Subsequently, ComBat(70) was run for batch effect correction. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. To create a volcano plot from this data, either the |score| or -log(adjusted p-value) was plotted on the y-axis against the log-fold change on the x axis. Lists of defense genes from DefenseFinder(39), host response genes upregulated after phage treatment, and CPS genes were used to assign colors to each point. Host response genes were taken as the top 15 distinct genes identified in the phage-treated sample only clustering analysis relative to the untreated sample. Initial CPS gene annotations were mapped by and received from Dr.&nbsp;Laurie Comstock (University of Chicago). Calculation of co-expression scores To assess the co-expression between two genes A and B, first, probabilities of expression of individual genes were calculated as fractions of cells having above-zero normalized non-scaled expression values p(A) and p(B), respectively. Then, the probability of simultaneous expression of the two genes, p(A&amp;B), was calculated as a fraction of cells having above-zero normalized non-scaled expression values for both inspected genes. Co-expression score was calculated as a ratio of p(A&amp;B) to the multiplication of p(A) and p(B). Values close to 1 indicate independent expression of genes; values above 1 indicate co-expression, and values below 1 indicate mutually exclusive expression of genes. To define a border of a CPS operon, mean co-expression values were calculated between genes adjacent to the CPS operon and core genes of a CPS operon. Co-expression between gene sets (e.g., CPS operons) was calculated similarly to genes, with probability of expression calculated as a fraction of cells having above-zero normalized non-scaled expression values for any of genes within a set. Diffusion pseudotime analysis The data was first subsetted into the phage-treated sample alone. A root cell was defined using adata.uns[‘iroot’] = np.flatnonzero(adata.obs[‘louvan’]==0)[1], which selected a random indexed cell from the untreated cluster within all phage-treated cells. Scanpy diffusion maps were created prior to running the existing diffusion pseudotime tool with 0 branchings and 10 diffusion components. For downstream analysis using pseudotime values, 5 bins of equal size were created to group cells into pseudotime ranges (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, and 0.8-1.0). Differential expression analysis was run to identify the top 10 distinct B. fragilis genes within each pseudotime bin, and the Clusters of Orthologous Groups (COGs) database was used to define functional categories for these genes. Duplicate genes were removed. Raw mean expression for each of these genes, grouped by functional category, was calculated using the adata.raw.X matrix.</p>
-<p>[<span class="citation" data-cites="gupta"><sup><a href="06-References.html#ref-gupta" role="doc-biblioref">2</a></sup></span>]<span class="citation" data-cites="cyriaque2024"><sup><a href="06-References.html#ref-cyriaque2024" role="doc-biblioref">3</a></sup></span><span class="citation" data-cites="brettner2024a"><sup><a href="06-References.html#ref-brettner2024a" role="doc-biblioref">4</a></sup></span><span class="citation" data-cites="brettner2024b"><sup><a href="06-References.html#ref-brettner2024b" role="doc-biblioref">5</a></sup></span></p>
-<p><span class="citation" data-cites="korshoj2024"><sup><a href="06-References.html#ref-korshoj2024" role="doc-biblioref">6</a></sup></span></p>
-<section id="overview" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">6.1</span> Overview</h2>
-<p>This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.</p>
+<p>[<span class="citation" data-cites="gupta"><sup><a href="06-References.html#ref-gupta" role="doc-biblioref">1</a></sup></span>]<span class="citation" data-cites="cyriaque2024"><sup><a href="06-References.html#ref-cyriaque2024" role="doc-biblioref">2</a></sup></span><span class="citation" data-cites="brettner2024a"><sup><a href="06-References.html#ref-brettner2024a" role="doc-biblioref">3</a></sup></span><span class="citation" data-cites="brettner2024b"><sup><a href="06-References.html#ref-brettner2024b" role="doc-biblioref">4</a></sup></span></p>
+<p><span class="citation" data-cites="korshoj2024"><sup><a href="06-References.html#ref-korshoj2024" role="doc-biblioref">5</a></sup></span></p>
 </section>
-<section id="single-cell-rna-seq-analysis" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">6.2</span> Single-cell RNA-seq Analysis</h2>
+<section id="single-cell-rna-seq-analysis" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</h2>
 <section id="data-quality-and-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="data-quality-and-preprocessing">Data Quality and Preprocessing</h3>
-</section>
-<section id="cell-type-identification" class="level3">
-<h3 class="anchored" data-anchor-id="cell-type-identification">Cell Type Identification</h3>
 </section>
 <section id="differential-expression-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="differential-expression-analysis">Differential Expression Analysis</h3>
@@ -1097,43 +969,34 @@ Active assay: RNA (4856 features, 0 variable features)
 <h3 class="anchored" data-anchor-id="division-of-labor-patterns">Division of Labor Patterns</h3>
 </section>
 </section>
-<section id="functional-analysis" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">6.3</span> Functional Analysis</h2>
+<section id="functional-analysis" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</h2>
 <section id="pathway-enrichment" class="level3">
 <h3 class="anchored" data-anchor-id="pathway-enrichment">Pathway Enrichment</h3>
 </section>
 <section id="gene-set-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="gene-set-analysis">Gene Set Analysis</h3>
 </section>
-<section id="regulatory-network-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="regulatory-network-analysis">Regulatory Network Analysis</h3>
 </section>
-</section>
-<section id="integration-with-previous-studies" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="integration-with-previous-studies"><span class="header-section-number">6.4</span> Integration with Previous Studies</h2>
-</section>
-<section id="summary-of-key-findings" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">6.5</span> Summary of Key Findings</h2>
+<section id="summary-of-key-findings" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">5.6</span> Summary of Key Findings</h2>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-kuchina2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Kuchina, A. <em>et al.</em> <a href="https://doi.org/10.1126/science.aba5257">Microbial single-cell RNA sequencing by split-pool barcoding</a>. <em>Science</em> <strong>371</strong>, eaba5257 (2021).</div>
-</div>
 <div id="ref-gupta" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Gupta, A. <em>et al.</em> Combinatorial phenotypic landscape enables bacterial resistance to phage infection. doi:<a href="https://doi.org/10.1101/2025.01.13.632860">10.1101/2025.01.13.632860</a>.</div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Gupta, A. <em>et al.</em> Combinatorial phenotypic landscape enables bacterial resistance to phage infection. doi:<a href="https://doi.org/10.1101/2025.01.13.632860">10.1101/2025.01.13.632860</a>.</div>
 </div>
 <div id="ref-cyriaque2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Cyriaque, V. <em>et al.</em> <a href="https://doi.org/10.1038/s41467-024-49793-x">Single-cell RNA sequencing reveals plasmid constrains bacterial population heterogeneity and identifies a non-conjugating subpopulation</a>. <em>Nature Communications</em> <strong>15</strong>, 5853 (2024).</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Cyriaque, V. <em>et al.</em> <a href="https://doi.org/10.1038/s41467-024-49793-x">Single-cell RNA sequencing reveals plasmid constrains bacterial population heterogeneity and identifies a non-conjugating subpopulation</a>. <em>Nature Communications</em> <strong>15</strong>, 5853 (2024).</div>
 </div>
 <div id="ref-brettner2024a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Brettner, L., Eder, R., Schmidlin, K. &amp; Geiler-Samerotte, K. <a href="https://doi.org/10.1002/yea.3927">An ultra high-throughput, massively multiplexable, single-cell RNA-seq platform in yeasts</a>. <em>Yeast</em> <strong>41</strong>, 242–255 (2024).</div>
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Brettner, L., Eder, R., Schmidlin, K. &amp; Geiler-Samerotte, K. <a href="https://doi.org/10.1002/yea.3927">An ultra high-throughput, massively multiplexable, single-cell RNA-seq platform in yeasts</a>. <em>Yeast</em> <strong>41</strong>, 242–255 (2024).</div>
 </div>
 <div id="ref-brettner2024b" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Brettner, L. &amp; Geiler-Samerotte, K. Single-cell heterogeneity in ribosome content and the consequences for the growth laws. <em>bioRxiv: The Preprint Server for Biology</em> 2024.04.19.590370 (2024) doi:<a href="https://doi.org/10.1101/2024.04.19.590370">10.1101/2024.04.19.590370</a>.</div>
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Brettner, L. &amp; Geiler-Samerotte, K. Single-cell heterogeneity in ribosome content and the consequences for the growth laws. <em>bioRxiv: The Preprint Server for Biology</em> 2024.04.19.590370 (2024) doi:<a href="https://doi.org/10.1101/2024.04.19.590370">10.1101/2024.04.19.590370</a>.</div>
 </div>
 <div id="ref-korshoj2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Korshoj, L. E. &amp; Kielian, T. <a href="https://doi.org/10.1038/s41467-024-54581-8">Bacterial single-cell RNA sequencing captures biofilm transcriptional heterogeneity and differential responses to immune pressure</a>. <em>Nature Communications</em> <strong>15</strong>, 10184 (2024).</div>
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Korshoj, L. E. &amp; Kielian, T. <a href="https://doi.org/10.1038/s41467-024-54581-8">Bacterial single-cell RNA sequencing captures biofilm transcriptional heterogeneity and differential responses to immune pressure</a>. <em>Nature Communications</em> <strong>15</strong>, 10184 (2024).</div>
 </div>
 </div>
 </section>

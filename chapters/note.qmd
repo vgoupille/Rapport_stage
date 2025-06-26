@@ -1,5 +1,26 @@
 # Notes
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # comptage des cellules pour taux de collision  
 
 

@@ -2,6 +2,58 @@
 
 <!-- add a white page after the appendix -->
 
+
+R2 before trimming 
+
+|Sample Name|Dups|GC|Median len|
+|---|---|---|---|
+|BC_0076_R2|88.9%|54.0%|91bp|
+|BC_0077_R2|18.6%|53.0%|91bp|
+|BC_0079_R2|20.3%|54.0%|91bp|
+|BC_0080_R2|88.1%|54.0%|91bp|
+
+: R1 before trimming {#tbl-example layout-ncol="1"}
+
+
+
+
+
+
+R2 after trimming 
+
+| Sample Name | Dups  | GC    | Median len | 
+| ----------- | ----- | ----- | ---------- | 
+| BC_0080_R2  | 92.0% | 53.0% | 90bp       | 
+| BC_0079_R2  | 23.5% | 53.0% | 90bp       | 
+| BC_0077_R2  | 21.4% | 53.0% | 90bp       | 
+| BC_0076_R2  | 92.9% | 53.0% | 90bp       | 
+
+: R1 after trimming {#tbl-example layout-ncol="1"}
+
+
+
+| Sample Name | Dups  | GC    | Median len |
+|-------------|-------|-------|------------|
+| BC_0076_R1  | 94.5% | 55.0% | 241bp      |
+| BC_0077_R1  | 94.1% | 53.0% | 241bp      |
+| BC_0079_R1  | 93.8% | 53.0% | 241bp      |
+| BC_0080_R1  | 94.6% | 54.0% | 241bp      |
+: Before trimming {#tbl-example layout-ncol="1"}
+
+
+
+
+
+| Sample Name | Dups  | GC    | Median len |
+|-------------|-------|-------|------------|
+| BC_0076_R1  | 98.7% | 51.0% | 127bp      |
+| BC_0077_R1  | 98.6% | 51.0% | 157bp      |
+| BC_0079_R1  | 98.6% | 51.0% | 152bp      |
+| BC_0080_R1  | 98.7% | 51.0% | 132bp      |
+: After trimming {#tbl-example layout-ncol="1"}
+
+
+
 \clearpage
 \thispagestyle{empty}
 \vspace*{\fill}

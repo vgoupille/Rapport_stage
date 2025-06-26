@@ -1,176 +1,95 @@
 # Results
 
-beucoup de mal avec la methode : nombre de cellules reel ? 
-control 
+
+This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.
+
+
+plan :
+
+- trimming and quality control
+- starsolo 
+- genome and transcriptome description 
+- filtering 
+- Anndata 
+  - all the conditions comparison 
+  - selection of three conditions 
+    - for each : 
+      - clustering
+      - differential expresion analysis
+      - GO  
+
+=> don't do all the analysis for the moment 
+
+
+
+## Preprocessing of the sequencing data
+
+### Trimming and quality control of fastq files
+
+
+::: {#fig-adaptateur layout-ncol=2}
+![before trimming](../figures/adaptateur_R1_BC76_bf_trimm.png){#fig-before}
+
+![after trimming](../figures/adaptateur_R1_BC76_after_trimm.png){#fig-after}
+
+Adapter content before and after trimming (BC_0076)
+:::
+
+
+| Sample Name | BC_0076 | BC_0077 | BC_0079 | BC_0080 | $Mean$/Total |
+|-------------|---------|---------|---------|---------|------------|
+| R1 length before trimming | 241bp | 241bp | 241bp | 241bp |$241bp$ |
+| R1 length after trimming | 127bp | 157bp | 152bp | 132bp | $142bp$ |
+| R1 number of sequences before trimming | 631.4M | 325.5M | 379.1M | 397.7M | **1733.7M** |
+| R1 number of sequences after trimming | 450.8M | 248.4M | 285.2M | 300.1M | **1284.5M** |
+| Change in number of sequences | -28.6% | -23.7% | -24.8% | -24.5% | **-25.4%** |
+
+: Summary of sequence metrics before and after trimming, including percentage changes {#tbl-summary layout-ncol="1"}
 
 
 
 
-
-
+description :
+- permis de retirer les TSO,  polyG, polyA ...
+- r1 aussi supprimer les polyG (voir github ou annexe)  
 - 4 libraries of unequal sizes (see Solène's explanation for why they were not exactly equivalent)
 - This impacts library efficiency 
 - => Recommendation: balance the libraries for optimal results
+- 
+- discussion taille des différentes biblioteques (pas equilibré)
+=> influence sur la qualité de sequençage probablement mais pas que 
 
+-on voit aussi que ces eux qui possèdent la plus forte diminution de la taille des reads R1
 
+pareil pour la biblioteque BC_0080 , 
+concordance avec le fait de ces deux biblioteque possède un taux de duplication plus faible que les autres sur les barcodes je crois 25 contre 97 (voir annexe )
 
+- BC_0076 aparrition de polyG plus tot cf github : voit polyG plus en amont et plus haut pour cette biblio (epuissement de reactif donc plus d'erreur de sequençage GGGGG)
 
-## Stats sur les reads R1 et R2 : 
-- On a subset of 1,000,000 reads:
-  - Percentage of reads containing TSO
-  - Percentage of reads containing polyA
-  - Percentage of reads containing adapter
-  - Percentage of reads containing linker
-  -> possibly in appendix
-
-
-Reminder about saturation calculation method:
-
-
-
-
-
-
-## Trimming
-
-ici j'ai suivi les recommendations de kuchina , seulement presenté les resultats Genfull  , mettre plus tard les resultats de Gene
-
-
--   renvoie vers l'annexe pour les multiqc (fastp, cutadapt) avant et apres trimming
--   
 -   mais au final on obtient des resultats tres interessants et propres
 
-=\> peut etre il aurait été interressant de faire un trimming comme kuchina 2021 pour comparer les resultats =\> renvoie vers la discussion pour le trimming fait dans l'article de [@kuchina2021] - avait presque 90% de saturation =\> a verifier si c'est vraiment le cas - et 10 % des sequences avec TSO (voir Annexe)
 
--   Summary table of Starsolo results
--   numbers of reads before and after trimming
--   taux de saturation ...
--   =\> renvoie vers la discussion pour les taux de saturation
-<!-- 
-// figure - ![](../figures/trimming_quality.png) -->
 
-## STARsolo
+- discussion sur le nombre de reads que l'on supprime 25 % c'est bien , a la fin on garde 1.284.5B reads 
+- discussion sur le qualité
+-  
+
+
+
+- multiqc (juste pour la version online) => mettre les guillemets
+
+
+
+
+
+### STARsolo
 
 -pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré
 
 commande starsolo suivante comme dans bretn permet UMI a une erreur... possition des barcodes
 
-## Genome
 
-## Transcriptome
 
-<!-- -   figure de % de type of RNA
--   ![](../figures/pourcentage_RNA.png) -->
-
-# Fitrage des cellules
-
--   reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de il existe des methodes de filtrages plus ou moins complexes\
-    -filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene
-
--   filtrage avec un threashold
-
--   dans l'article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule
-
--   
-
--   preprint de ... pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)
-
-# 
-
-housekeeping genes
-
-choix ou non de pooler les replicas techniques ensembles
-
-## Summary of results
-
-## MultiQC Quality Reports
-
-Detailed sequence quality reports are available below. Click on each report to view it.
-
-::: panel-tabset
-#### MultiQC Report R1 Before Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R1 before trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R1 After Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R1 after trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R2 Before Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R2 before trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R2 After Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R2 after trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-:::
-
-Key quality metrics are summarized in the tables below.
-
-| Sample Name | Dups  | GC    | Median len | Seqs         |
-|-------------|-------|-------|------------|--------------|
-| BC_0076_R1  | 94.5% | 55.0% | 241bp      | 631.4M       |
-| BC_0077_R1  | 94.1% | 53.0% | 241bp      | 325.5M       |
-| BC_0079_R1  | 93.8% | 53.0% | 241bp      | 379.1M       |
-| BC_0080_R1  | 94.6% | 54.0% | 241bp      | 397.7M       |
-| **Total**   | \-    | \-    | \-         | **1,733.7M** |
-
-: Before trimming {#tbl-example layout-ncol="1"}
-
-| Sample Name | Dups  | GC    | Median len | Seqs         |
-|-------------|-------|-------|------------|--------------|
-| BC_0076_R1  | 98.7% | 51.0% | 127bp      | 450.8M       |
-| BC_0077_R1  | 98.6% | 51.0% | 157bp      | 248.4M       |
-| BC_0079_R1  | 98.6% | 51.0% | 152bp      | 285.2M       |
-| BC_0080_R1  | 98.7% | 51.0% | 132bp      | 300.1M       |
-| **Total**   | \-    | \-    | \-         | **1,284.5M** |
-
-: After trimming {#tbl-example layout-ncol="1"}
-
-| Sample Name | Before Trimming |   | After Trimming |   | Change in |   |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-|  | Median len | Seqs | Median len | Seqs | Length | Sequences |
-| -------------- | ---------------- | ------------ | ---------------- | ------------ | ----------- | ----------- |
-| BC_0076_R1 | 241bp | 631.4M | 127bp | 450.8M | -47.3% | -28.6% |
-| BC_0077_R1 | 241bp | 325.5M | 157bp | 248.4M | -34.9% | -23.7% |
-| BC_0079_R1 | 241bp | 379.1M | 152bp | 285.2M | -36.9% | -24.8% |
-| BC_0080_R1 | 241bp | 397.7M | 132bp | 300.1M | -45.2% | -24.5% |
-| **Mean** | **241bp** | **433.4M** | **142bp** | **321.1M** | \- | \- |
-| **Total** | \- | **1733.7M** | \- | **1284.5M** | **-41.1%** | **-25.4%** |
-
-: Summary of sequence metrics before and after trimming, including percentage changes {#tbl-summary layout-ncol="1"}
 
 | Metric              | Count         |
 |---------------------|---------------|
@@ -355,63 +274,142 @@ The STARsolo analysis revealed several key insights about our single-cell RNA-se
 
 Nous on prend tout les barcodes pas ceux qui sont filtré donc les 820, 800 barcodes 
 
-<!-- 
-
-filtrer seulement les CDS 
-
-r$> # show the number of cells
-    ncol(seurat_object)
-[1] 820800
-
-r$> # show the number of genes
-    nrow(seurat_object)
-[1] 4856
 
 
 
 
- Filter the cells with less than 200 counts
-    seurat_object_filtered <- subset(seurat_object, subset = nCount_RNA > 200)
-
-r$> # Show the number of cells after filtering
-    ncol(seurat_object_filtered)
-[1] 65059
-
-
-
-r$> # show the max and min of the counts
-    max(seurat_object_filtered$nCount_RNA)
-[1] 9452.001
-
-r$> min(seurat_object_filtered$nCount_RNA)
-[1] 200
-
-r$> mean(seurat_object_filtered$nCount_RNA)
-[1] 416.7303
-
-r$> median(seurat_object_filtered$nCount_RNA)
-[1] 323
-
- -->
-
-<!-- 
-r$> # show the max and min of the genes
-    max(seurat_object_filtered$nFeature_RNA)
-[1] 1971
-
-r$> min(seurat_object_filtered$nFeature_RNA)
-[1] 92
- seurat_object_filtered
-
-An object of class Seurat 
-4856 features across 65059 samples within 1 assay 
-Active assay: RNA (4856 features, 0 variable features)
- 1 layer present: counts
 
 
 
 
- -->
+
+
+
+
+
+
+
+
+
+### Genome and transcriptome description
+
+
+::: {#fig-genome-transcriptome layout-ncol=2}
+![genome](../figures/genome_description.png){#fig-genome}
+
+![transcriptome](../figures/transcriptome_description.png){#fig-transcriptome}
+
+Genome and transcriptome description (obtained with fastqc)
+:::
+
+Abundances of different types of RNA.
+
+Proportion of UMI counts from each major type of RNA (mRNA, RNA, tRNA) in (A) E. coli, (B) B. subtilis cells from the heat shock experiment shown in main Fig. 1. (C) tRNA and ncRNA UMI counts per cell for both species. (mRNA and rRNA UMI counts are shown in Fig. 1 of the main paper). (D) Number of unique genes per cell for both species. (E-F) Distribution of mean UMI counts per gene for (E) E. coli and (F) B. subtilis cells. Lines on the bottom correspond to single genes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Fitrage des cellules
+
+-   reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de il existe des methodes de filtrages plus ou moins complexes\
+    -filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene
+
+-   filtrage avec un threashold
+
+-   dans l'article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule
+
+-   
+
+-   preprint de ... pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)
+
+# 
+
+housekeeping genes
+
+choix ou non de pooler les replicas techniques ensembles
+
+## Summary of results
+
+## MultiQC Quality Reports
+
+Detailed sequence quality reports are available below. Click on each report to view it.
+
+::: panel-tabset
+#### MultiQC Report R1 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R1 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+:::
+
 
 ## apres starsolo mettre le nombre de reads avec valid barcodes dans la table 
 
@@ -423,34 +421,14 @@ Active assay: RNA (4856 features, 0 variable features)
 
 
 
-### genome 
-circular representation of c-bacterial genome and read alignment
-voir comment faire ce type de figure et l'article qui l'avait fait 
-
-
-###
-
-Attention j'ai filtré pour ne garder que les CDS mais certains pas annotés 
-plutot exclure les tRNA et rRNA 
-
 In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).
 
 
 dans l'article de kuchina ils ont filtré les cellules en fonction du nombre de reads et de genes :
 
-“Processing of data from the heat shock experiment Clustering and data analysis for the speciesmixing experiment with heat shock treatment was performed using Scanpy (59). We only kept transcriptomes that had a **number of total reads higher than 200**. Then, we removed the **ribosomal and tRNA reads from the data**, retaining only reads that represented the mRNA counts for both species. We further filtered cells based on the mRNA counts, **retaining cells expressing >100 reads and >100 genes**, and additionally filtered the genes, retaining the **genes expressed in >5 cells**. We then applied standard Scanpy normalization and scaling, dimensionality reduction, and clustering, as described in the Scanpy tutorial (59, 60). The clusters were produced by the Louvain graph-clustering method and manually inspected for the top differentially expressed genes. After inspection, three pairs of transcriptionally similar clusters with fewer differentially expressed genes were merged, resulting in clusters 1, 2, and 3 in Fig. 1D.” ([Kuchina et al., 2021, p. 8](zotero://select/library/items/AWDKBVJW)) ([pdf](zotero://open-pdf/library/items/YFM8QJY6?page=9&annotation=LXF2XHIY))
+"Processing of data from the heat shock experiment Clustering and data analysis for the speciesmixing experiment with heat shock treatment was performed using Scanpy (59). We only kept transcriptomes that had a **number of total reads higher than 200**. Then, we removed the **ribosomal and tRNA reads from the data**, retaining only reads that represented the mRNA counts for both species. We further filtered cells based on the mRNA counts, **retaining cells expressing >100 reads and >100 genes**, and additionally filtered the genes, retaining the **genes expressed in >5 cells**. We then applied standard Scanpy normalization and scaling, dimensionality reduction, and clustering, as described in the Scanpy tutorial (59, 60). The clusters were produced by the Louvain graph-clustering method and manually inspected for the top differentially expressed genes. After inspection, three pairs of transcriptionally similar clusters with fewer differentially expressed genes were merged, resulting in clusters 1, 2, and 3 in Fig. 1D." ([Kuchina et al., 2021, p. 8](zotero://select/library/items/AWDKBVJW)) ([pdf](zotero://open-pdf/library/items/YFM8QJY6?page=9&annotation=LXF2XHIY))
 
 
-
-
-
-
-# Initialize the Seurat object with the raw (non-normalized data).
-pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
-
-
-
-https://rnabioco.github.io/cellar/previous/2019/docs/2_filtering_QC.html
 
 
 
@@ -482,11 +460,7 @@ because the reads depth is different between : Stress condition (M9F) and non-st
 
 
 
-Single-cell analysis Two separate libraries were concatenated after filtering, log-normalized by 600 counts per cell, and scaled to unit variance and zero mean. Subsequently, ComBat(70) was run for batch effect correction. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. To create a volcano plot from this data, either the |score| or -log(adjusted p-value) was plotted on the y-axis against the log-fold change on the x axis. Lists of defense genes from DefenseFinder(39), host response genes upregulated after phage treatment, and CPS genes were used to assign colors to each point. Host response genes were taken as the top 15 distinct genes identified in the phage-treated sample only clustering analysis relative to the untreated sample. Initial CPS gene annotations were mapped by and received from Dr. Laurie Comstock (University of Chicago). Calculation of co-expression scores To assess the co-expression between two genes A and B, first, probabilities of expression of individual genes were calculated as fractions of cells having above-zero normalized non-scaled expression values p(A) and p(B), respectively. Then, the probability of simultaneous expression of the two genes, p(A&B), was calculated as a fraction of cells having above-zero normalized non-scaled expression values for both inspected genes. Co-expression score was calculated as a ratio of p(A&B) to the multiplication of p(A) and p(B). Values close to 1 indicate independent expression of genes; values above 1 indicate co-expression, and values below 1 indicate mutually exclusive expression of genes. To define a border of a CPS operon, mean co-expression values were calculated between genes adjacent to the CPS operon and core genes of a CPS operon. Co-expression between gene sets (e.g., CPS operons) was calculated similarly to genes, with probability of expression calculated as a fraction of cells having above-zero normalized non-scaled expression values for any of genes within a set. Diffusion pseudotime analysis The data was first subsetted into the phage-treated sample alone. A root cell was defined using adata.uns[‘iroot’] = np.flatnonzero(adata.obs[‘louvan’]==0)[1], which selected a random indexed cell from the untreated cluster within all phage-treated cells. Scanpy diffusion maps were created prior to running the existing diffusion pseudotime tool with 0 branchings and 10 diffusion components. For downstream analysis using pseudotime values, 5 bins of equal size were created to group cells into pseudotime ranges (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, and 0.8-1.0). Differential expression analysis was run to identify the top 10 distinct B. fragilis genes within each pseudotime bin, and the Clusters of Orthologous Groups (COGs) database was used to define functional categories for these genes. Duplicate genes were removed. Raw mean expression for each of these genes, grouped by functional category, was calculated using the adata.raw.X matrix.
-
-[@gupta][@cyriaque2024][@brettner2024a] [@brettner2024b]
-
-[@korshoj2024]
+Single-cell analysis Two separate libraries were concatenated after filtering, log-normalized by 600 counts per cell, and scaled to unit variance and zero mean. Subsequently, ComBat(70) was run for batch effect correction. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. To create a volcano plot from this data, either the |score| or -log(adjusted p-value) was plotted on the y-axis against the log-fold change on the x axis. Lists of defense genes from DefenseFinder(39), host response genes upregulated after phage treatment, and CPS genes were used to assign colors to each point. Host response genes were taken as the top 15 distinct genes identified in the phage-treated sample only clustering analysis relative to the untreated sample. Initial CPS gene annotations were mapped by and received from Dr. Laurie Comstock (University of Chicago). Calculation of co-expression scores To assess the co-expression between two genes A and B, first, probabilities of expression of individual genes were calculated as fractions of cells having above-zero normalized non-scaled expression values p(A) and p(B), respectively. Then, the probability of simultaneous expression of the two genes, p(A&B), was calculated as a fraction of cells having above-zero normalized non-scaled expression values for both inspected genes. Co-expression score was calculated as a ratio of p(A&B) to the multiplication of p(A) and p(B). Values close to 1 indicate independent expression of genes; values above 1 indicate co-expression, and values below 1 indicate mutually exclusive expression of genes. To define a border of a CPS operon, mean co-expression values were calculated between genes adjacent to the CPS operon and core genes of a CPS operon. Co-expression between gene sets (e.g., CPS operons) was calculated similarly to genes, with probability of expression calculated as a fraction of cells having above-zero normalized non-scaled expression values for any of genes within a set. Diffusion pseudotime analysis The data was first subsetted into the phage-treated sample alone. A root cell was defined using adata.uns['iroot'] = np.flatnonzero(adata.obs['louvan']==0)[1], which selected a random indexed cell from the untreated cluster within all phage-treated cells. Scanpy diffusion maps were created prior to running the existing diffusion pseudotime tool with 0 branchings and 10 diffusion components. For downstream analysis using pseudotime values, 5 bins of equal size were created to group cells into pseudotime ranges (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, and 0.8-1.0). Differential expression analysis was run to identify the top 10 distinct B. fragilis genes within each pseudotime bin, and the Clusters of Orthologous Groups (COGs) database was used to define functional categories for these genes. Duplicate genes were removed. Raw mean expression for each of these genes, grouped by functional category, was calculated using the adata.raw.X matrix.
 
 
 
@@ -500,15 +474,13 @@ Single-cell analysis Two separate libraries were concatenated after filtering, l
 
 
 
-## Overview
 
-This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.
+
 
 ## Single-cell RNA-seq Analysis
 
 ### Data Quality and Preprocessing
 
-### Cell Type Identification
 
 ### Differential Expression Analysis
 
@@ -520,8 +492,29 @@ This chapter presents the findings of our single-cell RNA-seq analysis of Pseudo
 
 ### Gene Set Analysis
 
-### Regulatory Network Analysis
-
-## Integration with Previous Studies
 
 ## Summary of Key Findings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
