@@ -247,7 +247,7 @@ for medium in culture_mediums:
     print(f"     Mean n_genes: {medium_data['n_genes'].mean():.0f}")
 
 # %%
-# Create separate scatter plots for each culture medium
+# Create separate scatter plots for each culture medium with density plots below
 # Reorder culture mediums: M9F first (left), M9 second (right)
 culture_mediums_ordered = []
 for medium in culture_mediums:
@@ -262,9 +262,9 @@ for medium in culture_mediums:
 
 n_mediums = len(culture_mediums_ordered)
 n_cols = min(3, n_mediums)  # Maximum 3 columns
-n_rows = (n_mediums + n_cols - 1) // n_cols  # Calculate number of rows needed
+n_rows = 2 * n_mediums  # 2 rows per medium (scatter + density)
 
-fig, axes = plt.subplots(n_rows, n_cols, figsize=(5 * n_cols, 4 * n_rows))
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(5 * n_cols, 3 * n_rows))
 if n_rows == 1:
     axes = axes.reshape(1, -1)
 if n_cols == 1:
@@ -287,14 +287,19 @@ global_x_lim = (global_x_min - x_padding, global_x_max + x_padding)
 global_y_lim = (global_y_min - y_padding, global_y_max + y_padding)
 
 for i, medium in enumerate(culture_mediums_ordered):
-    ax = axes_flat[i]
+    # Calculate correct indices for 2-row layout
+    col_idx = i % n_cols
+    scatter_row = (i // n_cols) * 2
+    density_row = (i // n_cols) * 2 + 1
 
     # Get data for this medium
     mask = adata.obs["CultureMedium"] == medium
     medium_data = adata.obs.loc[mask]
 
-    # Create scatter plot with smaller points
-    ax.scatter(
+    # Create scatter plot (top row)
+    scatter_idx = scatter_row * n_cols + col_idx
+    ax_scatter = axes_flat[scatter_idx]
+    ax_scatter.scatter(
         medium_data["n_counts"],
         medium_data["n_genes"],
         alpha=0.7,
@@ -307,11 +312,11 @@ for i, medium in enumerate(culture_mediums_ordered):
     if len(medium_data) > 1:
         corr = np.corrcoef(medium_data["n_counts"], medium_data["n_genes"])[0, 1]
         # Position correlation text in upper right corner
-        ax.text(
+        ax_scatter.text(
             0.98,
             0.98,
             f"Correlation: {corr:.3f}",
-            transform=ax.transAxes,
+            transform=ax_scatter.transAxes,
             fontsize=9,
             ha="right",
             va="top",
@@ -322,11 +327,11 @@ for i, medium in enumerate(culture_mediums_ordered):
 
     # Add barcode count in upper left corner
     barcode_text = f"Barcodes: {len(medium_data):,}"
-    ax.text(
+    ax_scatter.text(
         0.02,
         0.98,
         barcode_text,
-        transform=ax.transAxes,
+        transform=ax_scatter.transAxes,
         fontsize=8,
         ha="left",
         va="top",
@@ -335,22 +340,62 @@ for i, medium in enumerate(culture_mediums_ordered):
         ),
     )
 
-    # Customize subplot
-    ax.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
-    ax.set_ylabel("Number of Genes", fontsize=10, fontweight="bold")
-    ax.set_title(f"{medium}", fontsize=12, fontweight="bold", pad=10)
-    ax.grid(True, alpha=0.3, linestyle="--")
+    # Customize scatter subplot
+    ax_scatter.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
+    ax_scatter.set_ylabel("Number of Genes", fontsize=10, fontweight="bold")
+    ax_scatter.set_title(
+        f"{medium} - Scatter Plot", fontsize=12, fontweight="bold", pad=10
+    )
+    ax_scatter.grid(True, alpha=0.3, linestyle="--")
 
-    # Set consistent axis limits for all subplots
-    ax.set_xlim(global_x_lim)
-    ax.set_ylim(global_y_lim)
+    # Set consistent axis limits for all scatter subplots
+    ax_scatter.set_xlim(global_x_lim)
+    ax_scatter.set_ylim(global_y_lim)
+
+    # Create density plot (bottom row)
+    density_idx = density_row * n_cols + col_idx
+    ax_density = axes_flat[density_idx]
+
+    # Create density plot for n_counts with global x limits
+    ax_density.hist(
+        medium_data["n_counts"],
+        bins=30,
+        alpha=0.7,
+        color=color_map[medium],
+        edgecolor="black",
+        linewidth=0.5,
+        density=True,
+        range=global_x_lim,  # Use global x limits for consistent scaling
+    )
+
+    # Add KDE curve with global x range
+    from scipy.stats import gaussian_kde
+
+    if len(medium_data) > 1:
+        kde = gaussian_kde(medium_data["n_counts"])
+        x_range = np.linspace(
+            global_x_lim[0], global_x_lim[1], 100
+        )  # Use global x range
+        ax_density.plot(x_range, kde(x_range), color="black", linewidth=2, label="KDE")
+
+    # Customize density subplot
+    ax_density.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
+    ax_density.set_ylabel("Density", fontsize=10, fontweight="bold")
+    ax_density.set_title(
+        f"{medium} - Distribution", fontsize=12, fontweight="bold", pad=10
+    )
+    ax_density.grid(True, alpha=0.3, linestyle="--")
+    ax_density.legend(fontsize=8)
+
+    # Set consistent x-axis limits for all density plots
+    ax_density.set_xlim(global_x_lim)
 
 # Hide empty subplots
-for i in range(len(culture_mediums_ordered), len(axes_flat)):
+for i in range(n_mediums * 2, len(axes_flat)):
     axes_flat[i].set_visible(False)
 
 plt.suptitle(
-    "Cell Quality by Culture Medium (Filtered: n_counts ≥ 100)",
+    "Cell Quality by Culture Medium with Density Distributions (Filtered: n_counts ≥ 100)",
     fontsize=16,
     fontweight="bold",
     y=0.98,
@@ -1446,5 +1491,188 @@ if handles is not None:
 
 plt.tight_layout(rect=[0, 0, 0.95, 1])
 plt.show()
+
+
+# %%
+# Create separate scatter plots for each culture medium with density plots below
+# Reorder culture mediums: M9F first (left), M9 second (right)
+culture_mediums_ordered = []
+for medium in culture_mediums:
+    if "M9F" in medium:
+        culture_mediums_ordered.append(medium)
+for medium in culture_mediums:
+    if "M9" in medium and "F" not in medium:
+        culture_mediums_ordered.append(medium)
+for medium in culture_mediums:
+    if "M9" not in medium:
+        culture_mediums_ordered.append(medium)
+
+n_mediums = len(culture_mediums_ordered)
+n_cols = min(3, n_mediums)  # Maximum 3 columns
+n_rows = 2 * n_mediums  # 2 rows per medium (scatter + density)
+
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(5 * n_cols, 3 * n_rows))
+if n_rows == 1:
+    axes = axes.reshape(1, -1)
+if n_cols == 1:
+    axes = axes.reshape(-1, 1)
+
+# Flatten axes for easier iteration
+axes_flat = axes.flatten()
+
+# Calculate global min/max for consistent scaling
+global_x_min = adata.obs["n_counts"].min()
+global_x_max = adata.obs["n_counts"].max()
+global_y_min = adata.obs["n_genes"].min()
+global_y_max = adata.obs["n_genes"].max()
+
+# Add 5% padding to global limits
+x_padding = (global_x_max - global_x_min) * 0.05
+y_padding = (global_y_max - global_y_min) * 0.05
+
+global_x_lim = (global_x_min - x_padding, global_x_max + x_padding)
+global_y_lim = (global_y_min - y_padding, global_y_max + y_padding)
+
+for i, medium in enumerate(culture_mediums_ordered):
+    # Calculate correct indices for 2-row layout
+    col_idx = i % n_cols
+    scatter_row = (i // n_cols) * 2
+    density_row = (i // n_cols) * 2 + 1
+
+    # Get data for this medium
+    mask = adata.obs["CultureMedium"] == medium
+    medium_data = adata.obs.loc[mask]
+
+    # Create scatter plot (top row)
+    scatter_idx = scatter_row * n_cols + col_idx
+    ax_scatter = axes_flat[scatter_idx]
+    ax_scatter.scatter(
+        medium_data["n_counts"],
+        medium_data["n_genes"],
+        alpha=0.7,
+        s=8,  # Reduced point size from 15 to 8
+        c=color_map[medium],
+        edgecolors="none",
+    )
+
+    # Calculate correlation for this medium
+    if len(medium_data) > 1:
+        corr = np.corrcoef(medium_data["n_counts"], medium_data["n_genes"])[0, 1]
+        # Position correlation text in upper right corner
+        ax_scatter.text(
+            0.98,
+            0.98,
+            f"Correlation: {corr:.3f}",
+            transform=ax_scatter.transAxes,
+            fontsize=9,
+            ha="right",
+            va="top",
+            bbox=dict(
+                boxstyle="round,pad=0.3", facecolor="white", alpha=0.9, edgecolor="gray"
+            ),
+        )
+
+    # Add barcode count in upper left corner
+    barcode_text = f"Barcodes: {len(medium_data):,}"
+    ax_scatter.text(
+        0.02,
+        0.98,
+        barcode_text,
+        transform=ax_scatter.transAxes,
+        fontsize=8,
+        ha="left",
+        va="top",
+        bbox=dict(
+            boxstyle="round,pad=0.3", facecolor="white", alpha=0.9, edgecolor="gray"
+        ),
+    )
+
+    # Customize scatter subplot
+    ax_scatter.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
+    ax_scatter.set_ylabel("Number of Genes", fontsize=10, fontweight="bold")
+    ax_scatter.set_title(
+        f"{medium} - Scatter Plot", fontsize=12, fontweight="bold", pad=10
+    )
+    ax_scatter.grid(True, alpha=0.3, linestyle="--")
+
+    # Set consistent axis limits for all scatter subplots
+    ax_scatter.set_xlim(global_x_lim)
+    ax_scatter.set_ylim(global_y_lim)
+
+    # Create density plot (bottom row)
+    density_idx = density_row * n_cols + col_idx
+    ax_density = axes_flat[density_idx]
+
+    # Create density plot for n_counts with global x limits
+    ax_density.hist(
+        medium_data["n_counts"],
+        bins=30,
+        alpha=0.7,
+        color=color_map[medium],
+        edgecolor="black",
+        linewidth=0.5,
+        density=True,
+        range=global_x_lim,  # Use global x limits for consistent scaling
+    )
+
+    # Add KDE curve with global x range
+    from scipy.stats import gaussian_kde
+
+    if len(medium_data) > 1:
+        kde = gaussian_kde(medium_data["n_counts"])
+        x_range = np.linspace(
+            global_x_lim[0], global_x_lim[1], 100
+        )  # Use global x range
+        ax_density.plot(x_range, kde(x_range), color="black", linewidth=2, label="KDE")
+
+    # Customize density subplot
+    ax_density.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
+    ax_density.set_ylabel("Density", fontsize=10, fontweight="bold")
+    ax_density.set_title(
+        f"{medium} - Distribution", fontsize=12, fontweight="bold", pad=10
+    )
+    ax_density.grid(True, alpha=0.3, linestyle="--")
+    ax_density.legend(fontsize=8)
+
+    # Set consistent x-axis limits for all density plots
+    ax_density.set_xlim(global_x_lim)
+
+# Hide empty subplots
+for i in range(n_mediums * 2, len(axes_flat)):
+    axes_flat[i].set_visible(False)
+
+plt.suptitle(
+    "Cell Quality by Culture Medium with Density Distributions (Filtered: n_counts ≥ 100)",
+    fontsize=16,
+    fontweight="bold",
+    y=0.98,
+)
+plt.tight_layout()
+plt.show()
+
+# Print detailed statistics for each medium
+print(f"\n📊 Detailed Statistics by Culture Medium (After filtering: n_counts ≥ 100):")
+for medium in culture_mediums_ordered:
+    mask = adata.obs["CultureMedium"] == medium
+    medium_data = adata.obs.loc[mask]
+
+    print(f"\n🍽️ {medium}:")
+    print(f"   📊 Total cells: {len(medium_data):,}")
+    print(
+        f"   📈 n_counts - Mean: {medium_data['n_counts'].mean():.0f}, Median: {medium_data['n_counts'].median():.0f}"
+    )
+    print(
+        f"   📈 n_counts - Min: {medium_data['n_counts'].min():.0f}, Max: {medium_data['n_counts'].max():.0f}"
+    )
+    print(
+        f"   🧬 n_genes - Mean: {medium_data['n_genes'].mean():.0f}, Median: {medium_data['n_genes'].median():.0f}"
+    )
+    print(
+        f"   🧬 n_genes - Min: {medium_data['n_genes'].min():.0f}, Max: {medium_data['n_genes'].max():.0f}"
+    )
+
+    if len(medium_data) > 1:
+        corr = np.corrcoef(medium_data["n_counts"], medium_data["n_genes"])[0, 1]
+        print(f"   🔗 Correlation n_counts vs n_genes: {corr:.3f}")
 
 # %%
