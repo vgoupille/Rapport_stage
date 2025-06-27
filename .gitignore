@@ -6,3 +6,7 @@ _book
 aide/trame_ANR.pdf
 *Rmd
 *.h5ad
+
+# macOS system files
+.DS_Store
+**/.DS_Store
