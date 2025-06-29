@@ -3389,8 +3389,26 @@ adata1 = mark_and_filter_genes_by_group_annotated(
     adata1_genes_filtered, groupby="OD", min_pct_cells=0.05, annotate_only=True
 )
 
+adata1 = mark_and_filter_genes_by_group_annotated(
+    adata1_genes_filtered, groupby="OD", min_pct_cells=0.10, annotate_only=True
+)
+
+adata1 = mark_and_filter_genes_by_group_annotated(
+    adata1_genes_filtered, groupby="OD", min_pct_cells=0.15, annotate_only=True
+)
+
+
 # Voir les colonnes ajoutées
-adata1.var[["gene_pass_union_OD_5pct", "gene_pass_intersection_OD_5pct"]].head()
+adata1.var[
+    [
+        "gene_pass_union_OD_5pct",
+        "gene_pass_intersection_OD_5pct",
+        "gene_pass_union_OD_10pct",
+        "gene_pass_intersection_OD_10pct",
+        "gene_pass_union_OD_15pct",
+        "gene_pass_intersection_OD_15pct",
+    ]
+].head()
 
 
 # ✂️ Filtrer les gènes qui passent le filtre union
@@ -3412,7 +3430,14 @@ adata1.var[["gene_pass_union_OD_5pct", "gene_pass_intersection_OD_5pct"]].head()
 # %%
 adata1.var["gene_pass_union_OD_5pct"].value_counts()
 # %%
+adata1.var["gene_pass_union_OD_10pct"].value_counts()
+# %%
+adata1.var["gene_pass_union_OD_15pct"].value_counts()
+# %%
+# %%
 adata1.var["gene_pass_intersection_OD_5pct"].value_counts()
+adata1.var["gene_pass_intersection_OD_10pct"].value_counts()
+adata1.var["gene_pass_intersection_OD_15pct"].value_counts()
 # %%
 adata1.var
 # %%
