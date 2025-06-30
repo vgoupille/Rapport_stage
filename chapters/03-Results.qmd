@@ -196,6 +196,11 @@ Filtering of cells with less than 100 UMI per cell
 :::
 
 
+#### Final Filtering 
+
+
+
+![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/filtered_mRNA_violin.png){#fig-filtered_mRNA_violin}
 
 
 
