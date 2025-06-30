@@ -142,7 +142,7 @@ $$ Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid 
   
 
 ::: {.callout-warning}
-This very low saturation indicates that we have captured only a small fraction of the total unique molecules in the transcriptome. According to Gaisser et al. (2024) @gaisser2024, a sequencing saturation of <0.5 may indicate that more sequencing is required to capture all barcoded transcripts in the library, with a saturation value of ≥0.7 typically indicating sufficient coverage. Our saturation value of 0.97% falls well below these recommended thresholds, suggesting that **our current sequencing depth may not be sufficient to capture the full complexity of the transcriptome**. While the current sequencing depth of 1.284 billion reads provides substantial coverage, the low saturation indicates that we could potentially benefit from deeper sequencing to capture more unique transcripts and achieve better coverage of the transcriptional landscape.
+This very low saturation indicates that we have captured only a small fraction of the total unique molecules in the transcriptome. According to Gaisser et al. (2024) @gaisser2024, a sequencing saturation of <0.5 may indicate that more sequencing is required to capture all barcoded transcripts in the library, with a saturation value of >= 0.7 typically indicating sufficient coverage. Our saturation value of 0.97% falls well below these recommended thresholds, suggesting that **our current sequencing depth may not be sufficient to capture the full complexity of the transcriptome**. While the current sequencing depth of 1.284 billion reads provides substantial coverage, the low saturation indicates that we could potentially benefit from deeper sequencing to capture more unique transcripts and achieve better coverage of the transcriptional landscape.
 
 :::
 ::: {#fig-genome-transcriptome layout-ncol=2}
@@ -155,104 +155,45 @@ Compositional analysis of *P. brassicacearum* R401 genome annotation and transcr
 
 The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* sample. In the [annotated](https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/)  genome of *P. brassicacearum* R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes, 16 rRNA genes (0.3% of the genome) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2 % are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability @nishimura2025.
 
+STARsolo detected 699,355 out of 820,800 possible barcode combinations. Given that our sublibrary was designed to target approximately 3,000 cells, the observed number of barcodes is within the expected range. The presence of additional barcodes likely represents contamination that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates. To identify genuine cells among the total barcode population, STARsolo employs a knee plot strategy (see supplementary data for associated results). As recommended in the literature (Gaisser et al. (2024) @gaisser2024), we chose to apply our own filtering criteria rather than using STARsolo's default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations. 
+
+Despite the low sequencing depth indicated by the saturation value, we will assess whether the signal is sufficient for division of labor analysis. However, before proceeding with this assessment, it is necessary to filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.
 
 
-Before filtering, our dataset contained 699,355 unique cell barcodes, which is consistent with the expected large number of barcode combinations (>800,000) that typically contain only a small number of transcripts. These likely represent trace amounts of barcode contamination present throughout the protocol, including potentially within the source oligonucleotide plates. These contaminating barcodes can be effectively filtered using barcode-rank or knee plot analysis, which we applied in our filtering strategy.
 
 
 ### Cell Filtering Strategy
 
-For our division of labor analysis, we retained all cell barcodes that passed quality control (820,800 barcodes), rather than applying additional filtering thresholds. This approach maximizes our ability to detect rare subpopulations and subtle division of labor patterns that might be missed with more stringent filtering.
+### Filtering of cells based on UMI counts
 
-**Important Note on STARsolo Default Filtering:**
-We deliberately did not use STARsolo's default filtering method (KneePant), which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations.
+#### Filtering minimum 100 UMI per Barcode Cell
 
-The choice of filtering strategy is complex and context-dependent. As mentioned in the literature, various filtering approaches exist:
-- Filtering based on read types (global or condition-specific thresholds)
-- Filtering based on reads per cell
-- Filtering based on genes expressed per cell
-- Filtering based on reads per gene
+<!-- ::: {#fig-filter_100UMI "[[1,2], [0,3], [4,4]]"}
 
-In the Kuchina et al. (2021) study, they used a threshold of 200 UMI per cell, but we chose a more inclusive approach to capture the full spectrum of cellular heterogeneity in our *P. brassicacearum* population.
+![Barplot of the number of UMI per cell before and after filtering](../figures/filter_100UMIs_barplot.png){#fig-barplot}
 
+![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
 
+![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/violinplot_100UMIs.png){#fig-violin}
 
-
-### Cell Filtering Results
-
-::: {#fig-filter_100UMI layout-ncol=2}
-![Scatter plot of the number of UMI per cell before and after filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
-
-![Violin plot of the number of UMI per cell before and after filtering](../figures/filter_100UMI_violin_CultureMedium.png){#fig-violin}
+![Total of bacodes for each biological replicate after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
 
 Filtering of cells with less than 100 UMI per cell
 :::
+ -->
 
-The filtering analysis shows the distribution of UMI counts per cell before and after applying quality thresholds. This visualization helps assess the impact of filtering on our ability to detect division of labor patterns and ensures we maintain sufficient statistical power for downstream analysis.
+::: {#fig-filter_100UMI layout="[[1,1], [1], [1]] "}
 
-**Key considerations for division of labor analysis:**
-- The choice of filtering threshold can significantly impact the detection of rare subpopulations
-- Housekeeping genes and rRNA content may provide insights into growth rate variations across cells
-- Technical replicates may need to be pooled or analyzed separately depending on experimental design
+![Barplot of the number of UMI per cell before and after filtering](../figures/filter_100UMIs_barplot.png){#fig-barplot}
 
+![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/violinplot_100UMIs.png){#fig-violin}
 
+![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
 
+![Total of barcodes for each biological replicate after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
 
-
-
-### Cell Recovery and Expression Profiling
-
-Our analysis successfully captured a substantial population of bacterial cells with good coverage:
-
-| Metric                                    | Value         | Biological Significance |
-|-------------------------------------------|---------------|------------------------|
-| **Estimated Number of Cells**             | 27,203        | Large population for DoL analysis |
-| **Mean Reads per Cell**                   | 470           | Good coverage depth |
-| **Median Reads per Cell**                 | 381           | Consistent coverage |
-| **Mean UMI per Cell**                     | 465           | Reliable molecular counting |
-| **Median UMI per Cell**                   | 378           | Consistent UMI distribution |
-| **Mean Genes per Cell**                   | 296           | Rich transcriptional profiles |
-| **Median Genes per Cell**                 | 258           | Consistent gene detection |
-| **Total Genes Detected**                  | 6,035         | Comprehensive gene coverage |
-
-: Cell-level expression metrics {#tbl-starsolo-cells layout-ncol="1"}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## apres starsolo mettre le nombre de reads avec valid barcodes dans la table 
-
-
-
-
-
-
-
-
-
-In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).
-
-
-
-
-
-
-
-
+Filtering of cells with less than 100 UMI per cell
+:::
 
 
 
@@ -324,3 +265,12 @@ peut etre devoir verifier les 4 biblioteques pour comprendre les differences de 
 
 
 For our division of labor analysis focusing on mRNA expression patterns, these highly abundant non-coding RNAs will need to be filtered out to avoid masking subtle transcriptional differences between subpopulations. This information is crucial for understanding the transcriptional landscape and identifying potential division of labor patterns, as different RNA types may be differentially expressed across subpopulations.
+
+
+
+**Key considerations for division of labor analysis:**
+- The choice of filtering threshold can significantly impact the detection of rare subpopulations
+- Housekeeping genes and rRNA content may provide insights into growth rate variations across cells
+- Technical replicates may need to be pooled or analyzed separately depending on experimental design
+
+

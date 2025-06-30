@@ -1807,8 +1807,8 @@ for i, medium in enumerate(culture_mediums_ordered):
     )
 
     # Customize scatter subplot
-    ax_scatter.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
-    ax_scatter.set_ylabel("Number of Genes", fontsize=10, fontweight="bold")
+    ax_scatter.set_xlabel("Total of UMIs per Cell", fontsize=10, fontweight="bold")
+    ax_scatter.set_ylabel("Total of Genes per Cell", fontsize=10, fontweight="bold")
     ax_scatter.set_title(
         f"{medium} - Scatter Plot", fontsize=12, fontweight="bold", pad=10
     )
@@ -1845,7 +1845,7 @@ for i, medium in enumerate(culture_mediums_ordered):
         ax_density.plot(x_range, kde(x_range), color="black", linewidth=2, label="KDE")
 
     # Customize density subplot
-    ax_density.set_xlabel("Total Counts", fontsize=10, fontweight="bold")
+    ax_density.set_xlabel("Total of UMIs per Cell", fontsize=10, fontweight="bold")
     ax_density.set_ylabel("Density", fontsize=10, fontweight="bold")
     ax_density.set_title(
         f"{medium} - Distribution", fontsize=12, fontweight="bold", pad=10
@@ -1895,7 +1895,6 @@ for medium in culture_mediums_ordered:
         corr = np.corrcoef(medium_data["n_counts"], medium_data["n_genes"])[0, 1]
         print(f"   🔗 Correlation n_counts vs n_genes: {corr:.3f}")
 
-
 # Create violin plots comparing M9 and M9F
 # Filter data for M9 and M9F only
 m9_m9f_mask = adata_fcell_100UMI.obs["CultureMedium"].isin(["M9", "M9F"])
@@ -1911,28 +1910,29 @@ if len(adata_m9_m9f) > 0:
         x="CultureMedium",
         y="n_counts",
         ax=ax1,
-        palette=["#FF6B6B", "#2ECC71"],
+        order=["M9F", "M9"],
+        palette=["#2ECC71", "#FF6B6B"],
     )
     ax1.set_title(
-        "Distribution of Total Counts per Barcode (cell) by Culture Medium",
+        "Total of UMIs per Barcode Cell by Culture Medium",
         fontsize=14,
         fontweight="bold",
         pad=15,
     )
     ax1.set_xlabel("Culture Medium", fontsize=12, fontweight="bold")
-    ax1.set_ylabel("Total Counts per Barcode", fontsize=12, fontweight="bold")
+    ax1.set_ylabel("Total of UMIs per Barcode Cell", fontsize=12, fontweight="bold")
     ax1.grid(True, alpha=0.3, linestyle="--")
 
     # Add statistics on the plot
-    for i, medium in enumerate(["M9", "M9F"]):
+    for i, medium in enumerate(["M9F", "M9"]):
         if medium in adata_m9_m9f.obs["CultureMedium"].values:
             medium_data = adata_m9_m9f.obs[adata_m9_m9f.obs["CultureMedium"] == medium]
             median_val = medium_data["n_counts"].median()
             q1_val = medium_data["n_counts"].quantile(0.25)
             q3_val = medium_data["n_counts"].quantile(0.75)
 
-            # Position M9 on the left, M9F on the right
-            if medium == "M9":
+            # Position M9F on the left, M9 on the right
+            if medium == "M9F":
                 ax1.text(
                     0.02,
                     0.98,
@@ -1948,7 +1948,7 @@ if len(adata_m9_m9f) > 0:
                         edgecolor="gray",
                     ),
                 )
-            else:  # M9F
+            else:  # M9
                 ax1.text(
                     0.98,
                     0.98,
@@ -1971,28 +1971,29 @@ if len(adata_m9_m9f) > 0:
         x="CultureMedium",
         y="n_genes",
         ax=ax2,
-        palette=["#FF6B6B", "#2ECC71"],
+        order=["M9F", "M9"],
+        palette=["#2ECC71", "#FF6B6B"],
     )
     ax2.set_title(
-        "Distribution of Genes Detected per Barcode (cell) by Culture Medium",
+        "Total of Genes per Barcode Cell by Culture Medium",
         fontsize=14,
         fontweight="bold",
         pad=15,
     )
     ax2.set_xlabel("Culture Medium", fontsize=12, fontweight="bold")
-    ax2.set_ylabel("Genes per Barcode", fontsize=12, fontweight="bold")
+    ax2.set_ylabel("Total of Genes per Barcode Cell", fontsize=12, fontweight="bold")
     ax2.grid(True, alpha=0.3, linestyle="--")
 
     # Add statistics on the plot
-    for i, medium in enumerate(["M9", "M9F"]):
+    for i, medium in enumerate(["M9F", "M9"]):
         if medium in adata_m9_m9f.obs["CultureMedium"].values:
             medium_data = adata_m9_m9f.obs[adata_m9_m9f.obs["CultureMedium"] == medium]
             median_val = medium_data["n_genes"].median()
             q1_val = medium_data["n_genes"].quantile(0.25)
             q3_val = medium_data["n_genes"].quantile(0.75)
 
-            # Position M9 on the left, M9F on the right
-            if medium == "M9":
+            # Position M9F on the left, M9 on the right
+            if medium == "M9F":
                 ax2.text(
                     0.02,
                     0.98,
@@ -2008,7 +2009,7 @@ if len(adata_m9_m9f) > 0:
                         edgecolor="gray",
                     ),
                 )
-            else:  # M9F
+            else:  # M9
                 ax2.text(
                     0.98,
                     0.98,
@@ -2038,7 +2039,7 @@ if len(adata_m9_m9f) > 0:
     print(f"\n🎻 Violin Plot Comparison: M9 vs M9F")
     print(f"📊 Total cells in comparison: {len(adata_m9_m9f):,}")
 
-    for medium in ["M9", "M9F"]:
+    for medium in ["M9F", "M9"]:
         if medium in adata_m9_m9f.obs["CultureMedium"].values:
             medium_data = adata_m9_m9f.obs[adata_m9_m9f.obs["CultureMedium"] == medium]
             print(f"\n🍽️ {medium}:")
@@ -2079,6 +2080,137 @@ print(f"📊 After removing top 5 cells: {adata_fcell_100UMI_noOut.n_obs:,} cell
 print(f"🗑️ Removed {len(cells_to_remove)} cells with highest n_counts")
 
 sc.pl.violin(adata_fcell_100UMI_noOut, ["n_counts"], groupby="Group", multi_panel=True)
+
+
+# %%
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Grouper les données
+counts = (
+    adata_fcell_100UMI_noOut.obs.groupby(["ODt", "RepBio", "RepTech_suffix"])
+    .size()
+    .reset_index(name="counts")
+)
+
+# Paramètres
+odt_values = counts["ODt"].unique()
+n = len(odt_values)
+
+all_suffixes = sorted(counts["RepTech_suffix"].unique())
+colors = plt.get_cmap("tab20").colors
+color_map = {suffix: colors[i % len(colors)] for i, suffix in enumerate(all_suffixes)}
+
+# Création des sous-graphes
+fig, axes = plt.subplots(1, n, figsize=(6 * n, 6), sharey=True)
+
+if n == 1:
+    axes = [axes]
+
+total_all = 0
+
+for ax, odt in zip(axes, odt_values):
+    df_odt = counts[counts["ODt"] == odt]
+    pivot_df = df_odt.pivot(
+        index="RepBio", columns="RepTech_suffix", values="counts"
+    ).fillna(0)
+    pivot_df = pivot_df.reindex(columns=all_suffixes, fill_value=0)
+
+    pivot_df.plot(
+        kind="bar",
+        stacked=True,
+        ax=ax,
+        color=[color_map[col] for col in pivot_df.columns],
+        legend=False,
+    )
+
+    bar_sums = pivot_df.sum(axis=1)
+    total_plot = bar_sums.sum()
+    total_all += total_plot
+
+    ax.set_title(f"ODt = {odt}\nTotal barcodes: n={int(total_plot)}", fontsize=14)
+    ax.set_xlabel("")
+    ax.set_ylabel("Total of Barcode Cells", fontsize=12)
+
+    # Couleur des étiquettes X
+    xtick_labels = pivot_df.index.tolist()
+    colors_xticks = ["green" if "M9F" in label else "red" for label in xtick_labels]
+    ax.set_xticks(np.arange(len(xtick_labels)))
+    ax.set_xticklabels(xtick_labels, rotation=0, ha="center")
+
+    for label, color in zip(ax.get_xticklabels(), colors_xticks):
+        label.set_color(color)
+
+    # (n=...) au-dessus des barres
+    for i, val in enumerate(bar_sums):
+        ax.text(
+            i,
+            val + 1,
+            f"(n={int(val)})",
+            ha="center",
+            va="bottom",
+            fontsize=8,
+            fontweight="bold",
+        )
+
+# Légende globale (sans total global)
+handles, labels = axes[0].get_legend_handles_labels()
+fig.legend(
+    handles,
+    labels,
+    title="RepTech",
+    loc="center right",
+    fontsize=9,
+    title_fontsize=10,
+)
+
+# Total global en haut à gauche
+fig.text(
+    0.01,
+    1.02,
+    f"Total barcodes across all ODt = {int(total_all)}",
+    ha="left",
+    va="bottom",
+    fontsize=12,
+    fontweight="bold",
+    color="black",
+)
+
+# Total par CultureMedium
+total_by_medium = (
+    adata_fcell_100UMI_noOut.obs.groupby("CultureMedium")
+    .size()
+    .reindex(["M9", "M9F"])  # pour garder l'ordre
+    .fillna(0)
+    .astype(int)
+)
+
+# Affichage en haut à gauche, sous le total global
+fig.text(
+    0.01,
+    0.99,
+    f"Total M9  = {total_by_medium['M9']}",
+    ha="left",
+    va="top",
+    fontsize=11,
+    fontweight="bold",
+)
+fig.text(
+    0.01,
+    0.96,
+    f"Total M9F = {total_by_medium['M9F']}",
+    ha="left",
+    va="top",
+    fontsize=11,
+    fontweight="bold",
+)
+
+# Mise en page finale
+plt.tight_layout(rect=[0, 0, 0.85, 1])
+plt.show()
+
 
 # %% remove the highest M9F_OD2 cell
 print("🗑️ Removing the highest M9F_OD2 cell...")

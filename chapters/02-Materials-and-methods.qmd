@@ -229,3 +229,8 @@ Single-cell analysis filtering, log-normalized by ... counts per cell, and scale
 
 
 Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. 
+
+
+
+
+In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).
