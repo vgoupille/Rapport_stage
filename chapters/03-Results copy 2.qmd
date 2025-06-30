@@ -1,0 +1,536 @@
+# Results
+
+
+This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.
+
+
+plan :
+
+- trimming and quality control
+- starsolo 
+- genome and transcriptome description 
+- filtering 
+- Anndata 
+  - all the conditions comparison 
+  - selection of three conditions 
+    - for each : 
+      - clustering
+      - differential expresion analysis
+      - GO  
+
+=> don't do all the analysis for the moment 
+
+
+
+## Preprocessing of the sequencing data
+
+### Trimming and quality control of fastq files
+
+
+::: {#fig-adaptateur layout-ncol=2}
+![before trimming](../figures/adaptateur_R1_BC76_bf_trimm.png){#fig-before}
+
+![after trimming](../figures/adaptateur_R1_BC76_after_trimm.png){#fig-after}
+
+Adapter content before and after trimming (BC_0076)
+:::
+
+
+| Sample Name | BC_0076 | BC_0077 | BC_0079 | BC_0080 | $Mean$/Total |
+|-------------|---------|---------|---------|---------|------------|
+| R1 length before trimming | 241bp | 241bp | 241bp | 241bp |$241bp$ |
+| R1 length after trimming | 127bp | 157bp | 152bp | 132bp | $142bp$ |
+| R1 number of sequences before trimming | 631.4M | 325.5M | 379.1M | 397.7M | **1733.7M** |
+| R1 number of sequences after trimming | 450.8M | 248.4M | 285.2M | 300.1M | **1284.5M** |
+| Change in number of sequences | -28.6% | -23.7% | -24.8% | -24.5% | **-25.4%** |
+
+: Summary of sequence metrics before and after trimming, including percentage changes {#tbl-summary layout-ncol="1"}
+
+
+
+
+description :
+- permis de retirer les TSO,  polyG, polyA ...
+- r1 aussi supprimer les polyG (voir github ou annexe)  
+- 4 libraries of unequal sizes (see Solène's explanation for why they were not exactly equivalent)
+- This impacts library efficiency 
+- => Recommendation: balance the libraries for optimal results
+- 
+- discussion taille des différentes biblioteques (pas equilibré)
+=> influence sur la qualité de sequençage probablement mais pas que 
+
+-on voit aussi que ces eux qui possèdent la plus forte diminution de la taille des reads R1
+
+pareil pour la biblioteque BC_0080 , 
+concordance avec le fait de ces deux biblioteque possède un taux de duplication plus faible que les autres sur les barcodes je crois 25 contre 97 (voir annexe )
+
+- BC_0076 aparrition de polyG plus tot cf github : voit polyG plus en amont et plus haut pour cette biblio (epuissement de reactif donc plus d'erreur de sequençage GGGGG)
+
+-   mais au final on obtient des resultats tres interessants et propres
+
+
+
+- discussion sur le nombre de reads que l'on supprime 25 % c'est bien , a la fin on garde 1.284.5B reads 
+- discussion sur le qualité
+-  
+
+
+
+- multiqc (juste pour la version online) => mettre les guillemets
+
+
+
+
+
+### STARsolo
+
+-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré
+
+commande starsolo suivante comme dans bretn permet UMI a une erreur... possition des barcodes
+
+
+
+
+| Metric              | Count         |
+|---------------------|---------------|
+| nNoAdapter          | 0             |
+| nNoUMI              | 0             |
+| nNoCB               | 67,177        |
+| nNinCB              | 0             |
+| nNinUMI             | 16,893,550    |
+| nUMIhomopolymer     | 1,697,129     |
+| nTooMany            | 0             |
+| nNoMatch            | 163,166,830   |
+| nMismatchesInMultCB | 3,323,192     |
+| nExactMatch         | 1,046,121,284 |
+| nMismatchOneWL      | 53,206,471    |
+| nMismatchToMultWL   | 0             |
+
+: STARsolo barcode statistics {#tbl-starsolo layout-ncol="1"}
+
+### Barcode Statistics Interpretation
+
+The analysis of cell barcodes reveals several important points about our data quality:
+
+- **Barcode Quality**: 
+  - The absence of reads without adapter (`nNoAdapter = 0`) and without UMI (`nNoUMI = 0`) indicates excellent library preparation quality
+  - The relatively low number of reads without cell barcode (`nNoCB = 67,177`) represents less than 0.01% of total reads, which is excellent
+
+- **Barcode Accuracy**:
+  - The majority of reads (1,046,121,284) have a perfectly aligned barcode (`nExactMatch`)
+  - Approximately 53 million reads show a single mismatch (`nMismatchOneWL`)
+  - The absence of reads with multiple matches (`nMismatchToMultWL = 0`) suggests good barcode specificity
+
+- **UMI Quality**:
+  - The number of invalid UMIs (`nNinUMI = 16,893,550`) represents a relatively small proportion of total reads and might be primarily due to sequencing errors at the beginning of reads, which is a common observation in Illumina sequencing
+  - The presence of homopolymers in UMIs (`nUMIhomopolymer = 1,697,129`) is a known phenomenon that can affect molecular counting accuracy, but the relatively low number suggests this is not a major concern
+
+- **Overall Matching**:
+  - The significant number of unmatched reads (`nNoMatch = 163,166,830`) suggests that a substantial portion of reads do not match expected barcodes
+  - This could be due to sequencing errors or potential contamination
+
+These results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.
+
+
+## Genfull
+
+
+| Metric                | Count         |
+|-----------------------|---------------|
+| nUnmapped             | 114,628,761   |
+| nNoFeature            | 13,153,735    |
+| nAmbigFeature         | 936,951,032   |
+| nAmbigFeatureMultimap | 935,077,136   |
+| nTooMany              | 0             |
+| nNoExactMatch         | 125,216       |
+| nExactMatch           | 4,471,174,098 |
+| nMatch                | 971,519,404   |
+| nMatchUnique          | 34,593,349    |
+| nCellBarcodes         | 699,355       |
+| nUMIs                 | 34,258,961    |
+
+: STARsolo feature mapping statistics {#tbl-starsolo-features layout-ncol="1"}
+
+### Detailed Interpretation of STARsolo Statistics
+
+Based on the official STAR documentation and explanations from Alex Dobin (STAR developer) [@alexdobin/STAR#1887](https://github.com/alexdobin/STAR/issues/1887), here is a detailed interpretation of our STARsolo statistics:
+
+#### Barcode Statistics (Barcodes.stats)
+Statistics with the "no" prefix indicate reads that are not used for quantification:
+
+- **Barcode Quality** :
+  - `nNoAdapter` : Reads without adapter
+  - `nNoUMI` : Reads without valid UMI
+  - `nNoCB` : Reads without valid cell barcode
+  - `nNinCB` : Reads with 'N' bases in cell barcode
+  - `nNinUMI` : Reads with 'N' bases in UMI
+  - `nUMIhomopolymer` : Reads with homopolymeric UMI
+
+#### Mapping Statistics (Features.stats)
+These statistics refer to the number of reads, except for `nCellBarcodes` and `nUMIs` which represent the number of valid cell barcodes and UMIs respectively.
+
+- **General Mapping** :
+  - `nUnmapped` : Reads not mapped to the genome
+  - `nNoFeature` : Reads not mapped to an annotated feature
+  - `nAmbigFeature` : Reads mapped to multiple features
+  - `nAmbigFeatureMultimap` : Subset of `nAmbigFeature` where reads are mapped to multiple genomic loci
+
+- **Mapping Quality** :
+  - `nExactMatch` : Reads with exact mapping
+  - `nMatch` : Total mapped reads (unique + multiple)
+  - `nMatchUnique` : Reads with unique mapping
+
+#### Sequencing Saturation
+Sequencing saturation is calculated as follows:
+```
+Saturation = 1 - (N_umi / N_reads)
+```
+where:
+- N_umi = number of unique CB/UMI/gene combinations
+- N_reads = number of reads with valid CB/UMI/gene
+
+In our case, the very low saturation (0.97%) indicates that we could sequence deeper to capture more unique molecules.
+
+#### Key Points of Our Analysis
+- The high number of ambiguous mappings (`nAmbigFeature = 936,951,032`) is typical for bacterial data due to the compact nature of the genome
+- The majority of reads have exact mapping (`nExactMatch = 4,471,174,098`), indicating good mapping quality. This possibly includes both unique and multi-mapped reads that match exactly to their reference locations
+- The number of detected cell barcodes (`nCellBarcodes = 699,355`) is high, suggesting good cellular diversity
+- The number of UMIs (`nUMIs = 34,258,961`) indicates good molecular coverage
+
+These metrics suggest that our data is of good technical quality, although the low saturation indicates potential for deeper sequencing.
+
+
+## Genefull summary stats
+
+| Metric                                    | Value         |
+|-------------------------------------------|---------------|
+| Number of Reads                           | 1,284,475,633 |
+| Reads With Valid Barcodes                 | 85.58%        |
+| Sequencing Saturation                     | 0.97%         |
+| Q30 Bases in CB+UMI                       | 95.51%        |
+| Q30 Bases in RNA read                     | 95.79%        |
+| Reads Mapped to Genome: Unique+Multiple   | 89.57%        |
+| Reads Mapped to Genome: Unique            | 3.64%         |
+| Reads Mapped to GeneFull: Unique+Multiple | 75.64%        |
+| Reads Mapped to GeneFull: Unique          | 2.69%         |
+| Estimated Number of Cells                 | 27,203        |
+| Unique Reads in Cells Mapped to GeneFull  | 12,794,311    |
+| Fraction of Unique Reads in Cells         | 36.98%        |
+| Mean Reads per Cell                       | 470           |
+| Median Reads per Cell                     | 381           |
+| UMIs in Cells                             | 12,663,144    |
+| Mean UMI per Cell                         | 465           |
+| Median UMI per Cell                       | 378           |
+| Mean GeneFull per Cell                    | 296           |
+| Median GeneFull per Cell                  | 258           |
+| Total GeneFull Detected                   | 6,035         |
+
+: STARsolo summary statistics {#tbl-starsolo-summary layout-ncol="1"}
+
+## Interpretation of STARsolo Results
+
+The STARsolo analysis revealed several key insights about our single-cell RNA-seq data:
+
+### Sequencing Quality and Mapping
+
+-   The sequencing quality is excellent, with over 95% of bases having Q30 quality scores in both barcode/UMI and RNA reads
+-   A high proportion (85.58%) of reads contained valid cell barcodes, indicating good library preparation
+-   The mapping rates are robust:
+    -   89.57% of reads mapped to the genome (unique + multiple)
+    -   75.64% of reads mapped to genes (unique + multiple)
+-   The low unique mapping rate (3.64% to genome, 2.69% to genes) is typical for bacterial RNA-seq due to ...
+
+### Mapping Terminology
+
+-   **Gene mapping**: Refers to reads mapped to annotated coding sequences (CDS) only
+-   **GeneFull mapping**: Includes reads mapped to all annotated features including:
+    -   Coding sequences (CDS)
+    -   Untranslated regions (UTRs)
+    -   Non-coding RNAs
+    -   Intergenic regions
+    -   This broader mapping approach is particularly relevant for bacterial transcriptomics as it captures the full complexity of the transcriptome
+
+### Cell Recovery and Expression
+
+-   We estimated 27,203 cells in our dataset
+-   The sequencing saturation is very low (0.97%), suggesting we could sequence deeper if needed
+-   Cell-level metrics show good coverage:
+    -   Mean/median reads per cell: 470/381
+    -   Mean/median UMIs per cell: 465/378
+    -   Mean/median genes per cell: 296/258
+-   We detected 6,035 genes in total across all cells
+
+### Data Quality Assessment
+
+-   The high Q30 scores and mapping rates indicate good technical quality
+-   The cell-level metrics suggest sufficient coverage for downstream analysis
+-   The low sequencing saturation suggests potential for deeper sequencing if needed
+-   The high proportion of reads with valid barcodes (85.58%) indicates good library preparation
+
+
+
+
+### filter 
+
+Nous on prend tout les barcodes pas ceux qui sont filtré donc les 820, 800 barcodes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Genome and transcriptome description
+
+
+::: {#fig-genome-transcriptome layout-ncol=2}
+![genome](../figures/genome_description.png){#fig-genome}
+
+![transcriptome](../figures/transcriptome_description.png){#fig-transcriptome}
+
+Genome and transcriptome description (obtained with fastqc)
+:::
+
+Abundances of different types of RNA.
+
+Proportion of UMI counts from each major type of RNA (mRNA, RNA, tRNA) in (A) E. coli, (B) B. subtilis cells from the heat shock experiment shown in main Fig. 1. (C) tRNA and ncRNA UMI counts per cell for both species. (mRNA and rRNA UMI counts are shown in Fig. 1 of the main paper). (D) Number of unique genes per cell for both species. (E-F) Distribution of mean UMI counts per gene for (E) E. coli and (F) B. subtilis cells. Lines on the bottom correspond to single genes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Fitrage des cellules
+
+
+
+
+
+
+
+::: {#fig-filter_100UMI layout-ncol=2}
+![Scatter plot of the number of UMI per cell before and after filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
+
+![Violin plot of the number of UMI per cell before and after filtering](../figures/filter_100UMI_violin_CultureMedium.png){#fig-violin}
+
+Filtering of cells with less than 100 UMI per cell
+:::
+
+
+
+-   reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l'article de il existe des methodes de filtrages plus ou moins complexes\
+    -filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene
+
+-   filtrage avec un threashold
+
+-   dans l'article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule
+
+-   
+
+-   preprint de ... pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)
+
+# 
+
+housekeeping genes
+
+choix ou non de pooler les replicas techniques ensembles
+
+## Summary of results
+
+## MultiQC Quality Reports
+
+Detailed sequence quality reports are available below. Click on each report to view it.
+
+::: panel-tabset
+#### MultiQC Report R1 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R1 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+:::
+
+
+## apres starsolo mettre le nombre de reads avec valid barcodes dans la table 
+
+
+
+
+
+
+
+
+
+In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).
+
+
+dans l'article de kuchina ils ont filtré les cellules en fonction du nombre de reads et de genes :
+
+"Processing of data from the heat shock experiment Clustering and data analysis for the speciesmixing experiment with heat shock treatment was performed using Scanpy (59). We only kept transcriptomes that had a **number of total reads higher than 200**. Then, we removed the **ribosomal and tRNA reads from the data**, retaining only reads that represented the mRNA counts for both species. We further filtered cells based on the mRNA counts, **retaining cells expressing >100 reads and >100 genes**, and additionally filtered the genes, retaining the **genes expressed in >5 cells**. We then applied standard Scanpy normalization and scaling, dimensionality reduction, and clustering, as described in the Scanpy tutorial (59, 60). The clusters were produced by the Louvain graph-clustering method and manually inspected for the top differentially expressed genes. After inspection, three pairs of transcriptionally similar clusters with fewer differentially expressed genes were merged, resulting in clusters 1, 2, and 3 in Fig. 1D." ([Kuchina et al., 2021, p. 8](zotero://select/library/items/AWDKBVJW)) ([pdf](zotero://open-pdf/library/items/YFM8QJY6?page=9&annotation=LXF2XHIY))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+le choix de filtration sera discuté apres
+
+because the reads depth is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (voir figure, reuslttas comme deja observé chez )
+
+
+
+
+Single-cell analysis Two separate libraries were concatenated after filtering, log-normalized by 600 counts per cell, and scaled to unit variance and zero mean. Subsequently, ComBat(70) was run for batch effect correction. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. To create a volcano plot from this data, either the |score| or -log(adjusted p-value) was plotted on the y-axis against the log-fold change on the x axis. Lists of defense genes from DefenseFinder(39), host response genes upregulated after phage treatment, and CPS genes were used to assign colors to each point. Host response genes were taken as the top 15 distinct genes identified in the phage-treated sample only clustering analysis relative to the untreated sample. Initial CPS gene annotations were mapped by and received from Dr. Laurie Comstock (University of Chicago). Calculation of co-expression scores To assess the co-expression between two genes A and B, first, probabilities of expression of individual genes were calculated as fractions of cells having above-zero normalized non-scaled expression values p(A) and p(B), respectively. Then, the probability of simultaneous expression of the two genes, p(A&B), was calculated as a fraction of cells having above-zero normalized non-scaled expression values for both inspected genes. Co-expression score was calculated as a ratio of p(A&B) to the multiplication of p(A) and p(B). Values close to 1 indicate independent expression of genes; values above 1 indicate co-expression, and values below 1 indicate mutually exclusive expression of genes. To define a border of a CPS operon, mean co-expression values were calculated between genes adjacent to the CPS operon and core genes of a CPS operon. Co-expression between gene sets (e.g., CPS operons) was calculated similarly to genes, with probability of expression calculated as a fraction of cells having above-zero normalized non-scaled expression values for any of genes within a set. Diffusion pseudotime analysis The data was first subsetted into the phage-treated sample alone. A root cell was defined using adata.uns['iroot'] = np.flatnonzero(adata.obs['louvan']==0)[1], which selected a random indexed cell from the untreated cluster within all phage-treated cells. Scanpy diffusion maps were created prior to running the existing diffusion pseudotime tool with 0 branchings and 10 diffusion components. For downstream analysis using pseudotime values, 5 bins of equal size were created to group cells into pseudotime ranges (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, and 0.8-1.0). Differential expression analysis was run to identify the top 10 distinct B. fragilis genes within each pseudotime bin, and the Clusters of Orthologous Groups (COGs) database was used to define functional categories for these genes. Duplicate genes were removed. Raw mean expression for each of these genes, grouped by functional category, was calculated using the adata.raw.X matrix.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Single-cell RNA-seq Analysis
+
+### Data Quality and Preprocessing
+
+
+### Differential Expression Analysis
+
+### Division of Labor Patterns
+
+## Functional Analysis
+
+### Pathway Enrichment
+
+### Gene Set Analysis
+
+
+## Summary of Key Findings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

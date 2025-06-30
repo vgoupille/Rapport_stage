@@ -66,7 +66,7 @@ Two distinct culture conditions were applied to the bacteria: M9 medium containi
 <!-- 
 {{< embed ../data/data_growth.ipynb#plot_growth >}} -->
 
-![Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).](../figures/growth_curves.png){#fig-growth-curves fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron)."}
+![Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).](../figures/growth_curves_all.png){#fig-growth-curves fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron)."}
 
 *Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C).*
 
@@ -222,3 +222,10 @@ The filtering thresholds used in this study were chosen arbitrarily, as each sin
 au total on conserve : 
 x cellules , avec x genes 
 
+
+
+Single-cell analysis filtering, log-normalized by ... counts per cell, and scaled to unit variance and zero mean. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. 
+
+
+
+Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. 

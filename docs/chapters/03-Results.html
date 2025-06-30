@@ -242,19 +242,7 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#preprocessing-of-the-sequencing-data" id="toc-preprocessing-of-the-sequencing-data" class="nav-link active" data-scroll-target="#preprocessing-of-the-sequencing-data"><span class="header-section-number">3.1</span> Preprocessing of the sequencing data</a></li>
-  <li><a href="#genfull" id="toc-genfull" class="nav-link" data-scroll-target="#genfull"><span class="header-section-number">3.2</span> Genfull</a></li>
-  <li><a href="#genefull-summary-stats" id="toc-genefull-summary-stats" class="nav-link" data-scroll-target="#genefull-summary-stats"><span class="header-section-number">3.3</span> Genefull summary stats</a></li>
-  <li><a href="#interpretation-of-starsolo-results" id="toc-interpretation-of-starsolo-results" class="nav-link" data-scroll-target="#interpretation-of-starsolo-results"><span class="header-section-number">3.4</span> Interpretation of STARsolo Results</a></li>
-  <li><a href="#fitrage-des-cellules" id="toc-fitrage-des-cellules" class="nav-link" data-scroll-target="#fitrage-des-cellules"><span class="header-section-number">4</span> Fitrage des cellules</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a>
-  <ul class="collapse">
-  <li><a href="#summary-of-results" id="toc-summary-of-results" class="nav-link" data-scroll-target="#summary-of-results"><span class="header-section-number">5.1</span> Summary of results</a></li>
-  <li><a href="#multiqc-quality-reports" id="toc-multiqc-quality-reports" class="nav-link" data-scroll-target="#multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</a></li>
-  <li><a href="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" id="toc-apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="nav-link" data-scroll-target="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">5.3</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</a></li>
-  <li><a href="#single-cell-rna-seq-analysis" id="toc-single-cell-rna-seq-analysis" class="nav-link" data-scroll-target="#single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</a></li>
-  <li><a href="#functional-analysis" id="toc-functional-analysis" class="nav-link" data-scroll-target="#functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</a></li>
-  <li><a href="#summary-of-key-findings" id="toc-summary-of-key-findings" class="nav-link" data-scroll-target="#summary-of-key-findings"><span class="header-section-number">5.6</span> Summary of Key Findings</a></li>
-  </ul></li>
+  <li><a href="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" id="toc-apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="nav-link" data-scroll-target="#apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">3.2</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -280,28 +268,7 @@ window.Quarto = {
 </header>
 
 
-<p>This chapter presents the findings of our single-cell RNA-seq analysis of Pseudomonas, focusing on the division of labor within bacterial populations.</p>
-<p>plan :</p>
-<ul>
-<li>trimming and quality control</li>
-<li>starsolo</li>
-<li>genome and transcriptome description</li>
-<li>filtering</li>
-<li>Anndata
-<ul>
-<li>all the conditions comparison</li>
-<li>selection of three conditions
-<ul>
-<li>for each :
-<ul>
-<li>clustering</li>
-<li>differential expresion analysis</li>
-<li>GO</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<p>=&gt; don’t do all the analysis for the moment</p>
+<p>This chapter presents the findings of our single-cell RNA-seq analysis of <em>P. brassicacearum</em> R401, focusing on the division of labor within bacterial populations. To investigate division of labor patterns, we first established robust data quality through comprehensive preprocessing and quality control steps. We then applied appropriate filtering strategies to ensure reliable cell identification and gene expression quantification. These preliminary steps are essential prerequisites that will enable us to characterize the cellular heterogeneity and transcriptional diversity across different experimental conditions to identify potential division of labor mechanisms.</p>
 <section id="preprocessing-of-the-sequencing-data" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="preprocessing-of-the-sequencing-data"><span class="header-section-number">3.1</span> Preprocessing of the sequencing data</h2>
 <section id="trimming-and-quality-control-of-fastq-files" class="level3">
@@ -337,16 +304,17 @@ window.Quarto = {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adaptateur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Adapter content before and after trimming (BC_0076)
+Figure&nbsp;3.1: Artifacts content of the sublibrary BC_0076 before and after trimming with Cutadapt and Fastp
 </figcaption>
 </figure>
 </div>
-<div id="tbl-summary" class="quarto-layout-panel anchored">
+<p><em>The adapter content analysis shows the presence of various sequencing artifacts in the raw data (example of BC_0076). In the before trimming plot (<a href="#fig-before" class="quarto-xref">Figure&nbsp;<span>3.1 (a)</span></a>), distinct patterns are visible: polyG stretches (pink), polyA tails (cyan), and Illumina adapter sequences (purple). After trimming (<a href="#fig-after" class="quarto-xref">Figure&nbsp;<span>3.1 (b)</span></a>), these artifacts are effectively removed, resulting in clean sequence data suitable for downstream analysis. The successful elimination of these technical artifacts demonstrates the effectiveness of the trimming pipeline in improving data quality.</em></p>
+<div id="tbl-summary-trimming" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Summary of sequence metrics before and after trimming, including percentage changes
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-trimming-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Summary of sequence metrics before and after trimming of each sublibrary with Cutadapt and Fastp
 </figcaption>
-<div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-summary-trimming-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
@@ -416,185 +384,160 @@ Table&nbsp;3.1: Summary of sequence metrics before and after trimming, including
 </div>
 </figure>
 </div>
-<p>description : - permis de retirer les TSO, polyG, polyA … - r1 aussi supprimer les polyG (voir github ou annexe)<br>
-- 4 libraries of unequal sizes (see Solène’s explanation for why they were not exactly equivalent) - This impacts library efficiency - =&gt; Recommendation: balance the libraries for optimal results - - discussion taille des différentes biblioteques (pas equilibré) =&gt; influence sur la qualité de sequençage probablement mais pas que</p>
-<p>-on voit aussi que ces eux qui possèdent la plus forte diminution de la taille des reads R1</p>
-<p>pareil pour la biblioteque BC_0080 , concordance avec le fait de ces deux biblioteque possède un taux de duplication plus faible que les autres sur les barcodes je crois 25 contre 97 (voir annexe )</p>
-<ul>
-<li><p>BC_0076 aparrition de polyG plus tot cf github : voit polyG plus en amont et plus haut pour cette biblio (epuissement de reactif donc plus d’erreur de sequençage GGGGG)</p></li>
-<li><p>mais au final on obtient des resultats tres interessants et propres</p></li>
-<li><p>discussion sur le nombre de reads que l’on supprime 25 % c’est bien , a la fin on garde 1.284.5B reads</p></li>
-<li><p>discussion sur le qualité</p></li>
-<li></li>
-<li><p>multiqc (juste pour la version online) =&gt; mettre les guillemets</p></li>
-</ul>
+<p>The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (<a href="#fig-adaptateur" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, <a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis.</p>
+<section id="trimming-efficiency-and-data-retention" class="level4">
+<h4 class="anchored" data-anchor-id="trimming-efficiency-and-data-retention">Trimming Efficiency and Data Retention</h4>
+<p>The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). This reduction rate is within the expected range for single-cell RNA-seq data and indicates effective removal of low-quality sequences while preserving the majority of informative reads. The final dataset of 1.284 billion reads provides substantial sequencing depth for robust analysis.</p>
 </section>
-<section id="starsolo" class="level3">
-<h3 class="anchored" data-anchor-id="starsolo">STARsolo</h3>
-<p>-pour starsolo renvoie un gene qui serait mal annoté donc est automatiquement ignoré</p>
-<p>commande starsolo suivante comme dans bretn permet UMI a une erreur… possition des barcodes</p>
-<div id="tbl-starsolo" class="quarto-layout-panel anchored">
+<section id="sub-library-size-variations-and-their-implications" class="level4">
+<h4 class="anchored" data-anchor-id="sub-library-size-variations-and-their-implications">Sub-library Size Variations and Their Implications</h4>
+<p>The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>).</p>
+</section>
+<section id="quality-improvements-and-technical-considerations" class="level4">
+<h4 class="anchored" data-anchor-id="quality-improvements-and-technical-considerations">Quality Improvements and Technical Considerations</h4>
+<p>The trimming process revealed interesting patterns across sublibraries. BC_0076 and BC_0080 showed the most pronounced reductions in R1 read length, which may indicate higher initial quality of these libraries requiring more aggressive trimming to remove artifacts while maintaining better overall data integrity.</p>
+<p>BC_0076 specifically showed earlier and more prominent polyG artifacts, likely due to reagent depletion during sequencing that led to increased G nucleotide incorporation errors. This phenomenon is common in NovaSeq sequencing runs where the largest libraries may experience reagent exhaustion, resulting in higher error rates and more artifacts that require removal during trimming. Despite these technical challenges, the trimming process successfully mitigated these artifacts, resulting in high-quality data suitable for downstream analysis.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Recommendations for Future Experiments
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.</p>
+</div>
+</div>
+</section>
+<section id="multiqc-report-r1-before-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r1-before-trimming">MultiQC Report R1 Before Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R1 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+<section id="multiqc-report-r1-after-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r1-after-trimming">MultiQC Report R1 After Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R1 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+<section id="multiqc-report-r2-before-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r2-before-trimming">MultiQC Report R2 Before Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R2 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+<section id="multiqc-report-r2-after-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r2-after-trimming">MultiQC Report R2 After Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R2 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+</section>
+<section id="starsolo-analysis-and-data-quality-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="starsolo-analysis-and-data-quality-assessment">STARsolo Analysis and Data Quality Assessment</h3>
+<p>Our single-cell RNA-seq data was processed using STARsolo, which provided comprehensive quality metrics and mapping statistics. The analysis revealed excellent data quality suitable for investigating division of labor patterns in <em>P. brassicacearum</em> populations.</p>
+<section id="starsolo-analysis-results" class="level4">
+<h4 class="anchored" data-anchor-id="starsolo-analysis-results">STARsolo Analysis Results</h4>
+<div id="tbl-starsolo-comprehensive" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.2: STARsolo barcode statistics
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-comprehensive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: Comprehensive STARsolo analysis results
 </figcaption>
-<div aria-describedby="tbl-starsolo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-starsolo-comprehensive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 23%">
+<col style="width: 20%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Count</th>
+<th style="text-align: left;">Count/Percentage</th>
+<th style="text-align: left;">Interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">nNoAdapter</td>
-<td style="text-align: left;">0</td>
+<td style="text-align: left;"><strong>Total Reads Processed</strong></td>
+<td style="text-align: left;">1,284,475,633</td>
+<td style="text-align: left;">High sequencing depth</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">nNoUMI</td>
-<td style="text-align: left;">0</td>
+<td style="text-align: left;"><strong>Reads With Valid Barcodes</strong></td>
+<td style="text-align: left;">1,099,327,755</td>
+<td style="text-align: left;">85.58% of total reads</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nNoCB</td>
-<td style="text-align: left;">67,177</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nNinCB</td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nNinUMI</td>
-<td style="text-align: left;">16,893,550</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nUMIhomopolymer</td>
-<td style="text-align: left;">1,697,129</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nTooMany</td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nNoMatch</td>
-<td style="text-align: left;">163,166,830</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nMismatchesInMultCB</td>
-<td style="text-align: left;">3,323,192</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nExactMatch</td>
+<td style="text-align: left;">- Exact Barcode Match</td>
 <td style="text-align: left;">1,046,121,284</td>
+<td style="text-align: left;">81.44%</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">nMismatchOneWL</td>
+<tr class="even">
+<td style="text-align: left;">- Single Mismatch Barcode</td>
 <td style="text-align: left;">53,206,471</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nMismatchToMultWL</td>
-<td style="text-align: left;">0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</figure>
-</div>
-</section>
-<section id="barcode-statistics-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="barcode-statistics-interpretation">Barcode Statistics Interpretation</h3>
-<p>The analysis of cell barcodes reveals several important points about our data quality:</p>
-<ul>
-<li><strong>Barcode Quality</strong>:
-<ul>
-<li>The absence of reads without adapter (<code>nNoAdapter = 0</code>) and without UMI (<code>nNoUMI = 0</code>) indicates excellent library preparation quality</li>
-<li>The relatively low number of reads without cell barcode (<code>nNoCB = 67,177</code>) represents less than 0.01% of total reads, which is excellent</li>
-</ul></li>
-<li><strong>Barcode Accuracy</strong>:
-<ul>
-<li>The majority of reads (1,046,121,284) have a perfectly aligned barcode (<code>nExactMatch</code>)</li>
-<li>Approximately 53 million reads show a single mismatch (<code>nMismatchOneWL</code>)</li>
-<li>The absence of reads with multiple matches (<code>nMismatchToMultWL = 0</code>) suggests good barcode specificity</li>
-</ul></li>
-<li><strong>UMI Quality</strong>:
-<ul>
-<li>The number of invalid UMIs (<code>nNinUMI = 16,893,550</code>) represents a relatively small proportion of total reads and might be primarily due to sequencing errors at the beginning of reads, which is a common observation in Illumina sequencing</li>
-<li>The presence of homopolymers in UMIs (<code>nUMIhomopolymer = 1,697,129</code>) is a known phenomenon that can affect molecular counting accuracy, but the relatively low number suggests this is not a major concern</li>
-</ul></li>
-<li><strong>Overall Matching</strong>:
-<ul>
-<li>The significant number of unmatched reads (<code>nNoMatch = 163,166,830</code>) suggests that a substantial portion of reads do not match expected barcodes</li>
-<li>This could be due to sequencing errors or potential contamination</li>
-</ul></li>
-</ul>
-<p>These results indicate overall good library preparation quality, with excellent cell barcode specificity, although some improvements could be made regarding UMI quality.</p>
-</section>
-</section>
-<section id="genfull" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="genfull"><span class="header-section-number">3.2</span> Genfull</h2>
-<div id="tbl-starsolo-features" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.3: STARsolo feature mapping statistics
-</figcaption>
-<div aria-describedby="tbl-starsolo-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">nUnmapped</td>
-<td style="text-align: left;">114,628,761</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nNoFeature</td>
-<td style="text-align: left;">13,153,735</td>
+<td style="text-align: left;">4.14%</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nAmbigFeature</td>
-<td style="text-align: left;">936,951,032</td>
+<td style="text-align: left;"><strong>Q30 Bases in RNA reads</strong></td>
+<td style="text-align: left;">95.79%</td>
+<td style="text-align: left;">Outstanding sequencing quality</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">nAmbigFeatureMultimap</td>
-<td style="text-align: left;">935,077,136</td>
+<td style="text-align: left;"><strong>Q30 Bases in CB+UMI</strong></td>
+<td style="text-align: left;">95.51%</td>
+<td style="text-align: left;">High barcode/UMI quality</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nTooMany</td>
-<td style="text-align: left;">0</td>
+<td style="text-align: left;"><strong>GeneFull Mapping (Unique + Multiple)</strong></td>
+<td style="text-align: left;">971,519,404 (75.64%)</td>
+<td style="text-align: left;">Good gene-level coverage</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">nNoExactMatch</td>
-<td style="text-align: left;">125,216</td>
+<td style="text-align: left;"><strong>Unique GeneFull Mapping</strong></td>
+<td style="text-align: left;">34,593,349 (2.69%)</td>
+<td style="text-align: left;">Expected low rate due to overlapping genes</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nExactMatch</td>
-<td style="text-align: left;">4,471,174,098</td>
+<td style="text-align: left;"><strong>Total GeneFull Detected</strong></td>
+<td style="text-align: left;">6,035</td>
+<td style="text-align: left;">Comprehensive gene coverage</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">nMatch</td>
-<td style="text-align: left;">971,519,404</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nMatchUnique</td>
-<td style="text-align: left;">34,593,349</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">nCellBarcodes</td>
+<td style="text-align: left;"><strong>Cell Barcodes Detected</strong></td>
 <td style="text-align: left;">699,355</td>
+<td style="text-align: left;">Total unique barcodes</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nUMIs</td>
+<td style="text-align: left;"><strong>Total UMIs Detected</strong></td>
 <td style="text-align: left;">34,258,961</td>
+<td style="text-align: left;">Good molecular diversity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Sequencing Saturation</strong></td>
+<td style="text-align: left;">0.97%</td>
+<td style="text-align: left;">Very low - potential for deeper sequencing</td>
 </tr>
 </tbody>
 </table>
@@ -603,227 +546,30 @@ Table&nbsp;3.3: STARsolo feature mapping statistics
 </div>
 </figure>
 </div>
-<section id="detailed-interpretation-of-starsolo-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="detailed-interpretation-of-starsolo-statistics">Detailed Interpretation of STARsolo Statistics</h3>
-<p>Based on the official STAR documentation and explanations from Alex Dobin (STAR developer) <a href="https://github.com/alexdobin/STAR/issues/1887"><span class="citation" data-cites="alexdobin/STAR#1887"><sup><span><strong>alexdobin/STAR#1887?</strong></span></sup></span></a>, here is a detailed interpretation of our STARsolo statistics:</p>
-<section id="barcode-statistics-barcodes.stats" class="level4">
-<h4 class="anchored" data-anchor-id="barcode-statistics-barcodes.stats">Barcode Statistics (Barcodes.stats)</h4>
-<p>Statistics with the “no” prefix indicate reads that are not used for quantification:</p>
-<ul>
-<li><strong>Barcode Quality</strong> :
-<ul>
-<li><code>nNoAdapter</code> : Reads without adapter</li>
-<li><code>nNoUMI</code> : Reads without valid UMI</li>
-<li><code>nNoCB</code> : Reads without valid cell barcode</li>
-<li><code>nNinCB</code> : Reads with ‘N’ bases in cell barcode</li>
-<li><code>nNinUMI</code> : Reads with ‘N’ bases in UMI</li>
-<li><code>nUMIhomopolymer</code> : Reads with homopolymeric UMI</li>
-</ul></li>
-</ul>
-</section>
-<section id="mapping-statistics-features.stats" class="level4">
-<h4 class="anchored" data-anchor-id="mapping-statistics-features.stats">Mapping Statistics (Features.stats)</h4>
-<p>These statistics refer to the number of reads, except for <code>nCellBarcodes</code> and <code>nUMIs</code> which represent the number of valid cell barcodes and UMIs respectively.</p>
-<ul>
-<li><strong>General Mapping</strong> :
-<ul>
-<li><code>nUnmapped</code> : Reads not mapped to the genome</li>
-<li><code>nNoFeature</code> : Reads not mapped to an annotated feature</li>
-<li><code>nAmbigFeature</code> : Reads mapped to multiple features</li>
-<li><code>nAmbigFeatureMultimap</code> : Subset of <code>nAmbigFeature</code> where reads are mapped to multiple genomic loci</li>
-</ul></li>
-<li><strong>Mapping Quality</strong> :
-<ul>
-<li><code>nExactMatch</code> : Reads with exact mapping</li>
-<li><code>nMatch</code> : Total mapped reads (unique + multiple)</li>
-<li><code>nMatchUnique</code> : Reads with unique mapping</li>
-</ul></li>
-</ul>
-</section>
-<section id="sequencing-saturation" class="level4">
-<h4 class="anchored" data-anchor-id="sequencing-saturation">Sequencing Saturation</h4>
-<p>Sequencing saturation is calculated as follows:</p>
+<p><strong>Sequencing Saturation Explanation:</strong> Sequencing saturation measures how completely we have sampled the transcriptome. It is calculated as:</p>
 <pre><code>Saturation = 1 - (N_umi / N_reads)</code></pre>
 <p>where: - N_umi = number of unique CB/UMI/gene combinations - N_reads = number of reads with valid CB/UMI/gene</p>
-<p>In our case, the very low saturation (0.97%) indicates that we could sequence deeper to capture more unique molecules.</p>
+<p>A saturation of 0.97% indicates we could sequence much deeper to capture more unique molecules.</p>
+<p><strong>Note</strong>: The low unique mapping rates (3.64% to genome, 2.69% to genes) are typical for bacterial RNA-seq due to the compact nature of bacterial genomes with overlapping coding sequences. The high multiple mapping rate reflects the complexity of bacterial transcriptomes, which is particularly relevant for studying division of labor as it captures the full transcriptional landscape.</p>
 </section>
-<section id="key-points-of-our-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="key-points-of-our-analysis">Key Points of Our Analysis</h4>
-<ul>
-<li>The high number of ambiguous mappings (<code>nAmbigFeature = 936,951,032</code>) is typical for bacterial data due to the compact nature of the genome</li>
-<li>The majority of reads have exact mapping (<code>nExactMatch = 4,471,174,098</code>), indicating good mapping quality. This possibly includes both unique and multi-mapped reads that match exactly to their reference locations</li>
-<li>The number of detected cell barcodes (<code>nCellBarcodes = 699,355</code>) is high, suggesting good cellular diversity</li>
-<li>The number of UMIs (<code>nUMIs = 34,258,961</code>) indicates good molecular coverage</li>
-</ul>
-<p>These metrics suggest that our data is of good technical quality, although the low saturation indicates potential for deeper sequencing.</p>
+<section id="data-quality-summary-for-division-of-labor-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="data-quality-summary-for-division-of-labor-analysis">Data Quality Summary for Division of Labor Analysis</h4>
+<p>The STARsolo results provide strong evidence that our data is well-suited for investigating division of labor in <em>P. brassicacearum</em>:</p>
+<ol type="1">
+<li><strong>Comprehensive Gene Detection</strong>: 6,035 genes detected across all cells captures the full transcriptional diversity besoin de verif apres le nombre de genes detectés par cellules , nombre umi … mais avant doit filtrer les cellules</li>
+<li><strong>Excellent Technical Quality</strong>: &gt;95% Q30 scores and 85.58% valid barcodes indicate minimal technical noise</li>
+<li><strong>Robust Mapping</strong>: 75.64% of reads mapped to genes, providing comprehensive transcriptome coverage</li>
+</ol>
+<p>The low sequencing saturation (0.97%) suggests we could potentially sequence deeper to capture more unique molecules, but the current depth is sufficient for robust division of labor analysis. The high proportion of multiple-mapped reads is expected for bacterial data and actually beneficial for capturing the full complexity of overlapping transcriptional units that may be involved in division of labor processes.</p>
 </section>
+<section id="genefull-vs-gene-mapping-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="genefull-vs-gene-mapping-strategy">GeneFull vs Gene Mapping Strategy</h4>
+<p>We employed the <strong>GeneFull mapping</strong> approach, which includes: - Coding sequences (CDS) - Untranslated regions (UTRs) - Non-coding RNAs - Intergenic regions</p>
+<p>This broader mapping strategy is particularly valuable for bacterial division of labor studies as it captures regulatory elements, non-coding RNAs, and intergenic regions that may play crucial roles in phenotypic differentiation and specialization within bacterial populations.</p>
 </section>
-</section>
-<section id="genefull-summary-stats" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="genefull-summary-stats"><span class="header-section-number">3.3</span> Genefull summary stats</h2>
-<div id="tbl-starsolo-summary" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.4: STARsolo summary statistics
-</figcaption>
-<div aria-describedby="tbl-starsolo-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Number of Reads</td>
-<td style="text-align: left;">1,284,475,633</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Reads With Valid Barcodes</td>
-<td style="text-align: left;">85.58%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sequencing Saturation</td>
-<td style="text-align: left;">0.97%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q30 Bases in CB+UMI</td>
-<td style="text-align: left;">95.51%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q30 Bases in RNA read</td>
-<td style="text-align: left;">95.79%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Reads Mapped to Genome: Unique+Multiple</td>
-<td style="text-align: left;">89.57%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Reads Mapped to Genome: Unique</td>
-<td style="text-align: left;">3.64%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Reads Mapped to GeneFull: Unique+Multiple</td>
-<td style="text-align: left;">75.64%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Reads Mapped to GeneFull: Unique</td>
-<td style="text-align: left;">2.69%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estimated Number of Cells</td>
-<td style="text-align: left;">27,203</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Unique Reads in Cells Mapped to GeneFull</td>
-<td style="text-align: left;">12,794,311</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fraction of Unique Reads in Cells</td>
-<td style="text-align: left;">36.98%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mean Reads per Cell</td>
-<td style="text-align: left;">470</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Median Reads per Cell</td>
-<td style="text-align: left;">381</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">UMIs in Cells</td>
-<td style="text-align: left;">12,663,144</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mean UMI per Cell</td>
-<td style="text-align: left;">465</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Median UMI per Cell</td>
-<td style="text-align: left;">378</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mean GeneFull per Cell</td>
-<td style="text-align: left;">296</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Median GeneFull per Cell</td>
-<td style="text-align: left;">258</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Total GeneFull Detected</td>
-<td style="text-align: left;">6,035</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</figure>
-</div>
-</section>
-<section id="interpretation-of-starsolo-results" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="interpretation-of-starsolo-results"><span class="header-section-number">3.4</span> Interpretation of STARsolo Results</h2>
-<p>The STARsolo analysis revealed several key insights about our single-cell RNA-seq data:</p>
-<section id="sequencing-quality-and-mapping" class="level3">
-<h3 class="anchored" data-anchor-id="sequencing-quality-and-mapping">Sequencing Quality and Mapping</h3>
-<ul>
-<li>The sequencing quality is excellent, with over 95% of bases having Q30 quality scores in both barcode/UMI and RNA reads</li>
-<li>A high proportion (85.58%) of reads contained valid cell barcodes, indicating good library preparation</li>
-<li>The mapping rates are robust:
-<ul>
-<li>89.57% of reads mapped to the genome (unique + multiple)</li>
-<li>75.64% of reads mapped to genes (unique + multiple)</li>
-</ul></li>
-<li>The low unique mapping rate (3.64% to genome, 2.69% to genes) is typical for bacterial RNA-seq due to …</li>
-</ul>
-</section>
-<section id="mapping-terminology" class="level3">
-<h3 class="anchored" data-anchor-id="mapping-terminology">Mapping Terminology</h3>
-<ul>
-<li><strong>Gene mapping</strong>: Refers to reads mapped to annotated coding sequences (CDS) only</li>
-<li><strong>GeneFull mapping</strong>: Includes reads mapped to all annotated features including:
-<ul>
-<li>Coding sequences (CDS)</li>
-<li>Untranslated regions (UTRs)</li>
-<li>Non-coding RNAs</li>
-<li>Intergenic regions</li>
-<li>This broader mapping approach is particularly relevant for bacterial transcriptomics as it captures the full complexity of the transcriptome</li>
-</ul></li>
-</ul>
-</section>
-<section id="cell-recovery-and-expression" class="level3">
-<h3 class="anchored" data-anchor-id="cell-recovery-and-expression">Cell Recovery and Expression</h3>
-<ul>
-<li>We estimated 27,203 cells in our dataset</li>
-<li>The sequencing saturation is very low (0.97%), suggesting we could sequence deeper if needed</li>
-<li>Cell-level metrics show good coverage:
-<ul>
-<li>Mean/median reads per cell: 470/381</li>
-<li>Mean/median UMIs per cell: 465/378</li>
-<li>Mean/median genes per cell: 296/258</li>
-</ul></li>
-<li>We detected 6,035 genes in total across all cells</li>
-</ul>
-</section>
-<section id="data-quality-assessment" class="level3">
-<h3 class="anchored" data-anchor-id="data-quality-assessment">Data Quality Assessment</h3>
-<ul>
-<li>The high Q30 scores and mapping rates indicate good technical quality</li>
-<li>The cell-level metrics suggest sufficient coverage for downstream analysis</li>
-<li>The low sequencing saturation suggests potential for deeper sequencing if needed</li>
-<li>The high proportion of reads with valid barcodes (85.58%) indicates good library preparation</li>
-</ul>
-</section>
-<section id="filter" class="level3">
-<h3 class="anchored" data-anchor-id="filter">filter</h3>
-<p>Nous on prend tout les barcodes pas ceux qui sont filtré donc les 820, 800 barcodes</p>
 </section>
 <section id="genome-and-transcriptome-description" class="level3">
-<h3 class="anchored" data-anchor-id="genome-and-transcriptome-description">Genome and transcriptome description</h3>
+<h3 class="anchored" data-anchor-id="genome-and-transcriptome-description">Genome and Transcriptome Description</h3>
 <div id="fig-genome-transcriptome" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -859,12 +605,17 @@ Figure&nbsp;3.2: Genome and transcriptome description (obtained with fastqc)
 </figcaption>
 </figure>
 </div>
-<p>Abundances of different types of RNA.</p>
-<p>Proportion of UMI counts from each major type of RNA (mRNA, RNA, tRNA) in (A) E. coli, (B) B. subtilis cells from the heat shock experiment shown in main Fig. 1. (C) tRNA and ncRNA UMI counts per cell for both species. (mRNA and rRNA UMI counts are shown in Fig. 1 of the main paper). (D) Number of unique genes per cell for both species. (E-F) Distribution of mean UMI counts per gene for (E) E. coli and (F) B. subtilis cells. Lines on the bottom correspond to single genes.</p>
+<p>The genome and transcriptome composition analysis reveals the distribution of different RNA types in our <em>P. brassicacearum</em> samples. This information is crucial for understanding the transcriptional landscape and identifying potential division of labor patterns, as different RNA types may be differentially expressed across subpopulations.</p>
 </section>
+<section id="cell-filtering-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="cell-filtering-strategy">Cell Filtering Strategy</h3>
+<p>For our division of labor analysis, we retained all cell barcodes that passed quality control (820,800 barcodes), rather than applying additional filtering thresholds. This approach maximizes our ability to detect rare subpopulations and subtle division of labor patterns that might be missed with more stringent filtering.</p>
+<p><strong>Important Note on STARsolo Default Filtering:</strong> We deliberately did not use STARsolo’s default filtering method (KneePant), which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations.</p>
+<p>The choice of filtering strategy is complex and context-dependent. As mentioned in the literature, various filtering approaches exist: - Filtering based on read types (global or condition-specific thresholds) - Filtering based on reads per cell - Filtering based on genes expressed per cell - Filtering based on reads per gene</p>
+<p>In the Kuchina et al.&nbsp;(2021) study, they used a threshold of 200 UMI per cell, but we chose a more inclusive approach to capture the full spectrum of cellular heterogeneity in our <em>P. brassicacearum</em> population.</p>
 </section>
-<section id="fitrage-des-cellules" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Fitrage des cellules</h1>
+<section id="cell-filtering-results" class="level3">
+<h3 class="anchored" data-anchor-id="cell-filtering-results">Cell Filtering Results</h3>
 <div id="fig-filter_100UMI" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -896,106 +647,94 @@ Figure&nbsp;3.2: Genome and transcriptome description (obtained with fastqc)
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Filtering of cells with less than 100 UMI per cell
+Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
 </figcaption>
 </figure>
 </div>
-<ul>
-<li><p>reflexion sur le filtrages des cellules est complexe : comme mentionnée dans l’article de il existe des methodes de filtrages plus ou moins complexes<br>
--filtrage sur le types de reads, globales ou seuils differents entre les differentes conditions biologiques -filtrage sur le nombre de reads par cellule -filtrage sur le nombre de genes exprimés par cellule -filtrage sur le nombre de reads par gene</p></li>
-<li><p>filtrage avec un threashold</p></li>
-<li><p>dans l’article de kuchina 2021 , ils ont utilisé un seuil de 200 UMI par cellule</p></li>
-<li></li>
-<li><p>preprint de … pourrait etre interessant de se focus aussi sur rRNA (lien avec growth rate)</p></li>
-</ul>
+<p>The filtering analysis shows the distribution of UMI counts per cell before and after applying quality thresholds. This visualization helps assess the impact of filtering on our ability to detect division of labor patterns and ensures we maintain sufficient statistical power for downstream analysis.</p>
+<p><strong>Key considerations for division of labor analysis:</strong> - The choice of filtering threshold can significantly impact the detection of rare subpopulations - Housekeeping genes and rRNA content may provide insights into growth rate variations across cells - Technical replicates may need to be pooled or analyzed separately depending on experimental design</p>
 </section>
-<section id="section" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> </h1>
-<p>housekeeping genes</p>
-<p>choix ou non de pooler les replicas techniques ensembles</p>
-<section id="summary-of-results" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="summary-of-results"><span class="header-section-number">5.1</span> Summary of results</h2>
+<section id="cell-recovery-and-expression-profiling" class="level3">
+<h3 class="anchored" data-anchor-id="cell-recovery-and-expression-profiling">Cell Recovery and Expression Profiling</h3>
+<p>Our analysis successfully captured a substantial population of bacterial cells with good coverage:</p>
+<div id="tbl-starsolo-cells" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-cells-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: Cell-level expression metrics
+</figcaption>
+<div aria-describedby="tbl-starsolo-cells-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 18%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Biological Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Estimated Number of Cells</strong></td>
+<td style="text-align: left;">27,203</td>
+<td style="text-align: left;">Large population for DoL analysis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mean Reads per Cell</strong></td>
+<td style="text-align: left;">470</td>
+<td style="text-align: left;">Good coverage depth</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Median Reads per Cell</strong></td>
+<td style="text-align: left;">381</td>
+<td style="text-align: left;">Consistent coverage</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mean UMI per Cell</strong></td>
+<td style="text-align: left;">465</td>
+<td style="text-align: left;">Reliable molecular counting</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Median UMI per Cell</strong></td>
+<td style="text-align: left;">378</td>
+<td style="text-align: left;">Consistent UMI distribution</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mean Genes per Cell</strong></td>
+<td style="text-align: left;">296</td>
+<td style="text-align: left;">Rich transcriptional profiles</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Median Genes per Cell</strong></td>
+<td style="text-align: left;">258</td>
+<td style="text-align: left;">Consistent gene detection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Total Genes Detected</strong></td>
+<td style="text-align: left;">6,035</td>
+<td style="text-align: left;">Comprehensive gene coverage</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
 </section>
-<section id="multiqc-quality-reports" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="multiqc-quality-reports"><span class="header-section-number">5.2</span> MultiQC Quality Reports</h2>
-<p>Detailed sequence quality reports are available below. Click on each report to view it.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">MultiQC Report R1 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">MultiQC Report R1 After Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">MultiQC Report R2 Before Trimming</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">MultiQC Report R2 After Trimming</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<details>
-<summary>
-Click to view MultiQC report R1 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<details>
-<summary>
-Click to view MultiQC report R1 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<details>
-<summary>
-Click to view MultiQC report R2 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<details>
-<summary>
-Click to view MultiQC report R2 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</div>
-</div>
-</div>
 </section>
-<section id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">5.3</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</h2>
+<section id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="apres-starsolo-mettre-le-nombre-de-reads-avec-valid-barcodes-dans-la-table"><span class="header-section-number">3.2</span> apres starsolo mettre le nombre de reads avec valid barcodes dans la table</h2>
 <p>In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).</p>
-<p>dans l’article de kuchina ils ont filtré les cellules en fonction du nombre de reads et de genes :</p>
-<p>“Processing of data from the heat shock experiment Clustering and data analysis for the speciesmixing experiment with heat shock treatment was performed using Scanpy (59). We only kept transcriptomes that had a <strong>number of total reads higher than 200</strong>. Then, we removed the <strong>ribosomal and tRNA reads from the data</strong>, retaining only reads that represented the mRNA counts for both species. We further filtered cells based on the mRNA counts, <strong>retaining cells expressing &gt;100 reads and &gt;100 genes</strong>, and additionally filtered the genes, retaining the <strong>genes expressed in &gt;5 cells</strong>. We then applied standard Scanpy normalization and scaling, dimensionality reduction, and clustering, as described in the Scanpy tutorial (59, 60). The clusters were produced by the Louvain graph-clustering method and manually inspected for the top differentially expressed genes. After inspection, three pairs of transcriptionally similar clusters with fewer differentially expressed genes were merged, resulting in clusters 1, 2, and 3 in Fig. 1D.” (<a href="zotero://select/library/items/AWDKBVJW">Kuchina et al., 2021, p.&nbsp;8</a>) (<a href="zotero://open-pdf/library/items/YFM8QJY6?page=9&amp;annotation=LXF2XHIY">pdf</a>)</p>
 <p>le choix de filtration sera discuté apres</p>
 <p>because the reads depth is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (voir figure, reuslttas comme deja observé chez )</p>
-<p>Single-cell analysis Two separate libraries were concatenated after filtering, log-normalized by 600 counts per cell, and scaled to unit variance and zero mean. Subsequently, ComBat(70) was run for batch effect correction. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. To create a volcano plot from this data, either the |score| or -log(adjusted p-value) was plotted on the y-axis against the log-fold change on the x axis. Lists of defense genes from DefenseFinder(39), host response genes upregulated after phage treatment, and CPS genes were used to assign colors to each point. Host response genes were taken as the top 15 distinct genes identified in the phage-treated sample only clustering analysis relative to the untreated sample. Initial CPS gene annotations were mapped by and received from Dr.&nbsp;Laurie Comstock (University of Chicago). Calculation of co-expression scores To assess the co-expression between two genes A and B, first, probabilities of expression of individual genes were calculated as fractions of cells having above-zero normalized non-scaled expression values p(A) and p(B), respectively. Then, the probability of simultaneous expression of the two genes, p(A&amp;B), was calculated as a fraction of cells having above-zero normalized non-scaled expression values for both inspected genes. Co-expression score was calculated as a ratio of p(A&amp;B) to the multiplication of p(A) and p(B). Values close to 1 indicate independent expression of genes; values above 1 indicate co-expression, and values below 1 indicate mutually exclusive expression of genes. To define a border of a CPS operon, mean co-expression values were calculated between genes adjacent to the CPS operon and core genes of a CPS operon. Co-expression between gene sets (e.g., CPS operons) was calculated similarly to genes, with probability of expression calculated as a fraction of cells having above-zero normalized non-scaled expression values for any of genes within a set. Diffusion pseudotime analysis The data was first subsetted into the phage-treated sample alone. A root cell was defined using adata.uns[‘iroot’] = np.flatnonzero(adata.obs[‘louvan’]==0)[1], which selected a random indexed cell from the untreated cluster within all phage-treated cells. Scanpy diffusion maps were created prior to running the existing diffusion pseudotime tool with 0 branchings and 10 diffusion components. For downstream analysis using pseudotime values, 5 bins of equal size were created to group cells into pseudotime ranges (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, and 0.8-1.0). Differential expression analysis was run to identify the top 10 distinct B. fragilis genes within each pseudotime bin, and the Clusters of Orthologous Groups (COGs) database was used to define functional categories for these genes. Duplicate genes were removed. Raw mean expression for each of these genes, grouped by functional category, was calculated using the adata.raw.X matrix.</p>
-</section>
-<section id="single-cell-rna-seq-analysis" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="single-cell-rna-seq-analysis"><span class="header-section-number">5.4</span> Single-cell RNA-seq Analysis</h2>
-<section id="data-quality-and-preprocessing" class="level3">
-<h3 class="anchored" data-anchor-id="data-quality-and-preprocessing">Data Quality and Preprocessing</h3>
-</section>
-<section id="differential-expression-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="differential-expression-analysis">Differential Expression Analysis</h3>
-</section>
-<section id="division-of-labor-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="division-of-labor-patterns">Division of Labor Patterns</h3>
-</section>
-</section>
-<section id="functional-analysis" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="functional-analysis"><span class="header-section-number">5.5</span> Functional Analysis</h2>
-<section id="pathway-enrichment" class="level3">
-<h3 class="anchored" data-anchor-id="pathway-enrichment">Pathway Enrichment</h3>
-</section>
-<section id="gene-set-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="gene-set-analysis">Gene Set Analysis</h3>
-</section>
-</section>
-<section id="summary-of-key-findings" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="summary-of-key-findings"><span class="header-section-number">5.6</span> Summary of Key Findings</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
