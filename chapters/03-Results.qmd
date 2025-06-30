@@ -28,7 +28,7 @@ Artifacts content of the sublibrary BC_0076 before and after trimming with Cutad
 | R1 number of sequences after trimming | 450.8M | 248.4M | 285.2M | 300.1M | **1284.5M** |
 | Change in number of sequences | -28.6% | -23.7% | -24.8% | -24.5% | **-25.4%** |
 
-: Summary of sequence metrics before and after trimming of each sublibrary with Cutadapt and Fastp {#tbl-summary-trimming layout-ncol="1"}
+: Summary of sequence metrics before and after trimming of each sublibrary with Cutadapt and Fastp (R1 read length metrics) {#tbl-summary-trimming layout-ncol="1"}
 
 The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (@fig-adaptateur, @tbl-summary-trimming). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis.
 
@@ -102,78 +102,62 @@ The observed size variations between sublibraries highlight the importance of ba
 
 
 
-### STARsolo Analysis and Data Quality Assessment
+### Transcriptome Description after STARsolo processing
 
-Our single-cell RNA-seq data was processed using STARsolo, which provided comprehensive quality metrics and mapping statistics. The analysis revealed excellent data quality suitable for investigating division of labor patterns in *P. brassicacearum* populations.
+Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo provided comprehensive quality metrics and mapping statistics.
 
-#### STARsolo Analysis Results
 
-| Metric                                    | Count/Percentage | Interpretation |
-|-------------------------------------------|------------------|----------------|
-| **Total Reads Processed**                 | 1,284,475,633    | High sequencing depth |
-| **Reads With Valid Barcodes**             | 1,099,327,755    | 85.58% of total reads |
-| - Exact Barcode Match                     | 1,046,121,284    | 81.44%               |
-| - Single Mismatch Barcode                 | 53,206,471       | 4.14%                |
-| **Q30 Bases in RNA reads**                | 95.79%           | Outstanding sequencing quality |
-| **Q30 Bases in CB+UMI**                   | 95.51%           | High barcode/UMI quality |
-| **GeneFull Mapping (Unique + Multiple)**  | 971,519,404 (75.64%)   | Good gene-level coverage |
-| **Unique GeneFull Mapping**               | 34,593,349 (2.69%)     | Expected low rate due to overlapping genes |
-| **Total GeneFull Detected**               | 6,035                 | Comprehensive gene coverage |
-| **Cell Barcodes Detected**                | 699,355          | Total unique barcodes |
-| **Total UMIs Detected**                   | 34,258,961       | Good molecular diversity |
-| **Sequencing Saturation**                 | 0.97%            | Very low - potential for deeper sequencing |
+| Metric                                    | Count/Percentage |
+|-------------------------------------------|------------------|
+| **Total Reads Processed**                 | 1,284,475,633    |
+| **N_reads with valid barcodes**             | 1,099,327,755 (**85.58%**)     |
+| - Exact Barcode Match                     |-> 1,046,121,284 (**81.44%**)    |
+| - Single Mismatch Barcode                 |-> 53,206,471 (**4.14%**)       |
+| **Q30 Bases in RNA reads**                | 95.79%           |
+| **Q30 Bases in CB+UMI**                   | 95.51%           |
+| **Unique Gene Mapping**                   | 34,593,349 (2.69%)     |
+| **Unique + Multiple Gene Mapping**        | 971,519,404 (75.64%)   |
+| **Total Genes Detected**                  | 6,035 on the total of 6,249 genes (96.57%)           |
+| **Cell Barcodes Detected**                | 699,355          |
+| **N_umi**                   | 36,565,214       |
+| **Sequencing Saturation**                 | 0.97%            |
 
-: Comprehensive STARsolo analysis results {#tbl-starsolo-comprehensive layout-ncol="1"}
+: Summary of metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of *P. brassicacearum R401* {#tbl-starsolo-comprehensive layout-ncol="1"}
 
-**Sequencing Saturation Explanation:**
-Sequencing saturation measures how completely we have sampled the transcriptome. It is calculated as:
-```
-Saturation = 1 - (N_umi / N_reads)
-```
-where:
-- N_umi = number of unique CB/UMI/gene combinations
-- N_reads = number of reads with valid CB/UMI/gene
+*Metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of *P. brassicacearum R401*.*
 
-A saturation of 0.97% indicates we could sequence much deeper to capture more unique molecules.
+The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (@tbl-starsolo-comprehensive). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al. (2024) (@gaisser2024), indicating excellent library preparation and barcoding efficiency with no significant issues in the protocol optimization.
 
-**Note**: The low unique mapping rates (3.64% to genome, 2.69% to genes) are typical for bacterial RNA-seq due to the compact nature of bacterial genomes with overlapping coding sequences. The high multiple mapping rate reflects the complexity of bacterial transcriptomes, which is particularly relevant for studying division of labor as it captures the full transcriptional landscape.
+Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples (Gaisser et al. (@gaisser2024)). This value is influenced by the species-specific characteristics and experimental conditions.
 
-#### Data Quality Summary for Division of Labor Analysis
+A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (@fig-genome) annotated in the *P. brassicacearum R401* genome, with one gene being automatically ignored by STARsolo due to poor annotation.
 
-The STARsolo results provide strong evidence that our data is well-suited for investigating division of labor in *P. brassicacearum*:
+The sequencing saturation, calculated as:
 
-1. **Comprehensive Gene Detection**: 6,035 genes detected across all cells captures the full transcriptional diversity
-besoin de verif apres le nombre de genes detectés par cellules , nombre umi ... mais avant doit filtrer les cellules 
-2. **Excellent Technical Quality**: >95% Q30 scores and 85.58% valid barcodes indicate minimal technical noise
-3. **Robust Mapping**: 75.64% of reads mapped to genes, providing comprehensive transcriptome coverage
+$$ Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97\% $$
 
-The low sequencing saturation (0.97%) suggests we could potentially sequence deeper to capture more unique molecules, but the current depth is sufficient for robust division of labor analysis. The high proportion of multiple-mapped reads is expected for bacterial data and actually beneficial for capturing the full complexity of overlapping transcriptional units that may be involved in division of labor processes.
+  - Where:
+    - $N_{\text{umi}}$ = number of unique molecules detected, distinct combinations of Cell Barcode (CB) / UMI / gene
+    - $N_{\text{reads}}$ = total number of reads with valid CB/UMI/gene combinations
+  
 
-#### GeneFull vs Gene Mapping Strategy
+::: {.callout-warning}
+This very low saturation indicates that we have captured only a small fraction of the total unique molecules in the transcriptome. According to Gaisser et al. (2024) @gaisser2024, a sequencing saturation of <0.5 may indicate that more sequencing is required to capture all barcoded transcripts in the library, with a saturation value of ≥0.7 typically indicating sufficient coverage. Our saturation value of 0.97% falls well below these recommended thresholds, suggesting that **our current sequencing depth may not be sufficient to capture the full complexity of the transcriptome**. While the current sequencing depth of 1.284 billion reads provides substantial coverage, the low saturation indicates that we could potentially benefit from deeper sequencing to capture more unique transcripts and achieve better coverage of the transcriptional landscape.
 
-We employed the **GeneFull mapping** approach, which includes:
-- Coding sequences (CDS)
-- Untranslated regions (UTRs) 
-- Non-coding RNAs
-- Intergenic regions
-
-This broader mapping strategy is particularly valuable for bacterial division of labor studies as it captures regulatory elements, non-coding RNAs, and intergenic regions that may play crucial roles in phenotypic differentiation and specialization within bacterial populations.
-
-### Genome and Transcriptome Description
-
+:::
 ::: {#fig-genome-transcriptome layout-ncol=2}
 ![genome](../figures/genome_description.png){#fig-genome}
 
 ![transcriptome](../figures/transcriptome_description.png){#fig-transcriptome}
 
-Genome and transcriptome description (obtained with fastqc)
+Compositional analysis of *P. brassicacearum* R401 genome annotation and transcriptome distribution of different RNA types
 :::
 
-The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* samples. This information is crucial for understanding the transcriptional landscape and identifying potential division of labor patterns, as different RNA types may be differentially expressed across subpopulations.
+The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* sample. In the [annotated](https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/)  genome of *P. brassicacearum* R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes, 16 rRNA genes (0.3% of the genome) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2 % are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability @nishimura2025.
 
 
 
-
+Before filtering, our dataset contained 699,355 unique cell barcodes, which is consistent with the expected large number of barcode combinations (>800,000) that typically contain only a small number of transcripts. These likely represent trace amounts of barcode contamination present throughout the protocol, including potentially within the source oligonucleotide plates. These contaminating barcodes can be effectively filtered using barcode-rank or knee plot analysis, which we applied in our filtering strategy.
 
 
 ### Cell Filtering Strategy
@@ -300,6 +284,13 @@ because the reads depth is different between : Stress condition (M9F) and non-st
 
 
 
+, which typically corresponds to the mRNA proportion in the library
+
+
+
+attention duplication des reads 
+
+serait bien de tester chaque sublirbai starsolo independant 
 
 
 
@@ -311,6 +302,7 @@ because the reads depth is different between : Stress condition (M9F) and non-st
 
 
 
+The low saturation may be partially explained by the high complexity of the bacterial transcriptome and the large number of unique cell barcode combinations detected (699,355).
 
 
 
@@ -320,11 +312,15 @@ because the reads depth is different between : Stress condition (M9F) and non-st
 
 
 
+Our results align well with the expected performance metrics for single-cell RNA-seq in bacteria.
+
+
+It is important to note that preliminary STARsolo tests without trimming yielded saturation values 0.94 **> 0.7**, which would have met the Gaisser et al. (@gaisser2024) recommendation for adequate sequencing depth. However, these elevated saturation values were not due to superior sequencing quality but rather to less effectively trimmed reads that artificially affected the saturation ratio. The lower saturation observed in our final analysis with proper trimming (0.0097) actually reflects more accurate data quality assessment, as the trimming process removed sequencing artifacts and low-quality reads that would have otherwise inflated the saturation metric. This observation suggests that the interpretation of saturation values in the Gaisser et al.(@gaisser2024) study may need revision, as their trimming protocol reportedly left approximately 10% of TSO sequences remaining, which could have artificially inflated their saturation metrics. While our saturation value of 0.97% falls well below their recommended threshold of >0.7, this difference likely reflects the superior quality of our trimming protocol rather than inadequate sequencing depth. The low saturation value (0.97%) indicates minimal redundancy in our sequencing data, suggesting that a substantial portion of the transcriptome remains unexplored. This implies that deeper sequencing could potentially capture additional unique transcripts and provide more comprehensive coverage of the transcriptional landscape.
+
+
+peut etre devoir verifier les 4 biblioteques pour comprendre les differences de duplication et voir si differences de satureation 
 
 
 
 
-
-
-
-
+For our division of labor analysis focusing on mRNA expression patterns, these highly abundant non-coding RNAs will need to be filtered out to avoid masking subtle transcriptional differences between subpopulations. This information is crucial for understanding the transcriptional landscape and identifying potential division of labor patterns, as different RNA types may be differentially expressed across subpopulations.

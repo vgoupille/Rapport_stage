@@ -205,7 +205,7 @@ The data was processed through quality control and filtering steps. Quality cont
 
 **UMI-based filtering.** Following the initial gene-based filtering, cells were further filtered based on UMI counts per cell (nCounts). From each sample, only the best cells were retained to achieve a target of 3,000 cells total across all conditions. This approach maximizes sequencing depth per cell while maintaining representation across all experimental conditions.
 
-**Doublet estimation.** Based on the doublet rate of 0.34% reported by Kuchina et al. [@gaisser2024], we estimated approximately 10.2 potential doublets among the 3,000 selected cells (0.34 × 3000/100). To remove potential doublets, cells were filtered using arbitrary thresholds: cells with nCount \> 5000 or nFeature \> 1500 were excluded, as these thresholds typically indicate doublet contamination in single-cell RNA-seq data (3 cells removed).
+**Doublet estimation.** Based on the doublet rate of 0.34% reported by Gaisser et al. (2024) [@gaisser2024], we estimated approximately 10.2 potential doublets among the 3,000 selected cells (0.34 × 3000/100). To remove potential doublets, cells were filtered using arbitrary thresholds: cells with nCount \> 5000 or nFeature \> 1500 were excluded, as these thresholds typically indicate doublet contamination in single-cell RNA-seq data (3 cells removed).
 
 **Gene filtering.** Only mRNA sequences were retained for analysis, excluding ribosomal RNA and transfer RNA sequences etc. Additionally, genes were required to be expressed in a minimum of 5 cells to ensure statistical reliability in downstream analyses.
 

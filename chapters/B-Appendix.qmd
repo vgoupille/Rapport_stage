@@ -149,7 +149,7 @@ barcodes stats
                                      nCellBarcodes         135433
                                              nUMIs         224743
 
-
+248001599.933
 
 Number of Reads,325495590
 Reads With Valid Barcodes,0.76192
