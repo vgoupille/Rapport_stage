@@ -182,13 +182,11 @@ Filtering of cells with less than 100 UMI per cell
 :::
  -->
 
-::: {#fig-filter_100UMI layout="[[1,1], [1], [1]] "}
+::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
 
 ![Barplot of the number of UMI per cell before and after filtering](../figures/filter_100UMIs_barplot.png){#fig-barplot}
 
 ![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/violinplot_100UMIs.png){#fig-violin}
-
-![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
 
 ![Total of barcodes for each biological replicate after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
 
@@ -200,14 +198,16 @@ Filtering of cells with less than 100 UMI per cell
 
 
 
-![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/filtered_mRNA_violin.png){#fig-filtered_mRNA_violin}
+![](../figures/mRNA__Genes_barplot.png){#fig-filtered_mRNA_violin}
+
+![](../figures/mRNA_GenesUMIs_violin.png){#fig-filtered_mRNA_violin}
+
+![](../figures/mRNAGenesNumber_violin.png){#fig-filtered_mRNA_violin}
 
 
 
 
-
-
-
+![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/scatter_final.png){#fig-scatter}
 
 
 
@@ -279,3 +279,6 @@ For our division of labor analysis focusing on mRNA expression patterns, these h
 - Technical replicates may need to be pooled or analyzed separately depending on experimental design
 
 
+
+
+![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
