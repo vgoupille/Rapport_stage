@@ -1219,3 +1219,147 @@ All preprocessing and alignment steps were performed on the GenOuest high-perfor
 // This paragraph summarizes the preprocessing (trimming), quality control, and STARsolo alignment steps, specifying that all analyses were performed on the GenOuest cluster, and highlights the use of FastQC, Fastp, Cutadapt, and STARsolo, as well as the automation with SLURM.
 
 Si tu veux une version plus détaillée ou plus courte, ou l’intégrer à un endroit précis, précise-le !
+
+
+
+
+atter}
+
+
+
+- test de clustering sur l'ensemble ne marche pas car trop cellules en conditions stress avec trop faible exprssion donc clusterise par la profondeur entre les groupe cultures medium , hormis housekeeping gene pour lesquels on capte un peu de signal , voit bien mieux UMIs pour ces genes en conditions de stress 
+
+choix de prendre seulement deux rep bio pour tester , à 0D1 car prelevement en meme temps , et aussi max signal , facilite normalisation 
+
+
+
+
+
+
+
+
+le choix de filtration sera discuté apres
+
+because the reads depth is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (voir figure, reuslttas comme deja observé chez )
+
+
+
+
+## Test global sur l'ensembles des conditions voir si on peut voir des differences entre les conditions 
+
+fait avec la methode de bacsc et classique (ici uniqement presenté les resultats de bacsc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The low saturation may be partially explained by the high complexity of the bacterial transcriptome and the large number of unique cell barcode combinations detected (699,355).
+
+
+
+
+
+
+
+
+
+Our results align well with the expected performance metrics for single-cell RNA-seq in bacteria.
+
+
+It is important to note that preliminary STARsolo tests without trimming yielded saturation values 0.94 **> 0.7**, which would have met the Gaisser et al. (@gaisser2024) recommendation for adequate sequencing depth. However, these elevated saturation values were not due to superior sequencing quality but rather to less effectively trimmed reads that artificially affected the saturation ratio. The lower saturation observed in our final analysis with proper trimming (0.0097) actually reflects more accurate data quality assessment, as the trimming process removed sequencing artifacts and low-quality reads that would have otherwise inflated the saturation metric. This observation suggests that the interpretation of saturation values in the Gaisser et al.(@gaisser2024) study may need revision, as their trimming protocol reportedly left approximately 10% of TSO sequences remaining, which could have artificially inflated their saturation metrics. While our saturation value of 0.97% falls well below their recommended threshold of >0.7, this difference likely reflects the superior quality of our trimming protocol rather than inadequate sequencing depth. The low saturation value (0.97%) indicates minimal redundancy in our sequencing data, suggesting that a substantial portion of the transcriptome remains unexplored. This implies that deeper sequencing could potentially capture additional unique transcripts and provide more comprehensive coverage of the transcriptional landscape.
+
+
+peut etre devoir verifier les 4 biblioteques pour comprendre les differences de duplication et voir si differences de satureation 
+
+
+
+
+For our division of labor analysis focusing on mRNA expression patterns, these highly abundant non-coding RNAs will need to be filtered out to avoid masking subtle transcriptional differences between subpopulations. This information is crucial for understanding the transcriptional landscape and identifying potential division of labor patterns, as different RNA types may be differentially expressed across subpopulations.
+
+
+
+**Key considerations for division of labor analysis:**
+- The choice of filtering threshold can significantly impact the detection of rare subpopulations
+- Housekeeping genes and rRNA content may provide insights into growth rate variations across cells
+- Technical replicates may need to be pooled or analyzed separately depending on experimental design
+
+
+
+

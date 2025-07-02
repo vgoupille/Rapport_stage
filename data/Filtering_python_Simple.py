@@ -4019,3 +4019,70 @@ sc.pl.violin(final_adata, ["total_counts"], groupby="Group")
 sc.pl.violin(final_adata, ["n_genes_by_counts"], groupby="Group")
 # %%
 sc.pl.scatter(final_adata, "total_counts", "n_genes_by_counts", color="Group")
+
+
+# %%
+import matplotlib.pyplot as plt
+import scanpy as sc
+from matplotlib.colors import to_rgba
+import numpy as np
+
+
+# Fonction pour éclaircir une couleur
+def lighten_color(color, amount=0.5):
+    rgba = np.array(to_rgba(color))
+    white = np.array([1, 1, 1, 1])
+    return tuple(rgba + (white - rgba) * amount)
+
+
+# Obtenir la palette tab20
+tab20_colors = plt.get_cmap("tab20").colors
+# Éclaircir la palette pour M9
+tab20_light = [lighten_color(c, amount=0.5) for c in tab20_colors]
+
+# Créer les figures
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+# Valeurs min/max globales
+total_counts_max = adata1_genes_filtered.obs["total_counts"].max()
+n_genes_max = adata1_genes_filtered.obs["n_genes_by_counts"].max()
+
+# Données M9F
+m9f_data = adata1_genes_filtered[adata1_genes_filtered.obs["CultureMedium"] == "M9F"]
+sc.pl.scatter(
+    m9f_data,
+    "total_counts",
+    "n_genes_by_counts",
+    color="OD",
+    ax=ax1,
+    show=False,
+    size=20,
+    palette=tab20_colors,
+)
+ax1.set_title("M9F medium", color="green", fontweight="bold")
+ax1.set_xlabel("Total of mRNA UMIs per Cell Barcode")
+ax1.set_ylabel("Total of mRNA genes per Cell Barcode")
+ax1.set_xlim(0, total_counts_max)
+ax1.set_ylim(0, n_genes_max)
+
+# Données M9
+m9_data = adata1_genes_filtered[adata1_genes_filtered.obs["CultureMedium"] == "M9"]
+sc.pl.scatter(
+    m9_data,
+    "total_counts",
+    "n_genes_by_counts",
+    color="OD",
+    ax=ax2,
+    show=False,
+    size=20,
+    palette=tab20_light,
+)
+ax2.set_title("M9 medium", color="red", fontweight="bold")
+ax2.set_xlabel("Total of mRNA UMIs per Cell Barcode")
+ax2.set_ylabel("Total of mRNA genes per Cell Barcode")
+ax2.set_xlim(0, total_counts_max)
+ax2.set_ylim(0, n_genes_max)
+
+plt.tight_layout()
+plt.show()
+# %%

@@ -168,19 +168,6 @@ Despite the low sequencing depth indicated by the saturation value, we will asse
 
 #### Filtering minimum 100 UMI per Barcode Cell
 
-<!-- ::: {#fig-filter_100UMI "[[1,2], [0,3], [4,4]]"}
-
-![Barplot of the number of UMI per cell before and after filtering](../figures/filter_100UMIs_barplot.png){#fig-barplot}
-
-![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
-
-![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/violinplot_100UMIs.png){#fig-violin}
-
-![Total of bacodes for each biological replicate after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
-
-Filtering of cells with less than 100 UMI per cell
-:::
- -->
 
 ::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
 
@@ -194,91 +181,30 @@ Filtering of cells with less than 100 UMI per cell
 :::
 
 
-#### Final Filtering 
 
 
 
-![](../figures/mRNA__Genes_barplot.png){#fig-filtered_mRNA_violin}
+# Global Analysis 
 
-![](../figures/mRNA_GenesUMIs_violin.png){#fig-filtered_mRNA_violin}
+![]
 
-![](../figures/mRNAGenesNumber_violin.png){#fig-filtered_mRNA_violin}
+## Single-cell Analysis Results
 
+### Gene Expression Patterns Across Cell Populations
 
+::: {#fig-single-cell-analysis layout="[[1,1], [1,1]]"}
 
+![Dot plot displaying gene expression patterns and percentage of cells expressing each gene](../figures/fig_sc/dotplot.png){#fig-dotplot}
 
-![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/scatter_final.png){#fig-scatter}
+![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
 
+![Violin plot showing gene expression distribution across cell populations](../figures/fig_sc/violin.png){#fig-violin-sc}
 
+![Gene clustering analysis showing relationships between differentially expressed genes](../figures/fig_sc/gene_cluster.png){#fig-gene-cluster}
 
+Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in *P. brassicacearum* populations
+:::
 
+*The single-cell analysis reveals distinct gene expression patterns across different cell populations within the *P. brassicacearum* culture. The dot plot (@fig-dotplot) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (@fig-heatmap) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.*
 
-
-
-
-
-
-
-
-le choix de filtration sera discuté apres
-
-because the reads depth is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (voir figure, reuslttas comme deja observé chez )
-
-
-
-
-
-
-
-, which typically corresponds to the mRNA proportion in the library
-
-
-
-attention duplication des reads 
-
-serait bien de tester chaque sublirbai starsolo independant 
-
-
-
-
-
-
-
-
-
-
-
-The low saturation may be partially explained by the high complexity of the bacterial transcriptome and the large number of unique cell barcode combinations detected (699,355).
-
-
-
-
-
-
-
-
-
-Our results align well with the expected performance metrics for single-cell RNA-seq in bacteria.
-
-
-It is important to note that preliminary STARsolo tests without trimming yielded saturation values 0.94 **> 0.7**, which would have met the Gaisser et al. (@gaisser2024) recommendation for adequate sequencing depth. However, these elevated saturation values were not due to superior sequencing quality but rather to less effectively trimmed reads that artificially affected the saturation ratio. The lower saturation observed in our final analysis with proper trimming (0.0097) actually reflects more accurate data quality assessment, as the trimming process removed sequencing artifacts and low-quality reads that would have otherwise inflated the saturation metric. This observation suggests that the interpretation of saturation values in the Gaisser et al.(@gaisser2024) study may need revision, as their trimming protocol reportedly left approximately 10% of TSO sequences remaining, which could have artificially inflated their saturation metrics. While our saturation value of 0.97% falls well below their recommended threshold of >0.7, this difference likely reflects the superior quality of our trimming protocol rather than inadequate sequencing depth. The low saturation value (0.97%) indicates minimal redundancy in our sequencing data, suggesting that a substantial portion of the transcriptome remains unexplored. This implies that deeper sequencing could potentially capture additional unique transcripts and provide more comprehensive coverage of the transcriptional landscape.
-
-
-peut etre devoir verifier les 4 biblioteques pour comprendre les differences de duplication et voir si differences de satureation 
-
-
-
-
-For our division of labor analysis focusing on mRNA expression patterns, these highly abundant non-coding RNAs will need to be filtered out to avoid masking subtle transcriptional differences between subpopulations. This information is crucial for understanding the transcriptional landscape and identifying potential division of labor patterns, as different RNA types may be differentially expressed across subpopulations.
-
-
-
-**Key considerations for division of labor analysis:**
-- The choice of filtering threshold can significantly impact the detection of rare subpopulations
-- Housekeeping genes and rRNA content may provide insights into growth rate variations across cells
-- Technical replicates may need to be pooled or analyzed separately depending on experimental design
-
-
-
-
-![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
+*The violin plots (@fig-violin-sc) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (@fig-gene-cluster) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the *P. brassicacearum* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.*

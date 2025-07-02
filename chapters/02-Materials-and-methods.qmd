@@ -177,7 +177,7 @@ The alignment and quantification pipeline was implemented using STARsolo [@dobin
 
 **Alignment parameters.** The pipeline used optimized parameters for microSPLiT data: minimum 50 matching bases for valid alignment and 1 mismatch tolerance for both barcode and UMI matching. The complex barcode structure (R2) was configured with positions 0_10_0_17, 0_48_0_55, and 0_78_0_85 for the three barcoding rounds, and UMI position 0_0_0_9.
 
-**Output matrices.** STARsolo generated count matrices using `GeneFull` feature counting and `UniqueAndMult-Uniform` mapping strategy (distributes multi-mapped reads uniformly). Although bacteria lack introns, `GeneFull` was chosen to include reads that may map to intergenic regions or incompletely annotated gene boundaries, which is common in bacterial genomes. The `UniqueAndMult-Uniform` strategy is particularly important for bacterial genomes due to the presence of paralogous genes, repetitive sequences, and operon structures that can result in reads mapping to multiple genomic locations. Raw data matrices (unfiltered barcodes) were used for downstream analysis @gaisser2024, with cell filtering applied later in the processing pipeline.
+**Output matrices.** STARsolo generated count matrices of gene counts for each cell (N-by-K matrix, with N cells and K genes) using `GeneFull` feature counting and `UniqueAndMult-Uniform` mapping strategy (which distributes multi-mapped reads uniformly). Although bacteria lack introns, `GeneFull` was chosen to include reads that may map to intergenic regions or incompletely annotated gene boundaries, which is common in bacterial genomes. The `UniqueAndMult-Uniform` strategy is particularly important for bacterial genomes due to the presence of paralogous genes, repetitive sequences, and operon structures that can result in reads mapping to multiple genomic locations. Raw data matrices (unfiltered barcodes) were used for downstream analysis @gaisser2024, with cell filtering applied later in the processing pipeline.
 
 **Quality control and output files.** After STARsolo analysis, quality control was performed using the Log.final.out and summary.csv files. The main output files for downstream analysis included barcode.tsv (cell identifiers), features.tsv (gene identifiers), and UniqueAndMult-Uniform.mtx (count matrix).
 
@@ -187,29 +187,26 @@ All downstream analyses were performed locally using a reproducible development 
 
 #### Data conversion and metadata assignment.
 
-Raw count matrix was converted to [Seurat v5](https://satijalab.org/seurat/) objects [@hao2024] in R. Two types of metadata were assigned:
+Raw count matrix was converted to [Seurat v5](https://satijalab.org/seurat/) objects [@hao2024] in R and  AnnData objects [@virshup2024] for use with [Scanpy](https://scanpy.readthedocs.io/en/stable/) [@wolf2018]. Two types of metadata were assigned:
 
 -   **Cell metadata** based on barcode combinations, linking each cell to its experimental condition (medium type, biological and technical replicate, timepoint, and well plate position at each barcoding round)
-
-<!-- -->
-
 -   **Gene metadata** including sequence type and gene symbols for downstream analysis.
-
-For Python-based analyses, Seurat objects were converted to AnnData objects [@virshup2024] for use with [Scanpy](https://scanpy.readthedocs.io/en/stable/) [@wolf2018].
 
 #### Quality control and filtering.
 
-The data was processed through quality control and filtering steps. Quality control metrics were calculated for each cell, including total UMI counts and number of detected genes. Cells with low quality metrics or potential contamination were filtered out to ensure robust downstream analysis. Because the reads depth or cell expression is different between : Stress condition (M9F) and non-stress condition (M9) et also between the 3 timepoints (T1, T2, T3) (see suppl figure ) , we decided to filter the cells based on the number of UMI counts per cell (nCounts) and the number of detected genes (nFeatures) per sample. 
+A multi-step filtering strategy was implemented to ensure data quality and remove technical artifacts while preserving biological variation. The filtering pipeline was designed to address specific challenges of microSPLiT data and experimental design considerations.
 
-**Cell filtering strategy.** For each of the 90 samples (18 conditions × 5 technical replicates), cells were filtered to retain only the top 10% of cells with the highest number of expressed genes (nFeatures) per sample, resulting in 82,080 cells from the initial 820,800 possible cells. This selection strategy ensures that only the highest quality cells from each sample are retained for downstream analysis.
+**Initial UMI-based filtering.** Cells with fewer than 100 unique molecular identifiers (UMIs) were excluded from the analysis. This threshold was chosen based on preliminary analysis showing clear differences in UMI distributions between the two culture conditions (M9 vs M9F), while also serving as a quality control metric to identify potentially failed technical replicates.
 
-**UMI-based filtering.** Following the initial gene-based filtering, cells were further filtered based on UMI counts per cell (nCounts). From each sample, only the best cells were retained to achieve a target of 3,000 cells total across all conditions. This approach maximizes sequencing depth per cell while maintaining representation across all experimental conditions.
+**Doublet removal.** To identify potential doublets, the top-performing cells from each technical replicate were first filtered based on UMI counts. The distribution of UMI counts per cell was examined within these high-quality cells to detect outliers that deviated significantly from the expected distribution, which typically represent potential doublets or technical artifacts (visual inspection of the distribution of UMI counts per cell). A comprehensive list of these putative doublets was compiled and subsequently removed from the initial dataset to ensure data quality.
 
-**Doublet estimation.** Based on the doublet rate of 0.34% reported by Gaisser et al. (2024) [@gaisser2024], we estimated approximately 10.2 potential doublets among the 3,000 selected cells (0.34 × 3000/100). To remove potential doublets, cells were filtered using arbitrary thresholds: cells with nCount \> 5000 or nFeature \> 1500 were excluded, as these thresholds typically indicate doublet contamination in single-cell RNA-seq data (3 cells removed).
+**Biological replicate-based filtering.** To ensure robust representation of each experimental condition, filtering was applied at the biological replicate level to obtient approxymaly 165 cells per condition, that represente a total of 3000 cells. For each biological replicate at each optical density timepoint (T1, T2, T3) for both culture conditions (M9, M9F), only the most deeply sequenced cells were retained. This approach allowed for the selection of the best-performing technical replicates. Then, in each of the 18 conditions, technical replicates containing fewer than 5 cells were removed.
 
-**Gene filtering.** Only mRNA sequences were retained for analysis, excluding ribosomal RNA and transfer RNA sequences etc. Additionally, genes were required to be expressed in a minimum of 5 cells to ensure statistical reliability in downstream analyses.
+**Transcript type filtering.** Only mRNA transcripts were retained for analysis, filtering out ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species.
 
-**Final dataset.** After applying these filtering criteria, the final processed dataset contained high-quality single-cell transcriptomes ready for differential expression analysis and cell state characterization.
+**Gene expression filtering.** Genes expressed in fewer than 5 cells across the entire dataset were removed to eliminate low-quality or spurious gene detection events and focus on robustly detected transcripts.
+
+
 
 ::: {.callout-warning}
 ## Warning
@@ -218,19 +215,46 @@ The filtering thresholds used in this study were chosen arbitrarily, as each sin
 :::
 
 
--retiré un replica tech aussi (voir annexe )
-au total on conserve : 
-x cellules , avec x genes 
+### Single-cell analysis
+
+We conducted various tests of single-cell analysis approaches to identify the optimal analytical strategy for our data. This exploratory analysis was performed on the complete dataset with all conditions pooled together, rather than on specific sub-conditions or individual biological replicates. Here we present the general framework of the analysis workflow, which involved testing different parameters and methodologies to ensure robust results.
+
+#### General analytical approach
+
+The analysis workflow encompassed several key steps: Normalization and scaling, feature selection, dimensionality reduction, clustering, and differential expression analysis. We systematically tested different parameters and methodologies to optimize each step of the pipeline. We followe the [Scanpy tutorial](https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering.html) for the general approach.
+
+**Normalization and scaling.** Expression data was log-normalized using `sc.pp.normalize_total` followed by log transformation using `sc.pp.log1p`, and scaled to unit variance and zero mean using `sc.pp.scale`. We tested different normalization factors (i.e. 1000, 2000, and 10000 counts per cell) to determine the optimal normalization strategy for our bacterial single-cell data.
+
+**Features (genes) selection and dimensionality reduction.** We evaluated different feature selection approaches. First, we tested strategies to filter genes by condition, retaining only genes that are detected in a certain percentage of cells within each experimental condition. Genes not meeting this threshold were eliminated from the analysis. Additionally, we implemented the classical Scanpy approach using variance-based selection with `sc.pp.highly_variable_genes` for highly variable gene identification. The distribution of variable features was visualized using `sc.pl.highly_variable_genes` to assess the selection quality. Tests were conducted both with and without feature selection to assess its impact on downstream analysis. When feature selection was applied, scaling to unit variance and zero mean was performed after the selection step using `sc.pp.scale`.
+
+**Principal component analysis (PCA).** PCA was computed using `sc.pp.pca`, with the number of principal components systematically tested at multiple levels (i.e. 3, 10, 20, 50) depending on the data characteristics. The optimal number of components was determined using Scanpy's `sc.pl.pca_variance_ratio` plot, which displays the explained variance ratio for each principal component, allowing us to identify the elbow point where additional components provide diminishing returns in variance explanation.
+
+**Clustering and visualization.** We computed shared nearest neighbor graphs using `sc.pp.neighbors` and tested multiple clustering algorithms including Leiden clustering (`sc.tl.leiden`) with different resolution parameters (i.e. 0.3, 0.5, 0.8, 1.0, 2.0) to identify the optimal clustering granularity. Uniform manifold approximation and projection (UMAP) was computed using `sc.tl.umap` for visualization, with parameters optimized for bacterial single-cell data. For comparison and validation purposes, we also performed the same analytical workflow using Seurat v5, which yielded similar results and performance, confirming the robustness of our analytical approach across different computational frameworks.
+
+
+**Differential expression analysis**
+
+Differential gene expression analysis was performed using Scanpy's gene ranking functions (`sc.tl.rank_genes_groups` and `sc.get.rank_genes_groups_df`) to compare expression patterns between experimental conditions. Statistical outputs included gene names, z-scores, log fold changes, p-values, and adjusted p-values for robust identification of differentially expressed genes. 
+
+#### Test of BacSC protocol
+
+To systematically identify optimal parameters for bacterial single-cell analysis, we also implemented and tested the BacSC protocol (currently a preprint @ostner), a fully data-driven computational pipeline that processes bacterial single-cell data without requiring manual intervention. This automated pipeline performs data-adaptive quality control and variance stabilization, selects suitable parameters for dimension reduction, neighborhood embedding, and clustering, and provides false discovery rate control in differential gene expression testing. The protocol systematically evaluates different normalization factors, feature selection thresholds, clustering resolutions, and dimensionality reduction parameters to find the configuration that best captures biological variation while minimizing technical artifacts.
+
+
+### Analytical scope and limitations
+
+This study represents an initial exploratory phase of single-cell RNA-seq analysis. While we established a comprehensive data processing pipeline, several advanced analytical approaches were not pursued due to the exploratory nature of our investigation. These include pseudobulk analysis, trajectory inference, gene co-expression networks, and gene ontology enrichment.
+
+The results presented in the following section focus on fundamental aspects: data quality assessment, basic clustering and visualization, and initial differential expression analysis between culture conditions. This approach establishes the validity of our experimental design and analytical pipeline while providing insights into the transcriptional responses of *P. brassicacearum* R401 to different nutrient availability conditions. The exploratory nature of bacterial single-cell RNA-seq data and time constraints limited our ability to pursue more advanced analytical approaches at this stage. 
 
 
 
-Single-cell analysis filtering, log-normalized by ... counts per cell, and scaled to unit variance and zero mean. Normalized expression data was dimensionally reduced using principal component analysis (PCA). Shared neighbor graphs and uniform manifold approximation representations (UMAP(71)) were calculated with the first 12 principal components. All subsequent calculations were run in Python using Scanpy(72) documentation for single-cell analysis. 
-
-
-
-Differential gene expression analysis Scanpy gene ranking functions (sc.tl.rank_genes_groups and sc.get.rank_genes_groups_df) were used to analyze and retrieve statistical data between two groups of interest within the annotated data object. The output parameters included names of all genes, z-score, log fold change, p-values, and adjusted p-values. 
 
 
 
 
-In addition, we kept the highest-scored multimapping reads, assigning a fractional count based on the number of equally good alignments, because bacterial genomes are known to contain overlapping coding sequences. We then generated a matrix of gene counts for each cell (N-by-K matrix, with N cells and K genes).
+
+
+
+
+

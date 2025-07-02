@@ -32,9 +32,6 @@ The following table presents the optical density (OD) measurements for each cult
 
 : Growth curves data for bacterial culture experiments {#tbl-growth-curves}
 
-
-
-
 ## Overview of single-cell RNA-seq methods in bacteria {#sec-appendix-nishimura}
 
 ![Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq @nishimura2025 ](../figures/nishimura_review.jpg){#fig-nishimura_review fig-alt="Overview of bacterial single-cell RNA sequencing approaches" fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]."}
@@ -42,8 +39,6 @@ The following table presents the optical density (OD) measurements for each cult
 ## MicroSPLiT sequencing library preparation
 
 ![MicroSPLiT sequencing library preparation. a, Selected sub-libraries with barcoded cells are lysed. Because cDNA molecules primed with both random hexamer and poly-dT primers undergo the same downstream reactions, only one of them is shown for clarity. b, After lysis, cDNA is purified via streptavidin beads. The cells then undergo an additional RT and template switching step. The template switch primer has two RNA G bases and a locked nucleic acid G base ('rGrG+G') sequence to facilitate the binding. c, cDNA is amplified, and size is selected to eliminate the unwanted short product ('dimer') from the cDNA amplification product. At this point, the size and concentration of the cDNA product are quantified (Part 2, Step 127). d, The library then undergoes fragmentation and adapter ligation. The desired sequencing product containing the barcodes is amplified with the primers for both the third barcode adapter and the ligation adapter, which contain Read 1 (R1) and Read 2 (R2) sequences. Illumina P5 and P7 sequence adapters and a final sub-library index are also appended at this final PCR step . e, A 0.5–0.7× double size selection then selects out unwanted fragments. The final product's concentration and size are measured before sequencing .](../figures/protocol_p2.png){#fig-protocol-p2 fig-alt="MicroSPLiT sequencing library preparation" fig-cap="MicroSPLiT sequencing library preparation."}
-
-
 
 ## TSO removal statistics {#sec-appendix-tso}
 
@@ -190,7 +185,13 @@ The following steps were performed sequentially for read trimming, as implemente
        --verbose
    ```
 
+## Single-cell RNA-seq Analysis Statistics {#sec-appendix-scrna-stats}
 
+The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of *P. brassicacearum*.
+
+![Tabular representation of gene expression statistics across cell populations](../figures/fig_sc/tab.png){#fig-tab-scrna}
+
+*Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.*
 
 ## Final effective command line of STARsolo {#sec-appendix-starsolo}
 
@@ -291,6 +292,39 @@ This section details the key parameters used in our STARsolo analysis and their 
 These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.
 
 Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.
+
+## Cell filtering strategy based on UMI counts {#sec-appendix-cell-filtering}
+
+### Initial filtering with minimum 100 UMI per cell
+
+To ensure data quality and remove technical artifacts while preserving biological variation, we implemented a multi-step filtering strategy. The first step involved filtering cells based on unique molecular identifier (UMI) counts.
+
+::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
+
+![Proportion of cell barcodes before and after filtering at 100 UMIs threshold for M9 and M9F culture conditions](../figures/filter_100UMIs_barplot.png){#fig-barplot}
+
+![Distribution of UMI and gene counts per cell after filtering at 100 UMIs for M9 and M9F conditions](../figures/violinplot_100UMIs.png){#fig-violin}
+
+![Total number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
+
+Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across all biological replicates in the single-cell RNA-seq experiment.
+:::
+
+*The initial filtering step removed Barcodes Cells (BC) with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes after filtering compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.*
+
+### Final filtering results
+
+Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and transcript type filtering. The final filtered dataset contained approximately 3,000 high-quality cells suitable for downstream analysis.
+
+![mRNA genes barplot after filtering](../figures/mRNA__Genes_barplot.png){#fig-filtered_mRNA_violin}
+
+![mRNA genes and UMI violin plot after filtering](../figures/mRNA_GenesUMIs_violin.png){#fig-filtered_mRNA_violin}
+
+![mRNA genes number violin plot after filtering](../figures/mRNAGenesNumber_violin.png){#fig-filtered_mRNA_violin}
+
+![Scatter plot showing final filtering results](../figures/scatter_final.png){#fig-scatter_final}
+
+*Final filtering results showing the distribution of mRNA genes and UMI counts across the filtered cell population. The violin plots demonstrate the distribution of gene expression and UMI counts after all filtering steps, while the scatter plot shows the relationship between UMI counts and gene counts per cell in the final filtered dataset. These visualizations demonstrate the quality and consistency of the retained cells for subsequent single-cell analysis.*
 
 - plan de plaque 
 - librairies avec TSO 

@@ -64,6 +64,27 @@ meme si moins de risque de contamination car cellules fixé ... (deve
 
 -autono 
 -gestion des datas tailles des 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+, which typically corresponds to the mRNA proportion in the library
+
+
+
+attention duplication des reads 
+
+serait bien de tester chaque sublirbai starsolo independant 
 ## Interpretation of Key Findings
 
 ### Division of Labor Mechanisms
