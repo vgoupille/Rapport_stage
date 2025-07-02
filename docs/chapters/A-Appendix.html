@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -253,14 +233,11 @@ div.csl-indent {
    
   <ul class="collapse">
   <li><a href="#sec-appendix-media" id="toc-sec-appendix-media" class="nav-link active" data-scroll-target="#sec-appendix-media"><span class="header-section-number">A.1</span> Media composition</a></li>
-  <li><a href="#sec-appendix-growth" id="toc-sec-appendix-growth" class="nav-link" data-scroll-target="#sec-appendix-growth"><span class="header-section-number">A.2</span> Growth curves data</a></li>
-  <li><a href="#sec-appendix-nishimura" id="toc-sec-appendix-nishimura" class="nav-link" data-scroll-target="#sec-appendix-nishimura"><span class="header-section-number">A.3</span> Overview of single-cell RNA-seq methods in bacteria</a></li>
-  <li><a href="#microsplit-sequencing-library-preparation" id="toc-microsplit-sequencing-library-preparation" class="nav-link" data-scroll-target="#microsplit-sequencing-library-preparation"><span class="header-section-number">A.4</span> MicroSPLiT sequencing library preparation</a></li>
-  <li><a href="#sec-appendix-tso" id="toc-sec-appendix-tso" class="nav-link" data-scroll-target="#sec-appendix-tso"><span class="header-section-number">A.5</span> TSO removal statistics</a></li>
-  <li><a href="#sec-appendix-trimming-steps" id="toc-sec-appendix-trimming-steps" class="nav-link" data-scroll-target="#sec-appendix-trimming-steps"><span class="header-section-number">A.6</span> Trimming pipeline steps</a></li>
-  <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.7</span> Single-cell RNA-seq Analysis Statistics</a></li>
-  <li><a href="#sec-appendix-starsolo" id="toc-sec-appendix-starsolo" class="nav-link" data-scroll-target="#sec-appendix-starsolo"><span class="header-section-number">A.8</span> Final effective command line of STARsolo</a></li>
-  <li><a href="#sec-appendix-cell-filtering" id="toc-sec-appendix-cell-filtering" class="nav-link" data-scroll-target="#sec-appendix-cell-filtering"><span class="header-section-number">A.9</span> Cell filtering strategy based on UMI counts</a></li>
+  <li><a href="#sec-appendix-trimming-steps" id="toc-sec-appendix-trimming-steps" class="nav-link" data-scroll-target="#sec-appendix-trimming-steps"><span class="header-section-number">A.2</span> Trimming pipeline steps</a></li>
+  <li><a href="#sec-appendix-starsolo" id="toc-sec-appendix-starsolo" class="nav-link" data-scroll-target="#sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</a></li>
+  <li><a href="#sec-appendix-cell-filtering" id="toc-sec-appendix-cell-filtering" class="nav-link" data-scroll-target="#sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</a></li>
+  <li><a href="#sec-appendix-global-filtering" id="toc-sec-appendix-global-filtering" class="nav-link" data-scroll-target="#sec-appendix-global-filtering"><span class="header-section-number">A.5</span> Global filtering of high quality cells</a></li>
+  <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.6</span> Single-cell RNA-seq Analysis Statistics</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -341,152 +318,8 @@ Table&nbsp;A.1: Media composition for bacterial culture experiments
 </div>
 <p>The M9 medium represents low nutrient conditions with minimal glucose and iron concentrations, while M9F medium provides high nutrient availability with elevated glucose and iron levels.</p>
 </section>
-<section id="sec-appendix-growth" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="sec-appendix-growth"><span class="header-section-number">A.2</span> Growth curves data</h2>
-<p>The following table presents the optical density (OD) measurements for each culture condition and biological replicate at the three timepoints.</p>
-<div id="tbl-growth-curves" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;A.2: Growth curves data for bacterial culture experiments
-</figcaption>
-<div aria-describedby="tbl-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Culture Medium</th>
-<th>Rep Bio</th>
-<th>OD1 (T1)</th>
-<th>OD2 (T2)</th>
-<th>OD3 (T3)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>M9</td>
-<td>A</td>
-<td>0.130</td>
-<td>0.280</td>
-<td>0.260</td>
-</tr>
-<tr class="even">
-<td>M9</td>
-<td>B</td>
-<td>0.130</td>
-<td>0.280</td>
-<td>0.260</td>
-</tr>
-<tr class="odd">
-<td>M9</td>
-<td>C</td>
-<td>0.130</td>
-<td>0.328</td>
-<td>0.260</td>
-</tr>
-<tr class="even">
-<td>M9F</td>
-<td>A</td>
-<td>0.173</td>
-<td>0.588</td>
-<td>0.773</td>
-</tr>
-<tr class="odd">
-<td>M9F</td>
-<td>B</td>
-<td>0.208</td>
-<td>0.627</td>
-<td>0.834</td>
-</tr>
-<tr class="even">
-<td>M9F</td>
-<td>C</td>
-<td>0.168</td>
-<td>0.603</td>
-<td>0.740</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-</section>
-<section id="sec-appendix-nishimura" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-nishimura"><span class="header-section-number">A.3</span> Overview of single-cell RNA-seq methods in bacteria</h2>
-<div id="fig-nishimura_review" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Overview of bacterial single-cell RNA sequencing approaches" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025].">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-nishimura_review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/nishimura_review.jpg" class="img-fluid figure-img" data-fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]." alt="Overview of bacterial single-cell RNA sequencing approaches">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nishimura_review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.1: Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">1</a></sup></span>
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="microsplit-sequencing-library-preparation" class="level2" data-number="A.4">
-<h2 data-number="A.4" class="anchored" data-anchor-id="microsplit-sequencing-library-preparation"><span class="header-section-number">A.4</span> MicroSPLiT sequencing library preparation</h2>
-<div id="fig-protocol-p2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="MicroSPLiT sequencing library preparation" data-fig-cap="MicroSPLiT sequencing library preparation.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-protocol-p2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/protocol_p2.png" class="img-fluid figure-img" data-fig-cap="MicroSPLiT sequencing library preparation." alt="MicroSPLiT sequencing library preparation">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-protocol-p2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.2: MicroSPLiT sequencing library preparation. a, Selected sub-libraries with barcoded cells are lysed. Because cDNA molecules primed with both random hexamer and poly-dT primers undergo the same downstream reactions, only one of them is shown for clarity. b, After lysis, cDNA is purified via streptavidin beads. The cells then undergo an additional RT and template switching step. The template switch primer has two RNA G bases and a locked nucleic acid G base (‘rGrG+G’) sequence to facilitate the binding. c, cDNA is amplified, and size is selected to eliminate the unwanted short product (‘dimer’) from the cDNA amplification product. At this point, the size and concentration of the cDNA product are quantified (Part 2, Step 127). d, The library then undergoes fragmentation and adapter ligation. The desired sequencing product containing the barcodes is amplified with the primers for both the third barcode adapter and the ligation adapter, which contain Read 1 (R1) and Read 2 (R2) sequences. Illumina P5 and P7 sequence adapters and a final sub-library index are also appended at this final PCR step . e, A 0.5–0.7× double size selection then selects out unwanted fragments. The final product’s concentration and size are measured before sequencing .
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="sec-appendix-tso" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-tso"><span class="header-section-number">A.5</span> TSO removal statistics</h2>
-<p>The following table summarizes the number of R1 reads before and after TSO removal for each sample, as well as the corresponding percentage.</p>
-<div id="tbl-tso-removal" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tso-removal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;A.3: TSO removal statistics for each sample. The table shows the total number of R1 reads, the number of R1 reads after TSO sequence removal, and the corresponding percentage.
-</figcaption>
-<div aria-describedby="tbl-tso-removal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Sample</th>
-<th>Total R1</th>
-<th>R1 with TSO removed</th>
-<th>Percentage (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>BC_0076</td>
-<td>631,393,326</td>
-<td>153,472,373</td>
-<td>24.3</td>
-</tr>
-<tr class="even">
-<td>BC_0077</td>
-<td>325,495,590</td>
-<td>90,142,002</td>
-<td>27.7</td>
-</tr>
-<tr class="odd">
-<td>BC_0079</td>
-<td>379,108,253</td>
-<td>102,386,519</td>
-<td>27.0</td>
-</tr>
-<tr class="even">
-<td>BC_0080</td>
-<td>397,654,767</td>
-<td>99,430,515</td>
-<td>25.0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>// Table added to summarize TSO removal efficiency for each sample. // … existing code …</p>
-</section>
-<section id="sec-appendix-trimming-steps" class="level2" data-number="A.6">
-<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-trimming-steps"><span class="header-section-number">A.6</span> Trimming pipeline steps</h2>
+<section id="sec-appendix-trimming-steps" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="sec-appendix-trimming-steps"><span class="header-section-number">A.2</span> Trimming pipeline steps</h2>
 <p>The following steps were performed sequentially for read trimming, as implemented in the custom pipeline (see process_sample.sh). Each step is performed in paired-end mode to maintain synchronization between R1 and R2 files.</p>
 <ol type="1">
 <li><p><strong>TSO trimming (Cutadapt):</strong><br>
@@ -598,101 +431,10 @@ This step trims R1 at both 5’ and 3’ ends to keep only cDNA and ensure clean
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
-<section id="sec-appendix-scrna-stats" class="level2" data-number="A.7">
-<h2 data-number="A.7" class="anchored" data-anchor-id="sec-appendix-scrna-stats"><span class="header-section-number">A.7</span> Single-cell RNA-seq Analysis Statistics</h2>
-<p>The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of <em>P. brassicacearum</em>.</p>
-<div id="fig-tab-scrna" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/fig_sc/tab.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.3: Tabular representation of gene expression statistics across cell populations
-</figcaption>
-</figure>
-</div>
-<p><em>Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.</em></p>
-</section>
-<section id="sec-appendix-starsolo" class="level2" data-number="A.8">
-<h2 data-number="A.8" class="anchored" data-anchor-id="sec-appendix-starsolo"><span class="header-section-number">A.8</span> Final effective command line of STARsolo</h2>
-<section id="sec-appendix-starsolo-kneepant" class="level3">
-<h3 class="anchored" data-anchor-id="sec-appendix-starsolo-kneepant">STARsolo KneePant filtering results</h3>
-<p>As a comparison to our custom filtering approach, we also analyzed the data using STARsolo’s default KneePant filtering method. The following table presents the results obtained with this alternative filtering strategy:</p>
-<div class="line-block">Metric | KneePant Filtered Data |</div>
-<div id="tbl-starsolo-kneepant" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-kneepant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;A.4: STARsolo KneePant filtering results for comparison
-</figcaption>
-<div aria-describedby="tbl-starsolo-kneepant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 52%">
-<col style="width: 18%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">——————————————-</th>
-<th style="text-align: left;">————————</th>
-<th style="text-align: left;"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Estimated Number of Cells</strong></td>
-<td style="text-align: left;">27,203</td>
-<td style="text-align: left;">Large population for DoL analysis</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Mean Reads per Cell</strong></td>
-<td style="text-align: left;">470</td>
-<td style="text-align: left;">Good coverage depth</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Median Reads per Cell</strong></td>
-<td style="text-align: left;">381</td>
-<td style="text-align: left;">Consistent coverage</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Mean UMI per Cell</strong></td>
-<td style="text-align: left;">465</td>
-<td style="text-align: left;">Reliable molecular counting</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Median UMI per Cell</strong></td>
-<td style="text-align: left;">378</td>
-<td style="text-align: left;">Consistent UMI distribution</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Mean Genes per Cell</strong></td>
-<td style="text-align: left;">296</td>
-<td style="text-align: left;">Rich transcriptional profiles</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Median Genes per Cell</strong></td>
-<td style="text-align: left;">258</td>
-<td style="text-align: left;">Consistent gene detection</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Total Genes Detected</strong></td>
-<td style="text-align: left;">6,035</td>
-<td style="text-align: left;">Comprehensive gene coverage</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</figure>
-</div>
-<p><em>Results obtained using STARsolo’s default KneePant filtering method. This approach would have resulted in approximately 27,000 cells with higher average coverage per cell, but potentially at the cost of removing biologically relevant stressed cells that might exhibit lower quality metrics.</em></p>
-<p>The KneePant method applies a knee plot analysis to identify the inflection point in the barcode rank plot, automatically determining the threshold between genuine cells and background noise. While this method provides a standardized approach to cell filtering, it may not be optimal for division of labor analysis where stressed cells with potentially lower quality metrics could represent important biological subpopulations.</p>
-</section>
+<section id="sec-appendix-starsolo" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</h2>
 <section id="computing-environment" class="level3">
-<h3 class="anchored" data-anchor-id="computing-environment">Computing Environment</h3>
+<h3 class="anchored" data-anchor-id="computing-environment">Computing environment</h3>
 <p>The STARsolo analysis was performed on the GenOuest high-performance computing cluster using the following specifications: - <strong>Node type</strong>: bigmem (high-memory node) - <strong>Memory allocation</strong>: 500GB RAM - <strong>CPU threads</strong>: 64 parallel threads</p>
 </section>
 <section id="starsolo-command-line" class="level3">
@@ -767,11 +509,80 @@ Table&nbsp;A.4: STARsolo KneePant filtering results for comparison
 <p>Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.</p>
 </section>
 </section>
+<section id="sec-appendix-starsolo-kneepant" class="level3">
+<h3 class="anchored" data-anchor-id="sec-appendix-starsolo-kneepant">STARsolo KneePant filtering results</h3>
+<p>As a comparison to our custom filtering approach, we also analyzed the data using STARsolo’s default KneePant filtering method. The following table presents the results obtained with this alternative filtering strategy:</p>
+<div id="tbl-starsolo-kneepant" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-kneepant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.2: STARsolo KneePant filtering results for comparison
+</figcaption>
+<div aria-describedby="tbl-starsolo-kneepant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 18%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Biological Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Estimated Number of Cells</strong></td>
+<td>27,203</td>
+<td>Large population for DoL analysis</td>
+</tr>
+<tr class="even">
+<td><strong>Mean Reads per Cell</strong></td>
+<td>470</td>
+<td>Good coverage depth</td>
+</tr>
+<tr class="odd">
+<td><strong>Median Reads per Cell</strong></td>
+<td>381</td>
+<td>Consistent coverage</td>
+</tr>
+<tr class="even">
+<td><strong>Mean UMI per Cell</strong></td>
+<td>465</td>
+<td>Reliable molecular counting</td>
+</tr>
+<tr class="odd">
+<td><strong>Median UMI per Cell</strong></td>
+<td>378</td>
+<td>Consistent UMI distribution</td>
+</tr>
+<tr class="even">
+<td><strong>Mean Genes per Cell</strong></td>
+<td>296</td>
+<td>Rich transcriptional profiles</td>
+</tr>
+<tr class="odd">
+<td><strong>Median Genes per Cell</strong></td>
+<td>258</td>
+<td>Consistent gene detection</td>
+</tr>
+<tr class="even">
+<td><strong>Total Genes Detected</strong></td>
+<td>6,035</td>
+<td>Comprehensive gene coverage</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><em>Results obtained using STARsolo’s default KneePant filtering method. This approach would have resulted in approximately 27,000 cells with higher average coverage per cell, but potentially at the cost of removing biologically relevant stressed cells that might exhibit lower quality metrics. In contrast, our custom filtering approach was specifically designed to target approximately 3,000 high-quality cells across all experimental conditions, prioritizing balanced representation of each condition</em></p>
+<p>The KneePant method applies a knee plot analysis to identify the inflection point in the barcode rank plot, automatically determining the threshold between genuine cells and background noise. While this method provides a standardized approach to cell filtering, it may not be optimal for division of labor analysis where stressed cells with potentially lower quality metrics could represent important biological subpopulations. Our targeted approach of ~3,000 cells ensures sufficient statistical power for differential expression analysis while maintaining balanced representation across all experimental conditions (2 media × 3 biological replicates × 3 timepoints).</p>
 </section>
-<section id="sec-appendix-cell-filtering" class="level2" data-number="A.9">
-<h2 data-number="A.9" class="anchored" data-anchor-id="sec-appendix-cell-filtering"><span class="header-section-number">A.9</span> Cell filtering strategy based on UMI counts</h2>
-<section id="initial-filtering-with-minimum-100-umi-per-cell" class="level3">
-<h3 class="anchored" data-anchor-id="initial-filtering-with-minimum-100-umi-per-cell">Initial filtering with minimum 100 UMI per cell</h3>
+</section>
+<section id="sec-appendix-cell-filtering" class="level2" data-number="A.4">
+<h2 data-number="A.4" class="anchored" data-anchor-id="sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</h2>
 <p>To ensure data quality and remove technical artifacts while preserving biological variation, we implemented a multi-step filtering strategy. The first step involved filtering cells based on unique molecular identifier (UMI) counts.</p>
 <div id="fig-filter_100UMI" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -810,7 +621,7 @@ Table&nbsp;A.4: STARsolo KneePant filtering results for comparison
 <img src="../figures/splitplot_barcodes_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Total number of cell barcodes retained for each biological replicate across different culture conditions and timepoints after filtering at 100 UMIs
+(c) Total number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after filtering at 100 UMIs
 </figcaption>
 </figure>
 </div>
@@ -818,70 +629,99 @@ Table&nbsp;A.4: STARsolo KneePant filtering results for comparison
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.4: Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across all biological replicates in the single-cell RNA-seq experiment.
+Figure&nbsp;A.1: Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across all biological replicates in the single-cell RNA-seq experiment.
 </figcaption>
 </figure>
 </div>
-<p><em>The initial filtering step removed Barcodes Cells (BC) with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen based on preliminary analysis showing clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes after filtering compared to M9F, reflecting the lower transcriptional activity under nutrient-limited conditions. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold. The barplot shows the distribution of UMI counts before and after filtering, while the violin plots demonstrate the distribution of UMI and gene counts per cell after filtering. The split plot shows the total number of barcodes retained for each biological replicate after this initial filtering step.</em></p>
+<p><em>The initial filtering step removed cell barcodes with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.</em></p>
 </section>
-<section id="final-filtering-results" class="level3">
-<h3 class="anchored" data-anchor-id="final-filtering-results">Final filtering results</h3>
-<p>Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and transcript type filtering. The final filtered dataset contained approximately 3,000 high-quality cells suitable for downstream analysis.</p>
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="sec-appendix-global-filtering" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-global-filtering"><span class="header-section-number">A.5</span> Global filtering of high quality cells</h2>
+<p>Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and transcript type filtering. The final dataset contained approximately 3,000 high-quality cells suitable for downstream analysis.</p>
+<p>After transcript type filtering, only mRNA genes were retained for analysis, excluding ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species. Additionally, genes expressed in fewer than 5 cells across the entire dataset were removed to eliminate low-quality or spurious gene detection events. The following visualizations show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell.</p>
+<div id="fig-final_filtering" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNA__Genes_barplot.png" class="img-fluid figure-img">
+<div aria-describedby="fig-final_filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-splitplot-barcodes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/mRNA__Genes_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.5: mRNA genes barplot after filtering
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering
 </figcaption>
 </figure>
 </div>
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNA_GenesUMIs_violin.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.6: mRNA genes and UMI violin plot after filtering
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/mRNA_GenesUMIs_violin.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Distribution of UMI counts for mRNA genes per cell across culture conditions after final filtering
 </figcaption>
 </figure>
 </div>
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNAGenesNumber_violin.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.7: mRNA genes number violin plot after filtering
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/mRNAGenesNumber_violin.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Distribution of mRNA gene numbers per cell across culture conditions after final filtering
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-scatter_final" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/scatter_final.png" class="img-fluid figure-img">
+<img src="../figures/scatter_final.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.8: Scatter plot showing final filtering results
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset
 </figcaption>
 </figure>
 </div>
-<p><em>Final filtering results showing the distribution of mRNA genes and UMI counts across the filtered cell population. The violin plots demonstrate the distribution of gene expression and UMI counts after all filtering steps, while the scatter plot shows the relationship between UMI counts and gene counts per cell in the final filtered dataset. These visualizations demonstrate the quality and consistency of the retained cells for subsequent single-cell analysis.</em></p>
-<ul>
-<li>plan de plaque</li>
-<li>librairies avec TSO</li>
-<li>tableau choix de profondeur / nombre de cellules</li>
-<li>mettre difference entre experience de kuhina et la notre pour les resultats de Starsolo</li>
-</ul>
-
-
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-nishimura2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
 </div>
 </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final_filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.2: Final filtering of high quality cells across all biological replicates in the single-cell RNA-seq experiment.
+</figcaption>
+</figure>
+</div>
+<p><em>Final filtering results demonstrate the successful removal of low-efficiency technical replicates, resulting in a more uniform distribution (no longer bimodal) with approximately 160 cells per condition. Both mRNA genes and UMI counts for mRNA genes show higher values for M9F culture medium compared to M9, reflecting the nutrient-rich conditions. Importantly, biological replicate variability is high at T1 for both culture conditions (M9 and M9F), and also at T3 for M9 conditions, with M9 replicates (stress conditions with limited iron) showing very low counts or gene numbers for T2 and T3 timepoints, suggesting reduced transcriptional activity under nutrient-limited conditions.</em></p>
 </section>
+<section id="sec-appendix-scrna-stats" class="level2" data-number="A.6">
+<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-scrna-stats"><span class="header-section-number">A.6</span> Single-cell RNA-seq Analysis Statistics</h2>
+<p>The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of <em>P. brassicacearum</em>.</p>
+<div id="fig-tab-scrna" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig_sc/tab.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.3: Tabular representation of gene expression statistics across cell populations
+</figcaption>
+</figure>
+</div>
+<p><em>Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.</em></p>
+
+
 </section>
 
 </main> <!-- /main -->

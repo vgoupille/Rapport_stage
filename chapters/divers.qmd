@@ -1363,3 +1363,27 @@ For our division of labor analysis focusing on mRNA expression patterns, these h
 
 
 
+
+## Overview of single-cell RNA-seq methods in bacteria {#sec-appendix-nishimura}
+
+![Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq @nishimura2025 ](../figures/nishimura_review.jpg){#fig-nishimura_review fig-alt="Overview of bacterial single-cell RNA sequencing approaches" fig-cap="Fig. 1. Overview of bacterial single-cell RNA sequencing approaches. (A) Schematic summary of single-cell isolation strategies employed in bacterial single-cell RNA-seq, highlighting the key features and distinctions of each approach. FACS, fluorescent activated cell sorting; UMI, unique molecular identifier. (B) Summary of features of each bacterial single-cell RNA-seq method, including MATQ-seq, RamDA-seq, PETRI-seq, microSPLiT, BacDrop, ProBac-seq, M3-seq, and smRandom-seq. Adapted from Nishimura et al. (2025) [@nishimura2025]."}
+
+## MicroSPLiT sequencing library preparation
+
+![MicroSPLiT sequencing library preparation. a, Selected sub-libraries with barcoded cells are lysed. Because cDNA molecules primed with both random hexamer and poly-dT primers undergo the same downstream reactions, only one of them is shown for clarity. b, After lysis, cDNA is purified via streptavidin beads. The cells then undergo an additional RT and template switching step. The template switch primer has two RNA G bases and a locked nucleic acid G base ('rGrG+G') sequence to facilitate the binding. c, cDNA is amplified, and size is selected to eliminate the unwanted short product ('dimer') from the cDNA amplification product. At this point, the size and concentration of the cDNA product are quantified (Part 2, Step 127). d, The library then undergoes fragmentation and adapter ligation. The desired sequencing product containing the barcodes is amplified with the primers for both the third barcode adapter and the ligation adapter, which contain Read 1 (R1) and Read 2 (R2) sequences. Illumina P5 and P7 sequence adapters and a final sub-library index are also appended at this final PCR step . e, A 0.5–0.7× double size selection then selects out unwanted fragments. The final product's concentration and size are measured before sequencing .](../figures/protocol_p2.png){#fig-protocol-p2 fig-alt="MicroSPLiT sequencing library preparation" fig-cap="MicroSPLiT sequencing library preparation."}
+
+## TSO removal statistics {#sec-appendix-tso}
+
+The following table summarizes the number of R1 reads before and after TSO removal for each sample, as well as the corresponding percentage.
+
+| Sample    | Total R1     | R1 with TSO removed | Percentage (%) |
+|-----------|--------------|--------------------|----------------|
+| BC_0076   | 631,393,326  | 153,472,373        | 24.3           |
+| BC_0077   | 325,495,590  | 90,142,002         | 27.7           |
+| BC_0079   | 379,108,253  | 102,386,519        | 27.0           |
+| BC_0080   | 397,654,767  | 99,430,515         | 25.0           |
+
+: TSO removal statistics for each sample. The table shows the total number of R1 reads, the number of R1 reads after TSO sequence removal, and the corresponding percentage. {#tbl-tso-removal}
+
+// Table added to summarize TSO removal efficiency for each sample.
+// ... existing code ...
