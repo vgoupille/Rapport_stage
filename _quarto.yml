@@ -66,6 +66,8 @@ format:
     toc: true
     number-sections: true
     notebook-links: inline  # Display links under graphs
+    lightbox: true  # Enable lightbox for images
+    css: styles/custom.css  # Custom CSS for image zoom
     navbar:
       background: $theme-main
       search: true

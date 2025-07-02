@@ -61,6 +61,9 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-aa42bd5397b87ae3001db572b235c885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -140,6 +143,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles/custom.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -304,7 +308,7 @@ window.Quarto = {
 <div id="fig-before" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/adaptateur_R1_BC76_bf_trimm.png" class="img-fluid figure-img" data-ref-parent="fig-adaptateur">
+<a href="../figures/adaptateur_R1_BC76_bf_trimm.png" class="lightbox" data-gallery="fig-adaptateur" title="Figure&nbsp;3.1&nbsp;(a): before trimming"><img src="../figures/adaptateur_R1_BC76_bf_trimm.png" class="img-fluid figure-img" data-ref-parent="fig-adaptateur"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) before trimming
@@ -316,7 +320,7 @@ window.Quarto = {
 <div id="fig-after" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/adaptateur_R1_BC76_after_trimm.png" class="img-fluid figure-img" data-ref-parent="fig-adaptateur">
+<a href="../figures/adaptateur_R1_BC76_after_trimm.png" class="lightbox" data-gallery="fig-adaptateur" title="Figure&nbsp;3.1&nbsp;(b): after trimming"><img src="../figures/adaptateur_R1_BC76_after_trimm.png" class="img-fluid figure-img" data-ref-parent="fig-adaptateur"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) after trimming
@@ -587,7 +591,7 @@ Warning
 <div id="fig-genome" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-genome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/genome_description.png" class="img-fluid figure-img" data-ref-parent="fig-genome-transcriptome">
+<a href="../figures/genome_description.png" class="lightbox" data-gallery="fig-genome-transcriptome" title="Figure&nbsp;3.2&nbsp;(a): genome"><img src="../figures/genome_description.png" class="img-fluid figure-img" data-ref-parent="fig-genome-transcriptome"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-genome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) genome
@@ -599,7 +603,7 @@ Warning
 <div id="fig-transcriptome" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/transcriptome_description.png" class="img-fluid figure-img" data-ref-parent="fig-genome-transcriptome">
+<a href="../figures/transcriptome_description.png" class="lightbox" data-gallery="fig-genome-transcriptome" title="Figure&nbsp;3.2&nbsp;(b): transcriptome"><img src="../figures/transcriptome_description.png" class="img-fluid figure-img" data-ref-parent="fig-genome-transcriptome"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) transcriptome
@@ -625,19 +629,6 @@ Figure&nbsp;3.2: Compositional analysis of <em>P. brassicacearum</em> R401 genom
 <h3 class="anchored" data-anchor-id="filtering-of-cells-based-on-umi-counts">Filtering of cells based on UMI counts</h3>
 <section id="filtering-minimum-100-umi-per-barcode-cell" class="level4">
 <h4 class="anchored" data-anchor-id="filtering-minimum-100-umi-per-barcode-cell">Filtering minimum 100 UMI per Barcode Cell</h4>
-<!-- ::: {#fig-filter_100UMI "[[1,2], [0,3], [4,4]]"}
-
-![Barplot of the number of UMI per cell before and after filtering](../figures/filter_100UMIs_barplot.png){#fig-barplot}
-
-![Scatter plot of the number of UMI per cell after 100 UMIs per Barcode Cell filtering](../figures/filter_100UMI_scatter_CutureMedium.png){#fig-scatter}
-
-![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/violinplot_100UMIs.png){#fig-violin}
-
-![Total of bacodes for each biological replicate after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
-
-Filtering of cells with less than 100 UMI per cell
-:::
- -->
 <div id="fig-filter_100UMI" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -646,7 +637,7 @@ Filtering of cells with less than 100 UMI per cell
 <div id="fig-barplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-barplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/filter_100UMIs_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+<a href="../figures/filter_100UMIs_barplot.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;3.3&nbsp;(a): Barplot of the number of UMI per cell before and after filtering"><img src="../figures/filter_100UMIs_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-barplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Barplot of the number of UMI per cell before and after filtering
@@ -658,7 +649,7 @@ Filtering of cells with less than 100 UMI per cell
 <div id="fig-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/violinplot_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+<a href="../figures/violinplot_100UMIs.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;3.3&nbsp;(b): Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs"><img src="../figures/violinplot_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs
@@ -672,7 +663,7 @@ Filtering of cells with less than 100 UMI per cell
 <div id="fig-splitplot-barcodes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/splitplot_barcodes_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+<a href="../figures/splitplot_barcodes_100UMIs.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;3.3&nbsp;(c): Total of barcodes for each biological replicate after filtering at 100 UMIs"><img src="../figures/splitplot_barcodes_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Total of barcodes for each biological replicate after filtering at 100 UMIs
@@ -684,49 +675,6 @@ Filtering of cells with less than 100 UMI per cell
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="final-filtering" class="level4">
-<h4 class="anchored" data-anchor-id="final-filtering">Final Filtering</h4>
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNA__Genes_barplot.png" id="fig-filtered_mRNA_violin" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4
-</figcaption>
-</figure>
-</div>
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNA_GenesUMIs_violin.png" id="fig-filtered_mRNA_violin" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5
-</figcaption>
-</figure>
-</div>
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNAGenesNumber_violin.png" id="fig-filtered_mRNA_violin" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.6
-</figcaption>
-</figure>
-</div>
-<div id="fig-scatter_final" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/scatter_final.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.7: Scatter plot final filtering
 </figcaption>
 </figure>
 </div>
@@ -748,7 +696,7 @@ Figure&nbsp;3.7: Scatter plot final filtering
 <div id="fig-dotplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/fig_sc/dotplot.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis">
+<a href="../figures/fig_sc/dotplot.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(a): Dot plot displaying gene expression patterns and percentage of cells expressing each gene"><img src="../figures/fig_sc/dotplot.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Dot plot displaying gene expression patterns and percentage of cells expressing each gene
@@ -760,7 +708,7 @@ Figure&nbsp;3.7: Scatter plot final filtering
 <div id="fig-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis">
+<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(b): Heatmap visualization of gene expression patterns across different cell clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Heatmap visualization of gene expression patterns across different cell clusters
@@ -774,7 +722,7 @@ Figure&nbsp;3.7: Scatter plot final filtering
 <div id="fig-violin-sc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis">
+<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(c): Violin plot showing gene expression distribution across cell populations"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Violin plot showing gene expression distribution across cell populations
@@ -786,7 +734,7 @@ Figure&nbsp;3.7: Scatter plot final filtering
 <div id="fig-gene-cluster" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-gene-cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/fig_sc/gene_cluster.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis">
+<a href="../figures/fig_sc/gene_cluster.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(d): Gene clustering analysis showing relationships between differentially expressed genes"><img src="../figures/fig_sc/gene_cluster.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-gene-cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) Gene clustering analysis showing relationships between differentially expressed genes
@@ -1248,8 +1196,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+</body></html>

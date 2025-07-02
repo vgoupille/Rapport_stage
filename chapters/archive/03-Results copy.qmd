@@ -599,3 +599,64 @@ This chapter presents the findings of our single-cell RNA-seq analysis of Pseudo
 ## Integration with Previous Studies
 
 ## Summary of Key Findings
+
+
+
+
+
+
+
+
+
+
+
+
+##
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### General analytical approach
+
+The analysis workflow encompassed several key steps: Normalization and scaling, feature selection, dimensionality reduction, clustering, and differential expression analysis. We systematically tested different parameters and methodologies to optimize each step of the pipeline. We followed the [Scanpy tutorial](https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering.html) for the general approach. 
+
+**Normalization and scaling.** Expression data was log-normalized using `sc.pp.normalize_total` followed by log transformation using `sc.pp.log1p`, and scaled to unit variance and zero mean using `sc.pp.scale`. We tested different normalization factors (i.e. 1000, 2000, and 10000 counts per cell) to determine the optimal normalization strategy for our bacterial single-cell data.
+
+**Features (genes) selection and dimensionality reduction.** We evaluated different feature selection approaches. First, we tested strategies to filter genes by condition, retaining only genes that are detected in a certain percentage of cells within each experimental condition. Genes not meeting this threshold were eliminated from the analysis. Additionally, we implemented the classical Scanpy approach using variance-based selection with `sc.pp.highly_variable_genes` for highly variable gene identification. The distribution of variable features was visualized using `sc.pl.highly_variable_genes` to assess the selection quality. Tests were conducted both with and without feature selection to assess its impact on downstream analysis. When feature selection was applied, scaling to unit variance and zero mean was performed after the selection step using `sc.pp.scale`.
+
+**Principal component analysis (PCA).** PCA was computed using `sc.pp.pca`, with the number of principal components systematically tested at multiple levels (i.e. 3, 10, 20, 50) depending on the data characteristics. The optimal number of components was determined using Scanpy's `sc.pl.pca_variance_ratio` plot, which displays the explained variance ratio for each principal component, allowing us to identify the elbow point where additional components provide diminishing returns in variance explanation.
+
+**Clustering and visualization.** We computed shared nearest neighbor graphs using `sc.pp.neighbors` and tested multiple clustering algorithms including Leiden clustering (`sc.tl.leiden`) with different resolution parameters (i.e. 0.3, 0.5, 0.8, 1.0, 2.0) to identify the optimal clustering granularity. Uniform manifold approximation and projection (UMAP) was computed using `sc.tl.umap` for visualization, with parameters optimized for bacterial single-cell data. For comparison and validation purposes, we also performed the same analytical workflow using Seurat v5, which yielded similar results and performance, confirming the robustness of our analytical approach across different computational frameworks.
+
+
+**Differential expression analysis**
+
+Differential gene expression analysis was performed using Scanpy's gene ranking functions (`sc.tl.rank_genes_groups` and `sc.get.rank_genes_groups_df`) to compare expression patterns between experimental conditions. Statistical outputs included gene names, z-scores, log fold changes, p-values, and adjusted p-values for robust identification of differentially expressed genes. 
+
+#### Test of BacSC protocol
+
+To systematically identify optimal parameters for bacterial single-cell analysis, we also implemented and tested the BacSC protocol (currently a preprint @ostner), a fully data-driven computational pipeline that processes bacterial single-cell data without requiring manual intervention. This automated pipeline performs data-adaptive quality control and variance stabilization, selects suitable parameters for dimension reduction, neighborhood embedding, and clustering, and provides false discovery rate control in differential gene expression testing. The protocol systematically evaluates different normalization factors, feature selection thresholds, clustering resolutions, and dimensionality reduction parameters to find the configuration that best captures biological variation while minimizing technical artifacts.
+
+
+### Analytical scope and limitations
+
+This study represents an initial exploratory phase of single-cell RNA-seq analysis. While we established a comprehensive data processing pipeline, several advanced analytical approaches were not pursued due to the exploratory nature of our investigation. These include pseudobulk analysis, trajectory inference, gene co-expression networks, and gene ontology enrichment.
+
+The results presented in the following section focus on fundamental aspects: data quality assessment, basic clustering and visualization, and initial differential expression analysis between culture conditions. This approach establishes the validity of our experimental design and analytical pipeline while providing insights into the transcriptional responses of *P. brassicacearum* R401 to different nutrient availability conditions. The exploratory nature of bacterial single-cell RNA-seq data and time constraints limited our ability to pursue more advanced analytical approaches at this stage. 
+
+
+
+
+
+
+
+

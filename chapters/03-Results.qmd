@@ -50,7 +50,10 @@ BC_0076 specifically showed earlier and more prominent polyG artifacts, likely d
 ## Recommendations for Future Experiments
 
 The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.
+
 :::
+
+::: {.content-visible when-format="html"}
 
 #### MultiQC Report R1 Before Trimming
 
@@ -99,6 +102,8 @@ The observed size variations between sublibraries highlight the importance of ba
 </iframe>
 
 </details>
+
+:::
 
 
 
