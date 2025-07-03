@@ -359,3 +359,25 @@ Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow
 :::
 
 *The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.*
+
+
+
+
+# Supplementary UMAP Figures
+
+
+::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
+
+
+
+
+
+
+![Dot plot displaying gene expression patterns and percentage of cells expressing each gene](../figures/fig_sc/dotplot.png){#fig-dotplot}
+
+![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
+
+![Violin plot showing gene expression distribution across cell populations](../figures/fig_sc/violin.png){#fig-violin-sc}
+
+
+:::

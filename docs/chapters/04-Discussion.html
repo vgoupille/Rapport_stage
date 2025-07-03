@@ -219,11 +219,12 @@ div.csl-indent {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#comparison-with-existing-literature" id="toc-comparison-with-existing-literature" class="nav-link active" data-scroll-target="#comparison-with-existing-literature"><span class="header-section-number">4.1</span> Comparison with Existing Literature</a></li>
-  <li><a href="#methodological-strengths-and-limitations" id="toc-methodological-strengths-and-limitations" class="nav-link" data-scroll-target="#methodological-strengths-and-limitations"><span class="header-section-number">4.2</span> Methodological Strengths and Limitations</a></li>
-  <li><a href="#biological-implications" id="toc-biological-implications" class="nav-link" data-scroll-target="#biological-implications"><span class="header-section-number">4.3</span> Biological Implications</a></li>
-  <li><a href="#future-research-directions" id="toc-future-research-directions" class="nav-link" data-scroll-target="#future-research-directions"><span class="header-section-number">4.4</span> Future Research Directions</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.5</span> Conclusion</a></li>
+  <li><a href="#interpretation-of-key-findings" id="toc-interpretation-of-key-findings" class="nav-link active" data-scroll-target="#interpretation-of-key-findings"><span class="header-section-number">4.1</span> Interpretation of Key Findings</a></li>
+  <li><a href="#comparison-with-existing-literature" id="toc-comparison-with-existing-literature" class="nav-link" data-scroll-target="#comparison-with-existing-literature"><span class="header-section-number">4.2</span> Comparison with Existing Literature</a></li>
+  <li><a href="#methodological-strengths-and-limitations" id="toc-methodological-strengths-and-limitations" class="nav-link" data-scroll-target="#methodological-strengths-and-limitations"><span class="header-section-number">4.3</span> Methodological Strengths and Limitations</a></li>
+  <li><a href="#biological-implications" id="toc-biological-implications" class="nav-link" data-scroll-target="#biological-implications"><span class="header-section-number">4.4</span> Biological Implications</a></li>
+  <li><a href="#future-research-directions" id="toc-future-research-directions" class="nav-link" data-scroll-target="#future-research-directions"><span class="header-section-number">4.5</span> Future Research Directions</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.6</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/04-Discussion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -249,7 +250,35 @@ div.csl-indent {
 </header>
 
 
+<ul>
+<li>rappel des obejectifs et questions de recherche</li>
+<li>rappel des principaux resultats obtenus</li>
+</ul>
+<p>Discussion plan</p>
+<ul>
+<li><p>rappel objectif (Check method, Dol in bacteria)</p></li>
+<li><p>Permis de voir courbes de croissance en conditions de stress ou pas (la prochaine fois utiliser des DO au même point) Ou faire une gamme préalable En stresss et non stress</p></li>
+<li><p>Séquençage, déséquilibre influence légèrement qualité mais ok (juste être plus vigilant la proechaine fois)</p></li>
+<li><p>trimming ok bien foncyonnne, reads de bonne qualité retirer adapteur (plus élabore que celui de kuchina)</p></li>
+<li><p>STARsolo bien aussi car le plus plus rapide, amélioration possible avec pipeline de qui recup barcode si mauvaise qualité, BARQC serait bien tester si décalage</p></li>
+<li><p>Mettre le nombre de reads qui passe chaque étape</p></li>
+<li><p>Comme mentionné dans article bacSc et de nishimurz pas de pipeline existe</p></li>
+<li><p>Filtrage est toujours subjectif chacun fais comme il veux en fonction de ce qu’il fait comme expérience microsplit. Dans les articles ne précise pas combien de cellules il vise dans chaque sous librairies dans à combien ils veulent Utiliser filtrage manuel des barcodes pour récupérer les meilleurs narcodes de chaque conditions (rep bio), Ici supposé que équilibre au départ</p></li>
+</ul>
+<p>On a vu un replica technique n’a pas marché (pipetage)</p>
+<p>On a vu beaucoup moins de reads de qualités on a vu grise variabiliye entre les replica bio et les DO Déjà mentionné dans kuchina Influence du stade physio, peut être modification pariétal, lyse de cellules en conditions de stress (donc grande perte cellulaire) pas passé les filtre ou contraire certaine cellules pourrait se mettre en dormance/ renforcement paroi et donc exprimer très peu de gènes et donc pas facilement, comme proposé dans kuchina besoin de faire test. Si c’est le cas alors peut être que l’on a éliminé des cellules d’intérêt non stressé …</p>
+<p>FACTEUR confondant pour le filtrage = &gt; difficulté associée pour le filtrage</p>
+<p>Après conservation des gènes RNAm Dans la matrice gène on a très peut de gènes exprimés réellement (beaucoup de gènes avec 0 ou seulement 1 courts Même après normalitasyik et scale impossible de voir du signal, trop de variabilité lié à profondeur et replica technique, Voit umap lié profondeur de séquençage Chois focus od2 non stress De plus même si est ce que pas de clustering , et leindeb se fait avec profondeur</p>
+<p>Cyriaque proposé de faire bulk et aussi faire blanc, permet d’améliorer méthodes stats</p>
+<p>Ici premier test sur 3000 cellules pour voir si fonctionne et permet optimiser profondeur, peut de gène comparé à autres méthodes mais avantages population cellulaires élevé (40000) permet voir sous pop faible, aussi facilté de la méthode qui ne nécessita pas de matériel très coûteux spécifique</p>
+<p>Pour chaque</p>
+<p>Opter pour st - Comme mentionné dans</p>
+<ul>
+<li><p>marqueur gènes ;liste article</p></li>
+<li><p>Amélioration possible : pipeline nfcore</p></li>
+</ul>
 <p>cela serait bien d’estimer la saturation de chauqe condition cela sera serait bien aussi de voir</p>
+<p>This low variance structure could potentially be explained by the low RNA counts observed (@#fig-final_filtering <a href="A-Appendix.html#fig-scaling" class="quarto-xref">Figure&nbsp;<span>B.1 (a)</span></a>). We hypothesize that the limited RNA capture efficiency of the single-cell method may not have captured sufficient RNA molecules, potentially resulting in high noise levels that can mask the real biological signal. mais peu aussi lier a mecanisme real dormance , mort cellulais</p>
 <p><strong>Summary of preprocessing and filtering results:</strong> The preprocessing pipeline successfully removed sequencing artifacts and improved data quality, with an average 25.4% reduction in read counts across sublibraries. STARsolo analysis revealed excellent barcode quality (85.58% valid barcodes) and high sequencing quality (Q30 &gt; 95%), though the high sequencing saturation (0.97) requires careful interpretation due to potential technical artifacts. The filtering strategy effectively identified genuine cells while preserving biological variation, resulting in approximately 3,000 high-quality cells with clear differences between culture conditions. M9F medium consistently showed higher transcriptional activity compared to M9, with reduced expression under nutrient-limited conditions, particularly at later timepoints.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -298,7 +327,9 @@ Recommendations for Future Experiments
 <p>-autono -gestion des datas tailles des</p>
 <p>, which typically corresponds to the mRNA proportion in the library</p>
 <p>attention duplication des reads</p>
-<p>serait bien de tester chaque sublirbai starsolo independant ## Interpretation of Key Findings</p>
+<p>serait bien de tester chaque sublirbai starsolo independant</p>
+<section id="interpretation-of-key-findings" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="interpretation-of-key-findings"><span class="header-section-number">4.1</span> Interpretation of Key Findings</h2>
 <section id="division-of-labor-mechanisms" class="level3">
 <h3 class="anchored" data-anchor-id="division-of-labor-mechanisms">Division of Labor Mechanisms</h3>
 </section>
@@ -308,8 +339,9 @@ Recommendations for Future Experiments
 <section id="technical-considerations" class="level3">
 <h3 class="anchored" data-anchor-id="technical-considerations">Technical Considerations</h3>
 </section>
-<section id="comparison-with-existing-literature" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="comparison-with-existing-literature"><span class="header-section-number">4.1</span> Comparison with Existing Literature</h2>
+</section>
+<section id="comparison-with-existing-literature" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="comparison-with-existing-literature"><span class="header-section-number">4.2</span> Comparison with Existing Literature</h2>
 <section id="similarities-with-previous-studies" class="level3">
 <h3 class="anchored" data-anchor-id="similarities-with-previous-studies">Similarities with Previous Studies</h3>
 </section>
@@ -320,8 +352,8 @@ Recommendations for Future Experiments
 <h3 class="anchored" data-anchor-id="discrepancies-and-their-implications">Discrepancies and Their Implications</h3>
 </section>
 </section>
-<section id="methodological-strengths-and-limitations" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="methodological-strengths-and-limitations"><span class="header-section-number">4.2</span> Methodological Strengths and Limitations</h2>
+<section id="methodological-strengths-and-limitations" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="methodological-strengths-and-limitations"><span class="header-section-number">4.3</span> Methodological Strengths and Limitations</h2>
 <section id="technical-advantages" class="level3">
 <h3 class="anchored" data-anchor-id="technical-advantages">Technical Advantages</h3>
 </section>
@@ -332,8 +364,8 @@ Recommendations for Future Experiments
 <h3 class="anchored" data-anchor-id="future-methodological-improvements">Future Methodological Improvements</h3>
 </section>
 </section>
-<section id="biological-implications" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="biological-implications"><span class="header-section-number">4.3</span> Biological Implications</h2>
+<section id="biological-implications" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="biological-implications"><span class="header-section-number">4.4</span> Biological Implications</h2>
 <section id="ecological-significance" class="level3">
 <h3 class="anchored" data-anchor-id="ecological-significance">Ecological Significance</h3>
 </section>
@@ -344,8 +376,8 @@ Recommendations for Future Experiments
 <h3 class="anchored" data-anchor-id="potential-applications">Potential Applications</h3>
 </section>
 </section>
-<section id="future-research-directions" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="future-research-directions"><span class="header-section-number">4.4</span> Future Research Directions</h2>
+<section id="future-research-directions" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="future-research-directions"><span class="header-section-number">4.5</span> Future Research Directions</h2>
 <section id="open-questions" class="level3">
 <h3 class="anchored" data-anchor-id="open-questions">Open Questions</h3>
 </section>
@@ -356,8 +388,8 @@ Recommendations for Future Experiments
 <h3 class="anchored" data-anchor-id="technical-improvements">Technical Improvements</h3>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.5</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.6</span> Conclusion</h2>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">

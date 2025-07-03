@@ -1,0 +1,303 @@
+# Notes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# comptage des cellules pour taux de collision  
+
+
+### Examples of Bacterial DOL
+
+Bacteria provide compelling examples of DOL through various mechanisms. *Myxococcus xanthus* demonstrates sophisticated intraspecific specialization during fruiting body formation, where genetically identical cells differentiate into distinct functional types: some cells lyse to provide nutrients, others develop into spores for long-term survival, while peripheral rod cells remain outside the structure to respond to environmental changes. This division of labor enables the population to survive adverse conditions through collective action, with each cell type contributing specialized functions that benefit the entire group.
+
+Another striking example of intraspecific DOL occurs in filamentous cyanobacteria such as *Anabaena* and *Nostoc*, where genetically identical cells differentiate into photosynthetic vegetative cells and nitrogen-fixing heterocysts. This specialization resolves the biochemical incompatibility between photosynthesis and nitrogen fixation, allowing the population to perform both essential functions simultaneously. These examples illustrate how intraspecific DOL can emerge through regulatory mechanisms and provide significant fitness advantages to clonal populations.
+
+
+
+The emergence of intraspecific DOL is likely driven by environmental heterogeneity, spatial gradients, variable selection pressures, and cell-to-cell communication, creating microenvironments where functional specialization provides fitness advantages.
+
+
+
+
+## 03/06/2025
+
+
+sur mon scratch , j'ai resultats starsoloBC_0077 sans trimming particulier lancer le 27/04/2025
+
+Alignment statistics:
+-----------------------
+                          Number of input reads |	325495590
+                      Average input read length |	241
+                   Uniquely mapped reads number |	7011335
+                        Uniquely mapped reads % |	2.15%
+        Number of reads mapped to multiple loci |	182291253
+             % of reads mapped to multiple loci |	56.00%
+                Number of reads unmapped: other |	135300421
+                     % of reads unmapped: other |	41.57%
+                      Mismatch rate per base, % |	0.76%
+dim. avril 27 00:25:32 CEST 2025 - Pipeline completed!
+
+j'ai recup tous sur mon ssd , les logs aussi sauf le .bam (fichier d'annotation allignement) issu de starsolo car trop lourd 
+
+-------
+
+sur le project ecogeno , j'ai lancer le trimming car besoin de beaucoup de Go de stockage pour les 6 etapes de trimming qui genere beaucoup de fichier fastq.gz intermediaires, il reste sur cette espace uniquement les fichiers originaux dans raw_data : NTS-412.zip et NTS_412.fastq.gz ainsi que les fichiers decompressé individuels (unzipped) et les fichiers trimmers (29_05_2025). 
+
+-j'ai recuperé les logs des slurms aussi 
+- pas recuperer le .bam (fichier d'annotation allignement) issu de starsolo car trop lourd 250go 
+
+
+-------
+sur le projet microsplit j'ai tous mes scripts et logs utiles 
+------
+
+sur mon espace personnelle, j'ai tout mes scripts de test microsplit supplementaires, analyses BacSC, analyse seurat, scanpy sur les données de kuchina .... et aussi des test ipynb 
+
+
+```{mermaid}
+graph TD
+    A["Start culture <br> *P. brassicacearum PR401* <br> in petri dish"] --> B{"transfer to liquid medium"}
+    B --> C["**M9** : Low glucose and iron"]
+    B --> D["**M9F** : High glucose and iron"]
+    C --> E{3 biological replicates}
+    D --> F{3 biological replicates}
+    E --> G[**Rep A**]
+    E --> H[**Rep B**]
+    E --> I[**Rep C**]
+    F --> J[**Rep A**]
+    F --> K[**Rep B**]
+    F --> L[**Rep C**]
+    G --> M[OD : **T1**, **T2**, **T3**]
+    H --> N[OD : **T1**, **T2**, **T3**]
+    I --> O[OD : **T1**, **T2**, **T3**]
+    J --> P[OD : **T1**, **T2**, **T3**]
+    K --> Q[OD : **T1**, **T2**, **T3**]
+    L --> R[OD : **T1**, **T2**, **T3**]
+    
+    %% Color styling
+    A:::start
+    B:::decision
+    C:::m9f
+    D:::m9
+    E:::replicate
+    F:::replicate
+    G:::rep
+    H:::rep
+    I:::rep
+    J:::rep
+    K:::rep
+    L:::rep
+    M:::measurement
+    N:::measurement
+    O:::measurement
+    P:::measurement
+    Q:::measurement
+    R:::measurement
+    
+    classDef start fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef m9 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef m9f fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef replicate fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef rep fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef measurement fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+```
+
+
+
+```{mermaid}
+%%| fig-cap: "Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing. The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment."
+%%| fig-width: 3
+%%| fig-height: 2
+%%| label: fig-pipeline
+%%| cache: false
+
+graph TD
+    %% Input files
+    subgraph "Input Samples"
+        A1[BC_0076 FASTQ<br/>R1 + R2 files]
+        A2[BC_0077 FASTQ<br/>R1 + R2 files]
+        A3[BC_0078 FASTQ<br/>R1 + R2 files]
+        A4[BC_0079 FASTQ<br/>R1 + R2 files]
+    end
+
+    %% Preprocessing block
+    subgraph "Preprocessing"
+        B[Quality Control<br/>FastQC & MultiQC]
+        C[Trimming<br/>Cutadapt & Fastp]
+        D[Post-trimming QC]
+        E[Merge R1 & R2 Files]
+        F[2 merged FASTQ<br/>1 R1 + 1 R2]
+    end
+
+    %% Alignment block
+    subgraph "Alignment & Quantification"
+        G[STARsolo<br/>Alignment + Barcode Reading<br/>+ Cell-Gene Matrix]
+    end
+
+    %% Object conversion
+    subgraph "Data Structuring"
+        H[Data Conversion<br/>Seurat / AnnData objects]
+        H1[add metadata]
+    end
+
+    %% Filtering and integration
+    subgraph "Data Curation"
+        I[Quality Control & Filtering<br/>Cell & Gene filtering]
+        J[Data Integration<br/>Normalization & Batch correction]
+    end
+
+    %% Parallel data preparation
+    subgraph "Type of analysis"
+        L1[Single-cell]
+        L2[Pseudobulk]
+    end
+
+    %% Clustering section
+    subgraph "Single-cell analysis"
+        K[Sub/population clustering]
+        P[Diffusion Pseudotime<br/>Trajectory inference]
+    end
+
+    %% Combined analysis
+    subgraph "Expression Analysis"
+        M[Differential Expression<br/>Co-expression Analysis<br/>Gene Ontology Analysis]
+    end
+
+    %% Flow connections
+    A1 --> B
+    A2 --> B
+    A3 --> B
+    A4 --> B
+    B --> C --> D --> E --> F --> G --> H --> H1 --> I --> J --> L1
+    J --> L2
+    L1 --> K
+    L1 --> P
+    K --> M
+    L2 --> M
+
+    %% Color styling
+    class A1,A2,A3,A4 input
+    class B,C,D,E preprocessing
+    class F merged
+    class G alignment
+    class H,H1 conversion
+    class I filtering
+    class J integration
+    class K clustering
+    class L1,L2 preparation
+    class M analysis
+    class P trajectory
+
+    classDef input fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef preprocessing fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef merged fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef alignment fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef conversion fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef filtering fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef integration fill:#f1f8e9,stroke:#689f38,stroke-width:2px
+    classDef clustering fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef preparation fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef analysis fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+    classDef trajectory fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+``` 
+
+
+
+Intraspecific DOL can manifest through different mechanisms that create functional specialization within populations. For an interaction to qualify as DOL, the participating individuals must exhibit functional specialization, which can arise through three main mechanisms.
+
+**Epigenetic mechanisms** include all cases where members of an isogenic bacterial population simultaneously display two or more phenotypes that are not due to a response to microenvironmental stimuli. This phenomenon has been termed phenotypic heterogeneity, bistability, or bet-hedging, and is caused by mechanisms such as stochastic/heterogeneous gene expression, error-prone protein synthesis, or epigenetic modifications, which simultaneously give rise to several different phenotypes that are adaptive under certain environmental conditions. These mechanisms underlie the "noisy regulation hypothesis", which proposes that stochastic variation in gene expression between genetically identical cells can lead to functional specialization within populations. Epigenetic phenotypic heterogeneity has been predicted to evolve in environments that change rapidly and unpredictably, with these changes strongly affecting the fitness of the resident population. Since phenotypic heterogeneity arises only in isogenic populations, this mechanism is by definition only relevant for mediating interactions between members of the same species. An example for an epigenetic mechanism causing phenotypic heterogeneity has been described in *Salmonella typhimurium* expressing the virulence locus type III secretion system I (ttss-1) inside the human gut lumen. Here, isogenic subpopulations stochastically express different phenotypes that result in the simultaneous formation of an avirulent (ttss-1 OFF) and a virulent subpopulation (ttss-1 ON). One subpopulation (ttss-1 ON) grows slowly and causes gut inflammation, while the other (ttss-1 OFF) receives the benefits that result from the inflammation of the gut, allowing the entire population to enhance its survival within a new host.
+
+**Regulatory mechanisms** involve phenotypic differentiation in response to environmental stimuli, such as microenvironmental sensing of oxygen, pH, nutrient availability, or surface attachment. By responding to microenvironmental differences, cells can attain a physiological state that is optimal for the given condition without the need to change the underlying genome sequence. This process not only generates physiological and metabolic heterogeneity within microbial populations, but can also lead to ecological interactions among different strategists that can enhance survival and growth of the population as a whole. Given that positive assortment is an automatic consequence of this type of phenotypic differentiation, these interactions qualify as DOL when the corresponding interaction partners display complementary phenotypes that are mutually synergistic and stabilized by negative frequency-dependent selection. Examples include filamentous cyanobacteria where some cells become nitrogen-fixing heterocysts while others remain photosynthetic, or *Bacillus subtilis* colonies where cells differentiate into surfactin-producers and matrix-producers during colony expansion through a complex interplay between quorum sensing, responses to microenvironmental differences, and temporal dynamics of gene expression.
+
+**Genetic mechanisms** involve heritable changes that create phenotypic differences, including loss-of-function mutations, gain-of-function mutations, horizontal gene transfer, and antagonistic pleiotropy. Mutations that inactivate or down-regulate a gene can lead to synergistic interactions, where mutants that have lost the ability to autonomously produce a certain metabolite can be favored by natural selection when the loss is compensated by another member of the community. Recent empirical studies suggest that bacteria can divide labor if they trade certain cellular building blocks such as amino acids, vitamins, or extracellular matrix components with members of the same or another bacterial species, rather than producing these compounds on their own. Strikingly, loss-of-function mutations can also result in new phenotypes that enhance synergistic interactions with other organisms. For instance, in a cross-feeding system between *E. coli* and *Salmonella enterica*, a mutated *E. coli* strain emerged that secreted a costly sugar (galactose), which could be used by *Salmonella* as a resource. These galactose-secreting *E. coli* mutants evolved in multiple replicate lineages and were in all cases due to a frameshift mutation in galactokinase (galK) that blocked galactose metabolism. Although these mutations were costly when *E. coli* was grown alone, they were beneficial in coculture with *Salmonella*, thus contributing to the maintenance of this mutualistic interaction. The acquisition of novel phenotypic capabilities via gain-of-function mutations or horizontal gene transfer can also enhance the production of metabolites or enzymes that play a role in synergistic interactions between partners, such as the acquisition of antibiotic resistance that can benefit other sensitive strains in the vicinity.
+
+It is important to note that the boundaries between these three mechanisms are often blurred in practice, as epigenetic changes can become stabilized through regulatory feedback loops, and regulatory responses can eventually lead to genetic adaptations over evolutionary time.
+
+These mechanisms of variation give rise to different forms of intraspecific division of labor that can manifest through several strategies:
+
+-   **Metabolic cooperation**: Individuals specialize in different metabolic tasks to benefit the group
+-   **Noisy regulation**: Gene expression varies stochastically between identical individuals
+-   **Bet-hedging strategies**: Random expression of stress-related genes allows some individuals to survive unpredictable changes
+
+The conditions under which such patterns arise remain poorly understood, but their advantages are clear: DOL allows populations to diminish the costs associated with certain functions and enables the cohabitation of various specialized individuals within the population to respond as a whole to environmental constraints and thrive.
+
+
+
+
+
+
+### Bacterial Systems: A Special Case
+
+Bacteria are unicellular organisms with therefore little option to specialize and give up certain traits production to limit their metabolic costs, unlike multicellular organisms that present many different forms of specialized cells in one single organism. However, auxotrophic bacteria[^01-introduction-2] (i.e., bacteria lacking genes coding for a molecule essential for their survival) have been extensively studied as examples of metabolic specialization [@morris2012].
+
+[^01-introduction-2]: Auxotrophic bacteria are microorganisms that have lost the ability to synthesize certain essential compounds (such as amino acids, vitamins, or nucleotides) and must obtain them from their environment or from other organisms.
+
+Auxotroph bacteria can take advantage of leaky functions of helper organisms to fulfill their needs for specific compounds [@morris2014; @estrela2016]. With reduced genetic material, the beneficiary organism's fitness is improved, though at the risk of becoming dependent on the presence of helpers in their environment [@cooper2018].
+
+
+
+
+
+
+
+
+
+
+#### General analytical approach
+
+The analysis workflow encompassed several key steps: Normalization and scaling, feature selection, dimensionality reduction, clustering, and differential expression analysis. We systematically tested different parameters and methodologies to optimize each step of the pipeline. We followed the [Scanpy tutorial](https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering.html) for the general approach. 
+
+**Normalization and scaling.** Expression data was log-normalized using `sc.pp.normalize_total` followed by log transformation using `sc.pp.log1p`, and scaled to unit variance and zero mean using `sc.pp.scale`. We tested different normalization factors (i.e. 1000, 2000, and 10000 counts per cell) to determine the optimal normalization strategy for our bacterial single-cell data.
+
+**Features (genes) selection and dimensionality reduction.** We evaluated different feature selection approaches. First, we tested strategies to filter genes by condition, retaining only genes that are detected in a certain percentage of cells within each experimental condition. Genes not meeting this threshold were eliminated from the analysis. Additionally, we implemented the classical Scanpy approach using variance-based selection with `sc.pp.highly_variable_genes` for highly variable gene identification. The distribution of variable features was visualized using `sc.pl.highly_variable_genes` to assess the selection quality. Tests were conducted both with and without feature selection to assess its impact on downstream analysis. When feature selection was applied, scaling to unit variance and zero mean was performed after the selection step using `sc.pp.scale`.
+
+**Principal component analysis (PCA).** PCA was computed using `sc.pp.pca`, with the number of principal components systematically tested at multiple levels (i.e. 3, 10, 20, 50) depending on the data characteristics. The optimal number of components was determined using Scanpy's `sc.pl.pca_variance_ratio` plot, which displays the explained variance ratio for each principal component, allowing us to identify the elbow point where additional components provide diminishing returns in variance explanation.
+
+**Clustering and visualization.** We computed shared nearest neighbor graphs using `sc.pp.neighbors` and tested multiple clustering algorithms including Leiden clustering (`sc.tl.leiden`) with different resolution parameters (i.e. 0.3, 0.5, 0.8, 1.0, 2.0) to identify the optimal clustering granularity. Uniform manifold approximation and projection (UMAP) was computed using `sc.tl.umap` for visualization, with parameters optimized for bacterial single-cell data. For comparison and validation purposes, we also performed the same analytical workflow using Seurat v5, which yielded similar results and performance, confirming the robustness of our analytical approach across different computational frameworks.
+
+
+**Differential expression analysis**
+
+Differential gene expression analysis was performed using Scanpy's gene ranking functions (`sc.tl.rank_genes_groups` and `sc.get.rank_genes_groups_df`) to compare expression patterns between experimental conditions. Statistical outputs included gene names, z-scores, log fold changes, p-values, and adjusted p-values for robust identification of differentially expressed genes. 
+
+#### Test of BacSC protocol
+
+To systematically identify optimal parameters for bacterial single-cell analysis, we also implemented and tested the BacSC protocol (currently a preprint @ostner), a fully data-driven computational pipeline that processes bacterial single-cell data without requiring manual intervention. This automated pipeline performs data-adaptive quality control and variance stabilization, selects suitable parameters for dimension reduction, neighborhood embedding, and clustering, and provides false discovery rate control in differential gene expression testing. The protocol systematically evaluates different normalization factors, feature selection thresholds, clustering resolutions, and dimensionality reduction parameters to find the configuration that best captures biological variation while minimizing technical artifacts.
+
+
+### Analytical scope and limitations
+
+This study represents an initial exploratory phase of single-cell RNA-seq analysis. While we established a comprehensive data processing pipeline, several advanced analytical approaches were not pursued due to the exploratory nature of our investigation. These include pseudobulk analysis, trajectory inference, gene co-expression networks, and gene ontology enrichment.
+
+The results presented in the following section focus on fundamental aspects: data quality assessment, basic clustering and visualization, and initial differential expression analysis between culture conditions. This approach establishes the validity of our experimental design and analytical pipeline while providing insights into the transcriptional responses of *P. brassicacearum* R401 to different nutrient availability conditions. The exploratory nature of bacterial single-cell RNA-seq data and time constraints limited our ability to pursue more advanced analytical approaches at this stage. 
+
+
+
+
+
+The spatial distribution along PC1 revealed three distinct clusters: (1) left cluster: M9A_OD2, M9C_OD2, M9B_OD2, M9C_OD3; (2) center cluster: M9_B_OD3; and (3) right cluster: M9_A_OD3. M9B_OD3 and M9C_OD1 were also positioned more towards the right side of the plot. The remaining principal components showed minimal discriminatory power, primarily representing noise in the dataset.
+
+
+
+
+
+

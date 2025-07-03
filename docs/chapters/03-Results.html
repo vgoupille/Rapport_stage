@@ -432,8 +432,8 @@ Table&nbsp;3.2: Summary of metrics obtained with STARsolo after barcode-UMI read
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 67%">
-<col style="width: 32%">
+<col style="width: 66%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -642,7 +642,7 @@ Figure&nbsp;3.3: Metrics of filtered cells across experimental conditions (Cultu
 </section>
 <section id="dimensionality-reduction-and-transcriptional-heterogeneity-analysis" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="dimensionality-reduction-and-transcriptional-heterogeneity-analysis"><span class="header-section-number">3.3</span> Dimensionality Reduction and Transcriptional Heterogeneity Analysis</h2>
-<p>Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions. The analysis began with data transformation using the Bacsc method (see <a href="A-Appendix.html#fig-pca-choose" class="quarto-xref">Figure&nbsp;<span>A.3 (b)</span></a> for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis. UMAP visualization and clustering were then used to detect global transcriptional differences between experimental conditions.</p>
+<p>Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions. The analysis began with data transformation using the Bacsc method (see <a href="A-Appendix.html#fig-pca-choose" class="quarto-xref">Figure&nbsp;<span>B.1 (b)</span></a> for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis. UMAP visualization and clustering were then used to detect global transcriptional differences between experimental conditions.</p>
 <section id="principal-component-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="principal-component-analysis">Principal Component Analysis</h3>
 <div id="fig-single-cell-PCA" class="quarto-layout-panel">
@@ -682,7 +682,7 @@ Figure&nbsp;3.4: Principal Component Analysis (PCA) results showing transcriptio
 </figcaption>
 </figure>
 </div>
-<p>The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components (<a href="A-Appendix.html#fig-pca-choose" class="quarto-xref">Figure&nbsp;<span>A.3 (b)</span></a>), which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions.</p>
+<p>The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components (<a href="A-Appendix.html#fig-pca-choose" class="quarto-xref">Figure&nbsp;<span>B.1 (b)</span></a>), which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions. This indicates that the transcriptional variability is diffuse or weakly structured in the dataset. In this context, for the next analysis we chose to retain the first 5 PCs for UMAP embedding to capture the few potentially meaningful signals carried by the leading components while avoiding the integration of excessive noise. This selection provides a balance between maintaining minimal expressiveness for dimensionality reduction and exercising caution given the low inherent structure of the data.</p>
 <p>PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (<a href="#fig-pca-condition" class="quarto-xref">Figure&nbsp;<span>3.4 (a)</span></a>). In fact, we can see that M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. We can also abserve this on the heatmaps (<a href="#fig-pca1-summary-top" class="quarto-xref">Figure&nbsp;<span>3.4 (b)</span></a>). This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.</p>
 <p>Notably, M9 samples positioned on the left side of PC1 showed greater dispersion compared to those on the right. Furthermore, PC1 axis alignment followed a gradient of total mRNA concentration per cell, suggesting that this component primarily captures differences in overall transcriptional activity between conditions.</p>
 <section id="gene-contribution-analysis-to-pc1" class="level4">
@@ -691,24 +691,41 @@ Figure&nbsp;3.4: Principal Component Analysis (PCA) results showing transcriptio
 <p>The genes contributing most to PC1 variance were primarily associated with translational regulation and iron metabolism, reflecting the stress response to iron limitation in M9 medium. Among the translational regulators, we identified rpsA (30S ribosomal protein S1), raiA (ribosome-associated translation inhibitor), and htpG (HSP90 protein chaperone). HtpG, as a molecular chaperone, plays an indirect but essential role in the biosynthesis and functionality of siderophores. For example, HtpG facilitates the correct folding and stability of enzymes involved in siderophore synthesis, such as those participating in yersiniabactine production in <em>Yersinia</em> species<span class="citation" data-cites="mangla"><sup><a href="06-References.html#ref-mangla" role="doc-biblioref">4</a></sup></span>.</p>
 <p>Notably, porphobilinogen synthase was also identified among the top 20 genes contributing to PC1 variance. This finding is particularly relevant given our experimental design using iron-limited M9 medium. In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells<span class="citation" data-cites="choby2016"><sup><a href="06-References.html#ref-choby2016" role="doc-biblioref">5</a></sup></span>. The differential expression of porphobilinogen synthase between M9 and M9F conditions thus reflects the cellular adaptation to iron stress.</p>
 <p>The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake<span class="citation" data-cites="moeck1998 fujita2019"><sup><a href="06-References.html#ref-moeck1998" role="doc-biblioref">6</a>,<a href="06-References.html#ref-fujita2019" role="doc-biblioref">7</a></sup></span>. Together with porphobilinogen synthase, these genes form a coherent transcriptional response to iron limitation, explaining the clear separation of M9 conditions along PC1.</p>
-<p>While PC1 primarily captured differences in transcriptional activity and stress response, PC2 revealed distinct patterns related to cellular motility and chemotaxis (<a href="A-Appendix.html#fig-pca2-summary-top" class="quarto-xref">Figure&nbsp;<span>A.3 (d)</span></a>). For example, methyl-accepting chemotaxis proteins (MCPs) and flagellin genes were identified as major contributors to PC2 variance, suggesting a role in chemotaxis and motility responses to environmental conditions.</p>
+<p>While PC1 primarily captured differences in transcriptional activity and stress response, PC2 revealed distinct patterns related to cellular motility and chemotaxis (<a href="A-Appendix.html#fig-pca2-summary-top" class="quarto-xref">Figure&nbsp;<span>B.1 (d)</span></a>). For example, methyl-accepting chemotaxis proteins (MCPs) and flagellin genes were identified as major contributors to PC2 variance, suggesting a role in chemotaxis and motility responses to environmental conditions.</p>
 <!-- Additional genes contributing to PC1 variance included thiolase II and HMG-CoA synthase, which play crucial roles in abiotic stress response, particularly oxidative stress. These enzymes are involved in isoprenoid biosynthesis via the mevalonate pathway, essential for producing antioxidant compounds that protect bacterial cells against oxidative damage. -->
 </section>
-<section id="umap-clustering-analysis-and-differential-expression-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="umap-clustering-analysis-and-differential-expression-analysis">UMAP, Clustering Analysis and Differential Expression Analysis</h4>
-<p>Following the dimensionality reduction analysis, we compared the transcriptional profiles between the two culture conditions (M9 and M9F) to identify potential division of labor mechanisms.</p>
+</section>
+<section id="umap-visualization-and-clustering-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="umap-visualization-and-clustering-analysis">UMAP Visualization and Clustering Analysis</h3>
+<p>Following the PCA analysis, we performed UMAP visualization and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions.</p>
+<p>We constructed the neighborhood graph using the first 5 principal components (PCs) with 10 neighbors per cell, capturing local similarity between cells in the reduced dimensional space. This approach is essential for downstream clustering and visualization analyses. We then applied Leiden clustering with two different resolution parameters (0.1 and 0.25) to identify distinct cell populations.</p>
+<p>The clustering analysis with resolution 0.1 identified two main clusters, while resolution 0.25 revealed three clusters (<a href="#fig-gene-cluster" class="quarto-xref">Figure&nbsp;<span>3.5 (b)</span></a>). Both clustering approaches successfully separated the experimental conditions, with M9 T2 and M9 T3 samples clearly distinguished from other conditions. This separation aligns with the PCA results, confirming the distinct transcriptional profiles of cells under iron-limited conditions at later timepoints.</p>
+<section id="differential-expression-analysis-between-clusters" class="level4">
+<h4 class="anchored" data-anchor-id="differential-expression-analysis-between-clusters">Differential Expression Analysis Between Clusters</h4>
+<p>To characterize the transcriptional differences between the identified clusters, we performed differential expression analysis between the two clusters obtained with resolution 0.1. We used the Wilcoxon rank-sum test with FDR correction (p &lt; 0.05) to identify significantly differentially expressed genes. The complete results of this analysis are presented in the appendix.</p>
+<p>Group 0 (primarily M9 T2 and T3 cells) exhibited globally lower expression levels compared to Group 1 (primarily M9F and M9 T1 cells), which showed a more heterogeneous expression gradient (<a href="#fig-gene-cluster" class="quarto-xref">Figure&nbsp;<span>3.5 (b)</span></a>). This pattern reflects the reduced transcriptional activity observed in cells under iron stress conditions.</p>
+</section>
+<section id="characterization-of-differentially-expressed-genes" class="level4">
+<h4 class="anchored" data-anchor-id="characterization-of-differentially-expressed-genes">Characterization of Differentially Expressed Genes</h4>
+<p>Among the significantly differentially expressed genes, we identified three representative examples that illustrate the distinct transcriptional programs between clusters:</p>
+<p><strong>RplA (30S ribosomal protein L1)</strong>: This ribosomal protein showed lower expression in Group 0 compared to Group 1. RplA is constitutively expressed as it is essential for protein synthesis, with expression levels reflecting the cell’s translational activity. Higher expression typically indicates active protein synthesis during rapid growth, while lower expression suggests reduced translational activity under stress conditions.</p>
+<p><strong>QLH64-28090 (phasin)</strong>: This gene showed the opposite pattern, with higher expression in Group 1 compared to Group 0. Phasins are multifunctional proteins associated with polyhydroxyalkanoate (PHA) granules that play crucial roles in stress response and energy metabolism<span class="citation" data-cites="mezzina2016"><sup><a href="06-References.html#ref-mezzina2016" role="doc-biblioref">8</a></sup></span>. They form an interface between the hydrophobic PHA granules and the hydrophilic cytoplasm, regulating both PHA accumulation and utilization. Under stress conditions, phasins can activate PHA depolymerization to release energy metabolites, increase PHA synthase activity, and participate in granule segregation. Additionally, some phasins exhibit chaperone-like properties, protecting cellular proteins against stress-induced denaturation and oxidative damage. The differential expression of this phasin gene between clusters suggests distinct metabolic adaptations to iron limitation, with cells potentially modulating their storage metabolism, stress response mechanisms, and protein protection strategies.</p>
+<p><strong>Flagellin</strong>: This housekeeping gene, which was the most highly expressed gene in the raw data matrix, also showed differential expression between clusters, with higher expression in Group 1 compared to Group 0. #### Global Expression Patterns and Cluster Heterogeneity</p>
+<p>However, the analysis revealed significant heterogeneity within each cluster, with groups of cells showing distinct expression patterns for specific genes compared to the global cluster average. This heterogeneity is particularly evident in the violin plots presented in the appendix, which show variable distributions of gene expression within clusters. In the heatmap representing top significant differentially expressed genes, we can see that some genes are expressed at very high levels, particularly among the significant genes for cluster 1. This observation suggests the presence of specialized subpopulations within the broader transcriptional groups, potentially indicating fine-grained division of labor mechanisms at the cellular level.</p>
+<p>All three representative genes (RplA, QLH64-28090, and flagellin) showed variable expression between clusters. This global pattern reflects the overall transcriptional differences between stress conditions (M9 T2/T3) and control conditions (M9F and M9 T1). However, this coarse-grained clustering approach may mask important biological heterogeneity within each condition and timepoint.</p>
+<p>The current analysis provides a global representation of transcriptional differences between major experimental groups, but to address our original biological question about division of labor mechanisms, we need to examine finer-scale heterogeneity. This requires descending to the level of individual culture mediums, conditions, and biological replicates at each timepoint to identify potential subpopulations that could reveal specialized cellular functions and division of labor patterns within the <em>P. brassicacearum</em> population.</p>
 <div id="fig-single-cell-analysis" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-dotplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-umap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/dotplot.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.5&nbsp;(a): Dot plot displaying gene expression patterns and percentage of cells expressing each gene"><img src="../figures/fig_sc/dotplot.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
+<div aria-describedby="fig-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/umap.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.5&nbsp;(a): UMAP visualization of the single-cell RNA-seq data, colored by culture medium, biological replicate (grouped or not) at specific timepoint, and total mRNA contents. Leiden clustering with a resolution of 0.1 and 0.25 are represented in two bottoms graphs."><img src="../figures/fig_sc/umap.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Dot plot displaying gene expression patterns and percentage of cells expressing each gene
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) UMAP visualization of the single-cell RNA-seq data, colored by culture medium, biological replicate (grouped or not) at specific timepoint, and total mRNA contents. Leiden clustering with a resolution of 0.1 and 0.25 are represented in two bottoms graphs.
 </figcaption>
 </figure>
 </div>
@@ -716,39 +733,13 @@ Figure&nbsp;3.4: Principal Component Analysis (PCA) results showing transcriptio
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.5&nbsp;(b): Heatmap visualization of gene expression patterns across different cell clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Heatmap visualization of gene expression patterns across different cell clusters
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-violin-sc" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.5&nbsp;(c): Violin plot showing gene expression distribution across cell populations"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Violin plot showing gene expression distribution across cell populations
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-gene-cluster" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-gene-cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/gene_cluster.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.5&nbsp;(d): Gene clustering analysis showing relationships between differentially expressed genes"><img src="../figures/fig_sc/gene_cluster.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
+<a href="../figures/fig_sc/gene_cluster.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.5&nbsp;(b): UMAP visualization colored by expression of examples top differentially expressed genes (FDR < 0.05) between clusters: RplA (30S ribosomal protein L1), QLH64-28090 (phasin), and flagellin. Color intensity indicates relative expression levels (yellow: high expression, blue: low expression)."><img src="../figures/fig_sc/gene_cluster.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-gene-cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(d) Gene clustering analysis showing relationships between differentially expressed genes
+(b) UMAP visualization colored by expression of examples top differentially expressed genes (FDR &lt; 0.05) between clusters: RplA (30S ribosomal protein L1), QLH64-28090 (phasin), and flagellin. Color intensity indicates relative expression levels (yellow: high expression, blue: low expression).
 </figcaption>
 </figure>
 </div>
@@ -760,8 +751,6 @@ Figure&nbsp;3.5: Single-cell RNA-seq analysis results showing gene expression pa
 </figcaption>
 </figure>
 </div>
-<p><em>The single-cell analysis reveals distinct gene expression patterns across different cell populations within the</em> P. brassicacearum* culture. The dot plot (<a href="#fig-dotplot" class="quarto-xref">Figure&nbsp;<span>3.5 (a)</span></a>) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (<a href="#fig-heatmap" class="quarto-xref">Figure&nbsp;<span>3.5 (b)</span></a>) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.*</p>
-<p><em>The violin plots (<a href="#fig-violin-sc" class="quarto-xref">Figure&nbsp;<span>3.5 (c)</span></a>) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (<a href="#fig-gene-cluster" class="quarto-xref">Figure&nbsp;<span>3.5 (d)</span></a>) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the</em> P. brassicacearum* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.*</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -785,6 +774,9 @@ Figure&nbsp;3.5: Single-cell RNA-seq analysis results showing gene expression pa
 </div>
 <div id="ref-fujita2019" class="csl-entry" role="listitem">
 <div class="csl-left-margin">7. </div><div class="csl-right-inline">Fujita, M. <em>et al.</em> <a href="https://doi.org/10.1038/s42003-019-0676-z">A TonB-dependent receptor constitutes the outer membrane transport system for a lignin-derived aromatic compound</a>. <em>Communications Biology</em> <strong>2</strong>, 432 (2019).</div>
+</div>
+<div id="ref-mezzina2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Mezzina, M. P. &amp; Pettinari, M. J. <a href="https://doi.org/10.1128/AEM.01161-16">Phasins, Multifaceted Polyhydroxyalkanoate Granule-Associated Proteins</a>. <em>Applied and Environmental Microbiology</em> <strong>82</strong>, 5060–5067 (2016).</div>
 </div>
 </div>
 </section>

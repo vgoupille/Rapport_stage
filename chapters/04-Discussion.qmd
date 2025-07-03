@@ -1,5 +1,100 @@
 # Discussion
 
+- rappel des obejectifs et questions de recherche
+- rappel des principaux resultats obtenus
+
+
+Discussion plan 
+
+- rappel objectif (Check method, Dol in bacteria) 
+- Permis de voir courbes de croissance en conditions de stress ou pas (la prochaine fois utiliser des DO au même point) 
+Ou faire une gamme préalable 
+En stresss et non stress 
+
+- Séquençage, déséquilibre influence légèrement qualité mais ok (juste être plus vigilant la proechaine fois) 
+- trimming ok bien foncyonnne, reads de bonne qualité retirer adapteur (plus élabore que celui de kuchina) 
+- STARsolo bien aussi car le plus plus rapide, amélioration possible avec pipeline de qui recup barcode si mauvaise qualité, BARQC serait bien tester si décalage 
+- Mettre le nombre de reads qui passe chaque étape 
+- Comme mentionné dans article bacSc et de nishimurz pas de pipeline existe 
+- Filtrage est toujours subjectif chacun fais comme il veux en fonction de ce qu’il fait comme expérience microsplit. Dans les articles ne précise pas combien de cellules il vise dans chaque sous librairies dans à combien ils veulent 
+Utiliser filtrage manuel des barcodes pour récupérer les meilleurs narcodes de chaque conditions (rep bio), 
+Ici supposé que équilibre au départ 
+
+On a vu un replica technique n’a pas marché (pipetage)
+
+
+On a vu beaucoup moins de reads de qualités 
+on a vu grise variabiliye entre les replica bio et les DO 
+Déjà mentionné dans kuchina 
+Influence du stade physio, peut être modification pariétal, lyse de cellules en conditions de stress (donc grande perte cellulaire) pas passé les filtre ou contraire certaine cellules pourrait se mettre en dormance/ renforcement paroi et donc exprimer très peu de gènes et donc pas facilement, comme proposé dans kuchina besoin de faire test. Si c’est  le cas alors peut être que l’on a éliminé des cellules d’intérêt non stressé …
+
+
+FACTEUR confondant pour le filtrage = > difficulté associée pour le filtrage 
+
+Après conservation des gènes RNAm
+Dans la matrice gène on a très peut de gènes exprimés réellement (beaucoup de gènes avec 0 ou seulement 1 courts 
+Même après normalitasyik et scale impossible de voir du signal, trop de variabilité lié à profondeur et replica technique,
+Voit umap lié profondeur de séquençage 
+Chois focus od2 non stress
+De plus même si est ce que pas de clustering , et leindeb se fait avec profondeur 
+
+
+Cyriaque proposé de faire bulk et aussi faire blanc, permet d’améliorer méthodes stats 
+
+Ici premier test sur 3000 cellules pour voir si fonctionne et permet optimiser profondeur, peut de gène comparé à autres méthodes mais avantages population cellulaires élevé (40000) permet voir sous pop faible, aussi facilté de la méthode qui ne nécessita pas de matériel très coûteux spécifique 
+
+
+
+ Pour chaque 
+
+Opter pour st
+- Comme mentionné dans 
+
+- marqueur gènes ;liste article 
+
+- Amélioration possible : pipeline nfcore 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 cela serait bien d'estimer la saturation de chauqe condition
 cela sera serait bien aussi de voir 
@@ -111,7 +206,10 @@ meme si moins de risque de contamination car cellules fixé ... (deve
 
 attention duplication des reads 
 
-serait bien de tester chaque sublirbai starsolo independant 
+serait bien de tester chaque sublirbai starsolo independant
+
+
+
 ## Interpretation of Key Findings
 
 ### Division of Labor Mechanisms

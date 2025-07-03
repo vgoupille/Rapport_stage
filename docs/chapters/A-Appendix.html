@@ -242,6 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-appendix-cell-filtering" id="toc-sec-appendix-cell-filtering" class="nav-link" data-scroll-target="#sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</a></li>
   <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.5</span> Single-cell RNA-seq Analysis Statistics</a></li>
   <li><a href="#sec-appendix-pca" id="toc-sec-appendix-pca" class="nav-link" data-scroll-target="#sec-appendix-pca"><span class="header-section-number">A.6</span> Principal Component Analysis (PCA) Supplementary Figures</a></li>
+  <li><a href="#supplementary-umap-figures" id="toc-supplementary-umap-figures" class="nav-link" data-scroll-target="#supplementary-umap-figures"><span class="header-section-number">B</span> Supplementary UMAP Figures</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -760,6 +761,58 @@ Figure&nbsp;A.3: Principal Component Analysis (PCA) of single-cell RNA-seq data 
 </figure>
 </div>
 <p><em>The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.</em></p>
+</section>
+<section id="supplementary-umap-figures" class="level1" data-number="B">
+<h1 data-number="B"><span class="header-section-number">B</span> Supplementary UMAP Figures</h1>
+<div id="fig-suppl-single-cell-analysis" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-dotplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/dotplot.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;B.1&nbsp;(a): Dot plot displaying gene expression patterns and percentage of cells expressing each gene"><img src="../figures/fig_sc/dotplot.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Dot plot displaying gene expression patterns and percentage of cells expressing each gene
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;B.1&nbsp;(b): Heatmap visualization of gene expression patterns across different cell clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Heatmap visualization of gene expression patterns across different cell clusters
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-violin-sc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;B.1&nbsp;(c): Violin plot showing gene expression distribution across cell populations"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Violin plot showing gene expression distribution across cell populations
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;B.1
+</figcaption>
+</figure>
+</div>
 
 
 </section>

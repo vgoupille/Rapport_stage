@@ -41,7 +41,7 @@ BC_0076 specifically showed earlier and more prominent polyG artifacts, likely d
 Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo provided comprehensive quality metrics and mapping statistics.
 
 | Metric | Count/Percentage |
-|------------------------------------------------|-----------------------|
+|------------------------------------------------|------------------------|
 | **Total Reads Processed** | 1,284,475,633 |
 | **N_reads with valid barcodes** | 1,099,327,755 (**85.58%**) |
 | \- Exact Barcode Match | -\> 1,046,121,284 (**81.44%**) |
@@ -139,7 +139,7 @@ Following the quality filtering steps, we performed dimensionality reduction and
 Principal Component Analysis (PCA) results showing transcriptional heterogeneity and gene contribution patterns in *P. brassicacearum* populations
 :::
 
-The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components (@fig-pca-choose), which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions.
+The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components (@fig-pca-choose), which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions. This indicates that the transcriptional variability is diffuse or weakly structured in the dataset. In this context, for the next analysis we chose to retain the first 5 PCs for UMAP embedding to capture the few potentially meaningful signals carried by the leading components while avoiding the integration of excessive noise. This selection provides a balance between maintaining minimal expressiveness for dimensionality reduction and exercising caution given the low inherent structure of the data.
 
 PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (@fig-pca-condition). In fact, we can see that M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. We can also abserve this on the heatmaps (@fig-pca1-summary-top). This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.
 
@@ -159,22 +159,42 @@ While PC1 primarily captured differences in transcriptional activity and stress 
 
 <!-- Additional genes contributing to PC1 variance included thiolase II and HMG-CoA synthase, which play crucial roles in abiotic stress response, particularly oxidative stress. These enzymes are involved in isoprenoid biosynthesis via the mevalonate pathway, essential for producing antioxidant compounds that protect bacterial cells against oxidative damage. -->
 
-#### UMAP, Clustering Analysis and Differential Expression Analysis
+### UMAP Visualization and Clustering Analysis
 
-Following the dimensionality reduction analysis, we compared the transcriptional profiles between the two culture conditions (M9 and M9F) to identify potential division of labor mechanisms.
+Following the PCA analysis, we performed UMAP visualization and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions.
+
+We constructed the neighborhood graph using the first 5 principal components (PCs) with 10 neighbors per cell, capturing local similarity between cells in the reduced dimensional space. This approach is essential for downstream clustering and visualization analyses. We then applied Leiden clustering with two different resolution parameters (0.1 and 0.25) to identify distinct cell populations.
+
+The clustering analysis with resolution 0.1 identified two main clusters, while resolution 0.25 revealed three clusters (@fig-gene-cluster). Both clustering approaches successfully separated the experimental conditions, with M9 T2 and M9 T3 samples clearly distinguished from other conditions. This separation aligns with the PCA results, confirming the distinct transcriptional profiles of cells under iron-limited conditions at later timepoints.
+
+#### Differential Expression Analysis Between Clusters
+
+To characterize the transcriptional differences between the identified clusters, we performed differential expression analysis between the two clusters obtained with resolution 0.1. We used the Wilcoxon rank-sum test with FDR correction (p \< 0.05) to identify significantly differentially expressed genes. The complete results of this analysis are presented in the appendix.
+
+Group 0 (primarily M9 T2 and T3 cells) exhibited globally lower expression levels compared to Group 1 (primarily M9F and M9 T1 cells), which showed a more heterogeneous expression gradient (@fig-gene-cluster). This pattern reflects the reduced transcriptional activity observed in cells under iron stress conditions.
+
+#### Characterization of Differentially Expressed Genes
+
+Among the significantly differentially expressed genes, we identified three representative examples that illustrate the distinct transcriptional programs between clusters:
+
+**RplA (30S ribosomal protein L1)**: This ribosomal protein showed lower expression in Group 0 compared to Group 1. RplA is constitutively expressed as it is essential for protein synthesis, with expression levels reflecting the cell's translational activity. Higher expression typically indicates active protein synthesis during rapid growth, while lower expression suggests reduced translational activity under stress conditions.
+
+**QLH64-28090 (phasin)**: This gene showed the opposite pattern, with higher expression in Group 1 compared to Group 0. Phasins are multifunctional proteins associated with polyhydroxyalkanoate (PHA) granules that play crucial roles in stress response and energy metabolism [@mezzina2016]. They form an interface between the hydrophobic PHA granules and the hydrophilic cytoplasm, regulating both PHA accumulation and utilization. Under stress conditions, phasins can activate PHA depolymerization to release energy metabolites, increase PHA synthase activity, and participate in granule segregation. Additionally, some phasins exhibit chaperone-like properties, protecting cellular proteins against stress-induced denaturation and oxidative damage. The differential expression of this phasin gene between clusters suggests distinct metabolic adaptations to iron limitation, with cells potentially modulating their storage metabolism, stress response mechanisms, and protein protection strategies.
+
+**Flagellin**: This housekeeping gene, which was the most highly expressed gene in the raw data matrix, also showed differential expression between clusters, with higher expression in Group 1 compared to Group 0. 
+#### Global Expression Patterns and Cluster Heterogeneity
+
+However, the analysis revealed significant heterogeneity within each cluster, with groups of cells showing distinct expression patterns for specific genes compared to the global cluster average. This heterogeneity is particularly evident in the violin plots presented in the appendix, which show variable distributions of gene expression within clusters. In the heatmap representing top significant differentially expressed genes, we can see that some genes are expressed at very high levels, particularly among the significant genes for cluster 1. This observation suggests the presence of specialized subpopulations within the broader transcriptional groups, potentially indicating fine-grained division of labor mechanisms at the cellular level.
+
+All three representative genes (RplA, QLH64-28090, and flagellin) showed variable expression between clusters. This global pattern reflects the overall transcriptional differences between stress conditions (M9 T2/T3) and control conditions (M9F and M9 T1). However, this coarse-grained clustering approach may mask important biological heterogeneity within each condition and timepoint.
+
+The current analysis provides a global representation of transcriptional differences between major experimental groups, but to address our original biological question about division of labor mechanisms, we need to examine finer-scale heterogeneity. This requires descending to the level of individual culture mediums, conditions, and biological replicates at each timepoint to identify potential subpopulations that could reveal specialized cellular functions and division of labor patterns within the *P. brassicacearum* population. 
+
 
 ::: {#fig-single-cell-analysis layout="[[1], [1], [1,1]]"}
-![Dot plot displaying gene expression patterns and percentage of cells expressing each gene](../figures/fig_sc/dotplot.png){#fig-dotplot}
+![UMAP visualization of the single-cell RNA-seq data, colored by culture medium, biological replicate (grouped or not) at specific timepoint, and total mRNA contents. Leiden clustering with a resolution of 0.1 and 0.25 are represented in two bottoms graphs.](../figures/fig_sc/umap.png){#fig-umap}
 
-![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
-
-![Violin plot showing gene expression distribution across cell populations](../figures/fig_sc/violin.png){#fig-violin-sc}
-
-![Gene clustering analysis showing relationships between differentially expressed genes](../figures/fig_sc/gene_cluster.png){#fig-gene-cluster}
+![UMAP visualization colored by expression of examples top differentially expressed genes (FDR < 0.05) between clusters: RplA (30S ribosomal protein L1), QLH64-28090 (phasin), and flagellin. Color intensity indicates relative expression levels (yellow: high expression, blue: low expression).](../figures/fig_sc/gene_cluster.png){#fig-gene-cluster}
 
 Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in *P. brassicacearum* populations
 :::
-
-*The single-cell analysis reveals distinct gene expression patterns across different cell populations within the* P. brassicacearum\* culture. The dot plot (@fig-dotplot) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (@fig-heatmap) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.\*
-
-*The violin plots (@fig-violin-sc) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (@fig-gene-cluster) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the* P. brassicacearum\* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.\*
