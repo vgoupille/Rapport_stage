@@ -241,6 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-appendix-starsolo" id="toc-sec-appendix-starsolo" class="nav-link" data-scroll-target="#sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</a></li>
   <li><a href="#sec-appendix-cell-filtering" id="toc-sec-appendix-cell-filtering" class="nav-link" data-scroll-target="#sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</a></li>
   <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.5</span> Single-cell RNA-seq Analysis Statistics</a></li>
+  <li><a href="#sec-appendix-pca" id="toc-sec-appendix-pca" class="nav-link" data-scroll-target="#sec-appendix-pca"><span class="header-section-number">A.6</span> Principal Component Analysis (PCA) Supplementary Figures</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -433,6 +434,46 @@ This step trims R1 at both 5’ and 3’ ends to keep only cDNA and ensure clean
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">--compression</span> 4 <span class="dt">\</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
+<section id="multiqc-report-r1-before-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r1-before-trimming">MultiQC Report R1 Before Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R1 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+<section id="multiqc-report-r1-after-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r1-after-trimming">MultiQC Report R1 After Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R1 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+<section id="multiqc-report-r2-before-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r2-before-trimming">MultiQC Report R2 Before Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R2 before trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
+<section id="multiqc-report-r2-after-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc-report-r2-after-trimming">MultiQC Report R2 After Trimming</h4>
+<details>
+<summary>
+Click to view MultiQC report R2 after trimming
+</summary>
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+</iframe>
+</details>
+</section>
 </section>
 <section id="sec-appendix-starsolo" class="level2" data-number="A.3">
 <h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</h2>
@@ -652,6 +693,73 @@ Figure&nbsp;A.2: Tabular representation of gene expression statistics across cel
 </figure>
 </div>
 <p><em>Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.</em></p>
+</section>
+<section id="sec-appendix-pca" class="level2" data-number="A.6">
+<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-pca"><span class="header-section-number">A.6</span> Principal Component Analysis (PCA) Supplementary Figures</h2>
+<div id="fig-suppl-single-cell-analysis" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-scaling" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-scaling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/scalling.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(a): Scaling of the data"><img src="../figures/fig_sc/scalling.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scaling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Scaling of the data
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pca-choose" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pca-choose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/pca_choose.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(b): PCA analysis showing optimal number of principal components"><img src="../figures/fig_sc/pca_choose.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pca-choose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) PCA analysis showing optimal number of principal components
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-pca-conf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pca-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/pca_conf.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(c): PCA confidence intervals for different cell populations"><img src="../figures/fig_sc/pca_conf.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pca-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) PCA confidence intervals for different cell populations
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-pca2-summary-top" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pca2-summary-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/fig_sc/pca2_summary_top.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(d): PCA2 summary top"><img src="../figures/fig_sc/pca2_summary_top.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pca2-summary-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) PCA2 summary top
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.3: Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow plot for optimal PC selection, B) PCA plot colored by experimental conditions, and C) PCA plot with confidence intervals for cell populations
+</figcaption>
+</figure>
+</div>
+<p><em>The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.</em></p>
 
 
 </section>

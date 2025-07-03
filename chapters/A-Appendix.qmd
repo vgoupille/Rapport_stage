@@ -339,3 +339,23 @@ The following table provides detailed statistical information about gene express
 ![Tabular representation of gene expression statistics across cell populations](../figures/fig_sc/tab.png){#fig-tab-scrna}
 
 *Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.*
+
+## Principal Component Analysis (PCA) Supplementary Figures {#sec-appendix-pca}
+
+::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
+
+![Scaling of the data](../figures/fig_sc/scalling.png){#fig-scaling}
+
+![PCA analysis showing optimal number of principal components](../figures/fig_sc/pca_choose.png){#fig-pca-choose}
+
+
+![PCA confidence intervals for different cell populations](../figures/fig_sc/pca_conf.png){#fig-pca-conf}
+
+
+![PCA2 summary top](../figures/fig_sc/pca2_summary_top.png){#fig-pca2-summary-top}
+
+Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow plot for optimal PC selection, B) PCA plot colored by experimental conditions, and C) PCA plot with confidence intervals for cell populations
+
+:::
+
+*The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.*

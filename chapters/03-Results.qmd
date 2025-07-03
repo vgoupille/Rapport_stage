@@ -41,7 +41,7 @@ BC_0076 specifically showed earlier and more prominent polyG artifacts, likely d
 Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo provided comprehensive quality metrics and mapping statistics.
 
 | Metric | Count/Percentage |
-|--------------------------------------------------|----------------------|
+|-------------------------------------------------|----------------------|
 | **Total Reads Processed** | 1,284,475,633 |
 | **N_reads with valid barcodes** | 1,099,327,755 (**85.58%**) |
 | \- Exact Barcode Match | -\> 1,046,121,284 (**81.44%**) |
@@ -99,7 +99,6 @@ To identify genuine cells among the total barcode population, STARsolo employs a
 
 The high sequencing saturation value of 0.97 requires careful interpretation, as it could reflect either excellent transcriptome coverage or technical artifacts. Before proceeding with division of labor analysis, we will assess this value alongside other quality metrics and filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.
 
-
 ## Cell quality filtering and dataset characterization {#sec-global-filtering}
 
 Following the initial UMI-based filtering (see @sec-appendix-cell-filtering), which revealed clear differences between culture conditions with M9 medium (nutrient-limited) showing fewer retained barcodes compared to M9F (nutrient-rich), additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions.
@@ -107,7 +106,6 @@ Following the initial UMI-based filtering (see @sec-appendix-cell-filtering), wh
 The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (@fig-splitplot-barcodes-final). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (@fig-splitplot-barcodes-final). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.
 
 The following visualizations also show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene, @fig-scatter_final.
-
 
 ::: {#fig-final_filtering layout="[[1], [1], [1], [1]]"}
 ![Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering](../figures/mRNA__Genes_barplot.png){#fig-splitplot-barcodes-final}
@@ -119,18 +117,61 @@ The following visualizations also show the distribution of mRNA gene expression 
 ![Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset](../figures/scatter_final.png){#fig-scatter_final}
 
 Metrics of filtered cells across experimental conditions (Culture Medium × Biological Replicate × Sampling Time) in the single-cell RNA-seq experiment.
-
 :::
 
-M9F medium consistently showed higher values compared to M9 (@fig-scatter_final), with mean mRNA counts of 749 for M9F versus 372 for M9, and mean gene counts of 462 for M9F versus 270 for M9. 
+M9F medium consistently showed higher values compared to M9 (@fig-scatter_final), with mean mRNA counts of 749 for M9F versus 372 for M9, and mean gene counts of 462 for M9F versus 270 for M9.
 
 Biological replicate variability was particularly pronounced at T1 for both conditions and at T3 for M9 conditions @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene. Under nutrient-limited conditions (M9), cells showed markedly reduced transcriptional activity at T2 and T3 timepoints, with some replicates displaying very low UMI and gene counts, suggesting either reduced cellular activity or technical challenges in recovering stressed cells. The scatter plot (@fig-scatter_final) reveals a strong positive correlation between UMI counts and mRNA gene numbers, confirming the quality of the filtered dataset and the relationship between sequencing depth and gene detection.
 
 These results demonstrate that the filtering strategy effectively removed poor-quality barcodes to retain only potential "real cells" from each biological replicate that can be analyzed for downstream investigation.
 
-### Gene Expression Patterns Across Cell Populations
+## Dimensionality Reduction and Transcriptional Heterogeneity Analysis
 
-::: {#fig-single-cell-analysis layout="[[1,1], [1,1]]"}
+Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations. The analysis began with data transformation using the Bacsc method (see @fig-pca-choose for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis.
+
+### Principal Component Analysis 
+
+::: {#fig-single-cell-PCA layout="[[1], [1], [1]]"}
+
+![PCA visualization colored by experimental conditions](../figures/fig_sc/pca_condition.png){#fig-pca-condition}
+
+![PCA1 summary top](../figures/fig_sc/pca1_summary_top.png){#fig-pca1-summary-top}
+
+Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in *P. brassicacearum* populations
+:::
+
+The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components, which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions (@fig-pca-choose). PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions. This low variance structure reflects reduced transcriptional activity under nutrient-limited conditions (M9 medium), particularly at later timepoints (T2, T3), and potential technical limitations in RNA capture efficiency for stressed cells. Despite the modest variance explained, PC1 contained the most robust transcriptional structure in the dataset.
+
+#### PC1 Discriminates Between Culture Conditions
+
+PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (@fig-pca-condition). M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.
+
+The spatial distribution along PC1 revealed three distinct clusters: (1) left cluster: M9A_OD2, M9C_OD2, M9B_OD2, M9C_OD3; (2) center cluster: M9_B_OD3; and (3) right cluster: M9_A_OD3. M9B_OD3 and M9C_OD1 were also positioned more towards the right side of the plot. The remaining principal components showed minimal discriminatory power, primarily representing noise in the dataset.
+
+Notably, M9 samples positioned on the left side of PC1 showed greater dispersion compared to those on the right, indicating higher transcriptional heterogeneity in these populations. Furthermore, PC1 axis alignment followed a gradient of total mRNA concentration per cell, suggesting that this component primarily captures differences in overall transcriptional activity between conditions.
+
+#### Gene Contribution Analysis to PC1
+
+The heatmap analysis with z-score scaling (ranging from 0 to 1) revealed the genes contributing most significantly to PC1 variance (@fig-pca1-summary-top). Each row represents a gene and each column represents a cell, with the legend at the bottom corresponding to biological replicates. The analysis showed clear distinction between M9F and M9 OD1 conditions, which exhibited similar variance patterns, while M9 OD2 and OD3 conditions appeared more similar visually with genes showing minimal contribution (empty cells in some cases), even though certain genes showed important contributions in only a few cells.
+
+The genes contributing most to PC1 variance were primarily associated with translational regulation, including rpsA (30S ribosomal protein S1), raiA (ribosome-associated translation inhibitor), and htpG (HSP90 protein chaperone). HtpG, as a molecular chaperone, plays an indirect but essential role in the biosynthesis and functionality of siderophores. For example, HtpG facilitates the correct folding and stability of enzymes involved in siderophore synthesis, such as those participating in yersiniabactine production (a siderophore) [@mangla].
+
+In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells.
+
+Additional genes contributing to PC1 variance included thiolase II and HMG-CoA synthase, which play crucial roles in abiotic stress response, particularly oxidative stress. These enzymes are involved in isoprenoid biosynthesis via the mevalonate pathway, essential for producing antioxidant compounds that protect bacterial cells against oxidative damage.
+
+The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake, with transport depending on the TonB-ExbB-ExbD complex that transduces energy from the proton motive force to high-affinity receptors.
+
+The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake, with transport depending on the TonB-ExbB-ExbD complex that transduces energy from the proton motive force to high-affinity receptors.
+
+While PC1 primarily captured differences in transcriptional activity and stress response, PC2 revealed distinct patterns related to cellular motility and chemotaxis (@fig-pca2-summary-top). For example, methyl-accepting chemotaxis proteins (MCPs) and flagellin genes were identified as major contributors to PC2 variance, suggesting a role in chemotaxis and motility responses to environmental conditions.
+
+
+#### UMAP, Clustering Analysis and Differential Expression Analysis
+
+Following the dimensionality reduction analysis, we compared the transcriptional profiles between the two culture conditions (M9 and M9F) to identify potential division of labor mechanisms.
+
+::: {#fig-single-cell-analysis layout="[[1], [1], [1,1]]"}
 ![Dot plot displaying gene expression patterns and percentage of cells expressing each gene](../figures/fig_sc/dotplot.png){#fig-dotplot}
 
 ![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
