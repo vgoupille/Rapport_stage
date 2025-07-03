@@ -6,7 +6,8 @@ cela sera serait bien aussi de voir
 
 
 
-
+This low variance structure could potentially be explained by the low RNA counts observed (@#fig-final_filtering @fig-scaling). We hypothesize that the limited RNA capture efficiency of the single-cell method may not have captured sufficient RNA molecules, potentially resulting in high noise levels that can mask the real biological signal. 
+mais peu aussi lier a mecanisme real dormance , mort cellulais 
 
 
 

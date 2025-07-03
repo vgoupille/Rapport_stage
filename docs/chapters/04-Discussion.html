@@ -97,6 +97,7 @@ div.csl-indent {
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather|Source Code Pro" rel="stylesheet">
 
 
+<link rel="stylesheet" href="../styles/custom.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -248,6 +249,21 @@ div.csl-indent {
 </header>
 
 
+<p>cela serait bien d’estimer la saturation de chauqe condition cela sera serait bien aussi de voir</p>
+<p><strong>Summary of preprocessing and filtering results:</strong> The preprocessing pipeline successfully removed sequencing artifacts and improved data quality, with an average 25.4% reduction in read counts across sublibraries. STARsolo analysis revealed excellent barcode quality (85.58% valid barcodes) and high sequencing quality (Q30 &gt; 95%), though the high sequencing saturation (0.97) requires careful interpretation due to potential technical artifacts. The filtering strategy effectively identified genuine cells while preserving biological variation, resulting in approximately 3,000 high-quality cells with clear differences between culture conditions. M9F medium consistently showed higher transcriptional activity compared to M9, with reduced expression under nutrient-limited conditions, particularly at later timepoints.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Recommendations for Future Experiments
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.</p>
+</div>
+</div>
 <p>We applied microSPLiT to P. brassicacearum growing in two different conditions in rich medium (M9F) and in minimal medium (M9).</p>
 <p>-d’autres methodes de filtrage , log log comme dans…</p>
 <p>While other tools exist for alignment and barcode reading in SPLiT-seq/microSPLiT protocols, such as Kallisto<span class="citation" data-cites="bray2016 sullivan2025"><sup><a href="06-References.html#ref-bray2016" role="doc-biblioref">1</a>,<a href="06-References.html#ref-sullivan2025" role="doc-biblioref">2</a></sup></span>, The pipeline could be further improved with additional quality verification steps and implementation of workflow management systems such as Nextflow and nf-core for enhanced reproducibility and scalability.</p>

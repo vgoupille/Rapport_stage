@@ -41,7 +41,7 @@ BC_0076 specifically showed earlier and more prominent polyG artifacts, likely d
 Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo provided comprehensive quality metrics and mapping statistics.
 
 | Metric | Count/Percentage |
-|-------------------------------------------------|----------------------|
+|------------------------------------------------|-----------------------|
 | **Total Reads Processed** | 1,284,475,633 |
 | **N_reads with valid barcodes** | 1,099,327,755 (**85.58%**) |
 | \- Exact Barcode Match | -\> 1,046,121,284 (**81.44%**) |
@@ -127,45 +127,37 @@ These results demonstrate that the filtering strategy effectively removed poor-q
 
 ## Dimensionality Reduction and Transcriptional Heterogeneity Analysis
 
-Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations. The analysis began with data transformation using the Bacsc method (see @fig-pca-choose for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis.
+Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions. The analysis began with data transformation using the Bacsc method (see @fig-pca-choose for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis. UMAP visualization and clustering were then used to detect global transcriptional differences between experimental conditions.
 
-### Principal Component Analysis 
+### Principal Component Analysis
 
-::: {#fig-single-cell-PCA layout="[[1], [1], [1]]"}
+::: {#fig-single-cell-PCA layout="[[1], [1]]"}
+![Unsupervised PCA projection highlighting transcriptional heterogeneity across experimental conditions. Cells are colored by culture medium, biological replicate (grouped or not) at specific timepoint, and total mRNA contents. (i.e. nomenclature: M9F_A_T1 corresponds to biological replicate A of M9F at sampling time 1)](../figures/fig_sc/pca_condition.png){#fig-pca-condition}
 
-![PCA visualization colored by experimental conditions](../figures/fig_sc/pca_condition.png){#fig-pca-condition}
+![Heatmap of the top contributing genes (top 20) to the first principal components (PC1), based on scaled expression values (z-score per gene). Rows represent genes, columns represent single cells collected at each timepoints for all biological replicates. The legend at the right side of the heatmap shows the full name of the genes.](../figures/fig_sc/pca1_summary_top.png){#fig-pca1-summary-top}
 
-![PCA1 summary top](../figures/fig_sc/pca1_summary_top.png){#fig-pca1-summary-top}
-
-Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in *P. brassicacearum* populations
+Principal Component Analysis (PCA) results showing transcriptional heterogeneity and gene contribution patterns in *P. brassicacearum* populations
 :::
 
-The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components, which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions (@fig-pca-choose). PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions. This low variance structure reflects reduced transcriptional activity under nutrient-limited conditions (M9 medium), particularly at later timepoints (T2, T3), and potential technical limitations in RNA capture efficiency for stressed cells. Despite the modest variance explained, PC1 contained the most robust transcriptional structure in the dataset.
+The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components (@fig-pca-choose), which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions.
 
-#### PC1 Discriminates Between Culture Conditions
+PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (@fig-pca-condition). In fact, we can see that M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. We can also abserve this on the heatmaps (@fig-pca1-summary-top). This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.
 
-PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (@fig-pca-condition). M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.
-
-The spatial distribution along PC1 revealed three distinct clusters: (1) left cluster: M9A_OD2, M9C_OD2, M9B_OD2, M9C_OD3; (2) center cluster: M9_B_OD3; and (3) right cluster: M9_A_OD3. M9B_OD3 and M9C_OD1 were also positioned more towards the right side of the plot. The remaining principal components showed minimal discriminatory power, primarily representing noise in the dataset.
-
-Notably, M9 samples positioned on the left side of PC1 showed greater dispersion compared to those on the right, indicating higher transcriptional heterogeneity in these populations. Furthermore, PC1 axis alignment followed a gradient of total mRNA concentration per cell, suggesting that this component primarily captures differences in overall transcriptional activity between conditions.
+Notably, M9 samples positioned on the left side of PC1 showed greater dispersion compared to those on the right. Furthermore, PC1 axis alignment followed a gradient of total mRNA concentration per cell, suggesting that this component primarily captures differences in overall transcriptional activity between conditions.
 
 #### Gene Contribution Analysis to PC1
 
-The heatmap analysis with z-score scaling (ranging from 0 to 1) revealed the genes contributing most significantly to PC1 variance (@fig-pca1-summary-top). Each row represents a gene and each column represents a cell, with the legend at the bottom corresponding to biological replicates. The analysis showed clear distinction between M9F and M9 OD1 conditions, which exhibited similar variance patterns, while M9 OD2 and OD3 conditions appeared more similar visually with genes showing minimal contribution (empty cells in some cases), even though certain genes showed important contributions in only a few cells.
+The heatmap analysis with z-score scaling (ranging from 0 to 1) revealed the genes contributing most significantly to PC1 variance (@fig-pca1-summary-top). Each row represents a gene and each column represents a cell, with the legend at the bottom corresponding to biological replicates.
 
-The genes contributing most to PC1 variance were primarily associated with translational regulation, including rpsA (30S ribosomal protein S1), raiA (ribosome-associated translation inhibitor), and htpG (HSP90 protein chaperone). HtpG, as a molecular chaperone, plays an indirect but essential role in the biosynthesis and functionality of siderophores. For example, HtpG facilitates the correct folding and stability of enzymes involved in siderophore synthesis, such as those participating in yersiniabactine production (a siderophore) [@mangla].
+The genes contributing most to PC1 variance were primarily associated with translational regulation and iron metabolism, reflecting the stress response to iron limitation in M9 medium. Among the translational regulators, we identified rpsA (30S ribosomal protein S1), raiA (ribosome-associated translation inhibitor), and htpG (HSP90 protein chaperone). HtpG, as a molecular chaperone, plays an indirect but essential role in the biosynthesis and functionality of siderophores. For example, HtpG facilitates the correct folding and stability of enzymes involved in siderophore synthesis, such as those participating in yersiniabactine production in *Yersinia* species [@mangla].
 
-In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells.
+Notably, porphobilinogen synthase was also identified among the top 20 genes contributing to PC1 variance. This finding is particularly relevant given our experimental design using iron-limited M9 medium. In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells [@choby2016]. The differential expression of porphobilinogen synthase between M9 and M9F conditions thus reflects the cellular adaptation to iron stress.
 
-Additional genes contributing to PC1 variance included thiolase II and HMG-CoA synthase, which play crucial roles in abiotic stress response, particularly oxidative stress. These enzymes are involved in isoprenoid biosynthesis via the mevalonate pathway, essential for producing antioxidant compounds that protect bacterial cells against oxidative damage.
-
-The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake, with transport depending on the TonB-ExbB-ExbD complex that transduces energy from the proton motive force to high-affinity receptors.
-
-The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake, with transport depending on the TonB-ExbB-ExbD complex that transduces energy from the proton motive force to high-affinity receptors.
+The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake [@moeck1998; @fujita2019]. Together with porphobilinogen synthase, these genes form a coherent transcriptional response to iron limitation, explaining the clear separation of M9 conditions along PC1.
 
 While PC1 primarily captured differences in transcriptional activity and stress response, PC2 revealed distinct patterns related to cellular motility and chemotaxis (@fig-pca2-summary-top). For example, methyl-accepting chemotaxis proteins (MCPs) and flagellin genes were identified as major contributors to PC2 variance, suggesting a role in chemotaxis and motility responses to environmental conditions.
 
+<!-- Additional genes contributing to PC1 variance included thiolase II and HMG-CoA synthase, which play crucial roles in abiotic stress response, particularly oxidative stress. These enzymes are involved in isoprenoid biosynthesis via the mevalonate pathway, essential for producing antioxidant compounds that protect bacterial cells against oxidative damage. -->
 
 #### UMAP, Clustering Analysis and Differential Expression Analysis
 

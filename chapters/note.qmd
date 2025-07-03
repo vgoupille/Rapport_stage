@@ -294,7 +294,7 @@ The results presented in the following section focus on fundamental aspects: dat
 
 
 
-
+The spatial distribution along PC1 revealed three distinct clusters: (1) left cluster: M9A_OD2, M9C_OD2, M9B_OD2, M9C_OD3; (2) center cluster: M9_B_OD3; and (3) right cluster: M9_A_OD3. M9B_OD3 and M9C_OD1 were also positioned more towards the right side of the plot. The remaining principal components showed minimal discriminatory power, primarily representing noise in the dataset.
 
 
 
