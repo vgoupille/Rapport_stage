@@ -149,11 +149,11 @@ Sequencing was performed on a NovaSeq^TM^ X plus instrument at GenoBIRD platform
 
 ![Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.](../figures/pipeline.png){#fig-pipeline fig-cap="Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing."}
 
-*The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment. @fig-pipeline*
+*The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment.*
 
 ### Preprocessing of the sequencing data
 
-All quality control, trimming, alignment, barcode reading and generation of cell-gene count matrix steps were performed on the GenOuest high-performance computing cluster using SLURM job scripts and parallelization to ensure efficient and reproducible analysis of large-scale sequencing data.
+All quality control, trimming, alignment, barcode reading and generation of cell-gene count matrix steps were performed on the GenOuest high-performance computing cluster using SLURM job scripts and parallelization to ensure efficient and reproducible analysis of large-scale sequencing data (see left part of @fig-pipeline).
 
 #### Quality control and trimming
 

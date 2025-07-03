@@ -1,15 +1,12 @@
 # Results
 
-
-This chapter presents the findings of our single-cell RNA-seq analysis of *P. brassicacearum* R401, focusing on the division of labor within bacterial populations. To investigate division of labor patterns, we first established robust data quality through comprehensive preprocessing and quality control steps. We then applied appropriate filtering strategies to ensure reliable cell identification and gene expression quantification. These preliminary steps are essential prerequisites that will enable us to characterize the cellular heterogeneity and transcriptional diversity across different experimental conditions to identify potential division of labor mechanisms.
-
+This chapter presents the findings of our single-cell RNA-seq analysis of *P. brassicacearum* R401. We first established data quality through preprocessing and quality control steps, then applied filtering strategies to ensure reliable cell identification and gene expression quantification.
 
 ## Preprocessing of the sequencing data
 
 ### Trimming and quality control of fastq files
 
-
-::: {#fig-adaptateur layout-ncol=2}
+::: {#fig-adaptateur layout-ncol="2"}
 ![before trimming](../figures/adaptateur_R1_BC76_bf_trimm.png){#fig-before}
 
 ![after trimming](../figures/adaptateur_R1_BC76_after_trimm.png){#fig-after}
@@ -19,10 +16,9 @@ Artifacts content of the sublibrary BC_0076 before and after trimming with Cutad
 
 *The adapter content analysis shows the presence of various sequencing artifacts in the raw data (example of BC_0076). In the before trimming plot (@fig-before), distinct patterns are visible: polyG stretches (pink), polyA tails (cyan), and Illumina adapter sequences (purple). After trimming (@fig-after), these artifacts are effectively removed, resulting in clean sequence data suitable for downstream analysis. The successful elimination of these technical artifacts demonstrates the effectiveness of the trimming pipeline in improving data quality.*
 
-
 | Sample Name | BC_0076 | BC_0077 | BC_0079 | BC_0080 | $Mean$/Total |
-|-------------|---------|---------|---------|---------|------------|
-| R1 length before trimming | 241bp | 241bp | 241bp | 241bp |$241bp$ |
+|------------|------------|------------|------------|------------|------------|
+| R1 length before trimming | 241bp | 241bp | 241bp | 241bp | $241bp$ |
 | R1 length after trimming | 127bp | 157bp | 152bp | 132bp | $142bp$ |
 | R1 number of sequences before trimming | 631.4M | 325.5M | 379.1M | 397.7M | **1733.7M** |
 | R1 number of sequences after trimming | 450.8M | 248.4M | 285.2M | 300.1M | **1284.5M** |
@@ -30,127 +26,60 @@ Artifacts content of the sublibrary BC_0076 before and after trimming with Cutad
 
 : Summary of sequence metrics before and after trimming of each sublibrary with Cutadapt and Fastp (R1 read length metrics) {#tbl-summary-trimming layout-ncol="1"}
 
-The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (@fig-adaptateur, @tbl-summary-trimming). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis.
-
 #### Trimming Efficiency and Data Retention
 
-The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (@tbl-summary-trimming). This reduction rate is within the expected range for single-cell RNA-seq data and indicates effective removal of low-quality sequences while preserving the majority of informative reads. The final dataset of 1.284 billion reads provides substantial sequencing depth for robust analysis.
+The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (@fig-adaptateur, @tbl-summary-trimming). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis. The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (@tbl-summary-trimming). This reduction rate is within the expected range for single-cell RNA-seq data and indicates effective removal of low-quality sequences while preserving the majority of informative reads.
 
-#### Sub-library Size Variations and Their Implications
+#### Sub-library Size Variations and Technical Considerations
 
-The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (@tbl-summary-trimming). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary (@tbl-summary-trimming).
-
-#### Quality Improvements and Technical Considerations
-
-The trimming process revealed interesting patterns across sublibraries. BC_0076 and BC_0080 showed the most pronounced reductions in R1 read length, which may indicate higher initial quality of these libraries requiring more aggressive trimming to remove artifacts while maintaining better overall data integrity.
+The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (@tbl-summary-trimming). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary.
 
 BC_0076 specifically showed earlier and more prominent polyG artifacts, likely due to reagent depletion during sequencing that led to increased G nucleotide incorporation errors. This phenomenon is common in NovaSeq sequencing runs where the largest libraries may experience reagent exhaustion, resulting in higher error rates and more artifacts that require removal during trimming. Despite these technical challenges, the trimming process successfully mitigated these artifacts, resulting in high-quality data suitable for downstream analysis.
-
-::: {.callout-tip}
-## Recommendations for Future Experiments
-
-The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.
-
-:::
-
-::: {.content-visible when-format="html"}
-
-#### MultiQC Report R1 Before Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R1 before trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R1 After Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R1 after trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R2 Before Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R2 before trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R2 After Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R2 after trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-:::
-
-
 
 ### Transcriptome Description after STARsolo processing
 
 Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo provided comprehensive quality metrics and mapping statistics.
 
-
-| Metric                                    | Count/Percentage |
-|-------------------------------------------|------------------|
-| **Total Reads Processed**                 | 1,284,475,633    |
-| **N_reads with valid barcodes**             | 1,099,327,755 (**85.58%**)     |
-| - Exact Barcode Match                     |-> 1,046,121,284 (**81.44%**)    |
-| - Single Mismatch Barcode                 |-> 53,206,471 (**4.14%**)       |
-| **Q30 Bases in RNA reads**                | 95.79%           |
-| **Q30 Bases in CB+UMI**                   | 95.51%           |
-| **Unique Gene Mapping**                   | 34,593,349 (2.69%)     |
-| **Unique + Multiple Gene Mapping**        | 971,519,404 (75.64%)   |
-| **Total Genes Detected**                  | 6,035 on the total of 6,249 genes (96.57%)           |
-| **Cell Barcodes Detected**                | 699,355          |
-| **N_umi**                   | 36,565,214       |
-| **Sequencing Saturation**                 | 0.97%            |
+| Metric | Count/Percentage |
+|--------------------------------------------------|----------------------|
+| **Total Reads Processed** | 1,284,475,633 |
+| **N_reads with valid barcodes** | 1,099,327,755 (**85.58%**) |
+| \- Exact Barcode Match | -\> 1,046,121,284 (**81.44%**) |
+| \- Single Mismatch Barcode | -\> 53,206,471 (**4.14%**) |
+| **Q30 Bases in RNA reads** | 95.79% |
+| **Q30 Bases in CB+UMI** | 95.51% |
+| **Unique Gene Mapping** | 34,593,349 (2.69%) |
+| **Unique + Multiple Gene Mapping** | 971,519,404 (75.64%) |
+| **Total Genes Detected** | 6,035 on the total of 6,249 genes (96.57%) |
+| **Cell Barcodes Detected** | 699,355 |
+| **N_umi** | 36,565,214 |
+| **Sequencing Saturation** | 0.97 |
 
 : Summary of metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of *P. brassicacearum R401* {#tbl-starsolo-comprehensive layout-ncol="1"}
 
-*Metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of *P. brassicacearum R401*.*
+*Metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of P. brassicacearum R401.*
 
-The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (@tbl-starsolo-comprehensive). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al. (2024) (@gaisser2024), indicating excellent library preparation and barcoding efficiency with no significant issues in the protocol optimization.
+#### Barcode Quality and Cell Identification
 
-Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples (Gaisser et al. (@gaisser2024)). This value is influenced by the species-specific characteristics and experimental conditions.
+The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (@tbl-starsolo-comprehensive). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al. (2024) @gaisser2024, indicating excellent library preparation and barcoding efficiency.
 
-A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (@fig-genome) annotated in the *P. brassicacearum R401* genome, with one gene being automatically ignored by STARsolo due to poor annotation.
+#### Gene Mapping and Detection
+
+Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples @gaisser2024. A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (@fig-genome) annotated in the *P. brassicacearum R401* genome.
+
+#### Sequencing Saturation and Coverage Assessment
 
 The sequencing saturation, calculated as:
 
-$$ Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97\% $$
+$$ Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97 $$
 
-  - Where:
-    - $N_{\text{umi}}$ = number of unique molecules detected, distinct combinations of Cell Barcode (CB) / UMI / gene
-    - $N_{\text{reads}}$ = total number of reads with valid CB/UMI/gene combinations
-  
+-   Where:
+    -   $N_{\text{umi}}$ = number of unique molecules detected, distinct combinations of Cell Barcode (CB) / UMI / gene
+    -   $N_{\text{reads}}$ = total number of reads with valid CB/UMI/gene combinations
 
-::: {.callout-warning}
-This very low saturation indicates that we have captured only a small fraction of the total unique molecules in the transcriptome. According to Gaisser et al. (2024) @gaisser2024, a sequencing saturation of <0.5 may indicate that more sequencing is required to capture all barcoded transcripts in the library, with a saturation value of >= 0.7 typically indicating sufficient coverage. Our saturation value of 0.97% falls well below these recommended thresholds, suggesting that **our current sequencing depth may not be sufficient to capture the full complexity of the transcriptome**. While the current sequencing depth of 1.284 billion reads provides substantial coverage, the low saturation indicates that we could potentially benefit from deeper sequencing to capture more unique transcripts and achieve better coverage of the transcriptional landscape.
+This high saturation value of 0.97 could indicate either excellent transcriptome coverage or technical artifacts. While a saturation of \>= 0.7 typically indicates sufficient coverage according to Gaisser et al. (2024) @gaisser2024, such high values may also result from technical issues including: (1) inefficient RNA capture leading to limited transcript diversity, (2) PCR amplification bias concentrating reads on few UMIs. The interpretation of this saturation value should be considered alongside other quality metrics such as UMIs per cell and genes detected to distinguish between biological reality and technical artifacts.
 
-:::
-::: {#fig-genome-transcriptome layout-ncol=2}
+::: {#fig-genome-transcriptome layout-ncol="2"}
 ![genome](../figures/genome_description.png){#fig-genome}
 
 ![transcriptome](../figures/transcriptome_description.png){#fig-transcriptome}
@@ -158,47 +87,50 @@ This very low saturation indicates that we have captured only a small fraction o
 Compositional analysis of *P. brassicacearum* R401 genome annotation and transcriptome distribution of different RNA types
 :::
 
-The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* sample. In the [annotated](https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/)  genome of *P. brassicacearum* R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes, 16 rRNA genes (0.3% of the genome) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2 % are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability @nishimura2025.
+#### Genome and Transcriptome Composition
 
-STARsolo detected 699,355 out of 820,800 possible barcode combinations. Given that our sublibrary was designed to target approximately 3,000 cells, the observed number of barcodes is within the expected range. The presence of additional barcodes likely represents contamination that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates. To identify genuine cells among the total barcode population, STARsolo employs a knee plot strategy (see supplementary data for associated results). As recommended in the literature (Gaisser et al. (2024) @gaisser2024), we chose to apply our own filtering criteria rather than using STARsolo's default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations. 
+The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* sample (@fig-genome-transcriptome). In the [annotated](https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/) genome of *P. brassicacearum* R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes (1.1% of total genes), 16 rRNA genes (0.3%) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2% are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability @nishimura2025.
 
-Despite the low sequencing depth indicated by the saturation value, we will assess whether the signal is sufficient for division of labor analysis. However, before proceeding with this assessment, it is necessary to filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.
+#### Cell Barcode Detection and Filtering Strategy
 
+STARsolo detected 699,355 out of 820,800 possible barcode combinations. Given that our sublibrary was designed to target approximately 3,000 cells, the observed number of barcodes is within the expected range. The presence of additional barcodes likely represents contamination that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates.
 
+To identify genuine cells among the total barcode population, STARsolo employs a knee plot strategy[@luecken2019]. As recommended in the literature (Gaisser et al. 2024 @gaisser2024), we chose to apply our own filtering criteria rather than using STARsolo's default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations.
 
-
-### Cell Filtering Strategy
-
-### Filtering of cells based on UMI counts
-
-#### Filtering minimum 100 UMI per Barcode Cell
+The high sequencing saturation value of 0.97 requires careful interpretation, as it could reflect either excellent transcriptome coverage or technical artifacts. Before proceeding with division of labor analysis, we will assess this value alongside other quality metrics and filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.
 
 
-::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
+## Cell quality filtering and dataset characterization {#sec-global-filtering}
 
-![Barplot of the number of UMI per cell before and after filtering](../figures/filter_100UMIs_barplot.png){#fig-barplot}
+Following the initial UMI-based filtering (see @sec-appendix-cell-filtering), which revealed clear differences between culture conditions with M9 medium (nutrient-limited) showing fewer retained barcodes compared to M9F (nutrient-rich), additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions.
 
-![Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs](../figures/violinplot_100UMIs.png){#fig-violin}
+The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (@fig-splitplot-barcodes-final). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (@fig-splitplot-barcodes-final). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.
 
-![Total of barcodes for each biological replicate after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
+The following visualizations also show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene, @fig-scatter_final.
 
-Filtering of cells with less than 100 UMI per cell
+
+::: {#fig-final_filtering layout="[[1], [1], [1], [1]]"}
+![Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering](../figures/mRNA__Genes_barplot.png){#fig-splitplot-barcodes-final}
+
+![Distribution of UMI counts for mRNA genes per cell across culture conditions after final filtering (with technical replicates indicated by specific colors)](../figures/mRNA_GenesUMIs_violin.png){#fig-filtered_mRNA_violin_UMI}
+
+![Distribution of mRNA gene numbers per cell across culture conditions after final filtering (with technical replicates indicated by specific colors)](../figures/mRNAGenesNumber_violin.png){#fig-filtered_mRNA_violin_gene}
+
+![Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset](../figures/scatter_final.png){#fig-scatter_final}
+
+Metrics of filtered cells across experimental conditions (Culture Medium × Biological Replicate × Sampling Time) in the single-cell RNA-seq experiment.
+
 :::
 
+M9F medium consistently showed higher values compared to M9 (@fig-scatter_final), with mean mRNA counts of 749 for M9F versus 372 for M9, and mean gene counts of 462 for M9F versus 270 for M9. 
 
+Biological replicate variability was particularly pronounced at T1 for both conditions and at T3 for M9 conditions @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene. Under nutrient-limited conditions (M9), cells showed markedly reduced transcriptional activity at T2 and T3 timepoints, with some replicates displaying very low UMI and gene counts, suggesting either reduced cellular activity or technical challenges in recovering stressed cells. The scatter plot (@fig-scatter_final) reveals a strong positive correlation between UMI counts and mRNA gene numbers, confirming the quality of the filtered dataset and the relationship between sequencing depth and gene detection.
 
-
-
-# Global Analysis 
-
-![]
-
-## Single-cell Analysis Results
+These results demonstrate that the filtering strategy effectively removed poor-quality barcodes to retain only potential "real cells" from each biological replicate that can be analyzed for downstream investigation.
 
 ### Gene Expression Patterns Across Cell Populations
 
 ::: {#fig-single-cell-analysis layout="[[1,1], [1,1]]"}
-
 ![Dot plot displaying gene expression patterns and percentage of cells expressing each gene](../figures/fig_sc/dotplot.png){#fig-dotplot}
 
 ![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
@@ -210,6 +142,6 @@ Filtering of cells with less than 100 UMI per cell
 Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in *P. brassicacearum* populations
 :::
 
-*The single-cell analysis reveals distinct gene expression patterns across different cell populations within the *P. brassicacearum* culture. The dot plot (@fig-dotplot) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (@fig-heatmap) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.*
+*The single-cell analysis reveals distinct gene expression patterns across different cell populations within the* P. brassicacearum\* culture. The dot plot (@fig-dotplot) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (@fig-heatmap) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.\*
 
-*The violin plots (@fig-violin-sc) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (@fig-gene-cluster) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the *P. brassicacearum* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.*
+*The violin plots (@fig-violin-sc) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (@fig-gene-cluster) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the* P. brassicacearum\* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.\*

@@ -75,6 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-aa42bd5397b87ae3001db572b235c885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -111,6 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather|Source Code Pro" rel="stylesheet">
 
 
+<link rel="stylesheet" href="../styles/custom.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -236,8 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-appendix-trimming-steps" id="toc-sec-appendix-trimming-steps" class="nav-link" data-scroll-target="#sec-appendix-trimming-steps"><span class="header-section-number">A.2</span> Trimming pipeline steps</a></li>
   <li><a href="#sec-appendix-starsolo" id="toc-sec-appendix-starsolo" class="nav-link" data-scroll-target="#sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</a></li>
   <li><a href="#sec-appendix-cell-filtering" id="toc-sec-appendix-cell-filtering" class="nav-link" data-scroll-target="#sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</a></li>
-  <li><a href="#sec-appendix-global-filtering" id="toc-sec-appendix-global-filtering" class="nav-link" data-scroll-target="#sec-appendix-global-filtering"><span class="header-section-number">A.5</span> Global filtering of high quality cells</a></li>
-  <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.6</span> Single-cell RNA-seq Analysis Statistics</a></li>
+  <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.5</span> Single-cell RNA-seq Analysis Statistics</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -583,7 +586,7 @@ Table&nbsp;A.2: STARsolo KneePant filtering results for comparison
 </section>
 <section id="sec-appendix-cell-filtering" class="level2" data-number="A.4">
 <h2 data-number="A.4" class="anchored" data-anchor-id="sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</h2>
-<p>To ensure data quality and remove technical artifacts while preserving biological variation, we implemented a multi-step filtering strategy. The first step involved filtering cells based on unique molecular identifier (UMI) counts.</p>
+<p>The first step involved filtering cells based on unique molecular identifier (UMI) counts with a minimum of 100 UMIs per cell.</p>
 <div id="fig-filter_100UMI" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -592,7 +595,7 @@ Table&nbsp;A.2: STARsolo KneePant filtering results for comparison
 <div id="fig-barplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-barplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/filter_100UMIs_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+<a href="../figures/filter_100UMIs_barplot.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;A.1&nbsp;(a): Proportion of cell barcodes before and after filtering at 100 UMIs threshold for M9 and M9F culture conditions"><img src="../figures/filter_100UMIs_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-barplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Proportion of cell barcodes before and after filtering at 100 UMIs threshold for M9 and M9F culture conditions
@@ -604,7 +607,7 @@ Table&nbsp;A.2: STARsolo KneePant filtering results for comparison
 <div id="fig-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/violinplot_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+<a href="../figures/violinplot_100UMIs.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;A.1&nbsp;(b): Distribution of UMI and gene counts per cell after filtering at 100 UMIs for M9 and M9F conditions"><img src="../figures/violinplot_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Distribution of UMI and gene counts per cell after filtering at 100 UMIs for M9 and M9F conditions
@@ -618,7 +621,7 @@ Table&nbsp;A.2: STARsolo KneePant filtering results for comparison
 <div id="fig-splitplot-barcodes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/splitplot_barcodes_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI">
+<a href="../figures/splitplot_barcodes_100UMIs.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;A.1&nbsp;(c): Total number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after filtering at 100 UMIs"><img src="../figures/splitplot_barcodes_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Total number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after filtering at 100 UMIs
@@ -635,87 +638,16 @@ Figure&nbsp;A.1: Filtering of low-quality cell barcodes with fewer than 100 UMIs
 </div>
 <p><em>The initial filtering step removed cell barcodes with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.</em></p>
 </section>
-<section id="sec-appendix-global-filtering" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-global-filtering"><span class="header-section-number">A.5</span> Global filtering of high quality cells</h2>
-<p>Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and transcript type filtering. The final dataset contained approximately 3,000 high-quality cells suitable for downstream analysis.</p>
-<p>After transcript type filtering, only mRNA genes were retained for analysis, excluding ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species. Additionally, genes expressed in fewer than 5 cells across the entire dataset were removed to eliminate low-quality or spurious gene detection events. The following visualizations show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell.</p>
-<div id="fig-final_filtering" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-final_filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-splitplot-barcodes" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNA__Genes_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNA_GenesUMIs_violin.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Distribution of UMI counts for mRNA genes per cell across culture conditions after final filtering
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-filtered_mRNA_violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/mRNAGenesNumber_violin.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-filtered_mRNA_violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Distribution of mRNA gene numbers per cell across culture conditions after final filtering
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-scatter_final" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/scatter_final.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(d) Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final_filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.2: Final filtering of high quality cells across all biological replicates in the single-cell RNA-seq experiment.
-</figcaption>
-</figure>
-</div>
-<p><em>Final filtering results demonstrate the successful removal of low-efficiency technical replicates, resulting in a more uniform distribution (no longer bimodal) with approximately 160 cells per condition. Both mRNA genes and UMI counts for mRNA genes show higher values for M9F culture medium compared to M9, reflecting the nutrient-rich conditions. Importantly, biological replicate variability is high at T1 for both culture conditions (M9 and M9F), and also at T3 for M9 conditions, with M9 replicates (stress conditions with limited iron) showing very low counts or gene numbers for T2 and T3 timepoints, suggesting reduced transcriptional activity under nutrient-limited conditions.</em></p>
-</section>
-<section id="sec-appendix-scrna-stats" class="level2" data-number="A.6">
-<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-scrna-stats"><span class="header-section-number">A.6</span> Single-cell RNA-seq Analysis Statistics</h2>
+<section id="sec-appendix-scrna-stats" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-scrna-stats"><span class="header-section-number">A.5</span> Single-cell RNA-seq Analysis Statistics</h2>
 <p>The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of <em>P. brassicacearum</em>.</p>
 <div id="fig-tab-scrna" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/fig_sc/tab.png" class="img-fluid figure-img">
+<a href="../figures/fig_sc/tab.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;A.2: Tabular representation of gene expression statistics across cell populations"><img src="../figures/fig_sc/tab.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.3: Tabular representation of gene expression statistics across cell populations
+Figure&nbsp;A.2: Tabular representation of gene expression statistics across cell populations
 </figcaption>
 </figure>
 </div>
@@ -1155,8 +1087,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/A-Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+</body></html>

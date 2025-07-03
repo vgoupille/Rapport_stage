@@ -266,10 +266,7 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#preprocessing-of-the-sequencing-data" id="toc-preprocessing-of-the-sequencing-data" class="nav-link active" data-scroll-target="#preprocessing-of-the-sequencing-data"><span class="header-section-number">3.1</span> Preprocessing of the sequencing data</a></li>
-  <li><a href="#global-analysis" id="toc-global-analysis" class="nav-link" data-scroll-target="#global-analysis"><span class="header-section-number">4</span> Global Analysis</a>
-  <ul class="collapse">
-  <li><a href="#single-cell-analysis-results" id="toc-single-cell-analysis-results" class="nav-link" data-scroll-target="#single-cell-analysis-results"><span class="header-section-number">4.1</span> Single-cell Analysis Results</a></li>
-  </ul></li>
+  <li><a href="#sec-global-filtering" id="toc-sec-global-filtering" class="nav-link" data-scroll-target="#sec-global-filtering"><span class="header-section-number">3.2</span> Cell quality filtering and dataset characterization</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/03-Results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -295,7 +292,7 @@ window.Quarto = {
 </header>
 
 
-<p>This chapter presents the findings of our single-cell RNA-seq analysis of <em>P. brassicacearum</em> R401, focusing on the division of labor within bacterial populations. To investigate division of labor patterns, we first established robust data quality through comprehensive preprocessing and quality control steps. We then applied appropriate filtering strategies to ensure reliable cell identification and gene expression quantification. These preliminary steps are essential prerequisites that will enable us to characterize the cellular heterogeneity and transcriptional diversity across different experimental conditions to identify potential division of labor mechanisms.</p>
+<p>This chapter presents the findings of our single-cell RNA-seq analysis of <em>P. brassicacearum</em> R401. We first established data quality through preprocessing and quality control steps, then applied filtering strategies to ensure reliable cell identification and gene expression quantification.</p>
 <section id="preprocessing-of-the-sequencing-data" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="preprocessing-of-the-sequencing-data"><span class="header-section-number">3.1</span> Preprocessing of the sequencing data</h2>
 <section id="trimming-and-quality-control-of-fastq-files" class="level3">
@@ -346,12 +343,12 @@ Table&nbsp;3.1: Summary of sequence metrics before and after trimming of each su
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 19%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -411,72 +408,14 @@ Table&nbsp;3.1: Summary of sequence metrics before and after trimming of each su
 </div>
 </figure>
 </div>
-<p>The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (<a href="#fig-adaptateur" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, <a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis.</p>
 <section id="trimming-efficiency-and-data-retention" class="level4">
 <h4 class="anchored" data-anchor-id="trimming-efficiency-and-data-retention">Trimming Efficiency and Data Retention</h4>
-<p>The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). This reduction rate is within the expected range for single-cell RNA-seq data and indicates effective removal of low-quality sequences while preserving the majority of informative reads. The final dataset of 1.284 billion reads provides substantial sequencing depth for robust analysis.</p>
+<p>The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (<a href="#fig-adaptateur" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, <a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis. The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). This reduction rate is within the expected range for single-cell RNA-seq data and indicates effective removal of low-quality sequences while preserving the majority of informative reads.</p>
 </section>
-<section id="sub-library-size-variations-and-their-implications" class="level4">
-<h4 class="anchored" data-anchor-id="sub-library-size-variations-and-their-implications">Sub-library Size Variations and Their Implications</h4>
-<p>The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>).</p>
-</section>
-<section id="quality-improvements-and-technical-considerations" class="level4">
-<h4 class="anchored" data-anchor-id="quality-improvements-and-technical-considerations">Quality Improvements and Technical Considerations</h4>
-<p>The trimming process revealed interesting patterns across sublibraries. BC_0076 and BC_0080 showed the most pronounced reductions in R1 read length, which may indicate higher initial quality of these libraries requiring more aggressive trimming to remove artifacts while maintaining better overall data integrity.</p>
+<section id="sub-library-size-variations-and-technical-considerations" class="level4">
+<h4 class="anchored" data-anchor-id="sub-library-size-variations-and-technical-considerations">Sub-library Size Variations and Technical Considerations</h4>
+<p>The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (<a href="#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary.</p>
 <p>BC_0076 specifically showed earlier and more prominent polyG artifacts, likely due to reagent depletion during sequencing that led to increased G nucleotide incorporation errors. This phenomenon is common in NovaSeq sequencing runs where the largest libraries may experience reagent exhaustion, resulting in higher error rates and more artifacts that require removal during trimming. Despite these technical challenges, the trimming process successfully mitigated these artifacts, resulting in high-quality data suitable for downstream analysis.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Recommendations for Future Experiments
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.</p>
-</div>
-</div>
-</section>
-<section id="multiqc-report-r1-before-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r1-before-trimming">MultiQC Report R1 Before Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R1 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
-<section id="multiqc-report-r1-after-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r1-after-trimming">MultiQC Report R1 After Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R1 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
-<section id="multiqc-report-r2-before-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r2-before-trimming">MultiQC Report R2 Before Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R2 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
-<section id="multiqc-report-r2-after-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r2-after-trimming">MultiQC Report R2 After Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R2 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
 </section>
 </section>
 <section id="transcriptome-description-after-starsolo-processing" class="level3">
@@ -492,8 +431,8 @@ Table&nbsp;3.2: Summary of metrics obtained with STARsolo after barcode-UMI read
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 70%">
-<col style="width: 29%">
+<col style="width: 69%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -548,7 +487,7 @@ Table&nbsp;3.2: Summary of metrics obtained with STARsolo after barcode-UMI read
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Sequencing Saturation</strong></td>
-<td style="text-align: left;">0.97%</td>
+<td style="text-align: left;">0.97</td>
 </tr>
 </tbody>
 </table>
@@ -557,12 +496,19 @@ Table&nbsp;3.2: Summary of metrics obtained with STARsolo after barcode-UMI read
 </div>
 </figure>
 </div>
-<p><em>Metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of </em>P. brassicacearum R401<em>.</em></p>
-<p>The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (<a href="#tbl-starsolo-comprehensive" class="quarto-xref">Table&nbsp;<span>3.2</span></a>). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al.&nbsp;(2024) (<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>), indicating excellent library preparation and barcoding efficiency with no significant issues in the protocol optimization.</p>
-<p>Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples (Gaisser et al.&nbsp;(<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>)). This value is influenced by the species-specific characteristics and experimental conditions.</p>
-<p>A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (<a href="#fig-genome" class="quarto-xref">Figure&nbsp;<span>3.2 (a)</span></a>) annotated in the <em>P. brassicacearum R401</em> genome, with one gene being automatically ignored by STARsolo due to poor annotation.</p>
+<p><em>Metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of P. brassicacearum R401.</em></p>
+<section id="barcode-quality-and-cell-identification" class="level4">
+<h4 class="anchored" data-anchor-id="barcode-quality-and-cell-identification">Barcode Quality and Cell Identification</h4>
+<p>The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (<a href="#tbl-starsolo-comprehensive" class="quarto-xref">Table&nbsp;<span>3.2</span></a>). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al.&nbsp;(2024)<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>, indicating excellent library preparation and barcoding efficiency.</p>
+</section>
+<section id="gene-mapping-and-detection" class="level4">
+<h4 class="anchored" data-anchor-id="gene-mapping-and-detection">Gene Mapping and Detection</h4>
+<p>Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>. A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (<a href="#fig-genome" class="quarto-xref">Figure&nbsp;<span>3.2 (a)</span></a>) annotated in the <em>P. brassicacearum R401</em> genome.</p>
+</section>
+<section id="sequencing-saturation-and-coverage-assessment" class="level4">
+<h4 class="anchored" data-anchor-id="sequencing-saturation-and-coverage-assessment">Sequencing Saturation and Coverage Assessment</h4>
 <p>The sequencing saturation, calculated as:</p>
-<p><span class="math display"> Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97\% </span></p>
+<p><span class="math display"> Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97 </span></p>
 <ul>
 <li>Where:
 <ul>
@@ -570,19 +516,7 @@ Table&nbsp;3.2: Summary of metrics obtained with STARsolo after barcode-UMI read
 <li><span class="math inline">N_{\text{reads}}</span> = total number of reads with valid CB/UMI/gene combinations</li>
 </ul></li>
 </ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This very low saturation indicates that we have captured only a small fraction of the total unique molecules in the transcriptome. According to Gaisser et al.&nbsp;(2024)<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>, a sequencing saturation of &lt;0.5 may indicate that more sequencing is required to capture all barcoded transcripts in the library, with a saturation value of &gt;= 0.7 typically indicating sufficient coverage. Our saturation value of 0.97% falls well below these recommended thresholds, suggesting that <strong>our current sequencing depth may not be sufficient to capture the full complexity of the transcriptome</strong>. While the current sequencing depth of 1.284 billion reads provides substantial coverage, the low saturation indicates that we could potentially benefit from deeper sequencing to capture more unique transcripts and achieve better coverage of the transcriptional landscape.</p>
-</div>
-</div>
+<p>This high saturation value of 0.97 could indicate either excellent transcriptome coverage or technical artifacts. While a saturation of &gt;= 0.7 typically indicates sufficient coverage according to Gaisser et al.&nbsp;(2024)<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>, such high values may also result from technical issues including: (1) inefficient RNA capture leading to limited transcript diversity, (2) PCR amplification bias concentrating reads on few UMIs. The interpretation of this saturation value should be considered alongside other quality metrics such as UMIs per cell and genes detected to distinguish between biological reality and technical artifacts.</p>
 <div id="fig-genome-transcriptome" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -618,74 +552,92 @@ Figure&nbsp;3.2: Compositional analysis of <em>P. brassicacearum</em> R401 genom
 </figcaption>
 </figure>
 </div>
-<p>The genome and transcriptome composition analysis reveals the distribution of different RNA types in our <em>P. brassicacearum</em> sample. In the <a href="https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/">annotated</a> genome of <em>P. brassicacearum</em> R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes, 16 rRNA genes (0.3% of the genome) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2 % are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">2</a></sup></span>.</p>
-<p>STARsolo detected 699,355 out of 820,800 possible barcode combinations. Given that our sublibrary was designed to target approximately 3,000 cells, the observed number of barcodes is within the expected range. The presence of additional barcodes likely represents contamination that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates. To identify genuine cells among the total barcode population, STARsolo employs a knee plot strategy (see supplementary data for associated results). As recommended in the literature (Gaisser et al.&nbsp;(2024)<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>), we chose to apply our own filtering criteria rather than using STARsolo’s default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations.</p>
-<p>Despite the low sequencing depth indicated by the saturation value, we will assess whether the signal is sufficient for division of labor analysis. However, before proceeding with this assessment, it is necessary to filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.</p>
 </section>
-<section id="cell-filtering-strategy" class="level3">
-<h3 class="anchored" data-anchor-id="cell-filtering-strategy">Cell Filtering Strategy</h3>
+<section id="genome-and-transcriptome-composition" class="level4">
+<h4 class="anchored" data-anchor-id="genome-and-transcriptome-composition">Genome and Transcriptome Composition</h4>
+<p>The genome and transcriptome composition analysis reveals the distribution of different RNA types in our <em>P. brassicacearum</em> sample (<a href="#fig-genome-transcriptome" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>). In the <a href="https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/">annotated</a> genome of <em>P. brassicacearum</em> R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes (1.1% of total genes), 16 rRNA genes (0.3%) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2% are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">2</a></sup></span>.</p>
 </section>
-<section id="filtering-of-cells-based-on-umi-counts" class="level3">
-<h3 class="anchored" data-anchor-id="filtering-of-cells-based-on-umi-counts">Filtering of cells based on UMI counts</h3>
-<section id="filtering-minimum-100-umi-per-barcode-cell" class="level4">
-<h4 class="anchored" data-anchor-id="filtering-minimum-100-umi-per-barcode-cell">Filtering minimum 100 UMI per Barcode Cell</h4>
-<div id="fig-filter_100UMI" class="quarto-layout-panel">
+<section id="cell-barcode-detection-and-filtering-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="cell-barcode-detection-and-filtering-strategy">Cell Barcode Detection and Filtering Strategy</h4>
+<p>STARsolo detected 699,355 out of 820,800 possible barcode combinations. Given that our sublibrary was designed to target approximately 3,000 cells, the observed number of barcodes is within the expected range. The presence of additional barcodes likely represents contamination that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates.</p>
+<p>To identify genuine cells among the total barcode population, STARsolo employs a knee plot strategy<span class="citation" data-cites="luecken2019"><sup><a href="06-References.html#ref-luecken2019" role="doc-biblioref">3</a></sup></span>. As recommended in the literature (Gaisser et al.&nbsp;2024<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>), we chose to apply our own filtering criteria rather than using STARsolo’s default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations.</p>
+<p>The high sequencing saturation value of 0.97 requires careful interpretation, as it could reflect either excellent transcriptome coverage or technical artifacts. Before proceeding with division of labor analysis, we will assess this value alongside other quality metrics and filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.</p>
+</section>
+</section>
+</section>
+<section id="sec-global-filtering" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-global-filtering"><span class="header-section-number">3.2</span> Cell quality filtering and dataset characterization</h2>
+<p>Following the initial UMI-based filtering (see <a href="A-Appendix.html#sec-appendix-cell-filtering" class="quarto-xref"><span>Section A.4</span></a>), which revealed clear differences between culture conditions with M9 medium (nutrient-limited) showing fewer retained barcodes compared to M9F (nutrient-rich), additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions.</p>
+<p>The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (<a href="#fig-splitplot-barcodes-final" class="quarto-xref">Figure&nbsp;<span>3.3 (a)</span></a>). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (<a href="#fig-splitplot-barcodes-final" class="quarto-xref">Figure&nbsp;<span>3.3 (a)</span></a>). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.</p>
+<p>The following visualizations also show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell <a href="#fig-filtered_mRNA_violin_UMI" class="quarto-xref">Figure&nbsp;<span>3.3 (b)</span></a>, <a href="#fig-filtered_mRNA_violin_gene" class="quarto-xref">Figure&nbsp;<span>3.3 (c)</span></a>, <a href="#fig-scatter_final" class="quarto-xref">Figure&nbsp;<span>3.3 (d)</span></a>.</p>
+<div id="fig-final_filtering" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-final_filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-filter_100UMI" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-barplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-splitplot-barcodes-final" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-barplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/filter_100UMIs_barplot.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;3.3&nbsp;(a): Barplot of the number of UMI per cell before and after filtering"><img src="../figures/filter_100UMIs_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
+<div aria-describedby="fig-splitplot-barcodes-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/mRNA__Genes_barplot.png" class="lightbox" data-gallery="fig-final_filtering" title="Figure&nbsp;3.3&nbsp;(a): Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering"><img src="../figures/mRNA__Genes_barplot.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-barplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Barplot of the number of UMI per cell before and after filtering
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-filter_100UMI" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/violinplot_100UMIs.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;3.3&nbsp;(b): Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs"><img src="../figures/violinplot_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Violin plot of the number of UMI and genes per Barcode Cell after a filtering at 100 UMIs
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-filter_100UMI" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-splitplot-barcodes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-filtered_mRNA_violin_UMI" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/splitplot_barcodes_100UMIs.png" class="lightbox" data-gallery="fig-filter_100UMI" title="Figure&nbsp;3.3&nbsp;(c): Total of barcodes for each biological replicate after filtering at 100 UMIs"><img src="../figures/splitplot_barcodes_100UMIs.png" class="img-fluid figure-img" data-ref-parent="fig-filter_100UMI"></a>
+<div aria-describedby="fig-filtered_mRNA_violin_UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/mRNA_GenesUMIs_violin.png" class="lightbox" data-gallery="fig-final_filtering" title="Figure&nbsp;3.3&nbsp;(b): Distribution of UMI counts for mRNA genes per cell across culture conditions after final filtering (with technical replicates indicated by specific colors)"><img src="../figures/mRNA_GenesUMIs_violin.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-splitplot-barcodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Total of barcodes for each biological replicate after filtering at 100 UMIs
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-filtered_mRNA_violin_UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Distribution of UMI counts for mRNA genes per cell across culture conditions after final filtering (with technical replicates indicated by specific colors)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-filtered_mRNA_violin_gene" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-filtered_mRNA_violin_gene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/mRNAGenesNumber_violin.png" class="lightbox" data-gallery="fig-final_filtering" title="Figure&nbsp;3.3&nbsp;(c): Distribution of mRNA gene numbers per cell across culture conditions after final filtering (with technical replicates indicated by specific colors)"><img src="../figures/mRNAGenesNumber_violin.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-filtered_mRNA_violin_gene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Distribution of mRNA gene numbers per cell across culture conditions after final filtering (with technical replicates indicated by specific colors)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-final_filtering" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-scatter_final" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/scatter_final.png" class="lightbox" data-gallery="fig-final_filtering" title="Figure&nbsp;3.3&nbsp;(d): Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset"><img src="../figures/scatter_final.png" class="img-fluid figure-img" data-ref-parent="fig-final_filtering"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scatter_final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filter_100UMI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final_filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Metrics of filtered cells across experimental conditions (Culture Medium × Biological Replicate × Sampling Time) in the single-cell RNA-seq experiment.
 </figcaption>
 </figure>
 </div>
-</section>
-</section>
-</section>
-<section id="global-analysis" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Global Analysis</h1>
-<p>![]</p>
-<section id="single-cell-analysis-results" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="single-cell-analysis-results"><span class="header-section-number">4.1</span> Single-cell Analysis Results</h2>
+<p>M9F medium consistently showed higher values compared to M9 (<a href="#fig-scatter_final" class="quarto-xref">Figure&nbsp;<span>3.3 (d)</span></a>), with mean mRNA counts of 749 for M9F versus 372 for M9, and mean gene counts of 462 for M9F versus 270 for M9.</p>
+<p>Biological replicate variability was particularly pronounced at T1 for both conditions and at T3 for M9 conditions <a href="#fig-filtered_mRNA_violin_UMI" class="quarto-xref">Figure&nbsp;<span>3.3 (b)</span></a>, <a href="#fig-filtered_mRNA_violin_gene" class="quarto-xref">Figure&nbsp;<span>3.3 (c)</span></a>. Under nutrient-limited conditions (M9), cells showed markedly reduced transcriptional activity at T2 and T3 timepoints, with some replicates displaying very low UMI and gene counts, suggesting either reduced cellular activity or technical challenges in recovering stressed cells. The scatter plot (<a href="#fig-scatter_final" class="quarto-xref">Figure&nbsp;<span>3.3 (d)</span></a>) reveals a strong positive correlation between UMI counts and mRNA gene numbers, confirming the quality of the filtered dataset and the relationship between sequencing depth and gene detection.</p>
+<p>These results demonstrate that the filtering strategy effectively removed poor-quality barcodes to retain only potential “real cells” from each biological replicate that can be analyzed for downstream investigation.</p>
 <section id="gene-expression-patterns-across-cell-populations" class="level3">
 <h3 class="anchored" data-anchor-id="gene-expression-patterns-across-cell-populations">Gene Expression Patterns Across Cell Populations</h3>
 <div id="fig-single-cell-analysis" class="quarto-layout-panel">
@@ -696,7 +648,7 @@ Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
 <div id="fig-dotplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/dotplot.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(a): Dot plot displaying gene expression patterns and percentage of cells expressing each gene"><img src="../figures/fig_sc/dotplot.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
+<a href="../figures/fig_sc/dotplot.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.4&nbsp;(a): Dot plot displaying gene expression patterns and percentage of cells expressing each gene"><img src="../figures/fig_sc/dotplot.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-dotplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Dot plot displaying gene expression patterns and percentage of cells expressing each gene
@@ -708,7 +660,7 @@ Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
 <div id="fig-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(b): Heatmap visualization of gene expression patterns across different cell clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
+<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.4&nbsp;(b): Heatmap visualization of gene expression patterns across different cell clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Heatmap visualization of gene expression patterns across different cell clusters
@@ -722,7 +674,7 @@ Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
 <div id="fig-violin-sc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(c): Violin plot showing gene expression distribution across cell populations"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
+<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.4&nbsp;(c): Violin plot showing gene expression distribution across cell populations"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Violin plot showing gene expression distribution across cell populations
@@ -734,7 +686,7 @@ Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
 <div id="fig-gene-cluster" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-gene-cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/gene_cluster.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;4.1&nbsp;(d): Gene clustering analysis showing relationships between differentially expressed genes"><img src="../figures/fig_sc/gene_cluster.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
+<a href="../figures/fig_sc/gene_cluster.png" class="lightbox" data-gallery="fig-single-cell-analysis" title="Figure&nbsp;3.4&nbsp;(d): Gene clustering analysis showing relationships between differentially expressed genes"><img src="../figures/fig_sc/gene_cluster.png" class="img-fluid figure-img" data-ref-parent="fig-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-gene-cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) Gene clustering analysis showing relationships between differentially expressed genes
@@ -745,12 +697,12 @@ Figure&nbsp;3.3: Filtering of cells with less than 100 UMI per cell
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in <em>P. brassicacearum</em> populations
+Figure&nbsp;3.4: Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in <em>P. brassicacearum</em> populations
 </figcaption>
 </figure>
 </div>
-<p><em>The single-cell analysis reveals distinct gene expression patterns across different cell populations within the </em>P. brassicacearum* culture. The dot plot (<a href="#fig-dotplot" class="quarto-xref">Figure&nbsp;<span>4.1 (a)</span></a>) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (<a href="#fig-heatmap" class="quarto-xref">Figure&nbsp;<span>4.1 (b)</span></a>) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.*</p>
-<p><em>The violin plots (<a href="#fig-violin-sc" class="quarto-xref">Figure&nbsp;<span>4.1 (c)</span></a>) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (<a href="#fig-gene-cluster" class="quarto-xref">Figure&nbsp;<span>4.1 (d)</span></a>) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the </em>P. brassicacearum* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.*</p>
+<p><em>The single-cell analysis reveals distinct gene expression patterns across different cell populations within the</em> P. brassicacearum* culture. The dot plot (<a href="#fig-dotplot" class="quarto-xref">Figure&nbsp;<span>3.4 (a)</span></a>) shows both the average expression level and the percentage of cells expressing each gene, providing insights into gene expression prevalence across the population. The heatmap visualization (<a href="#fig-heatmap" class="quarto-xref">Figure&nbsp;<span>3.4 (b)</span></a>) displays gene expression patterns across different cell clusters, revealing potential subpopulations with distinct transcriptional profiles.*</p>
+<p><em>The violin plots (<a href="#fig-violin-sc" class="quarto-xref">Figure&nbsp;<span>3.4 (c)</span></a>) demonstrate the distribution of gene expression levels, highlighting cellular heterogeneity in transcriptional activity. Gene clustering analysis (<a href="#fig-gene-cluster" class="quarto-xref">Figure&nbsp;<span>3.4 (d)</span></a>) identifies groups of genes with similar expression patterns, suggesting coordinated transcriptional regulation. These results demonstrate significant cellular heterogeneity in gene expression within the</em> P. brassicacearum* population, providing evidence for potential division of labor mechanisms where different cells may specialize in different functions based on their transcriptional profiles.*</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -760,8 +712,10 @@ Figure&nbsp;4.1: Single-cell RNA-seq analysis results showing gene expression pa
 <div id="ref-nishimura2025" class="csl-entry" role="listitem">
 <div class="csl-left-margin">2. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
 </div>
+<div id="ref-luecken2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Luecken, M. D. &amp; Theis, F. J. <a href="https://doi.org/10.15252/msb.20188746">Current best practices in single<span>-</span>cell RNA<span>-</span>seq analysis: A tutorial</a>. <em>Molecular Systems Biology</em> <strong>15</strong>, e8746 (2019).</div>
 </div>
-</section>
+</div>
 </section>
 </section>
 

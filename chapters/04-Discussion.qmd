@@ -1,5 +1,31 @@
 # Discussion
 
+
+cela serait bien d'estimer la saturation de chauqe condition
+cela sera serait bien aussi de voir 
+
+
+
+
+
+
+
+
+
+
+
+**Summary of preprocessing and filtering results:** The preprocessing pipeline successfully removed sequencing artifacts and improved data quality, with an average 25.4% reduction in read counts across sublibraries. STARsolo analysis revealed excellent barcode quality (85.58% valid barcodes) and high sequencing quality (Q30 > 95%), though the high sequencing saturation (0.97) requires careful interpretation due to potential technical artifacts. The filtering strategy effectively identified genuine cells while preserving biological variation, resulting in approximately 3,000 high-quality cells with clear differences between culture conditions. M9F medium consistently showed higher transcriptional activity compared to M9, with reduced expression under nutrient-limited conditions, particularly at later timepoints.
+
+
+
+::: {.callout-tip}
+## Recommendations for Future Experiments
+
+The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.
+:::
+
+
+
 We applied microSPLiT to P. brassicacearum growing in two different conditions in rich medium (M9F) and in minimal medium (M9).
 
 

@@ -146,6 +146,59 @@ The following steps were performed sequentially for read trimming, as implemente
        --verbose
    ```
 
+
+::: {.content-visible when-format="html"}
+#### MultiQC Report R1 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R1 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+:::
+
+
+
 ##  STARsolo supplementary information {#sec-appendix-starsolo}
 
 ### Computing environment
@@ -261,7 +314,7 @@ The KneePant method applies a knee plot analysis to identify the inflection poin
 ## Initial filtering with minimum 100 UMI per cell{#sec-appendix-cell-filtering}
 
 
-To ensure data quality and remove technical artifacts while preserving biological variation, we implemented a multi-step filtering strategy. The first step involved filtering cells based on unique molecular identifier (UMI) counts.
+The first step involved filtering cells based on unique molecular identifier (UMI) counts with a minimum of 100 UMIs per cell.
 
 ::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
 
@@ -276,26 +329,6 @@ Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across 
 
 *The initial filtering step removed cell barcodes with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.*
 
-## Global filtering of high quality cells {#sec-appendix-global-filtering}
-
-Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and transcript type filtering. The final dataset contained approximately 3,000 high-quality cells suitable for downstream analysis.
-
-After transcript type filtering, only mRNA genes were retained for analysis, excluding ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species. Additionally, genes expressed in fewer than 5 cells across the entire dataset were removed to eliminate low-quality or spurious gene detection events. The following visualizations show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell.
-
-::: {#fig-final_filtering layout="[[1], [1], [1], [1]]"}
-![Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering](../figures/mRNA__Genes_barplot.png){#fig-splitplot-barcodes}
-
-![Distribution of UMI counts for mRNA genes per cell across culture conditions after final filtering](../figures/mRNA_GenesUMIs_violin.png){#fig-filtered_mRNA_violin}
-
-![Distribution of mRNA gene numbers per cell across culture conditions after final filtering](../figures/mRNAGenesNumber_violin.png){#fig-filtered_mRNA_violin}
-
-![Relationship between UMI counts and mRNA gene counts per cell in the final filtered dataset](../figures/scatter_final.png){#fig-scatter_final}
-
-Final filtering of high quality cells across all biological replicates in the single-cell RNA-seq experiment.
-
-:::
-
-*Final filtering results demonstrate the successful removal of low-efficiency technical replicates, resulting in a more uniform distribution (no longer bimodal) with approximately 160 cells per condition. Both mRNA genes and UMI counts for mRNA genes show higher values for M9F culture medium compared to M9, reflecting the nutrient-rich conditions. Importantly, biological replicate variability is high at T1 for both culture conditions (M9 and M9F), and also at T3 for M9 conditions, with M9 replicates (stress conditions with limited iron) showing very low counts or gene numbers for T2 and T3 timepoints, suggesting reduced transcriptional activity under nutrient-limited conditions.*
 
 
 
