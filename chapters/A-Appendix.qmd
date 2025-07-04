@@ -370,10 +370,9 @@ Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow
 
 
 
+![Differential expression analysis between clusters](../figures/fig_sc/tab.png){#fig-diff-exp}
 
 
-
-![Dot plot displaying gene expression patterns and percentage of cells expressing each gene](../figures/fig_sc/dotplot.png){#fig-dotplot}
 
 ![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
 

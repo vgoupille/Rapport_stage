@@ -1,0 +1,105 @@
+
+#### Sub-library Size Variations and Technical Considerations
+
+The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (@tbl-summary-trimming). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary.
+
+BC_0076 specifically showed earlier and more prominent polyG artifacts, likely due to reagent depletion during sequencing that led to increased G nucleotide incorporation errors. This phenomenon is common in NovaSeq sequencing runs where the largest libraries may experience reagent exhaustion, resulting in higher error rates and more artifacts that require removal during trimming. Despite these technical challenges, the trimming process successfully mitigated these artifacts, resulting in high-quality data suitable for downstream analysis.
+
+
+
+
+
+#### Barcode Quality and Cell Identification
+
+The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (@tbl-starsolo-comprehensive). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al. (2024) @gaisser2024, indicating excellent library preparation and barcoding efficiency.
+
+#### Gene Mapping and Detection
+
+Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples @gaisser2024. A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (@fig-genome) annotated in the *P. brassicacearum R401* genome.
+
+#### Sequencing Saturation and Coverage Assessment
+
+The sequencing saturation, calculated as:
+
+$$ Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97 $$
+
+-   Where:
+    -   $N_{\text{umi}}$ = number of unique molecules detected, distinct combinations of Cell Barcode (CB) / UMI / gene
+    -   $N_{\text{reads}}$ = total number of reads with valid CB/UMI/gene combinations
+
+This high saturation value of 0.97 could indicate either excellent transcriptome coverage or technical artifacts. While a saturation of \>= 0.7 typically indicates sufficient coverage according to Gaisser et al. (2024) @gaisser2024, such high values may also result from technical issues including: (1) inefficient RNA capture leading to limited transcript diversity, (2) PCR amplification bias concentrating reads on few UMIs. The interpretation of this saturation value should be considered alongside other quality metrics such as UMIs per cell and genes detected to distinguish between biological reality and technical artifacts.
+
+
+
+The high sequencing saturation value of 0.97 requires careful interpretation, as it could reflect either excellent transcriptome coverage or technical artifacts. Before proceeding with division of labor analysis, we will assess this value alongside other quality metrics and filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.
+
+
+
+<!-- Additional genes contributing to PC1 variance included thiolase II 
+and HMG-CoA synthase, which play crucial roles in abiotic stress 
+response, particularly oxidative stress. These enzymes are involved in 
+isoprenoid biosynthesis via the mevalonate pathway, essential for 
+producing antioxidant compounds that protect bacterial cells against 
+oxidative damage. -->
+
+
+
+
+::: {.callout-warning}
+## Warning
+
+The filtering thresholds used in this study were chosen to fit our dataset, as each single-cell RNA-seq study typically defines its own filtering criteria. These choices may have implications for the interpretation of results, particularly regarding the representation of different cell states and the detection of rare cell populations. The potential biases introduced by these filtering strategies will be discussed in the Results and Discussion sections, as this is a common limitation across single-cell RNA-seq studies in the field.
+:::
+
+conservé la majorité des reads
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Interpretation of PCA Results and Temporal Dynamics
+
+The PCA analysis revealed that PC1 successfully distinguished between the two culture conditions (M9 and M9F), with M9 T2 and M9 T3 samples clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.
+
+### Biological Significance of Key Genes Contributing to PC1 Variance
+
+Among the genes contributing most to PC1 variance, porphobilinogen synthase was particularly noteworthy. This finding is especially relevant given our experimental design using iron-limited M9 medium. In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells [@choby2016]. The differential expression of porphobilinogen synthase between M9 and M9F conditions thus reflects the cellular adaptation to iron stress.
+
+The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake [@moeck1998; @fujita2019]. Together with porphobilinogen synthase, these genes form a coherent transcriptional response to iron limitation, explaining the clear separation of M9 conditions along PC1.
+
+### Biological Interpretation of Differentially Expressed Genes
+
+The differential expression analysis between clusters revealed several genes with distinct expression patterns that provide insights into the cellular response to iron limitation. Among these, RplA (30S ribosomal protein L1) showed lower expression in Group 0 compared to Group 1. RplA is constitutively expressed as it is essential for protein synthesis, with expression levels reflecting the cell's translational activity. Higher expression typically indicates active protein synthesis during rapid growth, while lower expression suggests reduced translational activity under stress conditions.
+
+Another notable gene was QLH64-28090 (phasin), which showed the opposite pattern with higher expression in Group 1 compared to Group 0. Phasins are multifunctional proteins associated with polyhydroxyalkanoate (PHA) granules that play crucial roles in stress response and energy metabolism [@mezzina2016]. They form an interface between the hydrophobic PHA granules and the hydrophilic cytoplasm, regulating both PHA accumulation and utilization. Under stress conditions, phasins can activate PHA depolymerization to release energy metabolites, increase PHA synthase activity, and participate in granule segregation. Additionally, some phasins exhibit chaperone-like properties, protecting cellular proteins against stress-induced denaturation and oxidative damage. The differential expression of this phasin gene between clusters suggests distinct metabolic adaptations to iron limitation, with cells potentially modulating their storage metabolism, stress response mechanisms, and protein protection strategies.
+
+### Implications for Division of Labor Mechanisms
+
+The analysis revealed significant heterogeneity within each cluster, with groups of cells showing distinct expression patterns for specific genes compared to the global cluster average. This heterogeneity is particularly evident in the violin plots presented in the appendix, which show variable distributions of gene expression within clusters. In the heatmap representing top significant differentially expressed genes, we can see that some genes are expressed at very high levels, particularly among the significant genes for cluster 1. This observation suggests the presence of specialized subpopulations within the broader transcriptional groups, potentially indicating fine-grained division of labor mechanisms at the cellular level.
+
+All three representative genes (RplA, QLH64-28090, and flagellin) showed variable expression between clusters. This global pattern reflects the overall transcriptional differences between stress conditions (M9 T2/T3) and control conditions (M9F and M9 T1). However, this coarse-grained clustering approach may mask important biological heterogeneity within each condition and timepoint.
+
+The current analysis provides a global representation of transcriptional differences between major experimental groups, but to address our original biological question about division of labor mechanisms, we need to examine finer-scale heterogeneity. This requires descending to the level of individual culture mediums, conditions, and biological replicates at each timepoint to identify potential subpopulations that could reveal specialized cellular functions and division of labor patterns within the *P. brassicacearum* population.

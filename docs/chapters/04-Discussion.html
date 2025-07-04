@@ -219,12 +219,10 @@ div.csl-indent {
     <h2 id="toc-title"><b>Sections</b></h2>
    
   <ul class="collapse">
-  <li><a href="#interpretation-of-key-findings" id="toc-interpretation-of-key-findings" class="nav-link active" data-scroll-target="#interpretation-of-key-findings"><span class="header-section-number">4.1</span> Interpretation of Key Findings</a></li>
-  <li><a href="#comparison-with-existing-literature" id="toc-comparison-with-existing-literature" class="nav-link" data-scroll-target="#comparison-with-existing-literature"><span class="header-section-number">4.2</span> Comparison with Existing Literature</a></li>
-  <li><a href="#methodological-strengths-and-limitations" id="toc-methodological-strengths-and-limitations" class="nav-link" data-scroll-target="#methodological-strengths-and-limitations"><span class="header-section-number">4.3</span> Methodological Strengths and Limitations</a></li>
-  <li><a href="#biological-implications" id="toc-biological-implications" class="nav-link" data-scroll-target="#biological-implications"><span class="header-section-number">4.4</span> Biological Implications</a></li>
-  <li><a href="#future-research-directions" id="toc-future-research-directions" class="nav-link" data-scroll-target="#future-research-directions"><span class="header-section-number">4.5</span> Future Research Directions</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.6</span> Conclusion</a></li>
+  <li><a href="#technical-validation-of-microsplit-methodology" id="toc-technical-validation-of-microsplit-methodology" class="nav-link active" data-scroll-target="#technical-validation-of-microsplit-methodology"><span class="header-section-number">4.1</span> Technical Validation of microSPLiT Methodology</a></li>
+  <li><a href="#transcriptomic-responses-to-iron-limitation" id="toc-transcriptomic-responses-to-iron-limitation" class="nav-link" data-scroll-target="#transcriptomic-responses-to-iron-limitation"><span class="header-section-number">4.2</span> Transcriptomic Responses to Iron Limitation</a></li>
+  <li><a href="#methodological-considerations-and-limitations" id="toc-methodological-considerations-and-limitations" class="nav-link" data-scroll-target="#methodological-considerations-and-limitations"><span class="header-section-number">4.3</span> Methodological Considerations and Limitations</a></li>
+  <li><a href="#future-directions-and-recommendations" id="toc-future-directions-and-recommendations" class="nav-link" data-scroll-target="#future-directions-and-recommendations"><span class="header-section-number">4.4</span> Future Directions and Recommendations</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/04-Discussion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://data.nasa.gov/"><i class="bi bi-link-45deg"></i>NASA Open Data</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
     </div>
@@ -250,163 +248,71 @@ div.csl-indent {
 </header>
 
 
-<ul>
-<li>rappel des obejectifs et questions de recherche</li>
-<li>rappel des principaux resultats obtenus</li>
-</ul>
-<p>Discussion plan</p>
-<ul>
-<li><p>rappel objectif (Check method, Dol in bacteria)</p></li>
-<li><p>Permis de voir courbes de croissance en conditions de stress ou pas (la prochaine fois utiliser des DO au même point) Ou faire une gamme préalable En stresss et non stress</p></li>
-<li><p>Séquençage, déséquilibre influence légèrement qualité mais ok (juste être plus vigilant la proechaine fois)</p></li>
-<li><p>trimming ok bien foncyonnne, reads de bonne qualité retirer adapteur (plus élabore que celui de kuchina)</p></li>
-<li><p>STARsolo bien aussi car le plus plus rapide, amélioration possible avec pipeline de qui recup barcode si mauvaise qualité, BARQC serait bien tester si décalage</p></li>
-<li><p>Mettre le nombre de reads qui passe chaque étape</p></li>
-<li><p>Comme mentionné dans article bacSc et de nishimurz pas de pipeline existe</p></li>
-<li><p>Filtrage est toujours subjectif chacun fais comme il veux en fonction de ce qu’il fait comme expérience microsplit. Dans les articles ne précise pas combien de cellules il vise dans chaque sous librairies dans à combien ils veulent Utiliser filtrage manuel des barcodes pour récupérer les meilleurs narcodes de chaque conditions (rep bio), Ici supposé que équilibre au départ</p></li>
-</ul>
-<p>On a vu un replica technique n’a pas marché (pipetage)</p>
-<p>On a vu beaucoup moins de reads de qualités on a vu grise variabiliye entre les replica bio et les DO Déjà mentionné dans kuchina Influence du stade physio, peut être modification pariétal, lyse de cellules en conditions de stress (donc grande perte cellulaire) pas passé les filtre ou contraire certaine cellules pourrait se mettre en dormance/ renforcement paroi et donc exprimer très peu de gènes et donc pas facilement, comme proposé dans kuchina besoin de faire test. Si c’est le cas alors peut être que l’on a éliminé des cellules d’intérêt non stressé …</p>
-<p>FACTEUR confondant pour le filtrage = &gt; difficulté associée pour le filtrage</p>
-<p>Après conservation des gènes RNAm Dans la matrice gène on a très peut de gènes exprimés réellement (beaucoup de gènes avec 0 ou seulement 1 courts Même après normalitasyik et scale impossible de voir du signal, trop de variabilité lié à profondeur et replica technique, Voit umap lié profondeur de séquençage Chois focus od2 non stress De plus même si est ce que pas de clustering , et leindeb se fait avec profondeur</p>
-<p>Cyriaque proposé de faire bulk et aussi faire blanc, permet d’améliorer méthodes stats</p>
-<p>Ici premier test sur 3000 cellules pour voir si fonctionne et permet optimiser profondeur, peut de gène comparé à autres méthodes mais avantages population cellulaires élevé (40000) permet voir sous pop faible, aussi facilté de la méthode qui ne nécessita pas de matériel très coûteux spécifique</p>
-<p>Pour chaque</p>
-<p>Opter pour st - Comme mentionné dans</p>
-<ul>
-<li><p>marqueur gènes ;liste article</p></li>
-<li><p>Amélioration possible : pipeline nfcore</p></li>
-</ul>
-<p>cela serait bien d’estimer la saturation de chauqe condition cela sera serait bien aussi de voir</p>
-<p>This low variance structure could potentially be explained by the low RNA counts observed (@#fig-final_filtering <a href="A-Appendix.html#fig-scaling" class="quarto-xref">Figure&nbsp;<span>B.1 (a)</span></a>). We hypothesize that the limited RNA capture efficiency of the single-cell method may not have captured sufficient RNA molecules, potentially resulting in high noise levels that can mask the real biological signal. mais peu aussi lier a mecanisme real dormance , mort cellulais</p>
-<p><strong>Summary of preprocessing and filtering results:</strong> The preprocessing pipeline successfully removed sequencing artifacts and improved data quality, with an average 25.4% reduction in read counts across sublibraries. STARsolo analysis revealed excellent barcode quality (85.58% valid barcodes) and high sequencing quality (Q30 &gt; 95%), though the high sequencing saturation (0.97) requires careful interpretation due to potential technical artifacts. The filtering strategy effectively identified genuine cells while preserving biological variation, resulting in approximately 3,000 high-quality cells with clear differences between culture conditions. M9F medium consistently showed higher transcriptional activity compared to M9, with reduced expression under nutrient-limited conditions, particularly at later timepoints.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Recommendations for Future Experiments
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The observed size variations between sublibraries highlight the importance of balanced library preparation for optimal sequencing efficiency. Libraries of unequal sizes can lead to differential reagent consumption and varying quality across the flowcell. Future experiments should aim for more balanced library sizes to minimize technical artifacts and ensure consistent quality across all sublibraries.</p>
-</div>
-</div>
-<p>We applied microSPLiT to P. brassicacearum growing in two different conditions in rich medium (M9F) and in minimal medium (M9).</p>
-<p>-d’autres methodes de filtrage , log log comme dans…</p>
-<p>While other tools exist for alignment and barcode reading in SPLiT-seq/microSPLiT protocols, such as Kallisto<span class="citation" data-cites="bray2016 sullivan2025"><sup><a href="06-References.html#ref-bray2016" role="doc-biblioref">1</a>,<a href="06-References.html#ref-sullivan2025" role="doc-biblioref">2</a></sup></span>, The pipeline could be further improved with additional quality verification steps and implementation of workflow management systems such as Nextflow and nf-core for enhanced reproducibility and scalability.</p>
-<pre><code>-   different other tools existe comme pour alignement et lecture des barcodes SPLiTseq/ microSPliT comme Kallisto [@bray2016], [@sullivan2025] mais d'apres le benchmarking de le plus rapide, reproductible est starsolo [@kuijpers2024]</code></pre>
-<p>pleins parametre pour etre change, unique alignement peut de rRNA je trouve par rapport a autre articles</p>
-<p>To remove empty and low gene detection barcodes, we applied the “knee” detection filter previously described in Brettner et al.&nbsp;202435. These quality-thresholded gene-by-barcode matrices were then converted to the R datatype, Seurat Objects, using the Seurat R package for further analyses83.</p>
-<ul>
-<li>biais de la methode</li>
-<li>coloration fluorescences pour voir marqueur , cell states , i</li>
-</ul>
-<p>-agotation oiu pas</p>
-<p>-discuter du pipeline bac -voir</p>
-<ul>
-<li><p>recepetion tardives des resultats</p></li>
-<li><p>mis beaucoup de temps pour le trimming ( 1mois) le temps de comprendre la structure de la librairie et</p></li>
-<li></li>
-<li></li>
-<li><p>analyse temporelle , metabolique , bulkRNAseq</p></li>
-<li><p>utilisation pour capturer specifique mRNA (voir article : 2 methodes existes ; et apres aussi peut etre fait )</p></li>
-<li><p>mais je pense deja bioinformatiquement on peut faire des choses pour ameliorer reads utilisables</p></li>
-<li><p>comparer avec differentes methodes de single cell RNA seq, voir si on observe toujours la meme chose ou pas</p></li>
-<li><p>versionnement des outils utilisés (renv , singularity, conda)</p></li>
-<li><p>rapport fait un template pour rendu propre</p></li>
-<li></li>
-</ul>
-<p>autres outils pourrait etre ajouter dans le pipeline comme BarQC alternative à Starsolo pour meilleur la lecture des barcodes (en considerant utilisant des positions non fixe (CIGAR motif) et evaluer la qualité UMIs et repartitions<span class="citation" data-cites="rossello"><sup><a href="06-References.html#ref-rossello" role="doc-biblioref">3</a></sup></span>,</p>
-<p>pour la qualité et contamination : centriguge et recentrifuge<span class="citation" data-cites="martí2019 kim2016"><sup><a href="06-References.html#ref-martí2019" role="doc-biblioref">4</a>,<a href="06-References.html#ref-kim2016" role="doc-biblioref">5</a></sup></span></p>
-<p>meme si moins de risque de contamination car cellules fixé … (deve</p>
-<ul>
-<li>Nextflow pour le trimming, QC , et STARsolo serait une bonne idée , et barQC ; pourrait etre utile pour la communauté</li>
-</ul>
-<p>-autono -gestion des datas tailles des</p>
-<p>, which typically corresponds to the mRNA proportion in the library</p>
-<p>attention duplication des reads</p>
-<p>serait bien de tester chaque sublirbai starsolo independant</p>
-<section id="interpretation-of-key-findings" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="interpretation-of-key-findings"><span class="header-section-number">4.1</span> Interpretation of Key Findings</h2>
-<section id="division-of-labor-mechanisms" class="level3">
-<h3 class="anchored" data-anchor-id="division-of-labor-mechanisms">Division of Labor Mechanisms</h3>
+<p>This study aimed to validate the microSPLiT technology for exploring division of labor (DOL) within bacterial populations, specifically <em>Pseudomonas brassicacearum</em> R401. While a comprehensive DOL analysis remains to be conducted, our work has successfully established a robust analysis pipeline and generated promising initial data that provide valuable insights into bacterial single-cell transcriptomics.</p>
+<section id="technical-validation-of-microsplit-methodology" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="technical-validation-of-microsplit-methodology"><span class="header-section-number">4.1</span> Technical Validation of microSPLiT Methodology</h2>
+<p>The microSPLiT methodology performed as anticipated, with sequencing and trimming steps effectively removing adapters and yielding high-quality reads suitable for alignment to the <em>PsR401</em> genome using STARsolo. The successful implementation of this technology represents a significant step forward in bacterial single-cell analysis, particularly given the technical challenges associated with prokaryotic systems compared to eukaryotic counterparts<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">1</a></sup></span>.</p>
+<p>While the current pipeline achieved good results (<a href="03-Results.html#fig-adaptateur" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> <a href="03-Results.html#tbl-summary-trimming" class="quarto-xref">Table&nbsp;<span>3.1</span></a> <a href="03-Results.html#tbl-starsolo-comprehensive" class="quarto-xref">Table&nbsp;<span>3.2</span></a>), there are opportunities to further optimize read recovery. STARsolo’s reliance on fixed barcode positions could be complemented by implementing BarQC<span class="citation" data-cites="rossello"><sup><a href="06-References.html#ref-rossello" role="doc-biblioref">2</a></sup></span>, which would enable recovery of shifted barcodes utilizing CIGAR motif analysis and thus increase the overall yield of usable reads. BarQC would also provide visual representations of read proportions in each well at every barcoding round, facilitating the assessment of potential biases in cell distribution or barcoding efficiency.</p>
+<p>Furthermore, implementing comprehensive quality control measures, including contamination screening tools such as FastQ Screen<span class="citation" data-cites="wingett2018"><sup><a href="06-References.html#ref-wingett2018" role="doc-biblioref">3</a></sup></span>, Centrifuge<span class="citation" data-cites="kim2016"><sup><a href="06-References.html#ref-kim2016" role="doc-biblioref">4</a></sup></span> or Recentrifuge<span class="citation" data-cites="martí2019"><sup><a href="06-References.html#ref-martí2019" role="doc-biblioref">5</a></sup></span>, would improve data reliability and ensure the absence of cross-contamination between samples.</p>
+<p>The presence of a significant proportion of ribosomal RNA reads (~28%) <a href="03-Results.html#fig-transcriptome" class="quarto-xref">Figure&nbsp;<span>3.2 (b)</span></a> was expected but highlights an opportunity for optimization<span class="citation" data-cites="nishimura2025"><sup><a href="06-References.html#ref-nishimura2025" role="doc-biblioref">1</a></sup></span>. Implementing upstream rRNA depletion could substantially increase mRNA yield, thereby enhancing the biological signal available for transcriptomic analysis. Additionally, the recent availability of an updated genome annotation presents an opportunity to improve the accuracy of gene quantification in future analyses.</p>
 </section>
-<section id="biological-significance" class="level3">
-<h3 class="anchored" data-anchor-id="biological-significance">Biological Significance</h3>
-</section>
-<section id="technical-considerations" class="level3">
-<h3 class="anchored" data-anchor-id="technical-considerations">Technical Considerations</h3>
+<section id="transcriptomic-responses-to-iron-limitation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="transcriptomic-responses-to-iron-limitation"><span class="header-section-number">4.2</span> Transcriptomic Responses to Iron Limitation</h2>
+<p>Our analysis revealed clear transcriptomic distinctions between experimental conditions, with cells grown in iron-limited medium at timepoints 2 and 3 showing fewer detected genes and lower total UMI counts compared to iron-rich conditions <a href="03-Results.html#fig-final_filtering" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>. This observation necessitated the adaptation of filtering thresholds per condition to maintain comparable cell distributions across samples, ultimately retaining 160 cells per condition for a total of 3,000 cells.</p>
+<p>The PCA and UMAP analyses demonstrated that, despite the first principal component explaining only a small fraction of variance (~0.6%), typical for bacterial scRNA-seq datasets, it effectively distinguished between M9 (iron-poor) and M9F (iron-rich) conditions <a href="03-Results.html#fig-single-cell-PCA" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> <a href="03-Results.html#fig-pca1-summary-top" class="quarto-xref">Figure&nbsp;<span>3.4 (b)</span></a>. The distinct transcriptomic profiles observed in cells from M9 T2 and T3 compared to M9 T1 or M9F support the hypothesis that T1 cells in depleted medium had not yet exhausted residual iron resources. This interpretation is corroborated by optical density measurements, which plateaued at T2 and T3, indicating growth limitation.</p>
+<section id="gene-expression-patterns-under-iron-stress" class="level3">
+<h3 class="anchored" data-anchor-id="gene-expression-patterns-under-iron-stress">Gene Expression Patterns Under Iron Stress</h3>
+<p>Analysis of the most contributive genes <a href="03-Results.html#fig-pca1-summary-top" class="quarto-xref">Figure&nbsp;<span>3.4 (b)</span></a> to condition separation revealed an enrichment of genes related to translation machinery, protein chaperones, siderophore biosynthesis regulators, and iron acquisition receptors. This pattern indicates an adaptive metabolic reorganization under iron stress, consistent with previous studies demonstrating that iron limitation triggers comprehensive cellular reprogramming in bacteria<span class="citation" data-cites="lim2012"><sup><a href="06-References.html#ref-lim2012" role="doc-biblioref">6</a></sup></span>.</p>
+<p>Differential expression analysis confirmed the downregulation of ribosomal protein genes, including RplA, under iron stress conditions, alongside the relative upregulation of genes involved in storage metabolism and stress response mechanisms. This transcriptional shift reflects the cellular transition from active growth to survival-oriented metabolism, characterized by reduced protein synthesis and enhanced stress protection mechanisms. Such responses align with established paradigms of bacterial stress adaptation, where resource limitation drives cells toward quiescence and dormancy states<span class="citation" data-cites="rittershaus2013"><sup><a href="06-References.html#ref-rittershaus2013" role="doc-biblioref">7</a></sup></span>.</p>
+<p>The coarse-grained clustering approach employed in this study, while revealing global transcriptional differences between major experimental groups, may mask important biological heterogeneity that could indicate DOL mechanisms. To address our original biological question about cellular specialization within bacterial populations, future analyses must examine finer-scale heterogeneity by analyzing individual culture conditions and biological replicates at each timepoint. This approach would be necessary to identify potential subpopulations that might reveal specialized cellular functions and DOL patterns within <em>P. brassicacearum</em> populations.</p>
 </section>
 </section>
-<section id="comparison-with-existing-literature" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="comparison-with-existing-literature"><span class="header-section-number">4.2</span> Comparison with Existing Literature</h2>
-<section id="similarities-with-previous-studies" class="level3">
-<h3 class="anchored" data-anchor-id="similarities-with-previous-studies">Similarities with Previous Studies</h3>
+<section id="methodological-considerations-and-limitations" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="methodological-considerations-and-limitations"><span class="header-section-number">4.3</span> Methodological Considerations and Limitations</h2>
+<section id="cell-quality-assessment-challenges" class="level3">
+<h3 class="anchored" data-anchor-id="cell-quality-assessment-challenges">Cell Quality Assessment Challenges</h3>
+<p>The estimation of unique cell numbers through barcode analysis presents ongoing challenges, as the distinction between genuine single cells and cell aggregates or artifacts remains difficult to establish definitively. The subjective nature of filtering methods compounds this issue, as cells deemed “low quality” in non-stressed conditions might represent biologically relevant states, such as dormant or stress-adapted phenotypes that could contribute to population-level DOL.</p>
 </section>
-<section id="novel-insights" class="level3">
-<h3 class="anchored" data-anchor-id="novel-insights">Novel Insights</h3>
-</section>
-<section id="discrepancies-and-their-implications" class="level3">
-<h3 class="anchored" data-anchor-id="discrepancies-and-their-implications">Discrepancies and Their Implications</h3>
-</section>
-</section>
-<section id="methodological-strengths-and-limitations" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="methodological-strengths-and-limitations"><span class="header-section-number">4.3</span> Methodological Strengths and Limitations</h2>
-<section id="technical-advantages" class="level3">
-<h3 class="anchored" data-anchor-id="technical-advantages">Technical Advantages</h3>
-</section>
-<section id="potential-limitations" class="level3">
-<h3 class="anchored" data-anchor-id="potential-limitations">Potential Limitations</h3>
-</section>
-<section id="future-methodological-improvements" class="level3">
-<h3 class="anchored" data-anchor-id="future-methodological-improvements">Future Methodological Improvements</h3>
+<section id="dataset-scale-and-computational-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-scale-and-computational-considerations">Dataset Scale and Computational Considerations</h3>
+<p>Compared to eukaryotic single-cell studies that routinely analyze hundreds of thousands to millions of cells, our prokaryotic dataset appears modest with 3,000 cells analyzed. However, the smaller genome size of bacteria offers advantages for local computational analysis and may provide pedagogical value for method development and training purposes. The manageable dataset size facilitates thorough exploration of analytical approaches and parameter optimization, which is particularly valuable for emerging technologies like bacterial single-cell RNA sequencing.</p>
 </section>
 </section>
-<section id="biological-implications" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="biological-implications"><span class="header-section-number">4.4</span> Biological Implications</h2>
-<section id="ecological-significance" class="level3">
-<h3 class="anchored" data-anchor-id="ecological-significance">Ecological Significance</h3>
-</section>
-<section id="evolutionary-perspectives" class="level3">
-<h3 class="anchored" data-anchor-id="evolutionary-perspectives">Evolutionary Perspectives</h3>
-</section>
-<section id="potential-applications" class="level3">
-<h3 class="anchored" data-anchor-id="potential-applications">Potential Applications</h3>
-</section>
-</section>
-<section id="future-research-directions" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="future-research-directions"><span class="header-section-number">4.5</span> Future Research Directions</h2>
-<section id="open-questions" class="level3">
-<h3 class="anchored" data-anchor-id="open-questions">Open Questions</h3>
-</section>
-<section id="suggested-follow-up-studies" class="level3">
-<h3 class="anchored" data-anchor-id="suggested-follow-up-studies">Suggested Follow-up Studies</h3>
-</section>
-<section id="technical-improvements" class="level3">
-<h3 class="anchored" data-anchor-id="technical-improvements">Technical Improvements</h3>
-</section>
-</section>
-<section id="conclusion" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.6</span> Conclusion</h2>
+<section id="future-directions-and-recommendations" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="future-directions-and-recommendations"><span class="header-section-number">4.4</span> Future Directions and Recommendations</h2>
+<p>Several technological and methodological improvements could enhance future investigations of bacterial DOL using single-cell approaches. If the experiment were to be repeated, it would be beneficial to include bulk RNA-seq and blank samples to improve statistical power and provide additional validation of single-cell results<span class="citation" data-cites="cyriaque2024"><sup><a href="06-References.html#ref-cyriaque2024" role="doc-biblioref">8</a></sup></span>.</p>
+<p>The complete testing of the bacSC pipeline<span class="citation" data-cites="ostner"><sup><a href="06-References.html#ref-ostner" role="doc-biblioref">9</a></sup></span> would also be valuable, as this specialized tool for bacterial single-cell analysis may provide improved clustering specifically tailored for prokaryotic systems. Future analyses should focus on performing DOL analysis by studying each sample independently, allowing for the identification of condition-specific cellular states and specialized subpopulations.</p>
+<p>Subsequently, comprehensive analyses including Gene Ontology enrichment, cell trajectory inference, metabolomic pathway analysis, and pseudobulk analysis would provide deeper insights into bacterial population dynamics and the molecular mechanisms underlying potential DOL phenomena. These approaches would enable a more complete understanding of how bacterial populations coordinate responses to environmental stress and whether specialized cellular roles emerge under challenging conditions.</p>
+<p>In conclusion, while this study has successfully established the technical foundation for bacterial single-cell transcriptomics using microSPLiT, the full exploration of division of labor in <em>P. brassicacearum</em> populations remains an exciting avenue for future research. The methodological advances and initial findings presented here provide a solid basis for more detailed investigations of bacterial population heterogeneity and specialization.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-bray2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Bray, N. L., Pimentel, H., Melsted, P. &amp; Pachter, L. <a href="https://doi.org/10.1038/nbt.3519">Near-optimal probabilistic RNA-seq quantification</a>. <em>Nature Biotechnology</em> <strong>34</strong>, 525–527 (2016).</div>
-</div>
-<div id="ref-sullivan2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Sullivan, D. K. <em>et al.</em> <a href="https://doi.org/10.1038/s41596-024-01057-0">kallisto, bustools and kb-python for quantifying bulk, single-cell and single-nucleus RNA-seq</a>. <em>Nature Protocols</em> <strong>20</strong>, 587–607 (2025).</div>
+<div id="ref-nishimura2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
 </div>
 <div id="ref-rossello" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Rossello, M., Tandonnet, S. &amp; Almudi, I. BarQC: Quality Control and Preprocessing for SPLiT-Seq Data. doi:<a href="https://doi.org/10.1101/2025.02.04.635005">10.1101/2025.02.04.635005</a>.</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Rossello, M., Tandonnet, S. &amp; Almudi, I. BarQC: Quality Control and Preprocessing for SPLiT-Seq Data. doi:<a href="https://doi.org/10.1101/2025.02.04.635005">10.1101/2025.02.04.635005</a>.</div>
 </div>
-<div id="ref-martí2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Martí, J. M. <a href="https://doi.org/10.1371/journal.pcbi.1006967">Recentrifuge: Robust comparative analysis and contamination removal for metagenomics</a>. <em>PLoS Computational Biology</em> <strong>15</strong>, e1006967 (2019).</div>
+<div id="ref-wingett2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Wingett, S. W. &amp; Andrews, S. <a href="https://doi.org/10.12688/f1000research.15931.2">FastQ screen: A tool for multi-genome mapping and quality control</a>. <em>F1000Research</em> <strong>7</strong>, 1338 (2018).</div>
 </div>
 <div id="ref-kim2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Kim, D., Song, L., Breitwieser, F. P. &amp; Salzberg, S. L. <a href="https://doi.org/10.1101/gr.210641.116">Centrifuge: Rapid and sensitive classification of metagenomic sequences</a>. <em>Genome Research</em> <strong>26</strong>, 1721–1729 (2016).</div>
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Kim, D., Song, L., Breitwieser, F. P. &amp; Salzberg, S. L. <a href="https://doi.org/10.1101/gr.210641.116">Centrifuge: Rapid and sensitive classification of metagenomic sequences</a>. <em>Genome Research</em> <strong>26</strong>, 1721–1729 (2016).</div>
+</div>
+<div id="ref-martí2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Martí, J. M. <a href="https://doi.org/10.1371/journal.pcbi.1006967">Recentrifuge: Robust comparative analysis and contamination removal for metagenomics</a>. <em>PLoS Computational Biology</em> <strong>15</strong>, e1006967 (2019).</div>
+</div>
+<div id="ref-lim2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Lim, C. K., Hassan, K. A., Tetu, S. G., Loper, J. E. &amp; Paulsen, I. T. <a href="https://doi.org/10.1371/journal.pone.0039139">The Effect of Iron Limitation on the Transcriptome and Proteome of Pseudomonas fluorescens Pf-5</a>. <em>PLOS ONE</em> <strong>7</strong>, e39139 (2012).</div>
+</div>
+<div id="ref-rittershaus2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Rittershaus, E. S. C., Baek, S.-H. &amp; Sassetti, C. M. <a href="https://doi.org/10.1016/j.chom.2013.05.012">The normalcy of dormancy: Common themes in microbial quiescence</a>. <em>Cell Host &amp; Microbe</em> <strong>13</strong>, 643–651 (2013).</div>
+</div>
+<div id="ref-cyriaque2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Cyriaque, V. <em>et al.</em> <a href="https://doi.org/10.1038/s41467-024-49793-x">Single-cell RNA sequencing reveals plasmid constrains bacterial population heterogeneity and identifies a non-conjugating subpopulation</a>. <em>Nature Communications</em> <strong>15</strong>, 5853 (2024).</div>
+</div>
+<div id="ref-ostner" class="csl-entry" role="listitem">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Ostner, J. <em>et al.</em> BacSC: A general workflow for bacterial single-cell RNA sequencing data analysis. doi:<a href="https://doi.org/10.1101/2024.06.22.600071">10.1101/2024.06.22.600071</a>.</div>
 </div>
 </div>
 </section>

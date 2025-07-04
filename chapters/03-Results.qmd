@@ -2,9 +2,9 @@
 
 This chapter presents the findings of our single-cell RNA-seq analysis of *P. brassicacearum* R401. We first established data quality through preprocessing and quality control steps, then applied filtering strategies to ensure reliable cell identification and gene expression quantification.
 
-## Preprocessing of the sequencing data
+## Preprocessing and Quality Control
 
-### Trimming and quality control of fastq files
+### Trimming and Quality Control of FASTQ Files
 
 ::: {#fig-adaptateur layout-ncol="2"}
 ![before trimming](../figures/adaptateur_R1_BC76_bf_trimm.png){#fig-before}
@@ -14,7 +14,7 @@ This chapter presents the findings of our single-cell RNA-seq analysis of *P. br
 Artifacts content of the sublibrary BC_0076 before and after trimming with Cutadapt and Fastp
 :::
 
-*The adapter content analysis shows the presence of various sequencing artifacts in the raw data (example of BC_0076). In the before trimming plot (@fig-before), distinct patterns are visible: polyG stretches (pink), polyA tails (cyan), and Illumina adapter sequences (purple). After trimming (@fig-after), these artifacts are effectively removed, resulting in clean sequence data suitable for downstream analysis. The successful elimination of these technical artifacts demonstrates the effectiveness of the trimming pipeline in improving data quality.*
+*The adapter content analysis shows the presence of various sequencing artifacts in the raw data (example of BC_0076). Before trimming (@fig-before), distinct patterns are visible: polyG stretches (pink), polyA tails (cyan), and Illumina adapter sequences (purple). After trimming (@fig-after), these artifacts are effectively removed, resulting in clean sequence data suitable for downstream analysis.*
 
 | Sample Name | BC_0076 | BC_0077 | BC_0079 | BC_0080 | $Mean$/Total |
 |------------|------------|------------|------------|------------|------------|
@@ -26,26 +26,18 @@ Artifacts content of the sublibrary BC_0076 before and after trimming with Cutad
 
 : Summary of sequence metrics before and after trimming of each sublibrary with Cutadapt and Fastp (R1 read length metrics) {#tbl-summary-trimming layout-ncol="1"}
 
-#### Trimming Efficiency and Data Retention
+The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (@fig-adaptateur, @tbl-summary-trimming). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis. The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (@tbl-summary-trimming).
 
-The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (@fig-adaptateur, @tbl-summary-trimming). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis. The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (@tbl-summary-trimming). This reduction rate is within the expected range for single-cell RNA-seq data and indicates effective removal of low-quality sequences while preserving the majority of informative reads.
+### Alignment and Quantification with STARsolo
 
-#### Sub-library Size Variations and Technical Considerations
-
-The four sublibraries showed notable size differences before trimming, ranging from 325.5 million reads (BC_0077) to 631.4 million reads (BC_0076) (@tbl-summary-trimming). These variations likely reflect differences in library preparation efficiency and sequencing performance across the flowcell. The largest library (BC_0076) exhibited the most significant reduction in read length after trimming (from 241bp to 127bp), suggesting higher levels of sequencing artifacts in this sublibrary.
-
-BC_0076 specifically showed earlier and more prominent polyG artifacts, likely due to reagent depletion during sequencing that led to increased G nucleotide incorporation errors. This phenomenon is common in NovaSeq sequencing runs where the largest libraries may experience reagent exhaustion, resulting in higher error rates and more artifacts that require removal during trimming. Despite these technical challenges, the trimming process successfully mitigated these artifacts, resulting in high-quality data suitable for downstream analysis.
-
-### Transcriptome Description after STARsolo processing
-
-Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo provided comprehensive quality metrics and mapping statistics.
+Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo[@dobin2013; @kaminow] provided comprehensive quality metrics and mapping statistics.
 
 | Metric | Count/Percentage |
-|------------------------------------------------|------------------------|
+|-----------------------------------------------|------------------------|
 | **Total Reads Processed** | 1,284,475,633 |
 | **N_reads with valid barcodes** | 1,099,327,755 (**85.58%**) |
-| \- Exact Barcode Match | -\> 1,046,121,284 (**81.44%**) |
-| \- Single Mismatch Barcode | -\> 53,206,471 (**4.14%**) |
+| \- Exact Barcode Match | 1,046,121,284 (**81.44%**) |
+| \- Single Mismatch Barcode | 53,206,471 (**4.14%**) |
 | **Q30 Bases in RNA reads** | 95.79% |
 | **Q30 Bases in CB+UMI** | 95.51% |
 | **Unique Gene Mapping** | 34,593,349 (2.69%) |
@@ -53,31 +45,12 @@ Following the successful preprocessing and trimming of our sequencing data, we p
 | **Total Genes Detected** | 6,035 on the total of 6,249 genes (96.57%) |
 | **Cell Barcodes Detected** | 699,355 |
 | **N_umi** | 36,565,214 |
-| **Sequencing Saturation** | 0.97 |
 
 : Summary of metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of *P. brassicacearum R401* {#tbl-starsolo-comprehensive layout-ncol="1"}
 
-*Metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of P. brassicacearum R401.*
+The STARsolo analysis demonstrated excellent barcode quality with 85.58% of reads having valid barcodes, falling within the expected range of 70-90% for successful experiments @gaisser2024. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences.
 
-#### Barcode Quality and Cell Identification
-
-The STARsolo analysis processed the 1.284 billion trimmed reads and successfully identified 1.099 billion reads with valid barcodes (85.58% of total reads), demonstrating excellent barcode quality (@tbl-starsolo-comprehensive). Among these, 81.44% had exact barcode matches and 4.14% had single mismatches, indicating robust cell identification. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences. This high percentage of valid barcodes falls within the expected range of 70-90% for successful experiments, as recommended by Gaisser et al. (2024) @gaisser2024, indicating excellent library preparation and barcoding efficiency.
-
-#### Gene Mapping and Detection
-
-Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping and the remainder showing multiple mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences. The fraction of uniquely aligned reads (2.69%) falls within the expected range of 3-12% for bacterial samples @gaisser2024. A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes (@fig-genome) annotated in the *P. brassicacearum R401* genome.
-
-#### Sequencing Saturation and Coverage Assessment
-
-The sequencing saturation, calculated as:
-
-$$ Sequencing\ Saturation = 1 - \frac{N_{\text{umi}}}{N_{\text{reads with valid barcodes}}} = 1 - \frac{36,565,214}{1,099,327,755} = 0.97 $$
-
--   Where:
-    -   $N_{\text{umi}}$ = number of unique molecules detected, distinct combinations of Cell Barcode (CB) / UMI / gene
-    -   $N_{\text{reads}}$ = total number of reads with valid CB/UMI/gene combinations
-
-This high saturation value of 0.97 could indicate either excellent transcriptome coverage or technical artifacts. While a saturation of \>= 0.7 typically indicates sufficient coverage according to Gaisser et al. (2024) @gaisser2024, such high values may also result from technical issues including: (1) inefficient RNA capture leading to limited transcript diversity, (2) PCR amplification bias concentrating reads on few UMIs. The interpretation of this saturation value should be considered alongside other quality metrics such as UMIs per cell and genes detected to distinguish between biological reality and technical artifacts.
+Gene mapping analysis revealed that 75.64% of reads mapped to genes, with 2.69% showing unique mapping, which is typical for bacterial genomes with overlapping genes and repeated sequences @gaisser2024. The fraction of uniquely aligned reads falls within the expected range of 3-12% for bacterial samples @gaisser2024. A total of 6,035 genes were detected across 699,355 unique cell barcodes, representing 96.6% of the 6,249 genes annotated in the *P. brassicacearum R401* genome.
 
 ::: {#fig-genome-transcriptome layout-ncol="2"}
 ![genome](../figures/genome_description.png){#fig-genome}
@@ -89,21 +62,13 @@ Compositional analysis of *P. brassicacearum* R401 genome annotation and transcr
 
 #### Genome and Transcriptome Composition
 
-The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* sample (@fig-genome-transcriptome). In the [annotated](https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/) genome of *P. brassicacearum* R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes (1.1% of total genes), 16 rRNA genes (0.3%) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2% are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability @nishimura2025.
+The genome and transcriptome composition analysis reveals the distribution of different RNA types in our *P. brassicacearum* sample (@fig-genome-transcriptome). In the [annotated](https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/) genome of *P. brassicacearum* R401, we identified 6,100 mRNA genes (97.6% of total genes), 65 tRNA genes (1.1% of total genes), 16 rRNA genes (0.3%) and 68 other genes. However, in the transcriptome analysis of our 36,565,214 UMIs @tbl-starsolo-comprehensive, the distribution shows a different pattern: 57.1% correspond to mRNA transcripts (21 millions), while 28.4% are rRNA transcripts (representing approximately 10 millions UMIs), 10.2% are tRNA transcripts (representing approximately 4 millions UMIs) and 4.4% are other genes (representing approximately 1.5 millions UMIs). This distribution concords with the well-established observation that rRNA and tRNA transcripts represent a large proportion of the bacterial transcriptome despite constituting only a small fraction of the genome, due to their high transcriptional activity and stability @nishimura2025.
 
-#### Cell Barcode Detection and Filtering Strategy
+## Cell Quality Filtering and Dataset Characterization {#sec-global-filtering}
 
-STARsolo detected 699,355 out of 820,800 possible barcode combinations. Given that our sublibrary was designed to target approximately 3,000 cells, the observed number of barcodes is within the expected range. The presence of additional barcodes likely represents contamination that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates.
+STARsolo [@dobin2013; @kaminow] detected 699,355 out of 820,800 possible barcode combinations, significantly more than the approximately 3,000 cells targeted in our sublibrary design @tbl-starsolo-comprehensive. This large discrepancy indicates the presence of contaminating barcodes that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates. To proceed with single-cell analysis, we needed to identify and retain only genuine cells among this large barcode population. STARsolo employs a knee plot strategy to identify "real" cells[@luecken2019]. However, as recommended in the literature (Gaisser et al. 2024 @gaisser2024), we chose to apply our own filtering criteria rather than using STARsolo's default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the consideration that our experimental design included cells grown under different conditions (culture medium composition) and at different growth stages, which could result in varying transcriptional activity levels. Therefore, applying a single threshold across all conditions might eliminate cells with naturally lower but biologically relevant expression profiles. Instead, we chose to apply different thresholds to retain the best cells from each biological replicate, ensuring balanced representation across experimental conditions. This approach was validated by our initial UMI-based filtering results @sec-appendix-cell-filtering, which revealed clear differences between culture conditions with M9 medium (nutrient-limited) showing fewer retained barcodes compared to M9F (nutrient-rich) when we used a global threshold of 100 UMIs per cell, confirming that different thresholds per samples were indeed necessary to capture cells from all experimental conditions.
 
-To identify genuine cells among the total barcode population, STARsolo employs a knee plot strategy[@luecken2019]. As recommended in the literature (Gaisser et al. 2024 @gaisser2024), we chose to apply our own filtering criteria rather than using STARsolo's default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the concern that the KneePant method might eliminate stressed cells that could have lower quality metrics compared to non-stressed cells, potentially biasing our division of labor analysis by removing biologically relevant subpopulations.
-
-The high sequencing saturation value of 0.97 requires careful interpretation, as it could reflect either excellent transcriptome coverage or technical artifacts. Before proceeding with division of labor analysis, we will assess this value alongside other quality metrics and filter the barcodes to retain only genuine cells, as the current dataset contains a large number of contaminating barcodes that could mask the biological signal of interest.
-
-## Cell quality filtering and dataset characterization {#sec-global-filtering}
-
-Following the initial UMI-based filtering (see @sec-appendix-cell-filtering), which revealed clear differences between culture conditions with M9 medium (nutrient-limited) showing fewer retained barcodes compared to M9F (nutrient-rich), additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions.
-
-The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (@fig-splitplot-barcodes-final). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (@fig-splitplot-barcodes-final). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.
+Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions. The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (@fig-splitplot-barcodes-final). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (@fig-splitplot-barcodes-final). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.
 
 The following visualizations also show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene, @fig-scatter_final.
 
@@ -125,9 +90,9 @@ Biological replicate variability was particularly pronounced at T1 for both cond
 
 These results demonstrate that the filtering strategy effectively removed poor-quality barcodes to retain only potential "real cells" from each biological replicate that can be analyzed for downstream investigation.
 
-## Dimensionality Reduction and Transcriptional Heterogeneity Analysis
+## Single-Cell Analysis and Transcriptional Heterogeneity
 
-Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions. The analysis began with data transformation using the Bacsc method (see @fig-pca-choose for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis. UMAP visualization and clustering were then used to detect global transcriptional differences between experimental conditions.
+Following the quality filtering steps, we performed dimensionality reduction and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions. The analysis began with data transformation using the BacSC method (see @fig-pca-choose for detailed about it), followed by Principal Component Analysis (PCA) to identify the optimal number of dimensions for downstream analysis. UMAP visualization and clustering were then used to detect global transcriptional differences between experimental conditions.
 
 ### Principal Component Analysis
 
@@ -141,7 +106,7 @@ Principal Component Analysis (PCA) results showing transcriptional heterogeneity
 
 The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components (@fig-pca-choose), which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance and dominated the other components, which showed even lower contributions. This indicates that the transcriptional variability is diffuse or weakly structured in the dataset. In this context, for the next analysis we chose to retain the first 5 PCs for UMAP embedding to capture the few potentially meaningful signals carried by the leading components while avoiding the integration of excessive noise. This selection provides a balance between maintaining minimal expressiveness for dimensionality reduction and exercising caution given the low inherent structure of the data.
 
-PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (@fig-pca-condition). In fact, we can see that M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. We can also abserve this on the heatmaps (@fig-pca1-summary-top). This suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint.
+PC1 successfully distinguished between the two culture conditions (M9 and M9F), revealing distinct transcriptional patterns (@fig-pca-condition). In fact, we can see that M9 T2 and M9 T3 samples (brown and purple points in the Sampling Time facet, top right) were clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. We can also observe this on the heatmaps (@fig-pca1-summary-top).
 
 Notably, M9 samples positioned on the left side of PC1 showed greater dispersion compared to those on the right. Furthermore, PC1 axis alignment followed a gradient of total mRNA concentration per cell, suggesting that this component primarily captures differences in overall transcriptional activity between conditions.
 
@@ -149,52 +114,37 @@ Notably, M9 samples positioned on the left side of PC1 showed greater dispersion
 
 The heatmap analysis with z-score scaling (ranging from 0 to 1) revealed the genes contributing most significantly to PC1 variance (@fig-pca1-summary-top). Each row represents a gene and each column represents a cell, with the legend at the bottom corresponding to biological replicates.
 
-The genes contributing most to PC1 variance were primarily associated with translational regulation and iron metabolism, reflecting the stress response to iron limitation in M9 medium. Among the translational regulators, we identified rpsA (30S ribosomal protein S1), raiA (ribosome-associated translation inhibitor), and htpG (HSP90 protein chaperone). HtpG, as a molecular chaperone, plays an indirect but essential role in the biosynthesis and functionality of siderophores. For example, HtpG facilitates the correct folding and stability of enzymes involved in siderophore synthesis, such as those participating in yersiniabactine production in *Yersinia* species [@mangla].
+The genes contributing most to PC1 variance were primarily associated with translational regulation and iron metabolism, reflecting the stress response to iron limitation in M9 medium. Among the translational regulators, we identified rpsA (30S ribosomal protein S1), raiA (ribosome-associated translation inhibitor), and htpG (HSP90 protein chaperone). HtpG, as a molecular chaperone, plays an indirect but essential role in the biosynthesis and functionality of siderophores. For example, HtpG facilitates the correct folding and stability of enzymes involved in siderophore synthesis, such as those participating in yersiniabactine production in *Yersinia* species [@mangla].Notably, porphobilinogen synthase was also identified among the top 20 genes contributing to PC1 variance. This finding is particularly relevant given our experimental design using iron-limited M9 medium. In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells. The differential expression of porphobilinogen synthase between M9 and M9F conditions thus reflects the cellular adaptation to iron stress [@choby2016]. The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria [@moeck1998; @fujita2019]. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake. Together with porphobilinogen synthase, these genes form a coherent transcriptional response to iron limitation, explaining the clear separation of M9 conditions along PC1.
 
-Notably, porphobilinogen synthase was also identified among the top 20 genes contributing to PC1 variance. This finding is particularly relevant given our experimental design using iron-limited M9 medium. In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells [@choby2016]. The differential expression of porphobilinogen synthase between M9 and M9F conditions thus reflects the cellular adaptation to iron stress.
+While PC1 primarily captured differences in transcriptional activity and stress response, PC2 revealed distinct patterns related to cellular motility and chemotaxis (@fig-pca2-summary-top). For example, methyl-accepting chemotaxis proteins (MCPs) and flagellin genes were identified as major contributors to PC2 variance, suggesting a role in chemotaxis and motility responses to environmental conditions.[^1]
 
-The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake [@moeck1998; @fujita2019]. Together with porphobilinogen synthase, these genes form a coherent transcriptional response to iron limitation, explaining the clear separation of M9 conditions along PC1.
-
-While PC1 primarily captured differences in transcriptional activity and stress response, PC2 revealed distinct patterns related to cellular motility and chemotaxis (@fig-pca2-summary-top). For example, methyl-accepting chemotaxis proteins (MCPs) and flagellin genes were identified as major contributors to PC2 variance, suggesting a role in chemotaxis and motility responses to environmental conditions.
-
-<!-- Additional genes contributing to PC1 variance included thiolase II and HMG-CoA synthase, which play crucial roles in abiotic stress response, particularly oxidative stress. These enzymes are involved in isoprenoid biosynthesis via the mevalonate pathway, essential for producing antioxidant compounds that protect bacterial cells against oxidative damage. -->
+[^1]: **Chemotaxis** is a biological process by which cells move in response to chemical gradients in their environment, enabling navigation toward favorable conditions and away from unfavorable ones.
 
 ### UMAP Visualization and Clustering Analysis
 
 Following the PCA analysis, we performed UMAP visualization and clustering analysis to explore transcriptional heterogeneity across cell populations and assess global differences between culture conditions.
 
-We constructed the neighborhood graph using the first 5 principal components (PCs) with 10 neighbors per cell, capturing local similarity between cells in the reduced dimensional space. This approach is essential for downstream clustering and visualization analyses. We then applied Leiden clustering with two different resolution parameters (0.1 and 0.25) to identify distinct cell populations.
-
 The clustering analysis with resolution 0.1 identified two main clusters, while resolution 0.25 revealed three clusters (@fig-gene-cluster). Both clustering approaches successfully separated the experimental conditions, with M9 T2 and M9 T3 samples clearly distinguished from other conditions. This separation aligns with the PCA results, confirming the distinct transcriptional profiles of cells under iron-limited conditions at later timepoints.
 
 #### Differential Expression Analysis Between Clusters
 
-To characterize the transcriptional differences between the identified clusters, we performed differential expression analysis between the two clusters obtained with resolution 0.1. We used the Wilcoxon rank-sum test with FDR correction (p \< 0.05) to identify significantly differentially expressed genes. The complete results of this analysis are presented in the appendix.
+To characterize the transcriptional differences between the identified clusters, we performed differential expression analysis between the two clusters obtained with resolution 0.1. We used the Wilcoxon rank-sum test with FDR correction (p \< 0.05) to identify significantly differentially expressed genes. The complete results of this analysis are presented in the appendix (@fig-diff-exp).
 
-Group 0 (primarily M9 T2 and T3 cells) exhibited globally lower expression levels compared to Group 1 (primarily M9F and M9 T1 cells), which showed a more heterogeneous expression gradient (@fig-gene-cluster). This pattern reflects the reduced transcriptional activity observed in cells under iron stress conditions.
+Group 1 (primarily M9 T2 and T3 cells) exhibited globally lower expression levels compared to Group 0 (primarily M9F and M9 T1 cells), which showed a more heterogeneous expression gradient (@fig-gene-cluster). This pattern reflects the reduced transcriptional activity observed in cells under iron stress conditions.
 
 #### Characterization of Differentially Expressed Genes
 
-Among the significantly differentially expressed genes, we identified three representative examples that illustrate the distinct transcriptional programs between clusters:
+Among the significantly differentially expressed genes, we identified three representative examples that illustrate the distinct transcriptional programs between clusters. The *RplA* gene that codes for ribosomal protein RplA (30S ribosomal protein L1) showed lower expression in M9 T2 and T3 cells compared to M9F and M9 T1 cells. RplA is constitutively expressed as it is essential for protein synthesis, with expression levels reflecting the cell's translational activity. Higher expression typically indicates active protein synthesis during rapid growth, while lower expression suggests reduced translational activity under stress conditions. The *QLH64-28090* (phasin) gene showed an opposite pattern, with higher expression in M9 T2 and T3 cells. Phasins are multifunctional proteins associated with polyhydroxyalkanoate (PHA) granules that play crucial roles in stress response and energy metabolism [@mezzina2016]. They form an interface between the hydrophobic PHA granules and the hydrophilic cytoplasm, regulating both PHA accumulation and utilization. Under stress conditions, phasins can activate PHA depolymerization to release energy metabolites, increase PHA synthase activity . Additionally, some phasins exhibit chaperone-like properties, protecting cellular proteins against stress-induced denaturation and oxidative damage. The *Flagellin* gene, which is a housekeeping gene, was the most highly expressed gene in the raw data matrix, also showed differential expression between clusters, with higher expression in M9 T2 and T3 cells compared to M9F and M9 T1.
 
-**RplA (30S ribosomal protein L1)**: This ribosomal protein showed lower expression in Group 0 compared to Group 1. RplA is constitutively expressed as it is essential for protein synthesis, with expression levels reflecting the cell's translational activity. Higher expression typically indicates active protein synthesis during rapid growth, while lower expression suggests reduced translational activity under stress conditions.
-
-**QLH64-28090 (phasin)**: This gene showed the opposite pattern, with higher expression in Group 1 compared to Group 0. Phasins are multifunctional proteins associated with polyhydroxyalkanoate (PHA) granules that play crucial roles in stress response and energy metabolism [@mezzina2016]. They form an interface between the hydrophobic PHA granules and the hydrophilic cytoplasm, regulating both PHA accumulation and utilization. Under stress conditions, phasins can activate PHA depolymerization to release energy metabolites, increase PHA synthase activity, and participate in granule segregation. Additionally, some phasins exhibit chaperone-like properties, protecting cellular proteins against stress-induced denaturation and oxidative damage. The differential expression of this phasin gene between clusters suggests distinct metabolic adaptations to iron limitation, with cells potentially modulating their storage metabolism, stress response mechanisms, and protein protection strategies.
-
-**Flagellin**: This housekeeping gene, which was the most highly expressed gene in the raw data matrix, also showed differential expression between clusters, with higher expression in Group 1 compared to Group 0. 
 #### Global Expression Patterns and Cluster Heterogeneity
 
-However, the analysis revealed significant heterogeneity within each cluster, with groups of cells showing distinct expression patterns for specific genes compared to the global cluster average. This heterogeneity is particularly evident in the violin plots presented in the appendix, which show variable distributions of gene expression within clusters. In the heatmap representing top significant differentially expressed genes, we can see that some genes are expressed at very high levels, particularly among the significant genes for cluster 1. This observation suggests the presence of specialized subpopulations within the broader transcriptional groups, potentially indicating fine-grained division of labor mechanisms at the cellular level.
-
-All three representative genes (RplA, QLH64-28090, and flagellin) showed variable expression between clusters. This global pattern reflects the overall transcriptional differences between stress conditions (M9 T2/T3) and control conditions (M9F and M9 T1). However, this coarse-grained clustering approach may mask important biological heterogeneity within each condition and timepoint.
-
-The current analysis provides a global representation of transcriptional differences between major experimental groups, but to address our original biological question about division of labor mechanisms, we need to examine finer-scale heterogeneity. This requires descending to the level of individual culture mediums, conditions, and biological replicates at each timepoint to identify potential subpopulations that could reveal specialized cellular functions and division of labor patterns within the *P. brassicacearum* population. 
+However, the analysis revealed significant heterogeneity within each cluster, with groups of cells showing distinct expression patterns for specific genes compared to the global cluster average. This heterogeneity is particularly evident in the violin plots presented in the appendix @fig-violin-sc, which show variable distributions of gene expression within clusters. In the heatmap @fig-heatmap representing top significant differentially expressed genes, we can see that some genes are expressed at very high levels, particularly among the significant genes for cluster 1. This observation could suggest the presence of specialized subpopulations within the broader transcriptional groups, potentially indicating fine-grained division of labor mechanisms at the cellular level.
 
 
 ::: {#fig-single-cell-analysis layout="[[1], [1], [1,1]]"}
 ![UMAP visualization of the single-cell RNA-seq data, colored by culture medium, biological replicate (grouped or not) at specific timepoint, and total mRNA contents. Leiden clustering with a resolution of 0.1 and 0.25 are represented in two bottoms graphs.](../figures/fig_sc/umap.png){#fig-umap}
 
-![UMAP visualization colored by expression of examples top differentially expressed genes (FDR < 0.05) between clusters: RplA (30S ribosomal protein L1), QLH64-28090 (phasin), and flagellin. Color intensity indicates relative expression levels (yellow: high expression, blue: low expression).](../figures/fig_sc/gene_cluster.png){#fig-gene-cluster}
+![UMAP visualization colored by expression of examples top differentially expressed genes (FDR \< 0.05) between clusters: RplA (30S ribosomal protein L1), QLH64-28090 (phasin), and flagellin. Color intensity indicates relative expression levels (yellow: high expression, blue: low expression).](../figures/fig_sc/gene_cluster.png){#fig-gene-cluster}
 
 Single-cell RNA-seq analysis results showing gene expression patterns and cellular heterogeneity in *P. brassicacearum* populations
 :::

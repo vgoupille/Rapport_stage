@@ -1,0 +1,229 @@
+# Discussion
+
+
+Liste des idées a mettre dans la discussion :
+
+- rappel de l'obejctif : valider Microsplit , DOL (nous pas eu le temps encore mais sera fait prochainement)
+
+   - sequençage ok mais dupli, non equilibré
+   - pourariat ameliorer controle qualité (contaminant ...) 
+   - trimming ok marche bien permit eliminer reads de mauvaise 
+   - STARsolo ok , envisageable de changer quelques parametres et voir qu'elle effet cela a sur les reads 
+   - bonne proportion mRNA 
+   - filtrges montre que globalement les cellules en milieu stressé ont moins de reads et plus sensible au filtrage ce qui a justifié l'utilisation d'un seuil par condition , a noté que cela signifie que l'on a supprimé des avec plus haut UMIS dans conditions riche de fer par rapport ceux fible en fer 
+   - certaines variabilité entre replica techique qui creait une variance importante parfois au sein d'un replica biologique mais apres le filtrga seulement le top donc enleve les bas performants
+   - on observait que ce nombre de UMIs et de gene detectés varie entre certain replica biologique  mais surtout en focntion du stade croissance de la poplation, on peut lié cela aux conditions peut etre  que en condtion limitante de ressources cela reduit la capacité de la population a etre active et va plutot plutot mettre en place des strategie de survie et de protection  comme le suggere ... 
+ceci est d'autant plus vrai que l'on retrouve  ... comme genes qui parraisse differentiellement expreimé  dans les conditions stress feriruq tardibe ; alors que temps 1 dans mileiu appauvri pas et inversement dans 
+   - 
+   - abouti a 160 cellules par condition soit un total de 3000 cellules ici deja on peut s'interogé si cela est suffisant pour faire des analyses statistiques Avons-nous capturé suffisamment de cellules par condition (~160) pour détecter une DOL ? L’absence de clustering sera t'il le reflet d’une régulation “bruyante” (noisy) ou simplement d’un échantillonnage trop faible ? 
+ 
+   - 
+
+
+
+-avantage : peu de cellules contrairement au etudes eucaryotes pour lesquelles on a centaindes de millier de cellules voir millions . 
+
+ici geneome procaryotes,  3000 cellules, avatages peut totalement tourné en local et peu de gène donc peut etre utile d'un point de vue pedagogique 
+
+- point de vue logiciel j'ai testé R ou python , ici presenté python avec scanpy uniquement m'a permis de prendre en main ce language que je maitrissait moins . 
+-j'ai egalement appris à creer des container docker, devcontainer permet d'assurer la reproductibilité des resultats, facilite pour une perpective de valorisation scientifique 
+
+toujours dans cette perpectives, j'ai appris a utuiliser quarto pour relaiser ce rapport et (un template sera disponible pour reproduire facilement un rapport, et facilite l'accesibilté via html) 
+
+
+- difficultés : 
+- j'ai eu les resulats assez tardivement, donc je voulais mentrainer sur les resulats d'autres articles mais peu fournissent les metadata associé a leur données brutes donc impossibiltés (pourtant paaru dans des grands journaux )
+
+
+  - en plus de pas fournir le code pour l'analyse de leur données, les articles partages pas leurs tailles de sous libraires qu'il vissait donc ne sait pas si ils filtres bien pour s'approché da la tailles de "cellule réelles estimé" => filtre t'il a un seuil ou ils n'ont pas forcement des cellules uniques 
+ doit on faire confiance dans leur estimation ? 
+
+  - a savoir que cela reste tres subjectif la methodes de filtrages : comment distinguer cellules reelles de prenont un exemple parfois retrouve que certaines cellules de la conditions non stressé a des cellules quis eraient qualifié de mauvaise quzlité ( sur le critere du nombre UMIs)
+  - cela soulève de nombreuse questions : s'aggisait t'il de cellules reelles ou de cellules qui ont ete mal qualifiées ? 
+  - a cela s'ajoute la question si cellules dormantes captes pas/ peu  de signal, 
+  il peut sagir pourtant d'une division certaine du travail en se protegeant  (la non activité est une activité en tant que telle pour maximiser la survie, la fitness de la population )
+  -existe 
+  - est ce que l'estimation du nombre de cellules via aggrega cellulaire est correcte ou bien sous estime le nombre de cellules reellement barcodes ? mais si il s'agit effeccitvement d'aggrga cellulaire contenant plsueirus cellules le barcode peut il etre considéré comme uniques ? 
+
+nous avons testé avec 3000 cellules pour maximiser le nombre de cellules pour valider la capacité de sequençage pour leqeul c'etais la premiere que l'on testait cette methode. 
+
+methode de depletition de ARNr permettrait de recuperer plus de signal mRNA avant le sequençage 
+de plus, long read technologie permettrait d'observer opéron est un groupe de gènes transcrits en une seule molécule d’ARNm polycistronique, permettrait de voir voir gene coregulés ( apres inspection visuel de la matrice genes situé a proxité direct semblaient avoir un mobre de count surexprrime par rapport a leur voisins , il serait interrsant d"analyser cela plus en détail). De meme ici il serait interrsant de ce focalité sur des genes regulation , integrase ou petit tra,script regulateur. 
+
+-ici niveau ARN mais couplé a methodes de single cell, proteomic , metabolomic perpective lointaine s
+
+
+Microsplit est une methode inovante avec de nombreux avantage comme sa faiclé d'utilisation, pas besoin de beaucoup de materiel, et peu le faire sur de nombreuse cellules 10 0000, travaille encourageant pour le futur mais qu'il faut garder en tete toutes ses limites pour ne pas se tromper dans l'interpretation des resultats. 
+
+-si cellules mortes ? l'argage de molecules une forme de division du travaille ? 
+
+- il serait interessant de tester avec un filtrgae moins stringent voir si on observe la meme hhsoe ou pas ? 
+-avons nous assez de cellules par condition 160 unqiement ( si on obseve pas de clustering est ce que cela sera une regulation que l'on poura qualifié noisy regulation ou bien la puissance de caractérisé car tirage alétoire de cellules est relativement faible sur toute la population cellulaire est ce que sera capable de detecter une potentielle dol si sous population avec seulement quelle cellules qui non pas ete tirées ? 
+
+ici milieu de culture, donc est ce que suffisament de gradient pour voir cluster aparaitre comme pourrait en condition plus variable, naturel ?
+
+est ce que assez de capture de mRNA pour pouvoir clusterisé ta t de question 
+
+Beaucoup de questions qui restent ouvertes 
+
+- cela suggere besoin de tester  ave autres methodes de single cell pour confirmer une obserbatopn 
+ le methodes d'isolement parraissent probablement plus adapté , evolation rapide des methodes 
+  
+  - variabilité entre les replica technique sont je trouve assez importantes, si on filtre par replica techniuque et non par par replicas biologique cela garderai les top cellules des replica stzhnique mais pourrait au parfois des distribtion binomaile si certains replica technique ont ete sous performant dans replica biolo et cela rendrait l'analyse et l'interpreation encore plus compliqué 
+
+
+
+perspective amelioration :
+- si refait l'experimentation il serait interresant de faire des bulks et des blancs pour améliorer les stats comme dans cyriaque
+- possibilité de check contamination si potentiel autres ARN contaminants avec diffrentes outils 
+- tester le preprint pour l'écture des barcodes optimisées via cigar motif via BARQC , celui ci permet egalement de check la varibilité dans chaque puit , j'ai fait une shiny app inspiré de celui non presenté ici qui me permet de visualisé les UMIs dans chaque puits et appliqués filtres pour voir si 
+- tester completement le pipeline bacSC, j'ai du modifier une partie de leur code car packages numpy n'etait plus adapté pour gerer les matrices sparces. 
+- deja faire analyse de la DOL en etudiant chaque sample  de maniere independante 
+
+- test d'autres outils : SCVI , ou scanorama pour modelisation, intgration regrssion des données , voir si beosin de par nombre de count 
+- puis ensuite faire analyse Gene Ontology , trajectoire cellulaire (citer article), metabolomic patway... pseudobulk analysis ...
+- pipeline nfcore pour les etapes de trimming et qualité 
+
+- 
+- 
+
+
+
+
+
+
+
+
+
+- autre info diverse 
+  - taux de duplication des barcodes qui est differentes entre les 4 indices (besoin de comprendre pourquoi )
+  - taux de saturation discussion , serai interessant de voir si on a pas des difference entre les conditions ,
+  -  voir le nombre UMIs que je recupere par condition 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Integration of Experimental Design and Biological Hypothesis
+
+This study represents a pioneering investigation into intraspecific division of labor (DoL) within clonal bacterial populations using cutting-edge single-cell transcriptomics technology. Our experimental design was strategically crafted to test the hypothesis that iron limitation promotes functional specialization among genetically identical *P. brassicacearum* R401 cells, potentially leading to metabolic cooperation and enhanced population-level fitness. *P. brassicacearum* R401 is a well-characterized root colonizer that deploys multiple strategies to promote colonization and persistence at plant roots, including siderophore-mediated iron acquisition. Iron limitation represents the primary environmental stress in the rhizosphere, where iron availability is often the limiting factor for microbial growth and competition. *P. brassicacearum*'s success as a root colonizer is largely attributed to its ability to efficiently compete for iron through siderophore production, making it an ideal model system for studying bacterial population dynamics in plant-microbe interactions. Therefore, we chose iron limitation as the key stress factor to investigate, using contrasting culture conditions—iron-limited M9 medium versus iron-replete M9F medium—in controlled liquid culture conditions (without plant contact) to test our hypothesis that iron stress promotes functional specialization among genetically identical cells.
+
+It is important to note that the current analysis represents a foundational step in our investigation. During this internship, I have focused on validating the microSPLiT methodology for bacterial single-cell transcriptomics and examining the global effects of iron limitation stress on all populations combined. The analysis of intraspecific division of labor mechanisms within each population, which represents the ultimate goal of this research project, has not yet been performed in this stage of the work. The present study serves as a crucial validation step to ensure that the microSPLiT technology functions properly and that we can detect transcriptional responses to iron limitation at the single-cell level. The analysis of individual populations to examine division of labor mechanisms can be performed in the coming weeks, building upon the methodological validation and global stress response characterization presented here.
+
+The temporal sampling strategy (T1, T2, T3) was designed to capture the dynamic nature of transcriptional responses to environmental stress, allowing us to observe how cellular heterogeneity evolves over time as cells adapt to nutrient limitation.
+
+## Technical Validation and Methodological Advances
+
+Our study successfully implemented and validated the microSPLiT technology for bacterial single-cell transcriptomics, representing a significant methodological advancement in the field. The comprehensive quality control pipeline we developed addresses the unique challenges of bacterial scRNA-seq, including low RNA content, absence of poly-A tails, and complex cell wall structures. The preprocessing steps, particularly the trimming of sequencing artifacts and the implementation of STARsolo for alignment and quantification, ensured high-quality data generation with excellent barcode quality (85.58% valid barcodes) and sequencing quality (Q30 scores above 95%).
+
+The filtering strategy we employed was carefully designed to balance data quality with biological relevance. By applying different thresholds per biological replicate rather than using a global threshold, we ensured balanced representation across experimental conditions, which is crucial for detecting condition-specific transcriptional heterogeneity. This approach was validated by our observation that M9 medium (iron-limited) showed fewer retained barcodes compared to M9F (iron-replete) when using a global threshold, confirming that different thresholds were indeed necessary to capture cells from all experimental conditions.
+
+## Integration of PCA, UMAP, and Clustering Results
+
+The dimensionality reduction and clustering analysis revealed a coherent transcriptional landscape that aligns with our experimental design and biological hypothesis. The PCA results, which showed clear separation of M9 T2 and T3 conditions along PC1, were further validated and visualized through UMAP projection. The UMAP visualization confirmed the distinct transcriptional profiles of cells under different experimental conditions, with M9 T2 and M9 T3 samples forming a separate cluster from M9F and M9 T1 samples.
+
+The clustering analysis with resolution 0.1 identified two main clusters (Group 0 and Group 1) that corresponded directly to the transcriptional differences observed in PCA. Group 0 primarily contained M9 T2 and T3 cells (iron-limited conditions at later timepoints), while Group 1 primarily contained M9F and M9 T1 cells (iron-replete conditions and early iron-limited timepoints). This clustering pattern perfectly aligned with the PC1 separation, confirming that the principal component analysis captured the major source of transcriptional variation in our dataset.
+
+### Coherence Between Analytical Approaches
+
+The integration of PCA, UMAP, and clustering analyses revealed a highly coherent transcriptional landscape that validates our analytical approach. The PCA results, which identified PC1 as the major source of variation separating iron-limited (M9 T2/T3) from iron-replete (M9F and M9 T1) conditions, were perfectly recapitulated by the UMAP visualization and clustering analysis. This coherence across different dimensionality reduction and clustering methods strengthens our confidence in the biological significance of the observed transcriptional differences.
+
+The clustering analysis with resolution 0.1 identified two distinct groups (Group 0 and Group 1) that directly corresponded to the experimental conditions: Group 0 primarily contained cells from iron-limited conditions at later timepoints (M9 T2 and T3), while Group 1 contained cells from iron-replete conditions and early iron-limited timepoints (M9F and M9 T1). This clustering pattern not only confirmed the PCA results but also provided a robust framework for differential expression analysis, allowing us to identify genes that were consistently differentially expressed between these two major transcriptional states.
+
+The differential expression analysis between Group 0 and Group 1 revealed genes involved in iron metabolism, translational regulation, and stress response, which directly align with the biological hypothesis that iron limitation promotes functional specialization. This multi-level analytical approach—from dimensionality reduction (PCA) to visualization (UMAP) to clustering and differential expression—provides a comprehensive understanding of how transcriptional heterogeneity emerges in response to environmental stress.
+
+## Biological Interpretation of Transcriptional Responses
+
+### Principal Component Analysis and Temporal Dynamics
+
+The PCA analysis revealed a characteristic pattern of low variance explained by individual principal components, which is typical for bacterial single-cell RNA-seq data, particularly under stress conditions. PC1 captured approximately 0.6% of the total variance, indicating that transcriptional variability in our dataset is diffuse or weakly structured. This finding aligns with the theoretical framework of bacterial phenotypic heterogeneity, where stochastic gene expression noise leads to subtle but biologically significant differences between individual cells.
+
+PC1 successfully distinguished between the two culture conditions (M9 and M9F), with M9 T2 and M9 T3 samples clearly separated from other conditions, while M9 T1 showed no significant difference from M9F conditions. This temporal pattern suggests that cells in M9 medium at T1 may not yet be experiencing stress, possibly due to residual iron availability in the medium at this early timepoint. The progressive separation of M9 conditions along PC1 from T1 to T3 indicates a gradual transcriptional response to iron limitation, consistent with the hypothesis that stress-induced specialization emerges over time as cells adapt to nutrient scarcity.
+
+### Biological Significance of Key Genes Contributing to PC1 Variance
+
+Among the genes contributing most to PC1 variance, porphobilinogen synthase was particularly noteworthy. This finding is especially relevant given our experimental design using iron-limited M9 medium. In bacteria, the link between porphobilinogen (PBG) and iron is essential for heme synthesis, a cofactor indispensable for many proteins involved in metabolism, cellular respiration, and electron transport. The biosynthesis of heme in bacteria follows a pathway similar to eukaryotes, with PBG being a key intermediate formed by the condensation of two delta-aminolevulinic acid (ALA) molecules, catalyzed by porphobilinogen synthase. This process is regulated by iron availability in bacterial cells [@choby2016]. The differential expression of porphobilinogen synthase between M9 and M9F conditions thus reflects the cellular adaptation to iron stress.
+
+The analysis also identified TonB-dependent siderophore receptors, which are essential for high-affinity iron acquisition in gram-negative bacteria. These outer membrane-localized proteins bind iron chelates at the cell surface and promote their uptake [@moeck1998; @fujita2019]. Together with porphobilinogen synthase, these genes form a coherent transcriptional response to iron limitation, explaining the clear separation of M9 conditions along PC1.
+
+### Biological Interpretation of Differentially Expressed Genes Between Clusters
+
+The differential expression analysis between Group 0 and Group 1 revealed several genes with distinct expression patterns that provide insights into the cellular response to iron limitation. The clustering-based approach allowed us to identify genes that were consistently differentially expressed between the two major transcriptional states, providing a robust framework for understanding the biological mechanisms underlying the observed heterogeneity.
+
+Among the significantly differentially expressed genes, RplA (30S ribosomal protein L1) showed lower expression in Group 0 compared to Group 1. RplA is constitutively expressed as it is essential for protein synthesis, with expression levels reflecting the cell's translational activity. Higher expression typically indicates active protein synthesis during rapid growth, while lower expression suggests reduced translational activity under stress conditions. This pattern aligns with the reduced transcriptional activity observed in cells under iron stress conditions (Group 0).
+
+Another notable gene was QLH64-28090 (phasin), which showed the opposite pattern with higher expression in Group 1 compared to Group 0. Phasins are multifunctional proteins associated with polyhydroxyalkanoate (PHA) granules that play crucial roles in stress response and energy metabolism [@mezzina2016]. They form an interface between the hydrophobic PHA granules and the hydrophilic cytoplasm, regulating both PHA accumulation and utilization. Under stress conditions, phasins can activate PHA depolymerization to release energy metabolites, increase PHA synthase activity, and participate in granule segregation. Additionally, some phasins exhibit chaperone-like properties, protecting cellular proteins against stress-induced denaturation and oxidative damage. The differential expression of this phasin gene between clusters suggests distinct metabolic adaptations to iron limitation, with cells potentially modulating their storage metabolism, stress response mechanisms, and protein protection strategies.
+
+## Stress Response Mechanisms and Cellular Protection Strategies
+
+The observed transcriptional patterns in Group 0 (iron-limited conditions) suggest the activation of stress response mechanisms and cellular protection strategies. The reduced expression of ribosomal proteins like RplA indicates a global downregulation of protein synthesis, which is a common response to stress conditions that allows cells to conserve energy and resources. This transcriptional shutdown can be interpreted as a protective mechanism that prevents the accumulation of misfolded proteins and reduces cellular energy expenditure during periods of nutrient limitation.
+
+The identification of genes involved in iron metabolism and stress response suggests that cells in Group 0 may be entering a state of reduced metabolic activity, potentially resembling a dormancy-like state. This dormancy response is a well-documented survival strategy in bacteria that allows them to persist under unfavorable conditions while maintaining the ability to resume growth when conditions improve. The reduced transcriptional activity observed in iron-limited conditions may represent a protective mechanism that prevents cellular damage and conserves resources until iron becomes available again.
+
+The differential expression of stress response genes between groups also suggests the activation of cellular protection mechanisms. The upregulation of genes involved in iron acquisition (such as TonB-dependent siderophore receptors) in Group 0 indicates an active response to iron limitation, while the downregulation of housekeeping genes suggests a shift toward stress survival rather than active growth. This transcriptional reprogramming represents a sophisticated adaptation strategy that balances the need for iron acquisition with the conservation of cellular resources.
+
+Additionally, stress conditions can induce modifications in cell wall synthesis and composition, which may further affect RNA accessibility and recovery during the single-cell RNA-seq protocol. Under iron limitation, bacteria may alter their cell wall structure as part of stress response mechanisms, potentially making cells more resistant to permeabilization or affecting the efficiency of RNA extraction. These cell wall modifications, combined with the reduced transcriptional activity, could contribute to the observed differences in RNA capture between stressed and unstressed populations.
+
+## Biological Significance of Reduced RNA Capture in Stressed Conditions
+
+The reduced RNA capture observed in iron-limited conditions represents a genuine biological signal rather than a technical limitation. This reduction is consistent with well-documented stress response mechanisms in bacteria, particularly the regulation of ribosomal biogenesis and protein synthesis. The downregulation of ribosomal proteins like RplA in Group 0 cells reflects a coordinated cellular response to nutrient limitation, where cells actively reduce their translational capacity to conserve energy and resources.
+
+This ribosomal regulation is part of a broader stress response program that includes the stringent response, a conserved bacterial stress response mechanism. Under iron limitation, bacteria activate the stringent response, which leads to the production of alarmones (ppGpp) that inhibit ribosomal RNA synthesis and protein translation. This response is essential for cell survival during periods of nutrient scarcity, as it prevents the wasteful synthesis of proteins when essential cofactors like iron are unavailable.
+
+The reduced transcriptional activity we observed in iron-limited conditions is therefore a biologically meaningful response that indicates successful stress adaptation. Cells that maintain high transcriptional activity under iron limitation would likely experience protein misfolding, oxidative damage, and energy depletion. The observed reduction in RNA capture thus represents a protective mechanism that allows cells to enter a metabolically quiescent state while maintaining the ability to resume growth when iron becomes available.
+
+This biological interpretation of the reduced RNA capture has important implications for understanding bacterial stress responses and population dynamics. It suggests that the transcriptional heterogeneity we observe between stressed and unstressed conditions reflects genuine differences in cellular physiology rather than technical artifacts, providing confidence in our ability to detect biologically relevant transcriptional changes using the microSPLiT methodology.
+
+## Technical Challenges and Implications for Division of Labor Detection
+
+### Technical Challenges in Analyzing Stressed Populations
+
+The reduced transcriptional activity observed in iron-limited conditions (Group 0) presents significant technical challenges for single-cell transcriptomics analysis. The lower number of reads and reduced gene expression in stressed populations makes it more difficult to detect subtle transcriptional differences that might indicate division of labor mechanisms within these populations. This technical limitation is particularly relevant for our ultimate goal of investigating intraspecific DoL, as the reduced transcriptional diversity in stressed cells may mask the presence of specialized subpopulations.
+
+The observation that M9 medium (iron-limited) showed fewer retained barcodes compared to M9F (iron-replete) during the filtering process further illustrates this challenge. Stressed cells not only express fewer genes but also may be more difficult to capture and process through the single-cell RNA-seq pipeline, potentially leading to underrepresentation of certain cell states in the final dataset. This technical bias could make it more challenging to identify division of labor mechanisms within iron-limited populations, as the reduced transcriptional activity and potential cell loss during processing may obscure the detection of specialized subpopulations.
+
+### Implications for Division of Labor Detection in Stressed Populations
+
+The reduced RNA capture and lower transcriptional activity in iron-limited populations present a significant challenge for detecting division of labor mechanisms within these stressed populations. With fewer reads per cell and reduced gene expression diversity, it becomes more difficult to identify subtle transcriptional differences that might indicate functional specialization among individual cells. This technical limitation is particularly relevant for our ultimate goal of investigating intraspecific DoL, as the very populations that are most likely to exhibit division of labor (those under stress) are also the most challenging to analyze at the single-cell level. In the current study, we have not yet observed clear evidence of division of labor mechanisms within individual populations, which may be due to these technical challenges combined with the global nature of our current analysis approach.
+
+The observation that stressed populations show reduced transcriptional complexity suggests that any division of labor mechanisms in these conditions may operate through more subtle transcriptional changes or through post-transcriptional mechanisms that are not captured by RNA-seq. Additionally, the potential loss of certain cell states during the processing pipeline due to reduced RNA content may further bias our ability to detect specialized subpopulations within stressed populations.
+
+However, this challenge also provides valuable insights into the nature of stress responses and population dynamics. The reduced transcriptional diversity in stressed populations may itself indicate a form of population-level adaptation, where cells converge toward a common stress response strategy rather than maintaining diverse functional states. This observation suggests that division of labor mechanisms may be more prominent in unstressed conditions, where cells have the metabolic resources to maintain specialized functions, or may operate through mechanisms that are not easily detectable through transcriptional profiling alone.
+
+## Broader Implications for Microbial Ecology and Evolution
+
+Our findings have significant implications for understanding microbial population dynamics and the evolution of cooperation in bacterial communities. The observation of transcriptional heterogeneity within clonal populations supports the theoretical framework of phenotypic heterogeneity as a driver of population-level adaptation. This heterogeneity, whether driven by gene expression noise or environmentally induced regulation, can lead to the emergence of specialized subpopulations that perform complementary metabolic functions.
+
+The identification of iron metabolism genes as major contributors to transcriptional variance underscores the central role of iron availability in shaping bacterial physiology and population dynamics. Iron limitation appears to act as a selective pressure that promotes functional specialization, potentially leading to the emergence of division of labor mechanisms within clonal populations. This finding is particularly relevant for understanding how bacterial populations adapt to fluctuating environmental conditions in natural habitats, such as the rhizosphere.
+
+## Methodological Contributions and Future Directions
+
+This study represents a significant methodological contribution to the field of bacterial single-cell transcriptomics. The successful implementation of microSPLiT technology for *P. brassicacearum* provides a robust framework for future studies of bacterial population heterogeneity. The comprehensive quality control and filtering pipeline we developed addresses the unique challenges of bacterial scRNA-seq and can serve as a reference for similar studies.
+
+However, several limitations should be acknowledged. The current analysis focused on global transcriptional differences between culture conditions rather than fine-scale heterogeneity within specific conditions. Future studies should employ condition-specific analyses to identify specialized subpopulations and their functional roles. Additionally, the temporal resolution of our sampling (three timepoints) may have missed rapid transcriptional changes that occur during the transition between growth phases.
+
+## Conclusion and Future Perspectives
+
+This study successfully validated the microSPLiT technology for bacterial single-cell transcriptomics and provided preliminary evidence for transcriptional heterogeneity within clonal *P. brassicacearum* populations. The identification of iron metabolism genes as major contributors to transcriptional variance supports our hypothesis that iron limitation promotes functional specialization among genetically identical cells.
+
+The findings suggest that bacterial populations may employ division of labor strategies to optimize resource utilization and enhance collective fitness under stress conditions. This has important implications for understanding microbial ecology, evolution, and the development of strategies for managing bacterial populations in agricultural and medical contexts.
+
+Future research should focus on condition-specific analyses to identify specialized subpopulations and their functional roles, as well as the development of experimental approaches to validate the functional consequences of transcriptional heterogeneity. Additionally, the integration of single-cell transcriptomics with other omics approaches, such as proteomics and metabolomics, could provide a more comprehensive understanding of bacterial population dynamics and the mechanisms underlying division of labor.
+
+::: {.callout-warning}
+## Warning
+
+The filtering thresholds used in this study were chosen to fit our dataset, as each single-cell RNA-seq study typically defines its own filtering criteria. These choices may have implications for the interpretation of results, particularly regarding the representation of different cell states and the detection of rare cell populations. The potential biases introduced by these filtering strategies will be discussed in the Results and Discussion sections, as this is a common limitation across single-cell RNA-seq studies in the field.
+:::
+
+conservé la majorité des reads

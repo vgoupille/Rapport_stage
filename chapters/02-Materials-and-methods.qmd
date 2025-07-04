@@ -55,32 +55,29 @@ graph TD
     classDef measurement fill:#e0f2f1,stroke:#004d40,stroke-width:2px
 ```
 
- *The workflow illustrates the progression from initial culture of P. brassicacearum R401 on petri dishes to liquid culture in two different media: M9 (low glucose and iron) and M9F (high glucose and iron). Each medium condition was replicated three times (Rep A, B, C) and growth was monitored at three timepoints (T1, T2, T3) by optical density measurements. This design resulted in 18 total experimental conditions (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq analysis.*
+ *The workflow illustrates the P. brassicacearum R401 cells preparation in two different media: i) a first stringent medium (M9) with low glucose availability and no iron supplementation) and ii) a less stressful medium (M9F) with regular glucose and iron supplementation. Each medium condition was replicated three times (Rep A, B, C) and bacterial growth was monitored regularly via optical density measured at 600nm. Bacterial cells were sampled three specific timepoints (T1, T2, T3) for each medium. This design resulted in 18 samples(2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq library preparation and analysis.*
 
 
 
 
-An isogenic^[An isogenic population refers to a group of organisms that are genetically identical, derived from a single ancestral cell or clone.] population of *P. brassicacearum* R401 was initially cultured on petri dishes and then transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression (@fig-experimental-design).
+An isogenic population of *P. brassicacearum R401* was initially cultured in a rich medium (Tryptone Soy Broth; “TSB”) before being transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression(@fig-experimental-design).
 
-Two distinct culture conditions were applied to the bacteria: M9 medium containing low glucose and low iron concentrations, and M9F medium containing high glucose and high iron concentrations (see @tbl-media for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD) at regular intervals. The growth curves obtained from these measurements are presented (@fig-growth-curves) and (@tbl-growth-curves). This experimental design resulted in a total of 18 conditions: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.
-<!-- 
-{{< embed ../data/data_growth.ipynb#plot_growth >}} -->
+Two distinct culture conditions were applied to the bacteria:a stringent medium containing low glucose and no iron supplementation (M9), and a medium containing regular glucose concentration (20 mM) and high FeCl3 concentrations (100 µM) (see @tbl-media for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD600nm) at regular intervals. The growth curves obtained from these measurements are presented (@fig-growth-curves). This experimental design resulted in a total of 18 cell samples: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.
+
+
 
 ![Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).](../figures/growth_curves_all.png){#fig-growth-curves fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron)."}
 
-*Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C).*
+*Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C) for both culture media (M9 and M9F).*
 
-The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium (high glucose and iron) exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium (low glucose and iron) which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed excellent reproducibility validating the experimental design.
-
-Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq analysis using the Microbial split-pool ligation transcriptomics (microSPLiT) protocol [@gaisser2024; @kuchina2021].
+The growth curves reveal distinct patterns between the two culture conditions. Bacteria grown in M9F medium exhibited significantly higher growth rates and reached higher optical densities (OD 0.17-0.21 at T1, 0.59-0.63 at T2, 0.74-0.83 at T3) compared to M9 medium which showed limited growth (OD 0.13 at T1, 0.28-0.33 at T2, 0.26 at T3). While M9F cultures showed continued growth from T2 to T3, the growth rate slowed down during this period, indicating the beginning of transition towards stationary phase. The M9 cultures appeared to reach a growth plateau by T3, while M9F cultures maintained higher densities despite the growth deceleration, suggesting nutrient limitation in the M9 condition. Biological replicates showed consistent results, validating the reproducibility of this growth pattern.Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq library preparation using the Microbial split-pool ligation transcriptomics (microSPLiT) protocol [@gaisser2024; @kuchina2021].
 
 ## microSPLiT protocol
 
-MicroSPLiT [@gaisser2024; @kuchina2021] is a high-throughput single-cell RNA sequencing method for bacteria, capable of profiling transcriptional states in hundreds of thousands of cells per experiment without the need for specialized equipment [@gaisser2024;@nishimura2025]. Unlike other single-cell RNA-seq approaches that require physical isolation of individual cells (e.g., plate-based or droplet-based methods), microSPLiT uses a split-pool barcoding strategy to uniquely label transcripts within each cell. 
+MicroSPLiT [@gaisser2024; @kuchina2021] is a high-throughput single-cell RNA sequencing plate-based method for bacteria, allowing the profiling of hundreds of thousands of cells' transcriptional states per experiment without the need for specialized equipment [@gaisser2024;@nishimura2025]. Unlike other single-cell RNA-seq approaches that require physical isolation of individual cells (e.g., droplet-based methods), microSPLiT uses a split-pool barcoding strategy to uniquely label transcripts within each cell.
 
 ::: {.callout-tip}
 ## Information
-
 The microSPLiT strategy will not be described in detail here; for more information, see Gaisser protocol. @gaisser2024. Only the key steps necessary for a general understanding of the method are presented below.
 :::
 
@@ -101,19 +98,18 @@ Adequate permeabilization is essential for efficient barcoding, but over-permeab
 
 ### mRNA enrichment
 
-After permeabilization, the transcripts in the fixed and permeabilized cells undergo in situ polyadenylation with the addition of a poly(A) polymerase (PAP) and ATP. This step enriches for mRNA in the total barcoded RNA pool because, under these conditions, PAP preferentially polyadenylates mRNA as opposed to ribosomique RNA (rRNA) @fig-protocol.
+After permeabilization, the transcripts in the fixed and permeabilized cells undergo in situ polyadenylation with the addition of a poly(A) polymerase (PAP) and ATP. This step enriches for mRNA in the total barcoded RNA pool because, under these conditions, PAP preferentially polyadenylates mRNA as opposed to ribosomal RNA (rRNA) @fig-protocol.
 
 ### Barcoding
-::: {.callout-tip}
-**The protocol utilizes several rounds of split-pool barcoding where cells are distributed into 96-well plates, barcoded, pooled, and redistributed for subsequent rounds, creating unique barcode combinations that identify individual cells.**
-:::
+The protocol utilizes several rounds of split-pool barcoding where cells are distributed into 96-well plates, barcoded, pooled, and redistributed for subsequent rounds, creating unique barcode combinations that identify individual cells.
+
 #### Barcoding round 1 (R1) to identify the condition and the technical replicate
 
-Each of the 18 samples is split into 5 technical replicates for barcoding, resulting in 90 subsamples. These technical replicates are then distributed into individual wells of a 96-well plate (6 wells not used), with each well containing uniquely barcoded primers @fig-protocol. In each well, mRNA is reverse transcribed into cDNA using a mix of barcoded poly(T) and random hexamer primers. The primers used in each well contain either a dT15 sequence to capture polyadenylated mRNA or six random nucleotides to bind any RNA, followed by a universal sequence for subsequent ligation steps. By assigning each technical replicate to a specific well, all cells in the same well receive the same unique barcode during reverse transcription. This allows each technical replicate and condition to be identified later based on the first barcode.
+Each of the 18 samples is split into 5 technical replicates for barcoding, and distributed into individual wells of a 96-well plate containing uniquely barcoded oligos @fig-protocol. In each well, mRNA is reverse transcribed into cDNA using a mix of poly(T) and random hexamer oligos with the same barcode. The oligos used in each well contain either a dT15 sequence to capture polyadenylated mRNA previously enriched or six random nucleotides to bind any RNA, followed by a universal sequence for subsequent ligation steps. All cells in the same well receive the same unique barcode during reverse transcription, which allows sample identification based on the first barcode.
 
 #### Barcoding rounds 2 (R2) and 3 (R3) for unique cell and transcript identification
 
-Cells are then pooled, washed and randomly redistributed into a new 96-well plate (round 2 (R2) ligation working plate) containing a second set of well-specific barcodes, which are appended to the first barcode on the cDNA through an in-cell ligation reaction @fig-protocol. Due to the random redistribution of cells, each well of the second-round plate is likely to contain a mix of cells with different first-round barcodes, resulting in highly diverse barcode combinations. The ligation reaction is carried out by the T4 DNA ligase, which requires double-stranded DNA. Therefore, in the second barcoding plate, each barcode is first hybridized to a short linker oligonucleotide whose overhang is complementary to the universal sequence at the 5' end of the RT barcodes. @fig-protocol.
+Cells are then pooled, washed and randomly redistributed into a new 96-well plate (round 2 (R2) ligation working plate) containing a second set of well-specific barcodes, which are appended to the first barcode on the cDNA through an in-cell ligation reaction @fig-protocol. Due to the random redistribution of cells, each well of the second-round plate is likely to contain a mix of cells with different first-round barcodes, resulting in highly diverse barcode combinations. The ligation reaction is carried out by the T4 DNA ligase, which requires double-stranded DNA. Therefore, in the second barcoding plate, each barcode is first hybridized to a short linker oligonucleotide whose overhang is complementary to the universal sequence at the 5’ end of the RT barcodes. @fig-protocol.
 
 ::: {.callout-note}
 ## Note
@@ -131,19 +127,15 @@ In our experiment, only 95 out of the 96 wells of the R3 plate are used to minim
 
 ### Sub-library and sequencing preparation
 
-The pooled cells are washed, counted, and divided into multiple sub-libraries. Only sub-libraries containing approximately 3,000 cells were selected for sequencing, in order to maximize sequencing depth per cell and minimize barcode collision rates which is the probability that two cells receive the same barcode combination.
+The pooled cells are washed, counted, and divided into multiple sub-libraries. A sub-library containing approximately 3,000 cells was selected for sequencing, in order to maximize sequencing depth per cell and minimize barcode collision rates, which is the probability that two cells receive the same barcode combination @gaisser2024.
 
-After lysis and cDNA purification on streptavidin beads (@fig-protocol-p2), a second reverse transcription is performed to improve cDNA yield, during which a template switch oligo (TSO) is added to introduce a 3' adapter. The resulting cDNA is then amplified by PCR. Following amplification, a size selection step removes short byproducts such as adapter or barcode dimers, ensuring that only high-quality cDNA fragments are retained for sequencing.
+After cell lysis and cDNA purification on streptavidin beads, a second reverse transcription is performed to improve cDNA yield, during which a template switch oligo (TSO) is added to introduce a 3' adapter. The resulting cDNA is then amplified by PCR. Following amplification, a size selection step removes short byproducts such as adapter or barcode dimers, ensuring that only high-quality cDNA fragments are retained for sequencing.
 
-To optimize sequencing depth, the final library was split into four sub-libraries, each receiving a distinct index during adapter ligation: BC_0076 (CAGATC), BC_0077 (ACTTGA), BC_0078 (TAGCTT), and BC_0079 (GGCTAC). These indexes were used solely to improve sequencing quality and balance on the NovaSeq platform, without introducing any experimental or technical variation between sub-libraries.
+To increase index diversity necessary for the well-being of the sequencing, the final library was split into four sub-libraries, each receiving a distinct index during adapter ligation: BC_0076 (CAGATC), BC_0077 (ACTTGA), BC_0078 (TAGCTT), and BC_0079 (GGCTAC). These indices were used solely to improve sequencing quality and balance on the NovaSeq platform, without introducing any experimental or technical variation between sub-libraries.
 
 ### Sequencing and demultiplexing sub-libraries
 
-Sequencing was performed on a NovaSeq^TM^ X plus instrument at GenoBIRD platform in paired-end mode. The library pool was loaded onto all lanes of the flowcell at a final concentration of 200 pM with 20% PhiX^[PhiX is a control library containing a known viral genome sequence that is spiked into sequencing runs to monitor sequencing quality, calibrate base calling, and provide a reference for quality control metrics. It helps ensure accurate sequencing performance and data quality assessment.]. The sequencing program consisted of 241 cycles for Read 1, 6 cycles for Index i7 and 91 cycles for Read 2. The sequencing facility performed demultiplexing of sub-libraries, resulting in eight FASTQ files (R1 and R2 for each index). R1 files contain the cDNA sequences, while R2 files contain the cell barcodes (from the three split-pool rounds) and unique molecular identifiers (UMIs).
-
--   For each index, two paired-end FASTQ files were generated :
-    -   **R1** contains the cDNA sequence of interest (transcriptome).
-    -   **R2** contains the cell barcodes and unique molecular identifiers (UMIs).
+Sequencing was performed on a NovaSeq^TM^ X plus instrument at GenoA platform in paired-end mode. The library pool was loaded onto all lanes of the flowcell at a final concentration of 200 pM with 20% PhiX^[PhiX is a control library containing a known viral genome sequence that is spiked into sequencing runs to monitor sequencing quality, calibrate base calling, and provide a reference for quality control metrics. It helps ensure accurate sequencing performance and data quality assessment.]. The sequencing program consisted of 241 cycles for Read 1, 6 cycles for Index i7 and 91 cycles for Read 2. The sequencing facility performed demultiplexing of sub-libraries, resulting in eight FASTQ files (R1 and R2 for each index). R1 files contain the cDNA sequences of interest (transcriptome), while R2 files contain the cell barcodes (from the three split-pool rounds) and unique molecular identifiers (UMIs).
 
 ## Pipeline for microSPLiT data processing
 
@@ -157,15 +149,11 @@ All quality control, trimming, alignment, barcode reading and generation of cell
 
 #### Quality control and trimming
 
-Read quality was initially assessed for all four libraries (R1 and R2) using FastQC [@babraham] and MultiQC[@ewels2016]. Trimming was then performed with Cutadapt [@martin2011] and Fastp [@chen2018] to clean the sequencing data. For R2 files, trimming focused on filtering for valid barcodes. For R1 files, trimming removed various artifacts: template-switching oligo (TSO) sequences at the 5' end, adapter sequences, and 3' artifacts including polyG stretches (NovaSeq-specific artifacts) and potential R1 complement sequences when cDNA was short. Only reads with a minimum length of 25 bp were kept. The detailed trimming pipeline is described in Appendix Section @sec-appendix-trimming-steps. After trimming, read quality was reassessed with FastQC [@babraham] and MultiQC [@chen2018], and results were merged into unique files (R1 and R2).
+Read quality was initially assessed for all four libraries (R1 and R2) using FastQC [@babraham] and MultiQC[@ewels2016]. Trimming was then performed with Cutadapt [@martin2011] and Fastp [@chen2018] to clean the sequencing data. For R2 files, trimming focused on filtering for valid barcodes. For R1 files, trimming removed various artifacts: template-switching oligo (TSO) sequences at the 5' end, adapter sequences, and 3' artifacts including polyG stretches (NovaSeq-specific artifacts) and potential R1 complement sequences when cDNA was short. Only reads with a minimum length of 25 bp were conserved. The detailed trimming pipeline is described in Appendix Section @sec-appendix-trimming-steps.
 
-#### Quality control after trimming
+#### Quality control and file merging
 
-After trimming, a quality control step was performed to ensure that the remaining reads were of high quality and suitable for downstream analysis. This step involved checking the distribution of read lengths, GC content, and other relevant metrics.
-
-#### Merge files
-
-After quality control, the files from all four libraries (R1 and R2 for each index) were merged into a single file for each index. This step ensured that all cells from all conditions and technical replicates were included in the analysis.
+After trimming, read quality was reassessed with FastQC [@babraham] and MultiQC [@ewels2016] to ensure that the remaining reads were of high quality and suitable for downstream analysis. This step involved checking the distribution of read lengths, GC content, duplication rates, quality scores (Q30), adapter content, and other relevant metrics. Following quality control, the files from all four libraries (R1 and R2 for each index) were merged into unique files (R1 and R2), ensuring that all cells from all conditions and technical replicates were included in the analysis.
 
 #### Alignment, barcode reading and generation of cell-gene count matrix
 
@@ -194,26 +182,11 @@ Raw count matrix was converted to [Seurat v5](https://satijalab.org/seurat/) obj
 
 #### Quality control and filtering.
 
-A multi-step filtering strategy was implemented to ensure data quality and remove technical artifacts while preserving biological variation. The filtering pipeline was designed to address specific challenges of microSPLiT data and experimental design considerations.
+A multi-step filtering strategy was implemented to ensure data quality and remove technical artifacts while preserving biological variation. The filtering pipeline was designed to address specific challenges of microSPLiT data and experimental design considerations. 
 
-**Initial UMI-based filtering.** Cells with fewer than 100 unique molecular identifiers (UMIs) were excluded from the analysis. This threshold was chosen based on preliminary analysis showing clear differences in UMI distributions between the two culture conditions (M9 vs M9F), while also serving as a quality control metric to identify potentially failed technical replicates.
+An initial UMI-based filtering was performed to remove cells with fewer than 100 unique molecular identifiers (UMIs) from the analysis @fig-filter_100UMI. This threshold was chosen based on preliminary analysis showing clear differences in UMI distributions between the two culture conditions (M9 vs M9F), while also serving as a quality control metric to identify potentially failed technical replicates. To identify potential doublets, the top-performing cells from each technical replicate were first filtered based on UMI counts. Doublets are technical artifacts that occur when two or more cells are incorrectly assigned the same barcode combination, resulting in a mixed transcriptomic profile that can confound single-cell analysis. The distribution of UMI counts per cell was examined within these high-quality cells to detect outliers that deviated significantly from the expected distribution, which typically represent potential doublets or technical artifacts (visual inspection of the distribution of UMI counts per cell). A comprehensive list of these putative doublets was compiled and subsequently removed from the initial dataset to ensure data quality.
 
-**Doublet removal.** To identify potential doublets, the top-performing cells from each technical replicate were first filtered based on UMI counts. The distribution of UMI counts per cell was examined within these high-quality cells to detect outliers that deviated significantly from the expected distribution, which typically represent potential doublets or technical artifacts (visual inspection of the distribution of UMI counts per cell). A comprehensive list of these putative doublets was compiled and subsequently removed from the initial dataset to ensure data quality.
-
-**Biological replicate-based filtering.** To ensure robust representation of each experimental condition, filtering was applied at the biological replicate level to obtient approxymaly 165 cells per condition, that represente a total of 3000 cells. For each biological replicate at each optical density timepoint (T1, T2, T3) for both culture conditions (M9, M9F), only the most deeply sequenced cells were retained. This approach allowed for the selection of the best-performing technical replicates. Then, in each of the 18 conditions, technical replicates containing fewer than 5 cells were removed.
-
-**Transcript type filtering.** Only mRNA transcripts were retained for analysis, filtering out ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species.
-
-**Gene expression filtering.** Genes expressed in fewer than 5 cells across the entire dataset were removed to eliminate low-quality or spurious gene detection events and focus on robustly detected transcripts.
-
-
-
-::: {.callout-warning}
-## Warning
-
-The filtering thresholds used in this study were chosen arbitrarily, as each single-cell RNA-seq study typically defines its own filtering criteria. These choices may have implications for the interpretation of results, particularly regarding the representation of different cell states and the detection of rare cell populations. The potential biases introduced by these filtering strategies will be discussed in the Results and Discussion sections, as this is a common limitation across single-cell RNA-seq studies in the field.
-:::
-
+To ensure robust representation of each experimental condition, filtering was applied at the biological replicate level to obtain approximately 165 cells per condition, representing a total of 3000 cells. For each biological replicate at each optical density timepoint (T1, T2, T3) for both culture conditions (M9, M9F), only the most deeply sequenced cells were retained. This approach allowed for the selection of the best-performing technical replicates. Then, in each of the 18 conditions, technical replicates containing fewer than 5 cells were removed.Transcript type filtering was applied to retain only mRNA transcripts for analysis, filtering out ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species. Gene expression filtering was performed to remove genes expressed in fewer than 5 cells across the entire dataset, eliminating low-quality or spurious gene detection events and focusing on robustly detected transcripts.
 
 ### Single-cell analysis
 
@@ -229,7 +202,7 @@ The analysis workflow encompassed several key steps: Normalization and scaling, 
 
 **Principal component analysis (PCA).** PCA was computed using `sc.pp.pca`, with the number of principal components systematically tested at multiple levels (i.e. 3, 10, 20, 50) depending on the data characteristics. The optimal number of components was determined using Scanpy's `sc.pl.pca_variance_ratio` plot, which displays the explained variance ratio for each principal component, allowing us to identify the elbow point where additional components provide diminishing returns in variance explanation.
 
-**Clustering and visualization.** We computed shared nearest neighbor graphs using `sc.pp.neighbors` and tested multiple clustering algorithms including Leiden clustering (`sc.tl.leiden`) with different resolution parameters (i.e. 0.3, 0.5, 0.8, 1.0, 2.0) to identify the optimal clustering granularity. Uniform manifold approximation and projection (UMAP) was computed using `sc.tl.umap` for visualization, with parameters optimized for bacterial single-cell data. For comparison and validation purposes, we also performed the same analytical workflow using Seurat v5, which yielded similar results and performance, confirming the robustness of our analytical approach across different computational frameworks.
+**Clustering and visualization.** For our analysis that will be presented, we constructed the neighborhood graph using the first 5 principal components (PCs) with 10 neighbors per cell, capturing local similarity between cells in the reduced dimensional space. This approach is essential for downstream clustering and visualization analyses. We then applied Leiden clustering with two different resolution parameters (0.1 and 0.25) to identify distinct cell populations. Uniform manifold approximation and projection (UMAP) was computed using `sc.tl.umap` for visualization, with parameters optimized for bacterial single-cell data. For comparison and validation purposes, we also performed the same analytical workflow using Seurat v5, which yielded similar results and performance, confirming the robustness of our analytical approach across different computational frameworks.
 
 
 **Differential expression analysis**

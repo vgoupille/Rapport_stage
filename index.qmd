@@ -56,13 +56,20 @@ This work is licensed under a [Attribution-NonCommercial-NoDerivatives 4.0 Inter
 
 ::: {.text-justify}
 
-{{< lipsum 2 >}}
+Division of labor (DOL) represents a fundamental biological strategy enhancing collective performance through task specialization. While interspecific DOL is well-documented in microbial communities, intraspecific DOL within clonal bacterial populations remains underexplored. This study investigated whether genetically identical bacterial cells exhibit functional specialization under iron limitation, using *Pseudomonas brassicacearum* R401 as a model system.
+
+We employed microSPLiT (microbial Split-Pool Ligation Transcriptomics) technology to perform single-cell RNA sequencing on *P. brassicacearum* R401 populations grown under contrasting iron conditions: iron-limited (M9) and iron-replete (M9F) media. Bacterial cultures were sampled at three timepoints with three biological replicates per condition, resulting in 18 experimental samples.
+
+The microSPLiT methodology successfully generated high-quality single-cell transcriptomic data, with 85.58% of sequencing reads containing valid barcodes and detection of 6,035 genes (96.6% of the annotated genome). Following quality control and filtering, we analyzed approximately 3,000 cells. Principal component analysis revealed clear transcriptional distinctions between culture conditions, with iron-limited cells at later timepoints showing reduced transcriptional activity and distinct gene expression patterns.
+
+Differential expression analysis identified genes associated with translational regulation, iron metabolism, and stress response as key contributors to condition-specific programs. Cells under iron limitation exhibited downregulation of ribosomal protein genes (e.g., RplA) and upregulation of storage metabolism genes (e.g., phasin) and siderophore biosynthesis regulators, suggesting adaptive metabolic reorganization under iron stress.
+
+This study successfully established the technical foundation for bacterial single-cell transcriptomics using microSPLiT. The methodological advances and initial transcriptomic insights provide a solid basis for future investigations of bacterial population heterogeneity and potential cellular specialization under environmental constraints.
 
 :::
 
 ### Keywords :
-Single-cell RNA-seq, Pseudomonas brassicacearum, Division Of Labor, (4-5 keywords)
-bacterial population, metabolism, specialization, root colonization
+Single-cell RNA-seq, *Pseudomonas brassicacearum*, Division Of Labor, microSPLiT, iron limitation
 
 ::: {.content-visible when-format="pdf"}
 
