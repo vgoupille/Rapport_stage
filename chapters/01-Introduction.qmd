@@ -39,10 +39,11 @@ The production of pyoverdine highlights the central role of iron availability in
 
 Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DoL) among genetically identical *PsR401* cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.
 :::
-
+\newpage
 ## Leveraging Single-Cell Transcriptomics to Study DoL
 
 To test our biological hypothesis regarding intraspecific DoL in *PsR401*, we need to examine transcriptional heterogeneity at the single-cell level. Traditionally, studies of bacterial gene expression have relied on bulk RNA sequencing methods, which provide an average view of the transcriptome across a population.[@nishimura2025] However, these approaches mask the underlying cell-to-cell variability that is critical for understanding complex bacterial behaviors and adaptations. The advent of single-cell RNA sequencing (scRNA-seq) and now multi-omics technologies has provided unprecedented insights into cellular heterogeneity across various biological systems [@vandereyken2023; @nobori2025; @nobori]. Although eukaryotic cells have benefited from scRNA-seq technology since 2009, prokaryotic systems have faced significant implementation delays owing to distinct technical obstacles. These challenges include low RNA content in individual cells, the absence of poly-A tails on bacterial mRNAs, and diverse cell wall structures.[@nishimura2025] These factors necessitate the development of specialized techniques for efficient cell lysis, RNA extraction, and mRNA enrichment in bacterial systems. Despite these challenges, recent years have seen significant progress in developing and refining bacterial scRNA-seq methods [@nishimura2025; @sarfatis2025]. These methodological improvements have created novel opportunities to explore bacterial physiology, stress responses, and population dynamics at single-cell resolution.
+
 
 ## Research Objectives and Approach
 
@@ -50,9 +51,14 @@ To test our biological hypothesis regarding intraspecific DoL in *PsR401*, we ne
 
 To address our biological hypothesis regarding intraspecific DoL in *PsR401*, we will leverage the microSPLiT (microbial Split-Pool Ligation Transcriptomics) technology [@kuchina2021; @gaisser2024]. This cutting-edge bacterial scRNA-seq method enables high-throughput profiling of individual bacterial cells, providing the resolution necessary to detect transcriptional heterogeneity within clonal populations. By analyzing *PsR401* cells under contrasting nutrient conditions—particularly iron-limited versus iron-replete environments—we hope to identify potential subpopulations that specialize in different metabolic tasks (see @fig-hypothesis-iron).
 
-![Hypothesis of DoL in *PsR401* under iron-limiting conditions](../figures/DoL_hypothesis.png){#fig-hypothesis-iron width="80%" fig-align="center"}
+\newpage
 
-*Testing the division of labor hypothesis in *PsR401* under two contrasting conditions: iron-limited and iron-replete environments. Single-cell RNA sequencing (scRNA-seq) with microSPLiT will enable detection of transcriptional heterogeneity within the population, revealing whether this specialization is driven by noisy gene expression or environmentally induced metabolic specialization.*
+\
+
+![Hypothesis of DoL in *PsR401* under iron-limiting conditions](../figures/DoL_hypothesis.png){#fig-hypothesis-iron width="60%" fig-align="center"}
+
+*Testing the division of labor hypothesis in PsR401 under two contrasting conditions: iron-limited and iron-replete environments. Single-cell RNA sequencing (scRNA-seq) with microSPLiT will enable detection of transcriptional heterogeneity within the population, revealing whether this specialization is driven by noisy gene expression or environmentally induced metabolic specialization.*
+
 
 ### Internship Goals and Expected Outcomes
 

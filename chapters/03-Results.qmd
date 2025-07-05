@@ -28,6 +28,8 @@ Artifacts content of the sublibrary BC_0076 before and after trimming with Cutad
 
 The trimming process successfully removed various sequencing artifacts and improved data quality for downstream analysis. The preprocessing pipeline eliminated template-switching oligo (TSO) sequences, polyG stretches (NovaSeq-specific artifacts), polyA tails, and adapter sequences from the raw sequencing data (@fig-adaptateur, @tbl-summary-trimming). This cleaning step was essential for accurate gene expression quantification and reliable single-cell analysis. The trimming process resulted in an average reduction of 25.4% in the total number of sequences across all sublibraries, from 1,733.7 million to 1,284.5 million reads (@tbl-summary-trimming).
 
+\newpage
+
 ### Alignment and Quantification with STARsolo
 
 Following the successful preprocessing and trimming of our sequencing data, we performed alignment against the reference genome of *P. brassicacearum R401* (@fig-genome). The barcode reading and quantification by STARsolo[@dobin2013; @kaminow] provided comprehensive quality metrics and mapping statistics.
@@ -46,7 +48,7 @@ Following the successful preprocessing and trimming of our sequencing data, we p
 | **Cell Barcodes Detected** | 699,355 |
 | **N_umi** | 36,565,214 |
 
-: Summary of metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of *P. brassicacearum R401* {#tbl-starsolo-comprehensive layout-ncol="1"}
+: Summary of metrics obtained with STARsolo after barcode-UMI reading and alignment with the reference genome of P. brassicacearum R401 {#tbl-starsolo-comprehensive layout-ncol="1"}
 
 The STARsolo analysis demonstrated excellent barcode quality with 85.58% of reads having valid barcodes, falling within the expected range of 70-90% for successful experiments @gaisser2024. The sequencing quality was outstanding with Q30 scores above 95% for both RNA reads and barcode/UMI sequences.
 
@@ -68,9 +70,6 @@ The genome and transcriptome composition analysis reveals the distribution of di
 
 STARsolo [@dobin2013; @kaminow] detected 699,355 out of 820,800 possible barcode combinations, significantly more than the approximately 3,000 cells targeted in our sublibrary design @tbl-starsolo-comprehensive. This large discrepancy indicates the presence of contaminating barcodes that can occur throughout the protocol, including potential contamination in the source oligonucleotide plates. To proceed with single-cell analysis, we needed to identify and retain only genuine cells among this large barcode population. STARsolo employs a knee plot strategy to identify "real" cells[@luecken2019]. However, as recommended in the literature (Gaisser et al. 2024 @gaisser2024), we chose to apply our own filtering criteria rather than using STARsolo's default KneePant method, which would have resulted in approximately 27,000 cells. This decision was based on the consideration that our experimental design included cells grown under different conditions (culture medium composition) and at different growth stages, which could result in varying transcriptional activity levels. Therefore, applying a single threshold across all conditions might eliminate cells with naturally lower but biologically relevant expression profiles. Instead, we chose to apply different thresholds to retain the best cells from each biological replicate, ensuring balanced representation across experimental conditions. This approach was validated by our initial UMI-based filtering results @sec-appendix-cell-filtering, which revealed clear differences between culture conditions with M9 medium (nutrient-limited) showing fewer retained barcodes compared to M9F (nutrient-rich) when we used a global threshold of 100 UMIs per cell, confirming that different thresholds per samples were indeed necessary to capture cells from all experimental conditions.
 
-Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions. The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (@fig-splitplot-barcodes-final). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (@fig-splitplot-barcodes-final). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.
-
-The following visualizations also show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene, @fig-scatter_final.
 
 ::: {#fig-final_filtering layout="[[1], [1], [1], [1]]"}
 ![Number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after final filtering](../figures/mRNA__Genes_barplot.png){#fig-splitplot-barcodes-final}
@@ -83,6 +82,13 @@ The following visualizations also show the distribution of mRNA gene expression 
 
 Metrics of filtered cells across experimental conditions (Culture Medium × Biological Replicate × Sampling Time) in the single-cell RNA-seq experiment.
 :::
+
+
+
+Following the initial UMI-based filtering, additional quality control steps were applied including doublet removal, biological replicate-based filtering, and mRNA type filtering. The final dataset contained approximately 3,000 cells, representing the highest-quality cells selected from each biological replicate to ensure balanced representation across experimental conditions. The filtering by biological replicate shows that some technical replicates were partially or completely eliminated to retain only the best-performing ones. The distribution of retained cells shows approximately 160 cells per biological replicate (@fig-splitplot-barcodes-final). When few technical replicate categories remain for a biological replicate, it indicates high variability between technical replicates, likely due to differential barcode efficiency since each technical replicate possesses different barcode 1 combinations (@fig-splitplot-barcodes-final). Some technical replicates were more efficient than others (e.g., M9F A sampling T2 had one technical replicate that was much more efficient than its group and therefore almost the only one for which cells passed the filter). Following this filtering, technical replicates are no longer considered for subsequent analyses, and we focus on the biological replicate level.
+
+The following visualizations also show the distribution of mRNA gene expression patterns across the filtered cell population, specifically the number of mRNA genes detected per cell and the number of UMIs associated with mRNA genes per cell @fig-filtered_mRNA_violin_UMI, @fig-filtered_mRNA_violin_gene, @fig-scatter_final.
+
 
 M9F medium consistently showed higher values compared to M9 (@fig-scatter_final), with mean mRNA counts of 749 for M9F versus 372 for M9, and mean gene counts of 462 for M9F versus 270 for M9.
 
