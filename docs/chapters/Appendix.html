@@ -221,9 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-appendix-trimming-steps" id="toc-sec-appendix-trimming-steps" class="nav-link" data-scroll-target="#sec-appendix-trimming-steps"><span class="header-section-number">A.2</span> Trimming pipeline steps</a></li>
   <li><a href="#sec-appendix-starsolo" id="toc-sec-appendix-starsolo" class="nav-link" data-scroll-target="#sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</a></li>
   <li><a href="#sec-appendix-cell-filtering" id="toc-sec-appendix-cell-filtering" class="nav-link" data-scroll-target="#sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</a></li>
-  <li><a href="#sec-appendix-scrna-stats" id="toc-sec-appendix-scrna-stats" class="nav-link" data-scroll-target="#sec-appendix-scrna-stats"><span class="header-section-number">A.5</span> Single-cell RNA-seq Analysis Statistics</a></li>
-  <li><a href="#sec-appendix-pca" id="toc-sec-appendix-pca" class="nav-link" data-scroll-target="#sec-appendix-pca"><span class="header-section-number">A.6</span> Principal Component Analysis (PCA) Supplementary Figures</a></li>
-  <li><a href="#supplementary-umap-figures" id="toc-supplementary-umap-figures" class="nav-link" data-scroll-target="#supplementary-umap-figures"><span class="header-section-number">B</span> Supplementary UMAP Figures</a></li>
+  <li><a href="#sec-appendix-pca" id="toc-sec-appendix-pca" class="nav-link" data-scroll-target="#sec-appendix-pca"><span class="header-section-number">A.5</span> PCA analysis Supplementary Figures</a></li>
+  <li><a href="#sec-appendix-umap" id="toc-sec-appendix-umap" class="nav-link" data-scroll-target="#sec-appendix-umap"><span class="header-section-number">A.6</span> UMAP Analysis Supplementary Figures</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/Appendix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -416,46 +415,6 @@ This step trims R1 at both 5’ and 3’ ends to keep only cDNA and ensure clean
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">--compression</span> 4 <span class="dt">\</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<section id="multiqc-report-r1-before-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r1-before-trimming">MultiQC Report R1 Before Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R1 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
-<section id="multiqc-report-r1-after-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r1-after-trimming">MultiQC Report R1 After Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R1 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
-<section id="multiqc-report-r2-before-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r2-before-trimming">MultiQC Report R2 Before Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R2 before trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
-<section id="multiqc-report-r2-after-trimming" class="level4">
-<h4 class="anchored" data-anchor-id="multiqc-report-r2-after-trimming">MultiQC Report R2 After Trimming</h4>
-<details>
-<summary>
-Click to view MultiQC report R2 after trimming
-</summary>
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-</iframe>
-</details>
-</section>
 </section>
 <section id="sec-appendix-starsolo" class="level2" data-number="A.3">
 <h2 data-number="A.3" class="anchored" data-anchor-id="sec-appendix-starsolo"><span class="header-section-number">A.3</span> STARsolo supplementary information</h2>
@@ -535,77 +494,6 @@ Click to view MultiQC report R2 after trimming
 <p>Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.</p>
 </section>
 </section>
-<section id="sec-appendix-starsolo-kneepant" class="level3">
-<h3 class="anchored" data-anchor-id="sec-appendix-starsolo-kneepant">STARsolo KneePant filtering results</h3>
-<p>As a comparison to our custom filtering approach, we also analyzed the data using STARsolo’s default KneePant filtering method. The following table presents the results obtained with this alternative filtering strategy:</p>
-<div id="tbl-starsolo-kneepant" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-starsolo-kneepant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;A.2: STARsolo KneePant filtering results for comparison
-</figcaption>
-<div aria-describedby="tbl-starsolo-kneepant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 52%">
-<col style="width: 18%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Metric</th>
-<th>Value</th>
-<th>Biological Significance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Estimated Number of Cells</strong></td>
-<td>27,203</td>
-<td>Large population for DoL analysis</td>
-</tr>
-<tr class="even">
-<td><strong>Mean Reads per Cell</strong></td>
-<td>470</td>
-<td>Good coverage depth</td>
-</tr>
-<tr class="odd">
-<td><strong>Median Reads per Cell</strong></td>
-<td>381</td>
-<td>Consistent coverage</td>
-</tr>
-<tr class="even">
-<td><strong>Mean UMI per Cell</strong></td>
-<td>465</td>
-<td>Reliable molecular counting</td>
-</tr>
-<tr class="odd">
-<td><strong>Median UMI per Cell</strong></td>
-<td>378</td>
-<td>Consistent UMI distribution</td>
-</tr>
-<tr class="even">
-<td><strong>Mean Genes per Cell</strong></td>
-<td>296</td>
-<td>Rich transcriptional profiles</td>
-</tr>
-<tr class="odd">
-<td><strong>Median Genes per Cell</strong></td>
-<td>258</td>
-<td>Consistent gene detection</td>
-</tr>
-<tr class="even">
-<td><strong>Total Genes Detected</strong></td>
-<td>6,035</td>
-<td>Comprehensive gene coverage</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p><em>Results obtained using STARsolo’s default KneePant filtering method. This approach would have resulted in approximately 27,000 cells with higher average coverage per cell, but potentially at the cost of removing biologically relevant stressed cells that might exhibit lower quality metrics. In contrast, our custom filtering approach was specifically designed to target approximately 3,000 high-quality cells across all experimental conditions, prioritizing balanced representation of each condition</em></p>
-<p>The KneePant method applies a knee plot analysis to identify the inflection point in the barcode rank plot, automatically determining the threshold between genuine cells and background noise. While this method provides a standardized approach to cell filtering, it may not be optimal for division of labor analysis where stressed cells with potentially lower quality metrics could represent important biological subpopulations. Our targeted approach of ~3,000 cells ensures sufficient statistical power for differential expression analysis while maintaining balanced representation across all experimental conditions (2 media × 3 biological replicates × 3 timepoints).</p>
-</section>
 </section>
 <section id="sec-appendix-cell-filtering" class="level2" data-number="A.4">
 <h2 data-number="A.4" class="anchored" data-anchor-id="sec-appendix-cell-filtering"><span class="header-section-number">A.4</span> Initial filtering with minimum 100 UMI per cell</h2>
@@ -661,23 +549,8 @@ Figure&nbsp;A.1: Filtering of low-quality cell barcodes with fewer than 100 UMIs
 </div>
 <p><em>The initial filtering step removed cell barcodes with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.</em></p>
 </section>
-<section id="sec-appendix-scrna-stats" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-scrna-stats"><span class="header-section-number">A.5</span> Single-cell RNA-seq Analysis Statistics</h2>
-<p>The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of <em>P. brassicacearum</em>.</p>
-<div id="fig-tab-scrna" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/tab.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;A.2: Tabular representation of gene expression statistics across cell populations"><img src="../figures/fig_sc/tab.png" class="img-fluid figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tab-scrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.2: Tabular representation of gene expression statistics across cell populations
-</figcaption>
-</figure>
-</div>
-<p><em>Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.</em></p>
-</section>
-<section id="sec-appendix-pca" class="level2" data-number="A.6">
-<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-pca"><span class="header-section-number">A.6</span> Principal Component Analysis (PCA) Supplementary Figures</h2>
+<section id="sec-appendix-pca" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="sec-appendix-pca"><span class="header-section-number">A.5</span> PCA analysis Supplementary Figures</h2>
 <div id="fig-suppl-single-cell-analysis" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -686,10 +559,10 @@ Figure&nbsp;A.2: Tabular representation of gene expression statistics across cel
 <div id="fig-scaling" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-scaling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/scalling.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(a): Scaling of the data"><img src="../figures/fig_sc/scalling.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/scalling.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.2&nbsp;(a): Transformation of the data with the python version of scTransform (BacSC pipeline)"><img src="../figures/fig_sc/scalling.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scaling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Scaling of the data
+(a) Transformation of the data with the python version of scTransform (BacSC pipeline)
 </figcaption>
 </figure>
 </div>
@@ -698,10 +571,10 @@ Figure&nbsp;A.2: Tabular representation of gene expression statistics across cel
 <div id="fig-pca-choose" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-pca-choose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/pca_choose.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(b): PCA analysis showing optimal number of principal components"><img src="../figures/fig_sc/pca_choose.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/pca_choose.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.2&nbsp;(b): PCA analysis showing optimal number of principal components (based on the elbow method) the x axis is the number of principal components and the y axis is the explained variance"><img src="../figures/fig_sc/pca_choose.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pca-choose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) PCA analysis showing optimal number of principal components
+(b) PCA analysis showing optimal number of principal components (based on the elbow method) the x axis is the number of principal components and the y axis is the explained variance
 </figcaption>
 </figure>
 </div>
@@ -712,10 +585,10 @@ Figure&nbsp;A.2: Tabular representation of gene expression statistics across cel
 <div id="fig-pca-conf" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-pca-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/pca_conf.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(c): PCA confidence intervals for different cell populations"><img src="../figures/fig_sc/pca_conf.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/pca_conf.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.2&nbsp;(c): Comparison of different principal component axes (PC1 vs PC2, PC2 vs PC3, etc.) to assess separation of experimental groups"><img src="../figures/fig_sc/pca_conf.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pca-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) PCA confidence intervals for different cell populations
+(c) Comparison of different principal component axes (PC1 vs PC2, PC2 vs PC3, etc.) to assess separation of experimental groups
 </figcaption>
 </figure>
 </div>
@@ -726,10 +599,10 @@ Figure&nbsp;A.2: Tabular representation of gene expression statistics across cel
 <div id="fig-pca2-summary-top" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-pca2-summary-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/pca2_summary_top.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(d): PCA2 summary top"><img src="../figures/fig_sc/pca2_summary_top.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/pca2_summary_top.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.2&nbsp;(d): Heatmap of the top contributing genes (top 20) to the first principal components (PC2), based on scaled expression values (z-score per gene). Rows represent genes, columns represent single cells collected at each timepoints for all biological replicates. The legend at the right side of the heatmap shows the full name of the genes."><img src="../figures/fig_sc/pca2_summary_top.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pca2-summary-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(d) PCA2 summary top
+(d) Heatmap of the top contributing genes (top 20) to the first principal components (PC2), based on scaled expression values (z-score per gene). Rows represent genes, columns represent single cells collected at each timepoints for all biological replicates. The legend at the right side of the heatmap shows the full name of the genes.
 </figcaption>
 </figure>
 </div>
@@ -737,38 +610,40 @@ Figure&nbsp;A.2: Tabular representation of gene expression statistics across cel
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;A.3: Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow plot for optimal PC selection, B) PCA plot colored by experimental conditions, and C) PCA plot with confidence intervals for cell populations
+Figure&nbsp;A.2: Supplementary figures for the PCA analysis
 </figcaption>
 </figure>
 </div>
-<p><em>The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.</em></p>
+<p><em>The PCA analysis supplementary figures provide detailed insights into the dimensionality reduction process. The scaling transformation (<a href="#fig-scaling" class="quarto-xref">Figure&nbsp;<span>A.3 (a)</span></a>) shows data normalization using scTransform from the BacSC pipeline. The elbow plot (<a href="#fig-pca-choose" class="quarto-xref">Figure&nbsp;<span>A.3 (b)</span></a>) demonstrates the optimal number of principal components selection based on explained variance. The PC comparison (<a href="#fig-pca-conf" class="quarto-xref">Figure&nbsp;<span>A.3 (c)</span></a>) evaluates different principal component combinations for group separation. The heatmap (<a href="#fig-pca2-summary-top" class="quarto-xref">Figure&nbsp;<span>A.3 (d)</span></a>) identifies the top contributing genes to PC2, revealing key transcriptional drivers of the observed separation between experimental conditions.</em></p>
 </section>
-<section id="supplementary-umap-figures" class="level1" data-number="B">
-<h1 data-number="B"><span class="header-section-number">B</span> Supplementary UMAP Figures</h1>
+<section id="sec-appendix-umap" class="level2" data-number="A.6">
+<h2 data-number="A.6" class="anchored" data-anchor-id="sec-appendix-umap"><span class="header-section-number">A.6</span> UMAP Analysis Supplementary Figures</h2>
 <div id="fig-suppl-single-cell-analysis" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-diff-exp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-diff-exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/tab.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;B.1&nbsp;(a): Differential expression analysis between clusters"><img src="../figures/fig_sc/tab.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/tab.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(a): Table showing the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering, with gene names and significance thresholds (p-value adj) after FDR correction"><img src="../figures/fig_sc/tab.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-diff-exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Differential expression analysis between clusters
+(a) Table showing the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering, with gene names and significance thresholds (p-value adj) after FDR correction
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 50.0%;justify-content: flex-start;">
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suppl-single-cell-analysis" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;B.1&nbsp;(b): Heatmap visualization of gene expression patterns across different cell clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/heatmap.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(b): Heatmap with z-score scaling (ranging from 0 to 1) of the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering. Rows represent genes, columns represent single cells of both leiden clusters"><img src="../figures/fig_sc/heatmap.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Heatmap visualization of gene expression patterns across different cell clusters
+(b) Heatmap with z-score scaling (ranging from 0 to 1) of the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering. Rows represent genes, columns represent single cells of both leiden clusters
 </figcaption>
 </figure>
 </div>
@@ -779,21 +654,22 @@ Figure&nbsp;A.3: Principal Component Analysis (PCA) of single-cell RNA-seq data 
 <div id="fig-violin-sc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;B.1&nbsp;(c): Violin plot showing gene expression distribution across cell populations"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
+<a href="../figures/fig_sc/violin.png" class="lightbox" data-gallery="fig-suppl-single-cell-analysis" title="Figure&nbsp;A.3&nbsp;(c): Violin plots showing five differentially expressed genes (rplA (30S ribosomal protein L1), ppsA, QLH64_28090 (phasin), rpoC, QLH64_04320 (flagellin)) between the two clusters identified by Leiden clustering"><img src="../figures/fig_sc/violin.png" class="img-fluid figure-img" data-ref-parent="fig-suppl-single-cell-analysis"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-violin-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Violin plot showing gene expression distribution across cell populations
+(c) Violin plots showing five differentially expressed genes (rplA (30S ribosomal protein L1), ppsA, QLH64_28090 (phasin), rpoC, QLH64_04320 (flagellin)) between the two clusters identified by Leiden clustering
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;B.1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-suppl-single-cell-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;A.3: Supplementary figures from UMAP clustering analysis revealing transcriptional heterogeneity in <em>P. brassicacearum</em> populations under iron stress.
 </figcaption>
 </figure>
 </div>
+<p><em>Differential expression analysis identified significantly differentially expressed genes (Wilcoxon test with FDR correction, p &lt; 0.05) between the two main clusters identified using Leiden clustering with resolution 0.1. The heatmap (<a href="#fig-heatmap" class="quarto-xref">Figure&nbsp;<span>A.3 (b)</span></a>) shows expression patterns of the top 50 most significant genes, while violin plots (<a href="#fig-violin-sc" class="quarto-xref">Figure&nbsp;<span>A.3 (c)</span></a>) illustrate the distribution of five representative genes, revealing that despite statistical significance, considerable variability exists within clusters, which may suggest specialized cellular functions or heterogeneous physiological states.</em></p>
 
 
 </section>

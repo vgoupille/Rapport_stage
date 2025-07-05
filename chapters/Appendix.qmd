@@ -147,58 +147,6 @@ The following steps were performed sequentially for read trimming, as implemente
    ```
 
 
-::: {.content-visible when-format="html"}
-#### MultiQC Report R1 Before Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R1 before trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R1 After Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R1 after trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R2 Before Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R2 before trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-
-#### MultiQC Report R2 After Trimming
-
-<details>
-
-<summary>Click to view MultiQC report R2 after trimming</summary>
-
-<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
-
-</iframe>
-
-</details>
-:::
-
-
-
 ##  STARsolo supplementary information {#sec-appendix-starsolo}
 
 ### Computing environment
@@ -277,40 +225,6 @@ These parameters were chosen to optimize single-cell detection while maintaining
 Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.
 
 
-
-### STARsolo KneePant filtering results {#sec-appendix-starsolo-kneepant}
-
-As a comparison to our custom filtering approach, we also analyzed the data using STARsolo's default KneePant filtering method. The following table presents the results obtained with this alternative filtering strategy:
-
-| Metric                                    | Value         | Biological Significance |
-|-------------------------------------------|---------------|------------------------|
-| **Estimated Number of Cells**             | 27,203        | Large population for DoL analysis |
-| **Mean Reads per Cell**                   | 470           | Good coverage depth |
-| **Median Reads per Cell**                 | 381           | Consistent coverage |
-| **Mean UMI per Cell**                     | 465           | Reliable molecular counting |
-| **Median UMI per Cell**                   | 378           | Consistent UMI distribution |
-| **Mean Genes per Cell**                   | 296           | Rich transcriptional profiles |
-| **Median Genes per Cell**                 | 258           | Consistent gene detection |
-| **Total Genes Detected**                  | 6,035         | Comprehensive gene coverage |
-
-: STARsolo KneePant filtering results for comparison {#tbl-starsolo-kneepant}
-
-*Results obtained using STARsolo's default KneePant filtering method. This approach would have resulted in approximately 27,000 cells with higher average coverage per cell, but potentially at the cost of removing biologically relevant stressed cells that might exhibit lower quality metrics. In contrast, our custom filtering approach was specifically designed to target approximately 3,000 high-quality cells across all experimental conditions, prioritizing balanced representation of each condition*
-
-The KneePant method applies a knee plot analysis to identify the inflection point in the barcode rank plot, automatically determining the threshold between genuine cells and background noise. While this method provides a standardized approach to cell filtering, it may not be optimal for division of labor analysis where stressed cells with potentially lower quality metrics could represent important biological subpopulations. Our targeted approach of ~3,000 cells ensures sufficient statistical power for differential expression analysis while maintaining balanced representation across all experimental conditions (2 media × 3 biological replicates × 3 timepoints).
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Initial filtering with minimum 100 UMI per cell{#sec-appendix-cell-filtering}
 
 
@@ -331,52 +245,45 @@ Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across 
 
 
 
-
-## Single-cell RNA-seq Analysis Statistics {#sec-appendix-scrna-stats}
-
-The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of *P. brassicacearum*.
-
-![Tabular representation of gene expression statistics across cell populations](../figures/fig_sc/tab.png){#fig-tab-scrna}
-
-*Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.*
-
-## Principal Component Analysis (PCA) Supplementary Figures {#sec-appendix-pca}
+## PCA analysis Supplementary Figures {#sec-appendix-pca}
 
 ::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
 
-![Scaling of the data](../figures/fig_sc/scalling.png){#fig-scaling}
+![Transformation of the data with the python version of scTransform (BacSC pipeline)](../figures/fig_sc/scalling.png){#fig-scaling}
 
-![PCA analysis showing optimal number of principal components](../figures/fig_sc/pca_choose.png){#fig-pca-choose}
-
-
-![PCA confidence intervals for different cell populations](../figures/fig_sc/pca_conf.png){#fig-pca-conf}
+![PCA analysis showing optimal number of principal components (based on the elbow method) the x axis is the number of principal components and the y axis is the explained variance](../figures/fig_sc/pca_choose.png){#fig-pca-choose}
 
 
-![PCA2 summary top](../figures/fig_sc/pca2_summary_top.png){#fig-pca2-summary-top}
+![Comparison of different principal component axes (PC1 vs PC2, PC2 vs PC3, etc.) to assess separation of experimental groups](../figures/fig_sc/pca_conf.png){#fig-pca-conf}
 
-Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow plot for optimal PC selection, B) PCA plot colored by experimental conditions, and C) PCA plot with confidence intervals for cell populations
+
+![Heatmap of the top contributing genes (top 20) to the first principal components (PC2), based on scaled expression values (z-score per gene). Rows represent genes, columns represent single cells collected at each timepoints for all biological replicates. The legend at the right side of the heatmap shows the full name of the genes.](../figures/fig_sc/pca2_summary_top.png){#fig-pca2-summary-top}
+
+Supplementary figures for the PCA analysis
+
+:::
+
+*The PCA analysis supplementary figures provide detailed insights into the dimensionality reduction process. The scaling transformation (@fig-scaling) shows data normalization using scTransform from the BacSC pipeline. The elbow plot (@fig-pca-choose) demonstrates the optimal number of principal components selection based on explained variance. The PC comparison (@fig-pca-conf) evaluates different principal component combinations for group separation. The heatmap (@fig-pca2-summary-top) identifies the top contributing genes to PC2, revealing key transcriptional drivers of the observed separation between experimental conditions.*
+
+
+## UMAP Analysis Supplementary Figures {#sec-appendix-umap}
+
+
+::: {#fig-suppl-single-cell-analysis layout="[[1], [1], [1]]"}
+
+
+![Table showing the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering, with gene names and significance thresholds (p-value adj) after FDR correction](../figures/fig_sc/tab.png){#fig-diff-exp}
+
+
+
+![Heatmap  with z-score scaling (ranging from 0 to 1) of the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering. Rows represent genes, columns represent single cells of both leiden clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
+
+![Violin plots showing five differentially expressed genes (rplA (30S ribosomal protein L1), ppsA, QLH64_28090 (phasin), rpoC, QLH64_04320 (flagellin)) between the two clusters identified by Leiden clustering](../figures/fig_sc/violin.png){#fig-violin-sc}
+
+Supplementary figures from UMAP clustering analysis revealing transcriptional heterogeneity in *P. brassicacearum* populations under iron stress.
 
 :::
 
-*The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.*
+*Differential expression analysis identified significantly differentially expressed genes (Wilcoxon test with FDR correction, p < 0.05) between the two main clusters identified using Leiden clustering with resolution 0.1. The heatmap (@fig-heatmap) shows expression patterns of the top 50 most significant genes, while violin plots (@fig-violin-sc) illustrate the distribution of five representative genes, revealing that despite statistical significance, considerable variability exists within clusters, which may suggest specialized cellular functions or heterogeneous physiological states.*
 
 
-
-
-# Supplementary UMAP Figures
-
-
-::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
-
-
-
-![Differential expression analysis between clusters](../figures/fig_sc/tab.png){#fig-diff-exp}
-
-
-
-![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
-
-![Violin plot showing gene expression distribution across cell populations](../figures/fig_sc/violin.png){#fig-violin-sc}
-
-
-:::

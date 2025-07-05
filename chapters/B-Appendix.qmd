@@ -1,6 +1,61 @@
 
 ## Annexe B: erferfrefref {#annexe-b}
 
+
+
+
+
+::: {.content-visible when-format="html"}
+#### MultiQC Report R1 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R1 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+:::
+
+
 ## summary stats and features.stats for Gene 
 
                                          nUnmapped      114628761
@@ -171,3 +226,27 @@ Median UMI per Cell,2
 Mean Gene per Cell,2
 Median Gene per Cell,2
 Total Gene Detected,4838
+
+
+
+
+### STARsolo KneePant filtering results {#sec-appendix-starsolo-kneepant}
+
+As a comparison to our custom filtering approach, we also analyzed the data using STARsolo's default KneePant filtering method. The following table presents the results obtained with this alternative filtering strategy:
+
+| Metric                                    | Value         | Biological Significance |
+|-------------------------------------------|---------------|------------------------|
+| **Estimated Number of Cells**             | 27,203        | Large population for DoL analysis |
+| **Mean Reads per Cell**                   | 470           | Good coverage depth |
+| **Median Reads per Cell**                 | 381           | Consistent coverage |
+| **Mean UMI per Cell**                     | 465           | Reliable molecular counting |
+| **Median UMI per Cell**                   | 378           | Consistent UMI distribution |
+| **Mean Genes per Cell**                   | 296           | Rich transcriptional profiles |
+| **Median Genes per Cell**                 | 258           | Consistent gene detection |
+| **Total Genes Detected**                  | 6,035         | Comprehensive gene coverage |
+
+: STARsolo KneePant filtering results for comparison {#tbl-starsolo-kneepant}
+
+*Results obtained using STARsolo's default KneePant filtering method. This approach would have resulted in approximately 27,000 cells with higher average coverage per cell, but potentially at the cost of removing biologically relevant stressed cells that might exhibit lower quality metrics. In contrast, our custom filtering approach was specifically designed to target approximately 3,000 high-quality cells across all experimental conditions, prioritizing balanced representation of each condition*
+
+The KneePant method applies a knee plot analysis to identify the inflection point in the barcode rank plot, automatically determining the threshold between genuine cells and background noise. While this method provides a standardized approach to cell filtering, it may not be optimal for division of labor analysis where stressed cells with potentially lower quality metrics could represent important biological subpopulations. Our targeted approach of ~3,000 cells ensures sufficient statistical power for differential expression analysis while maintaining balanced representation across all experimental conditions (2 media × 3 biological replicates × 3 timepoints).
