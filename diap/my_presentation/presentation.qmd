@@ -98,7 +98,7 @@ format:
 
 ## Species of interest:
 ::: {.columns style="font-size: 0.7em;"}
-  - **_Pseudomonas brassicacearum R401_**  (PsR401) 
+  - **_Pseudomonas brassicacearum R401_**  (*PsR401*) 
     -  **Root colonizer** of  **_Arabidopsis thaliana_** and **Opportunistic pathogen**
        -  **Lacks T3SS**
        -  **Phytotoxin Production**
@@ -109,7 +109,7 @@ format:
 
 ::: callout-warning
 ## Scientific Question
--   **Is there functional specialization (DOL) within clonal populations of PsR401?**
+-   **Is there functional specialization (DOL) within clonal populations of *PsR401*?**
 :::
 
 ::: {.notes}
@@ -129,7 +129,7 @@ Together with earlier work (Gu et al. 2020, Harbort et al 2020), it also delinea
 
 
 ::: callout-note
-Goal: **identify molecular signatures of DOL by analyzing transcriptional heterogeneity in PsR401**
+Goal: **identify molecular signatures of DOL by analyzing transcriptional heterogeneity in *PsR401***
 :::
 
 ### Experimental Setup
@@ -217,7 +217,7 @@ Goal: **identify molecular signatures of DOL by analyzing transcriptional hetero
 
 ::: callout-warning
 - Can **scRNA-seq reveal transcriptional heterogeneity**?
-- Is there **functional specialization (DoL)** within clonal populations of PSR401?
+- Is there **functional specialization (DoL)** within clonal populations of *PsR401*?
 - Are certain **cells specialized under stress** (e.g. iron/glucose limitation)?  
 - Is this driven by **noisy gene expression** or **regulated mechanisms**?
 :::
@@ -255,7 +255,7 @@ Goal: **identify molecular signatures of DOL by analyzing transcriptional hetero
 
 - **Quality Control of read counts**
 - **Demultiplexing**
-- **Alignment to the reference genome of _PsR401_**
+- **Alignment to the reference genome of *PsR401***
 - **Quantification of the reads**
 
 - **STARsolo** 
@@ -416,7 +416,7 @@ Questions?
 
 ::: callout-note
 ## H2 (WP2)
-In a population of *Pseudomonas brassicacearum* (PsR401), individuals activate different biological and metabolic processes, promoting intra-population functional diversity and allowing a rapid division of labour to colonise the environment (with a particular focus on the root-environment)
+In a population of *Pseudomonas brassicacearum* (*PsR401*), individuals activate different biological and metabolic processes, promoting intra-population functional diversity and allowing a rapid division of labour to colonise the environment (with a particular focus on the root-environment)
 :::
 
 ------------------------------------------------------------------------
@@ -426,7 +426,7 @@ In a population of *Pseudomonas brassicacearum* (PsR401), individuals activate d
 ### Key Questions
 
 1. **Functional Specialization**
-   - Is there functional specialization (DoL) within clonal populations of PsR401?
+   - Is there functional specialization (DoL) within clonal populations of *PsR401*?
    - How does this specialization manifest at the transcriptional level?
    - What are the key metabolic pathways involved?
 

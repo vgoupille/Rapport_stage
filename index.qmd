@@ -75,31 +75,13 @@ Single-cell RNA-seq, *Pseudomonas brassicacearum*, Division Of Labor, microSPLiT
 
 # Acknowledgements {-}
 
-I would like to thank ...
-Ecobio 
-ANR Divide 
+> I would like to thank my supervisors Solène and Philippe for their continuous support and interesting discussions throughout this internship. Their guidance and expertise were invaluable in developing my understanding of bacterial single-cell transcriptomics and division of labor concepts.
+> 
+> Special thanks to my fellow interns Killian and Manon for their camaraderie and mutual support during this research period. 
 
-> In accordance with Chapter 7.1.4 of the research degrees handbook, if you have engaged the services of a professional editor, you must provide their name and a brief description of the service rendered. If the professional editor's current or former area of academic specialisation is similar your own, this too should be stated as it may suggest to examiners that the editor's advice to the student has extended beyond guidance on English expression to affect the substance and structure of the thesis.
+> I also extend my gratitude to the Ecobio laboratory and the ANR Divide project for providing the research framework and resources necessary for this work.
 
-> If you have used generative artificial intelligence (AI) technologies, you must include a written acknowledgment of the use and its extent. Your acknowledgement should at a minimum specify which technology was used, include explicit description on how the information was generated, and explain how the output was used in your work. Below is a suggested format:
-
-> "I acknowledge the use of [insert AI system(s) and link] to [specific use of generative artificial intelligence]. The output from these was used to [explain use]."
-
-> Free text section for you to record your acknowledgment and gratitude for the more general academic input and support such as financial support from grants and scholarships and the non-academic support you have received during the course of your enrolment. If you are a recipient of the "Australian Government Research Training Program Scholarship", you are required to include the following statement:
-
-> > "This research was supported by an Australian Government Research Training Program (RTP) Scholarship."
-
-> You may also wish to acknowledge significant and substantial contribution made by others to the research, work and writing represented and/or reported in the thesis. These could include significant contributions to: the conception and design of the project; non-routine technical work; analysis and interpretation of research data; drafting significant parts of the work or critically revising it to contribute to the interpretation.
-
-
-
-
-« We are most grateful to the Genomics Core Facility GenoA, member of Biogenouest and France
-Genomique and to the Bioinformatics Core Facility BiRD, member of Biogenouest and Institut Français
-de Bioinformatique (IFB) (ANR-11-INBS-0013) for the use of their resources and their technical support
-»
-
-
+> We are most grateful to the Genomics Core Facility GenoA, member of Biogenouest and France Genomique and to the Bioinformatics Core Facility BiRD, member of Biogenouest and Institut Français de Bioinformatique (IFB) (ANR-11-INBS-0013) for the use of their resources and their technical support.
 
 :::
 ::: {.content-visible when-format="pdf"}
@@ -109,12 +91,41 @@ de Bioinformatique (IFB) (ANR-11-INBS-0013) for the use of their resources and t
 |-------------|------------|
 | AI | Artificial Intelligence |
 | ANR | Agence Nationale de la Recherche |
+| BacSC | Bacterial Single-Cell pipeline |
+| BC | Barcode |
+| BiRD | Bioinformatics Core Facility |
+| CB | Cell Barcode |
+| CNRS | Centre National de la Recherche Scientifique |
 | DNA | Deoxyribonucleic Acid |
 | DOL | Division Of Labor |
+| FASTQ | FASTQ file format |
+| FDR | False Discovery Rate |
+| GenoA | Genomics Core Facility |
+| IFB | Institut Français de Bioinformatique |
+| M9 | Minimal medium |
+| M9F | Minimal medium with iron |
+| MCP | Methyl-accepting Chemotaxis Protein |
+| microSPLiT | microbial Split-Pool Ligation Transcriptomics |
+| mRNA | messenger RNA |
+| ncRNA | non-coding RNA |
 | NGS | Next Generation Sequencing |
+| OD | Optical Density |
+| PCA | Principal Component Analysis |
+| PCR | Polymerase Chain Reaction |
+| PHA | Polyhydroxyalkanoate |
+| PhiX | PhiX control library |
+| *PsR401* | *Pseudomonas brassicacearum* R401 |
+| qRT-PCR | quantitative Reverse Transcription PCR |
 | RNA | Ribonucleic Acid |
 | RNA-seq | RNA sequencing |
+| rRNA | ribosomal RNA |
 | scRNA-seq | single-cell RNA sequencing |
+| STARsolo | STAR aligner for single-cell data |
+| TSB | Tryptone Soy Broth |
+| TSO | Template Switching Oligo |
+| tRNA | transfer RNA |
+| UMI | Unique Molecular Identifier |
+| UMAP | Uniform Manifold Approximation and Projection |
 
 
 ```{=tex}

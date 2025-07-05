@@ -37,7 +37,7 @@ The production of pyoverdine highlights the central role of iron availability in
 ::: callout-tip
 ## Biological Hypothesis
 
-Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DoL) among genetically identical PsR401 cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.
+Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DoL) among genetically identical *PsR401* cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.
 :::
 
 ## Leveraging Single-Cell Transcriptomics to Study DoL
@@ -52,7 +52,7 @@ To address our biological hypothesis regarding intraspecific DoL in *PsR401*, we
 
 ![Hypothesis of DoL in *PsR401* under iron-limiting conditions](../figures/DoL_hypothesis.png){#fig-hypothesis-iron width="80%" fig-align="center"}
 
-*Testing the division of labor hypothesis in PsR401 under two contrasting conditions: iron-limited and iron-replete environments. Single-cell RNA sequencing (scRNA-seq) with microSPLiT will enable detection of transcriptional heterogeneity within the population, revealing whether this specialization is driven by noisy gene expression or environmentally induced metabolic specialization.*
+*Testing the division of labor hypothesis in *PsR401* under two contrasting conditions: iron-limited and iron-replete environments. Single-cell RNA sequencing (scRNA-seq) with microSPLiT will enable detection of transcriptional heterogeneity within the population, revealing whether this specialization is driven by noisy gene expression or environmentally induced metabolic specialization.*
 
 ### Internship Goals and Expected Outcomes
 
@@ -60,4 +60,4 @@ Building upon the theoretical framework of intraspecific division of labor and t
 
 Through systematic analysis of transcriptional heterogeneity under contrasting iron conditions in culture medium, we expect to uncover whether *PsR401* populations exhibit distinct subpopulations with specialized metabolic functions or whether cooperation emerges through noisy gene expression regulation across the population. By examining temporal dynamics of gene expression patterns, we will gain insights into how these cooperative behaviors evolve and stabilize over time. This investigation will provide critical insights into the mechanisms underlying population-level adaptation and resilience, particularly in the context of fluctuating iron availability.
 
-The expected outcomes of this research extend beyond understanding PsR401 biology. Ultimately, this project will advance our understanding of how phenotypic diversity among clonal bacterial populations facilitates ecological success and resilience during root colonization, while establishing methodological foundations for future studies of bacterial population dynamics at single-cell resolution. By establishing robust methodologies for bacterial single-cell transcriptomics, this work will contribute to the broader field of microbial population dynamics.
+The expected outcomes of this research extend beyond understanding *PsR401* biology. Ultimately, this project will advance our understanding of how phenotypic diversity among clonal bacterial populations facilitates ecological success and resilience during root colonization, while establishing methodological foundations for future studies of bacterial population dynamics at single-cell resolution. By establishing robust methodologies for bacterial single-cell transcriptomics, this work will contribute to the broader field of microbial population dynamics.

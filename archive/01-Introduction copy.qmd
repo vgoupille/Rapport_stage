@@ -175,7 +175,7 @@ A major unsolved question is whether populations of genetically identical bacter
 ::: callout-tip
 ## Biological Hypothesis
 
-Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DoL) among genetically identical PsR401 cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.(see @fig-hypothesis-iron)
+Given that iron functions as a public good whose availability becomes rate-limiting in the root compartment and that production of the above-mentioned processes are all modulated by iron availability,[@lim2012] we propose that division of labour (DoL) among genetically identical *PsR401* cells may be reinforced under iron-limiting conditions, such as those found in the root habitat. In such scenarios, phenotypic heterogeneity—whether driven by gene expression noise or environmentally induced regulation—could lead to subpopulations specialising in complementary tasks, such as toxin production, antimicrobial defense, or siderophore-mediated iron acquisition, thereby enhancing population-level fitness.(see @fig-hypothesis-iron)
 :::
 
 ![Hypothesis of DoL in *PsR401* under iron-limiting conditions](../figures/DoL_hypothesis.png){#fig-hypothesis-iron width="80%" fig-align="center"}

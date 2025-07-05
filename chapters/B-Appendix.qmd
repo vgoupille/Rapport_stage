@@ -40,7 +40,7 @@ Total Gene Detected,5894
 
 
 ## warning 
-!!!!! WARNING: while processing sjdbGTFfile=/projects/microsplit/data/processed_data/STARsolo_result/merged_trimmed/merged/raw_data/genome_annotation/genome_annotation_PsR401_fixed.gtf, line:
+!!!!! WARNING: while processing sjdbGTFfile=/projects/microsplit/data/processed_data/STARsolo_result/merged_trimmed/merged/raw_data/genome_annotation/genome_annotation_*PsR401*_fixed.gtf, line:
 CP125962.1	Genbank	exon	298557	300953	.	-	0	transcript_id "gene-QLH64_29550"; gene_id "gene-QLH64_29550"; gene_name "QLH64_29550";
  exon end = 300953 is larger than the chromosome CP125962.1 length = 299955 , will skip this exon
 
