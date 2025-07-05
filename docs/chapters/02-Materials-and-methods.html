@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Materials and Methods – Msc Bioinformatics thesis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/03-Results.html" rel="next">
+<link href="../chapters/01-Introduction.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-fed3a45c7a334f7a8f106de68cf0fca8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-aa42bd5397b87ae3001db572b235c885.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather|Source Code Pro" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles/custom.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-Materials-and-methods.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Materials and Methods</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Msc Bioinformatics thesis</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/vgoupille/Rapport_stage" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../thesis.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Front matter</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-Materials-and-methods.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Materials and Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-Results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-Discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-References.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliography</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/Appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Appendix </span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><b>Sections</b></h2>
+   
+  <ul class="collapse">
+  <li><a href="#bacterial-culture" id="toc-bacterial-culture" class="nav-link active" data-scroll-target="#bacterial-culture"><span class="header-section-number">2.1</span> Bacterial culture</a></li>
+  <li><a href="#microsplit-protocol" id="toc-microsplit-protocol" class="nav-link" data-scroll-target="#microsplit-protocol"><span class="header-section-number">2.2</span> microSPLiT protocol</a></li>
+  <li><a href="#pipeline-for-microsplit-data-processing" id="toc-pipeline-for-microsplit-data-processing" class="nav-link" data-scroll-target="#pipeline-for-microsplit-data-processing"><span class="header-section-number">2.3</span> Pipeline for microSPLiT data processing</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/02-Materials-and-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R"><i class="bi bi-file-code"></i>Data Import Code</a></li><li><a href="data/test.py"><i class="bi bi-file-code"></i>script test</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-materials-and-methods" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Materials and Methods</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="bacterial-culture" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="bacterial-culture"><span class="header-section-number">2.1</span> Bacterial culture</h2>
+<div class="cell" data-fig-width="4" data-fig-height="3" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-experimental-design" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-experimental-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-experimental-design">graph TD
+    A["Start culture &lt;br&gt; *P. brassicacearum PR401* &lt;br&gt; in petri dish"] --&gt; B{"transfer to liquid medium"}
+    B --&gt; C["**M9** : Low glucose and iron"]
+    B --&gt; D["**M9F** : High glucose and iron"]
+    C --&gt; E{3 biological replicates}
+    D --&gt; F{3 biological replicates}
+    E --&gt; G[**Rep A**]
+    E --&gt; H[**Rep B**]
+    E --&gt; I[**Rep C**]
+    F --&gt; J[**Rep A**]
+    F --&gt; K[**Rep B**]
+    F --&gt; L[**Rep C**]
+    G --&gt; M[OD : **T1**, **T2**, **T3**]
+    H --&gt; N[OD : **T1**, **T2**, **T3**]
+    I --&gt; O[OD : **T1**, **T2**, **T3**]
+    J --&gt; P[OD : **T1**, **T2**, **T3**]
+    K --&gt; Q[OD : **T1**, **T2**, **T3**]
+    L --&gt; R[OD : **T1**, **T2**, **T3**]
+    
+    %% Color styling
+    A:::start
+    B:::decision
+    C:::m9f
+    D:::m9
+    E:::replicate
+    F:::replicate
+    G:::rep
+    H:::rep
+    I:::rep
+    J:::rep
+    K:::rep
+    L:::rep
+    M:::measurement
+    N:::measurement
+    O:::measurement
+    P:::measurement
+    Q:::measurement
+    R:::measurement
+    
+    classDef start fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef m9 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef m9f fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef replicate fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef rep fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef measurement fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-experimental-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Experimental design for bacterial culture
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><em>The workflow illustrates the P. brassicacearum R401 cells preparation in two different media: i) a first stringent medium (M9) with low glucose availability and no iron supplementation) and ii) a less stressful medium (M9F) with regular glucose and iron supplementation. Each medium condition was replicated three times (Rep A, B, C) and bacterial growth was monitored regularly via optical density measured at 600nm. Bacterial cells were sampled three specific timepoints (T1, T2, T3) for each medium. This design resulted in 18 samples (2 media × 3 biological replicates × 3 timepoints) for subsequent single-cell RNA-seq library preparation and analysis.</em></p>
+<p>An isogenic population of <em>P. brassicacearum R401</em> was initially cultured in a rich medium (Tryptone Soy Broth; “TSB”) before being transferred to different liquid media to investigate the effects of nutrient availability on bacterial growth and gene expression(<a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>).</p>
+<p>Two distinct culture conditions were applied to the bacteria:a stringent medium containing low glucose and no iron supplementation (M9), and a medium containing regular glucose concentration (20 mM) and high FeCl3 concentrations (100 µM) (see <a href="Appendix.html#tbl-media" class="quarto-xref">Table&nbsp;<span>A.1</span></a> for detailed concentrations). Each condition was replicated three times to ensure statistical robustness of the experimental results. The bacterial growth was monitored by measuring optical density (OD600nm) at regular intervals. The growth curves obtained from these measurements are presented (<a href="#fig-growth-curves" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>). This experimental design resulted in a total of 18 cell samples: 2 media types × 3 biological replicates × 3 time points, providing comprehensive coverage of the growth dynamics under different nutrient conditions.</p>
+<div id="fig-growth-curves" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/growth_curves_all.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.2: Bacterial growth dynamics of P. brassicacearum R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron)."><img src="../figures/growth_curves_all.png" class="img-fluid figure-img" style="width:70.0%" data-fig-cap="Bacterial growth dynamics of *P. brassicacearum* R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron)."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Bacterial growth dynamics of <em>P. brassicacearum</em> R401 populations measured by optical density (OD600) cultured under two different nutrient conditions: M9 (low glucose/iron) and M9F (high glucose/iron).
+</figcaption>
+</figure>
+</div>
+<p><em>Measurements were taken at three timepoints (T1, T2, T3) for three biological replicates (Rep A, B, C) for both culture media (M9 and M9F). T1 timepoints are identical for both conditions, while T2 and T3 timepoints differ between M9 and M9F culture conditions.</em></p>
+<p>The growth curves reveal distinct patterns between the two culture conditions. Both M9 and M9F cultures were sampled at the same initial timepoint (T1), showing similar optical densities (OD 0.13-0.21). However, subsequent sampling timepoints (T2 and T3) were selected based on the specific growth dynamics of each condition. M9F cultures exhibited significantly higher growth rates and reached higher optical densities (OD 0.59-0.63 at T2, 0.74-0.83 at T3), while M9 cultures showed limited growth with lower densities (OD 0.28-0.33 at T2, 0.26 at T3). The different timepoints reflect the distinct growth kinetics: M9F cultures showed continued active growth from T2 to T3, maintaining exponential growth phase, while M9 cultures reached a growth plateau by T2, suggesting nutrient limitation in the M9 condition. Biological replicates showed consistent results, validating the reproducibility of this growth pattern.Cells were collected at each timepoint (T1, T2, T3) from all biological replicates for subsequent single-cell RNA-seq library preparation using the Microbial split-pool ligation transcriptomics (microSPLiT) protocol<span class="citation" data-cites="gaisser2024 kuchina2021"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span>.</p>
+</section>
+<section id="microsplit-protocol" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="microsplit-protocol"><span class="header-section-number">2.2</span> microSPLiT protocol</h2>
+<p>MicroSPLiT<span class="citation" data-cites="gaisser2024 kuchina2021"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-kuchina2021" role="doc-biblioref">2</a></sup></span> is a high-throughput single-cell RNA sequencing plate-based method for bacteria, allowing the profiling of hundreds of thousands of cells’ transcriptional states per experiment without the need for specialized equipment<span class="citation" data-cites="gaisser2024 nishimura2025"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a>,<a href="06-References.html#ref-nishimura2025" role="doc-biblioref">3</a></sup></span>. Unlike other single-cell RNA-seq approaches that require physical isolation of individual cells (e.g., droplet-based methods), microSPLiT uses a split-pool barcoding strategy to uniquely label transcripts within each cell.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The microSPLiT strategy will not be described in detail here; for more information, see Gaisser protocol.<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>. Only the key steps necessary for a general understanding of the method are presented below.</p>
+</div>
+</div>
+<div id="fig-protocol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-protocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/protocol.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme (from Gaisser et al.&nbsp;2024) @gaisser2024"><img src="../figures/protocol.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-protocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: MicroSPLiT in-cell cDNA barcoding scheme (from Gaisser et al.&nbsp;2024)<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>
+</figcaption>
+</figure>
+</div>
+<p><em>a, Bacterial cells are fixed overnight and permeabilized before the mRNA is preferentially polyadenylated. After mRNA enrichment, cells may contain both polyadenylated and non-polyadenylated mRNA. b, Cells are distributed into the first barcoding plate, and the mRNA is reverse transcribed by using a mixture of poly-dT and random hexamer primers carrying a barcode (barcode 1, BC1) and a 5’ phosphate for future ligation at their 5’ end. After the barcoding reaction, cells are pooled together and split again into the second barcoded plate. c, Ligation adds a 5’ phosphorylated barcode 2 (BC2) to BC1 with a linker strand. A blocking solution is then added to each of the wells of the second plate, preventing any unreacted BC2 from future ligation. Cells are pooled and split into the third and final barcoded plate. d, A second ligation step adds barcode 3 (BC3) with another linker strand. BC3 also contains a 5’ biotin, a primer binding site and a unique molecular identifier (UMI). A blocking solution for the R3 linker is added to each of the wells in the plate before the final pooling of cells. This results in uniquely barcoded cells that can be distributed in aliquots into sub-libraries and stored until future use or used immediately for library preparation. (R1, round 1; R2, round 2; R3, round 3)<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>.</em></p>
+<section id="fixation-and-permeabilization" class="level3">
+<h3 class="anchored" data-anchor-id="fixation-and-permeabilization">Fixation and permeabilization</h3>
+<p>The first step is fixation of the bacterial suspension with formaldehyde <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> immediately after sampling the 18 conditions <a href="#fig-experimental-design" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. This preserves the transcriptomic state and cross-links RNA to proteins, preventing leakage of each cell’s transcriptome. Next, cells are permeabilized using mild detergent and lysozyme, allowing enzymes and oligonucleotides to access intracellular RNA for barcoding.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Adequate permeabilization is essential for efficient barcoding, but over-permeabilization can compromise cell integrity. For successful single-cell resolution, cells must remain intact after permeabilization to allow multiple split-pool steps and retain cross-linked RNA. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a></p>
+</div>
+</div>
+</section>
+<section id="mrna-enrichment" class="level3">
+<h3 class="anchored" data-anchor-id="mrna-enrichment">mRNA enrichment</h3>
+<p>After permeabilization, the transcripts in the fixed and permeabilized cells undergo in situ polyadenylation with the addition of a poly(A) polymerase (PAP) and ATP. This step enriches for mRNA in the total barcoded RNA pool because, under these conditions, PAP preferentially polyadenylates mRNA as opposed to ribosomal RNA (rRNA) <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>.</p>
+</section>
+<section id="barcoding" class="level3">
+<h3 class="anchored" data-anchor-id="barcoding">Barcoding</h3>
+<p>The protocol utilizes several rounds of split-pool barcoding where cells are distributed into 96-well plates, barcoded, pooled, and redistributed for subsequent rounds, creating unique barcode combinations that identify individual cells.</p>
+<section id="barcoding-round-1-r1-to-identify-the-condition-and-the-technical-replicate" class="level4">
+<h4 class="anchored" data-anchor-id="barcoding-round-1-r1-to-identify-the-condition-and-the-technical-replicate">Barcoding round 1 (R1) to identify the condition and the technical replicate</h4>
+<p>Each of the 18 samples is split into 5 technical replicates for barcoding, and distributed into individual wells of a 96-well plate containing uniquely barcoded oligos <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>. In each well, mRNA is reverse transcribed into cDNA using a mix of poly(T) and random hexamer oligos with the same barcode. The oligos used in each well contain either a dT15 sequence to capture polyadenylated mRNA previously enriched or six random nucleotides to bind any RNA, followed by a universal sequence for subsequent ligation steps. All cells in the same well receive the same unique barcode during reverse transcription, which allows sample identification based on the first barcode.</p>
+</section>
+<section id="barcoding-rounds-2-r2-and-3-r3-for-unique-cell-and-transcript-identification" class="level4">
+<h4 class="anchored" data-anchor-id="barcoding-rounds-2-r2-and-3-r3-for-unique-cell-and-transcript-identification">Barcoding rounds 2 (R2) and 3 (R3) for unique cell and transcript identification</h4>
+<p>Cells are then pooled, washed and randomly redistributed into a new 96-well plate (round 2 (R2) ligation working plate) containing a second set of well-specific barcodes, which are appended to the first barcode on the cDNA through an in-cell ligation reaction <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>. Due to the random redistribution of cells, each well of the second-round plate is likely to contain a mix of cells with different first-round barcodes, resulting in highly diverse barcode combinations. The ligation reaction is carried out by the T4 DNA ligase, which requires double-stranded DNA. Therefore, in the second barcoding plate, each barcode is first hybridized to a short linker oligonucleotide whose overhang is complementary to the universal sequence at the 5’ end of the RT barcodes. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After the ligation step, some barcodes may remain unreacted in the solution. To prevent these free barcodes from attaching non-specifically to DNA from other cells during pooling, a blocker strand is added. This blocker has a longer complementary region to the linker, allowing it to displace any unreacted barcodes from the linker and thus ensures that only correctly ligated barcodes remain attached to the cDNA. <a href="#fig-protocol" class="quarto-xref">Figure&nbsp;<span>2.3</span></a></p>
+</div>
+</div>
+<p>Cells are then pooled again, and a split-ligation-pool cycle is repeated for the second time. Cells are randomly distributed into a third 96-well plate (round 3 (R3) ligation working plate), which is loaded with barcoded oligonucleotides containing the third cell barcode annealed with a linker, a 10-base Unique Molecular Identifier (UMI), a universal PCR handle and a 5’ biotin<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> molecule. The ligation reaction is stopped by adding a second blocker strand and EDTA.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In our experiment, only 95 out of the 96 wells of the R3 plate are used to minimize potential bias in cell distribution. This setup allows for 90 × 96 × 95 = <strong>820,800 possible barcode combinations</strong>, enabling the identification of up to 820,800 individual cells.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sub-library-and-sequencing-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="sub-library-and-sequencing-preparation">Sub-library and sequencing preparation</h3>
+<p>The pooled cells are washed, counted, and divided into multiple sub-libraries. A sub-library containing approximately 3,000 cells was selected for sequencing, in order to maximize sequencing depth per cell and minimize barcode collision rates, which is the probability that two cells receive the same barcode combination<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>.</p>
+<p>After cell lysis and cDNA purification on streptavidin beads, a second reverse transcription is performed to improve cDNA yield, during which a template switch oligo (TSO) is added to introduce a 3’ adapter. The resulting cDNA is then amplified by PCR. Following amplification, a size selection step removes short byproducts such as adapter or barcode dimers, ensuring that only high-quality cDNA fragments are retained for sequencing.</p>
+<p>To increase index diversity necessary for the well-being of the sequencing, the final library was split into four sub-libraries, each receiving a distinct index during adapter ligation: BC_0076 (CAGATC), BC_0077 (ACTTGA), BC_0078 (TAGCTT), and BC_0079 (GGCTAC). These indices were used solely to improve sequencing quality and balance on the NovaSeq platform, without introducing any experimental or technical variation between sub-libraries.</p>
+</section>
+<section id="sequencing-and-demultiplexing-sub-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="sequencing-and-demultiplexing-sub-libraries">Sequencing and demultiplexing sub-libraries</h3>
+<p>Sequencing was performed on a NovaSeq<sup>TM</sup> X plus instrument at GenoA platform in paired-end mode. The library pool was loaded onto all lanes of the flowcell at a final concentration of 200 pM with 20% PhiX<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. The sequencing program consisted of 241 cycles for Read 1, 6 cycles for Index i7 and 91 cycles for Read 2. The sequencing facility performed demultiplexing of sub-libraries, resulting in eight FASTQ files (R1 and R2 for each index). R1 files contain the cDNA sequences of interest (transcriptome), while R2 files contain the cell barcodes (from the three split-pool rounds) and unique molecular identifiers (UMIs).</p>
+</section>
+</section>
+<section id="pipeline-for-microsplit-data-processing" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pipeline-for-microsplit-data-processing"><span class="header-section-number">2.3</span> Pipeline for microSPLiT data processing</h2>
+<div id="fig-pipeline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/pipeline.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing."><img src="../figures/pipeline.png" class="img-fluid figure-img" data-fig-cap="Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Comprehensive pipeline for microSPLiT single-cell RNA-seq data processing.
+</figcaption>
+</figure>
+</div>
+<p><em>The workflow encompasses the complete analytical process from raw sequencing data to biological interpretation, including quality control and preprocessing of FASTQ files, alignment and quantification using STARsolo, data structuring with metadata assignment, quality filtering and integration, single-cell and pseudobulk analysis approaches, population characterization through clustering and trajectory inference, and downstream expression analysis including differential expression, co-expression networks, and gene ontology enrichment.</em></p>
+<section id="preprocessing-of-the-sequencing-data" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing-of-the-sequencing-data">Preprocessing of the sequencing data</h3>
+<p>All quality control, trimming, alignment, barcode reading and generation of cell-gene count matrix steps were performed on the GenOuest high-performance computing cluster using SLURM job scripts and parallelization to ensure efficient and reproducible analysis of large-scale sequencing data (see left part of <a href="#fig-pipeline" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>).</p>
+<section id="quality-control-and-trimming" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-and-trimming">Quality control and trimming</h4>
+<p>Read quality was initially assessed for all four libraries (R1 and R2) using FastQC<span class="citation" data-cites="babraham"><sup><a href="06-References.html#ref-babraham" role="doc-biblioref">4</a></sup></span> and MultiQC<span class="citation" data-cites="ewels2016"><sup><a href="06-References.html#ref-ewels2016" role="doc-biblioref">5</a></sup></span>. Trimming was then performed with Cutadapt<span class="citation" data-cites="martin2011"><sup><a href="06-References.html#ref-martin2011" role="doc-biblioref">6</a></sup></span> and Fastp<span class="citation" data-cites="chen2018"><sup><a href="06-References.html#ref-chen2018" role="doc-biblioref">7</a></sup></span> to clean the sequencing data. For R2 files, trimming focused on filtering for valid barcodes. For R1 files, trimming removed various artifacts: template-switching oligo (TSO) sequences at the 5’ end, adapter sequences, and 3’ artifacts including polyG stretches (NovaSeq-specific artifacts) and potential R1 complement sequences when cDNA was short. Only reads with a minimum length of 25 bp were conserved. The detailed trimming pipeline is described in Appendix Section <a href="Appendix.html#sec-appendix-trimming-steps" class="quarto-xref"><span>Section A.2</span></a>.</p>
+</section>
+<section id="quality-control-and-file-merging" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-and-file-merging">Quality control and file merging</h4>
+<p>After trimming, read quality was reassessed with FastQC<span class="citation" data-cites="babraham"><sup><a href="06-References.html#ref-babraham" role="doc-biblioref">4</a></sup></span> and MultiQC<span class="citation" data-cites="ewels2016"><sup><a href="06-References.html#ref-ewels2016" role="doc-biblioref">5</a></sup></span> to ensure that the remaining reads were of high quality and suitable for downstream analysis. This step involved checking the distribution of read lengths, GC content, duplication rates, quality scores (Q30), adapter content, and other relevant metrics. Following quality control, the files from all four libraries (R1 and R2 for each index) were merged into unique files (R1 and R2), ensuring that all cells from all conditions and technical replicates were included in the analysis.</p>
+</section>
+<section id="alignment-barcode-reading-and-generation-of-cell-gene-count-matrix" class="level4">
+<h4 class="anchored" data-anchor-id="alignment-barcode-reading-and-generation-of-cell-gene-count-matrix">Alignment, barcode reading and generation of cell-gene count matrix</h4>
+<p>The alignment and quantification pipeline was implemented using STARsolo<span class="citation" data-cites="dobin2013 kaminow"><sup><a href="06-References.html#ref-dobin2013" role="doc-biblioref">8</a>,<a href="06-References.html#ref-kaminow" role="doc-biblioref">9</a></sup></span>, an extension of the STAR aligner specifically designed for single-cell RNA-seq data. STARsolo was chosen based on benchmarking studies showing it offers the best combination of speed and reproducibility for SPLiT-seq / microSPLiT data analysis<span class="citation" data-cites="kuijpers2024"><sup><a href="06-References.html#ref-kuijpers2024" role="doc-biblioref">10</a></sup></span>. The implementation followed the recommendations outlined in Gaisser et al., 2024<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span> for optimal microSPLiT data processing. Complete pipeline scripts and parameters are detailed in Appendix Section <a href="Appendix.html#sec-appendix-starsolo" class="quarto-xref"><span>Section A.3</span></a>.</p>
+<p><strong>Reference genome and annotation.</strong> The reference genome of <em>Pseudomonas brassicacearum</em> R401: <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030064105.1/">ASM3006410v1 (GCA_030064105.1)</a> and its <a href="https://www.ncbi.nlm.nih.gov/datasets/gene/GCA_030064105.1/">annotation</a> were downloaded from GenBank. The GFF3 annotation file was converted to GTF format using gffread (Cufflinks<span class="citation" data-cites="trapnell2010"><sup><a href="06-References.html#ref-trapnell2010" role="doc-biblioref">11</a></sup></span> package) for compatibility with STARsolo.</p>
+<p><strong>Correcting GTF file for compatibility with STAR.</strong> The conversion was verified to ensure all required fields were present, particularly confirming that genes were labeled as ‘exon’ features rather than ‘CDS’ descriptors, and that chromosome names matched between reference sequence and annotation files. This correction was performed to ensure proper compatibility with STARsolo.</p>
+<p><strong>Alignment parameters.</strong> The pipeline used optimized parameters for microSPLiT data: minimum 50 matching bases for valid alignment and 1 mismatch tolerance for both barcode and UMI matching. The complex barcode structure (R2) was configured with positions 0_10_0_17, 0_48_0_55, and 0_78_0_85 for the three barcoding rounds, and UMI position 0_0_0_9.</p>
+<p><strong>Output matrices.</strong> STARsolo generated count matrices of gene counts for each cell (N-by-K matrix, with N cells and K genes) using <code>GeneFull</code> feature counting and <code>UniqueAndMult-Uniform</code> mapping strategy (which distributes multi-mapped reads uniformly). Although bacteria lack introns, <code>GeneFull</code> was chosen to include reads that may map to intergenic regions or incompletely annotated gene boundaries, which is common in bacterial genomes. The <code>UniqueAndMult-Uniform</code> strategy is particularly important for bacterial genomes due to the presence of paralogous genes, repetitive sequences, and operon structures that can result in reads mapping to multiple genomic locations. Raw data matrices (unfiltered barcodes) were used for downstream analysis<span class="citation" data-cites="gaisser2024"><sup><a href="06-References.html#ref-gaisser2024" role="doc-biblioref">1</a></sup></span>, with cell filtering applied later in the processing pipeline.</p>
+<p><strong>Quality control and output files.</strong> After STARsolo analysis, quality control was performed using the Log.final.out and summary.csv files. The main output files for downstream analysis included barcode.tsv (cell identifiers), features.tsv (gene identifiers), and UniqueAndMult-Uniform.mtx (count matrix).</p>
+</section>
+</section>
+<section id="single-cell-data-processing" class="level3">
+<h3 class="anchored" data-anchor-id="single-cell-data-processing">Single-cell data processing</h3>
+<p>All downstream analyses were performed locally using a reproducible development container environment (Docker and <a href="https://rocker-project.org/images/devcontainer/features.html">Rocker Project</a>) with Visual Studio Code dev containers to ensure consistent software versions and analysis reproducibility, including version control for R and Python packages.</p>
+<section id="data-conversion-and-metadata-assignment." class="level4">
+<h4 class="anchored" data-anchor-id="data-conversion-and-metadata-assignment.">Data conversion and metadata assignment.</h4>
+<p>Raw count matrix was converted to <a href="https://satijalab.org/seurat/">Seurat v5</a> objects<span class="citation" data-cites="hao2024"><sup><a href="06-References.html#ref-hao2024" role="doc-biblioref">12</a></sup></span> in R and AnnData objects<span class="citation" data-cites="virshup2024"><sup><a href="06-References.html#ref-virshup2024" role="doc-biblioref">13</a></sup></span> for use with <a href="https://scanpy.readthedocs.io/en/stable/">Scanpy</a><span class="citation" data-cites="wolf2018"><sup><a href="06-References.html#ref-wolf2018" role="doc-biblioref">14</a></sup></span>. Two types of metadata were assigned:</p>
+<ul>
+<li><strong>Cell metadata</strong> based on barcode combinations, linking each cell to its experimental condition (medium type, biological and technical replicate, timepoint, and well plate position at each barcoding round)</li>
+<li><strong>Gene metadata</strong> including sequence type and gene symbols for downstream analysis.</li>
+</ul>
+</section>
+<section id="quality-control-and-filtering." class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-and-filtering.">Quality control and filtering.</h4>
+<p>A multi-step filtering strategy was implemented to ensure data quality and remove technical artifacts while preserving biological variation. The filtering pipeline was designed to address specific challenges of microSPLiT data and experimental design considerations.</p>
+<p>An initial UMI-based filtering was performed to remove cells with fewer than 100 unique molecular identifiers (UMIs) from the analysis <a href="Appendix.html#fig-filter_100UMI" class="quarto-xref">Figure&nbsp;<span>A.1</span></a>. This threshold was chosen based on preliminary analysis showing clear differences in UMI distributions between the two culture conditions (M9 vs M9F), while also serving as a quality control metric to identify potentially failed technical replicates. To identify potential doublets, the top-performing cells from each technical replicate were first filtered based on UMI counts. Doublets are technical artifacts that occur when two or more cells are incorrectly assigned the same barcode combination, resulting in a mixed transcriptomic profile that can confound single-cell analysis. The distribution of UMI counts per cell was examined within these high-quality cells to detect outliers that deviated significantly from the expected distribution, which typically represent potential doublets or technical artifacts (visual inspection of the distribution of UMI counts per cell). A comprehensive list of these putative doublets was compiled and subsequently removed from the initial dataset to ensure data quality.</p>
+<p>To ensure robust representation of each experimental condition, filtering was applied at the biological replicate level to obtain approximately 165 cells per condition, representing a total of 3000 cells. For each biological replicate at each optical density timepoint (T1, T2, T3) for both culture conditions (M9, M9F), only the most deeply sequenced cells were retained. This approach allowed for the selection of the best-performing technical replicates. Then, in each of the 18 conditions, technical replicates containing fewer than 5 cells were removed.Transcript type filtering was applied to retain only mRNA transcripts for analysis, filtering out ribosomal RNA (rRNA), transfer RNA (tRNA), and other non-coding RNA species. Gene expression filtering was performed to remove genes expressed in fewer than 5 cells across the entire dataset, eliminating low-quality or spurious gene detection events and focusing on robustly detected transcripts.</p>
+</section>
+</section>
+<section id="single-cell-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="single-cell-analysis">Single-cell analysis</h3>
+<p>For this first approach to single-cell RNA-seq analysis, the complete dataset with all conditions pooled together was analyzed, rather than focusing on specific sub-conditions (Culture Medium × Biological Replicate × Sampling Time). The primary objective was to validate that the dataset contains sufficient signal to distinguish between culture media conditions at a global level before conducting more detailed condition-specific analyses. While the main biological question is to investigate Division of Labor (DoL) within the bacterial population, this approach did not directly address this question but served as a foundation for understanding data quality and taking a broad exploratory view of the data.</p>
+<section id="general-analytical-approach" class="level4">
+<h4 class="anchored" data-anchor-id="general-analytical-approach">General analytical approach</h4>
+<p>The analysis workflow encompassed several key steps: Normalization and scaling, feature selection, dimensionality reduction, clustering, and differential expression analysis. We systematically tested different parameters and methodologies to optimize each step of the pipeline. We followed the <a href="https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering.html">Scanpy tutorial</a> for the general approach and implemented the BacSC protocol (preprint<span class="citation" data-cites="ostner"><sup><a href="06-References.html#ref-ostner" role="doc-biblioref">15</a></sup></span>), a computational pipeline designed to limit methodological biases in bacterial single-cell analysis. We tested BacSC specifically for normalization, scaling and feature selection, and its output was then used for subsequent dimensionality reduction and clustering steps.</p>
+<p><strong>Normalization, scaling and feature selection.</strong> We implemented the BacSC protocol (currently a preprint<span class="citation" data-cites="ostner"><sup><a href="06-References.html#ref-ostner" role="doc-biblioref">15</a></sup></span>), a fully data-driven computational pipeline based on the Python version of Seurat’s SCTransform tool. SCTransform is an advanced normalization method that replaces the classical steps of normalization + log-transformation + variable gene selection. It performs variance stabilizing transformation (VST) to correct for differences in sequencing depth between cells, stabilizes variance across genes, and automatically identifies the most informative genes for biological variation. This automated pipeline selects optimal features for normalization and feature selection without requiring manual intervention.</p>
+<p><strong>Principal component analysis (PCA).</strong> PCA was computed using <code>sc.pp.pca</code>, with the number of principal components systematically tested at multiple levels (i.e.&nbsp;3, 10, 20, 50) depending on the data characteristics. The optimal number of components was determined using Scanpy’s <code>sc.pl.pca_variance_ratio</code> plot, which displays the explained variance ratio for each principal component, allowing us to identify the elbow point where additional components provide diminishing returns in variance explanation.</p>
+<p><strong>Clustering and visualization.</strong> For our analysis that will be presented, we constructed the neighborhood graph using the first 5 principal components (PCs) with 10 neighbors per cell, capturing local similarity between cells in the reduced dimensional space. This approach is essential for downstream clustering and visualization analyses. We then applied Leiden clustering with two different resolution parameters (0.1 and 0.25) to identify distinct cell populations. Uniform manifold approximation and projection (UMAP) was computed using <code>sc.tl.umap</code> for visualization, with parameters optimized for bacterial single-cell data. For comparison and validation purposes, we also performed the same analytical workflow using Seurat v5<span class="citation" data-cites="hao2024"><sup><a href="06-References.html#ref-hao2024" role="doc-biblioref">12</a></sup></span>, which yielded similar results and performance, confirming the robustness of our analytical approach across different computational frameworks.</p>
+<p><strong>Differential expression analysis</strong></p>
+<p>Differential gene expression analysis was performed using Scanpy’s gene ranking functions (<code>sc.tl.rank_genes_groups</code> and <code>sc.get.rank_genes_groups_df</code>) to compare expression patterns between experimental conditions. Statistical outputs included gene names, z-scores, log fold changes, p-values, and adjusted p-values for robust identification of differentially expressed genes.</p>
+</section>
+</section>
+<section id="analytical-scope-and-limitations" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-scope-and-limitations">Analytical scope and limitations</h3>
+<p>As mentioned in the pipeline description (<a href="#fig-pipeline" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>), this study focuses on the fundamental analytical steps: data quality assessment, basic clustering and visualization, and initial differential expression analysis between culture conditions. The more advanced analytical approaches such as pseudobulk analysis, trajectory inference, gene co-expression networks, and gene ontology enrichment were not pursued at this exploratory stage.</p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-gaisser2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Gaisser, K. D. <em>et al.</em> <a href="https://doi.org/10.1038/s41596-024-01007-w">High-throughput single-cell transcriptomics of bacteria using combinatorial barcoding</a>. <em>Nature Protocols</em> <strong>19</strong>, 3048–3084 (2024).</div>
+</div>
+<div id="ref-kuchina2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Kuchina, A. <em>et al.</em> <a href="https://doi.org/10.1126/science.aba5257">Microbial single-cell RNA sequencing by split-pool barcoding</a>. <em>Science</em> <strong>371</strong>, eaba5257 (2021).</div>
+</div>
+<div id="ref-nishimura2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Nishimura, M., Takahashi, K. &amp; Hosokawa, M. Recent advances in single-cell RNA sequencing of bacteria: Techniques, challenges, and applications. <em>Journal of Bioscience and Bioengineering</em> (2025) doi:<a href="https://doi.org/10.1016/j.jbiosc.2025.01.008">10.1016/j.jbiosc.2025.01.008</a>.</div>
+</div>
+<div id="ref-babraham" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">Babraham bioinformatics - FastQC a quality control tool for high throughput sequence data</a>.</div>
+</div>
+<div id="ref-ewels2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Ewels, P., Magnusson, M., Lundin, S. &amp; Käller, M. <a href="https://doi.org/10.1093/bioinformatics/btw354">MultiQC: summarize analysis results for multiple tools and samples in a single report</a>. <em>Bioinformatics (Oxford, England)</em> <strong>32</strong>, 3047–3048 (2016).</div>
+</div>
+<div id="ref-martin2011" class="csl-entry" role="listitem">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Martin, M. <a href="https://doi.org/10.14806/ej.17.1.200">Cutadapt removes adapter sequences from high-throughput sequencing reads</a>. <em>EMBnet.journal</em> <strong>17</strong>, 10–12 (2011).</div>
+</div>
+<div id="ref-chen2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Chen, S., Zhou, Y., Chen, Y. &amp; Gu, J. <a href="https://doi.org/10.1093/bioinformatics/bty560">Fastp: An ultra-fast all-in-one FASTQ preprocessor</a>. <em>Bioinformatics</em> <strong>34</strong>, i884–i890 (2018).</div>
+</div>
+<div id="ref-dobin2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Dobin, A. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/bts635">STAR: ultrafast universal RNA-seq aligner</a>. <em>Bioinformatics (Oxford, England)</em> <strong>29</strong>, 15–21 (2013).</div>
+</div>
+<div id="ref-kaminow" class="csl-entry" role="listitem">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Kaminow, B., Yunusov, D. &amp; Dobin, A. STARsolo: accurate, fast and versatile mapping/quantification of single-cell and single-nucleus RNA-seq data. doi:<a href="https://doi.org/10.1101/2021.05.05.442755">10.1101/2021.05.05.442755</a>.</div>
+</div>
+<div id="ref-kuijpers2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Kuijpers, L. <em>et al.</em> <a href="https://doi.org/10.1186/s12864-024-10285-3">Split pool ligation-based single-cell transcriptome sequencing (SPLiT-seq) data processing pipeline comparison</a>. <em>BMC Genomics</em> <strong>25</strong>, 361 (2024).</div>
+</div>
+<div id="ref-trapnell2010" class="csl-entry" role="listitem">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Trapnell, C. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.1621">Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation</a>. <em>Nature Biotechnology</em> <strong>28</strong>, 511–515 (2010).</div>
+</div>
+<div id="ref-hao2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Hao, Y. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-023-01767-y">Dictionary learning for integrative, multimodal and scalable single-cell analysis</a>. <em>Nature Biotechnology</em> <strong>42</strong>, 293–304 (2024).</div>
+</div>
+<div id="ref-virshup2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">Virshup, I., Rybakov, S., Theis, F. J., Angerer, P. &amp; Wolf, F. A. <a href="https://doi.org/10.21105/joss.04371">anndata: Access and store annotated data matrices</a>. <em>Journal of Open Source Software</em> <strong>9</strong>, 4371 (2024).</div>
+</div>
+<div id="ref-wolf2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">Wolf, F. A., Angerer, P. &amp; Theis, F. J. <a href="https://doi.org/10.1186/s13059-017-1382-0">SCANPY: Large-scale single-cell gene expression data analysis</a>. <em>Genome Biology</em> <strong>19</strong>, 15 (2018).</div>
+</div>
+<div id="ref-ostner" class="csl-entry" role="listitem">
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">Ostner, J. <em>et al.</em> BacSC: A general workflow for bacterial single-cell RNA sequencing data analysis. doi:<a href="https://doi.org/10.1101/2024.06.22.600071">10.1101/2024.06.22.600071</a>.</div>
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Biotin is a small vitamin molecule that binds with extremely high affinity to streptavidin. This biotin-streptavidin interaction is used for the selective capture and purification of biotinylated cDNA molecules on streptavidin-coated beads during the library preparation process.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>PhiX is a control library containing a known viral genome sequence that is spiked into sequencing runs to monitor sequencing quality, calibrate base calling, and provide a reference for quality control metrics. It helps ensure accurate sequencing performance and data quality assessment.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/01-Introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/03-Results.html" class="pagination-link" aria-label="Results">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/vgoupille/Rapport_stage/edit/main/chapters/02-Materials-and-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,382 @@
+# Appendix {#sec-appendix-a}
+
+## Media composition {#sec-appendix-media}
+
+The following table details the composition of the culture media used in this study.
+
+| Component    | M9F (mL) | M9 (mL)  |
+|--------------|----------|----------|
+| Base M9      | 125      | 125      |
+| Glucose 1M   | 2.5      | 0.25     |
+| MgSO4 1M     | 0.25     | 0.25     |
+| CaCl2 1M     | 0.0125   | 0.0125   |
+| FeCl3 100mM  | 0.1277   | 0        |
+| **Vf (mL)**  | **127.7625** | **125.5125** |
+
+: Media composition for bacterial culture experiments {#tbl-media}
+
+The M9 medium represents low nutrient conditions with minimal glucose and iron concentrations, while M9F medium provides high nutrient availability with elevated glucose and iron levels.
+
+## Trimming pipeline steps {#sec-appendix-trimming-steps}
+
+The following steps were performed sequentially for read trimming, as implemented in the custom pipeline (see process_sample.sh). Each step is performed in paired-end mode to maintain synchronization between R1 and R2 files.
+
+1. **TSO trimming (Cutadapt):**  
+   Removal of template-switching oligo (TSO) sequences from R1 using Cutadapt. This step targets TSO sequences at the 5' end of cDNA reads to eliminate technical artifacts.
+   ```bash
+   cutadapt -j ${SLURM_CPUS_PER_TASK} \
+       -g "AAGCAGTGGTATCAACGCAGAGTGAATGGG; min_overlap=6; max_errors=0.2" \
+       -g "CAGAGTGAATGGG; min_overlap=6; max_errors=0.2" \
+       --pair-filter=both \
+       -m 20: \
+       --too-short-output "${output_dir}/${sample_name}_R1_too_short.fastq.gz" \
+       --too-short-paired-output "${output_dir}/${sample_name}_R2_too_short.fastq.gz" \
+       -o "${r1_output}" \
+       -p "${r2_output}" \
+       "${r1_input}" "${r2_input}" \
+       --report=full \
+       --json "${output_dir}/${sample_name}_stats.json"
+   ```
+
+2. **Initial quality and adapter trimming (Fastp):**  
+   Removal of low-quality bases, polyG/polyX tails, and adapter sequences using Fastp. This step also removes the TruSeq Read 2 adapter and I7 adapter at the end of R1 if present.
+   ```bash
+   fastp \
+       -i "${r1_input}" \
+       -I "${r2_input}" \
+       -o "${r1_output}" \
+       -O "${r2_output}" \
+       --html "${output_dir}/${sample_name}_report.html" \
+       --json "${output_dir}/${sample_name}_report.json" \
+       --report_title "microSplit Initial Fastp Report - ${sample_name}" \
+       --compression 4 \
+       --verbose \
+       --unpaired1 "${unpaired1}" \
+       --unpaired2 "${unpaired2}" \
+       --length_required 91 \
+       --dont_overwrite \
+       --trim_front1 0 \
+       --trim_front2 0 \
+       --trim_tail1 0 \
+       --trim_tail2 0 \
+       --trim_poly_g \
+       --poly_g_min_len 10 \
+       --trim_poly_x \
+       --poly_x_min_len 12 \
+       --detect_adapter_for_pe \
+       --adapter_sequence=ATCTCGTATGCCGTCTTCTGCTTGA \
+       --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+   ```
+
+3. **PolyA trimming (Cutadapt):**  
+   Removal of polyA stretches (>=12 nt) and all downstream sequences from R1 using Cutadapt, targeting polyA sequences introduced during library preparation. This step cleans reads with short cDNA that extend into the R2 complementary region, using polyA as a repeat sequence (read_polyA from the library).
+   ```bash
+   cutadapt -j ${SLURM_CPUS_PER_TASK} \
+       -a "A{12}; min_overlap=12; max_errors=0.2" \
+       --pair-filter=both \
+       -m 20: \
+       --too-short-output "${output_dir}/${sample_name}_R1_too_short.fastq.gz" \
+       --too-short-paired-output "${output_dir}/${sample_name}_R2_too_short.fastq.gz" \
+       -o "${r1_output}" \
+       -p "${r2_output}" \
+       "${r1_input}" "${r2_input}" \
+       --report=full \
+       --json "${output_dir}/${sample_name}_stats.json"
+   ```
+   This step trims polyA15 and longer stretches that may remain after the previous steps.
+
+4. **Specific adapter trimming (Cutadapt):**  
+   Removal of the specific adapter sequence CCACAGTCTCAAGCAC from R1 using Cutadapt (corresponds to the round 2 linker sequence). This step uses the round 2 linker barcode as a reference point and eliminates everything behind it, particularly useful for cleaning random hexamer sequences with short cDNA that extend into R2 complementary sequences.
+   ```bash
+   cutadapt -j ${SLURM_CPUS_PER_TASK} \
+       -a "CCACAGTCTCAAGCAC; min_overlap=6; max_errors=0.1" \
+       --pair-filter=both \
+       -m 20: \
+       --too-short-output "${output_dir}/${sample_name}_R1_too_short.fastq.gz" \
+       --too-short-paired-output "${output_dir}/${sample_name}_R2_too_short.fastq.gz" \
+       -o "${r1_output}" \
+       -p "${r2_output}" \
+       "${r1_input}" "${r2_input}" \
+       --report=full \
+       --json "${output_dir}/${sample_name}_stats.json"
+   ```
+
+5. **Linker and additional adapter trimming (Cutadapt):**  
+   Removal of linker and additional adapter sequences from R1 using Cutadapt, to further clean the reads. This includes TruSeq Read 2 adapter (AGATCGGAAGAGCACACGTCTGAACTCCAGTCA), Round 3 linker (AGTCGTACGCCGATGCGAAACATCGGCCAC), and Round 2 linker (CCACAGTCTCAAGCACGTGGAT).  
+   This step ensures that any remaining linker or adapter sequences are removed for certain libraries.
+   ```bash
+   cutadapt -j ${SLURM_CPUS_PER_TASK} \
+       -a "CCACAGTCTCAAGCACGTGGAT; min_overlap=6; max_errors=0.2" \
+       -a "AGTCGTACGCCGATGCGAAACATCGGCCAC; min_overlap=6; max_errors=0.2" \
+       -a "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA; min_overlap=6; max_errors=0.2" \
+       --pair-filter=both \
+       -m 20: \
+       --too-short-output "${output_dir}/${sample_name}_R1_too_short.fastq.gz" \
+       --too-short-paired-output "${output_dir}/${sample_name}_R2_too_short.fastq.gz" \
+       -o "${r1_output}" \
+       -p "${r2_output}" \
+       "${r1_input}" "${r2_input}" \
+       --report=full \
+       --json "${output_dir}/${sample_name}_stats.json"
+   ```
+
+6. **Final quality and length filtering (Fastp):**  
+   Final trimming with Fastp, including additional adapter removal, trimming of fixed bases from the 5' and 3' ends, and filtering for minimum read length to ensure high-quality output for downstream analysis.  
+   This step trims R1 at both 5' and 3' ends to keep only cDNA and ensure clean sequences for downstream analysis.
+   ```bash
+   fastp \
+       -i "${r1_input}" \
+       -I "${r2_input}" \
+       -o "${r1_output}" \
+       -O "${r2_output}" \
+       --trim_front1 10 \
+       --trim_front2 0 \
+       --trim_tail1 16 \
+       --trim_tail2 0 \
+       --length_required 25 \
+       --detect_adapter_for_pe \
+       --adapter_sequence=AAGCAGTGGTATCAACGCAGAGTGAATGGG \
+       --adapter_sequence=CCACAGTCTCAAGCACGTGGAT \
+       --adapter_sequence=AGTCGTACGCCGATGCGAAACATCGGCCAC \
+       --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
+       --html "${output_dir}/${sample_name}_report.html" \
+       --json "${output_dir}/${sample_name}_report.json" \
+       --report_title "microSplit Final Fastp Report - ${sample_name}" \
+       --compression 4 \
+       --verbose
+   ```
+
+
+::: {.content-visible when-format="html"}
+#### MultiQC Report R1 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R1 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R1 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R1_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 Before Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 before trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_before_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+
+#### MultiQC Report R2 After Trimming
+
+<details>
+
+<summary>Click to view MultiQC report R2 after trimming</summary>
+
+<iframe src="../docs/multiqc_reports/multiqc_report_R2_after_trimming.html" width="100%" height="800px" frameborder="0" loading="lazy">
+
+</iframe>
+
+</details>
+:::
+
+
+
+##  STARsolo supplementary information {#sec-appendix-starsolo}
+
+### Computing environment
+
+The STARsolo analysis was performed on the GenOuest high-performance computing cluster using the following specifications:
+- **Node type**: bigmem (high-memory node)
+- **Memory allocation**: 500GB RAM
+- **CPU threads**: 64 parallel threads
+
+### STARsolo Command Line
+
+```bash
+STAR \
+--runThreadN 64 \
+--genomeDir /path/to/genome_index \
+--readFilesIn \
+/path/to/input/merged_trimmed-R1.fastq.gz \
+/path/to/input/merged_trimmed-R2.fastq.gz \
+--readFilesCommand gunzip -c \
+--outFileNamePrefix /path/to/output/starsolo_output/ \
+--outSAMtype BAM Unsorted \
+--outFilterScoreMinOverLread 0 \
+--outFilterMatchNmin 50 \
+--outFilterMatchNminOverLread 0 \
+--alignSJoverhangMin 1000 \
+--alignSJDBoverhangMin 1000 \
+--soloType CB_UMI_Complex \
+--soloCBwhitelist \
+/path/to/barcodes/barcode_round3.txt \
+/path/to/barcodes/barcode_round2.txt \
+/path/to/barcodes/barcode_round1.txt \
+--soloFeatures Gene GeneFull \
+--soloUMIdedup 1MM_All \
+--soloCBmatchWLtype 1MM \
+--soloCBposition 0_10_0_17 0_48_0_55 0_78_0_85 \
+--soloUMIposition 0_0_0_9 \
+--soloMultiMappers Uniform
+```
+
+### STARsolo Parameters Explanation
+
+This section details the key parameters used in our STARsolo analysis and their significance:
+
+#### General STAR Parameters
+
+-   `--runThreadN 64` : Use of 64 threads for parallel alignment
+-   `--genomeDir` : Path to the reference genome index
+-   `--readFilesIn` : Input FASTQ files (R1 and R2)
+-   `--readFilesCommand gunzip -c` : Command to decompress FASTQ.gz files
+-   `--outFileNamePrefix` : Prefix for output files
+-   `--outSAMtype BAM Unsorted` : Unsorted BAM output format
+
+#### Filtering Parameters
+
+-   `--outFilterScoreMinOverLread 0` : Minimum filtering score relative to read length
+-   `--outFilterMatchNmin 50` : Minimum number of matching bases for a valid alignment
+-   `--outFilterMatchNminOverLread 0` : Minimum match ratio relative to read length
+-   `--alignSJoverhangMin 1000` and `--alignSJDBoverhangMin 1000` : Maximum values for splice junction detection (set to maximum since bacterial genomes lack splicing)
+
+#### STARsolo-specific Parameters
+
+-   `--soloType CB_UMI_Complex` : Analysis type for cell barcodes (CB) and complex UMIs
+-   `--soloCBwhitelist` : List of valid cell barcodes for the three barcoding rounds
+-   `--soloFeatures Gene GeneFull` : Analysis of features at both gene and full transcript levels
+-   `--soloUMIdedup 1MM_All` : UMI deduplication with one mutation tolerance
+-   `--soloCBmatchWLtype 1MM` : Cell barcode matching with one mutation tolerance
+-   `--soloCBposition` : Cell barcode positions in reads (3 rounds)
+    -   Round 1: 0_10_0_17
+    -   Round 2: 0_48_0_55
+    -   Round 3: 0_78_0_85
+-   `--soloUMIposition 0_0_0_9` : UMI position in reads
+-   `--soloMultiMappers Uniform` : Uniform distribution of multi-mapped reads
+
+These parameters were chosen to optimize single-cell detection while maintaining high alignment quality and accounting for the complexity of our three-round barcoding protocol.
+
+Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.
+
+
+
+### STARsolo KneePant filtering results {#sec-appendix-starsolo-kneepant}
+
+As a comparison to our custom filtering approach, we also analyzed the data using STARsolo's default KneePant filtering method. The following table presents the results obtained with this alternative filtering strategy:
+
+| Metric                                    | Value         | Biological Significance |
+|-------------------------------------------|---------------|------------------------|
+| **Estimated Number of Cells**             | 27,203        | Large population for DoL analysis |
+| **Mean Reads per Cell**                   | 470           | Good coverage depth |
+| **Median Reads per Cell**                 | 381           | Consistent coverage |
+| **Mean UMI per Cell**                     | 465           | Reliable molecular counting |
+| **Median UMI per Cell**                   | 378           | Consistent UMI distribution |
+| **Mean Genes per Cell**                   | 296           | Rich transcriptional profiles |
+| **Median Genes per Cell**                 | 258           | Consistent gene detection |
+| **Total Genes Detected**                  | 6,035         | Comprehensive gene coverage |
+
+: STARsolo KneePant filtering results for comparison {#tbl-starsolo-kneepant}
+
+*Results obtained using STARsolo's default KneePant filtering method. This approach would have resulted in approximately 27,000 cells with higher average coverage per cell, but potentially at the cost of removing biologically relevant stressed cells that might exhibit lower quality metrics. In contrast, our custom filtering approach was specifically designed to target approximately 3,000 high-quality cells across all experimental conditions, prioritizing balanced representation of each condition*
+
+The KneePant method applies a knee plot analysis to identify the inflection point in the barcode rank plot, automatically determining the threshold between genuine cells and background noise. While this method provides a standardized approach to cell filtering, it may not be optimal for division of labor analysis where stressed cells with potentially lower quality metrics could represent important biological subpopulations. Our targeted approach of ~3,000 cells ensures sufficient statistical power for differential expression analysis while maintaining balanced representation across all experimental conditions (2 media × 3 biological replicates × 3 timepoints).
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Initial filtering with minimum 100 UMI per cell{#sec-appendix-cell-filtering}
+
+
+The first step involved filtering cells based on unique molecular identifier (UMI) counts with a minimum of 100 UMIs per cell.
+
+::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
+
+![Proportion of cell barcodes before and after filtering at 100 UMIs threshold for M9 and M9F culture conditions](../figures/filter_100UMIs_barplot.png){#fig-barplot}
+
+![Distribution of UMI and gene counts per cell after filtering at 100 UMIs for M9 and M9F conditions](../figures/violinplot_100UMIs.png){#fig-violin}
+
+![Total number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
+
+Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across all biological replicates in the single-cell RNA-seq experiment.
+:::
+
+*The initial filtering step removed cell barcodes with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.*
+
+
+
+
+## Single-cell RNA-seq Analysis Statistics {#sec-appendix-scrna-stats}
+
+The following table provides detailed statistical information about gene expression across different cell populations in the single-cell RNA-seq analysis of *P. brassicacearum*.
+
+![Tabular representation of gene expression statistics across cell populations](../figures/fig_sc/tab.png){#fig-tab-scrna}
+
+*Detailed statistical analysis of gene expression patterns across different cell populations identified in the single-cell RNA-seq experiment. This table provides comprehensive metrics including expression levels, statistical significance, and fold changes for genes showing differential expression between cell clusters.*
+
+## Principal Component Analysis (PCA) Supplementary Figures {#sec-appendix-pca}
+
+::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
+
+![Scaling of the data](../figures/fig_sc/scalling.png){#fig-scaling}
+
+![PCA analysis showing optimal number of principal components](../figures/fig_sc/pca_choose.png){#fig-pca-choose}
+
+
+![PCA confidence intervals for different cell populations](../figures/fig_sc/pca_conf.png){#fig-pca-conf}
+
+
+![PCA2 summary top](../figures/fig_sc/pca2_summary_top.png){#fig-pca2-summary-top}
+
+Principal Component Analysis (PCA) of single-cell RNA-seq data showing: A) Elbow plot for optimal PC selection, B) PCA plot colored by experimental conditions, and C) PCA plot with confidence intervals for cell populations
+
+:::
+
+*The PCA analysis reveals the dimensionality reduction and clustering patterns in the single-cell RNA-seq data. The scaling plot shows the normalization of gene expression data, while the elbow plot determines the optimal number of principal components for downstream analysis. The PCA plots colored by experimental conditions demonstrate the separation between different culture media and timepoints, providing insights into the transcriptional heterogeneity across experimental conditions.*
+
+
+
+
+# Supplementary UMAP Figures
+
+
+::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
+
+
+
+![Differential expression analysis between clusters](../figures/fig_sc/tab.png){#fig-diff-exp}
+
+
+
+![Heatmap visualization of gene expression patterns across different cell clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
+
+![Violin plot showing gene expression distribution across cell populations](../figures/fig_sc/violin.png){#fig-violin-sc}
+
+
+:::

@@ -19,15 +19,15 @@ book:
     - "chapters/02-Materials-and-methods.qmd"
     - "chapters/03-Results.qmd"
     - "chapters/04-Discussion.qmd"
-    - "chapters/05-Conclusion-and-future-work.qmd"
+    #- "chapters/05-Conclusion-and-future-work.qmd"
     - "chapters/06-References.qmd"
   appendices:
-    - text: "Annexe A "
-      file: "chapters/A-Appendix.qmd"
-    - text: "Annexe B"
-      file: "chapters/B-Appendix.qmd"
-    - text: "Annexe C"
-      file: "chapters/C-Appendix.qmd"
+    - text: "Appendix "
+      file: "chapters/Appendix.qmd"
+    #- text: "Annexe B"
+    #  file: "chapters/B-Appendix.qmd"
+    #- text: "Annexe C"
+    #  file: "chapters/C-Appendix.qmd"
     
   output-file: "thesis"
   sidebar:
@@ -78,16 +78,16 @@ format:
           file: docs/thesis.pdf
     comments:
       hypothesis: true
-    other-links:
-      - text: NASA Open Data
-        href: https://data.nasa.gov/
-    code-links:
-      - text: Data Import Code
-        icon: file-code
-        href: https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R
-      - text: script test
-        icon: file-code
-        href: data/test.py
+   # other-links:
+     # - text: NASA Open Data
+     #   href: https://data.nasa.gov/
+    # code-links:
+    #   - text: Data Import Code
+    #     icon: file-code
+    #     href: https://github.com/vgoupille/Analyse_data/blob/d77d4ff43dd2435951e23d63cc3e38a009653760/analyse/5_Filter_Seurat_Object/1_Filter-GeneType_SeuratObject.R
+      #- text: script test
+      #  icon: file-code
+      #  href: data/test.py
 
   bioinformatics-Msc-thesis-pdf:
     cross-references: true 
