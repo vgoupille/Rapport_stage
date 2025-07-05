@@ -17,6 +17,8 @@ The following table details the composition of the culture media used in this st
 
 The M9 medium represents low nutrient conditions with minimal glucose and iron concentrations, while M9F medium provides high nutrient availability with elevated glucose and iron levels.
 
+\newpage
+
 ## Trimming pipeline steps {#sec-appendix-trimming-steps}
 
 The following steps were performed sequentially for read trimming, as implemented in the custom pipeline (see process_sample.sh). Each step is performed in paired-end mode to maintain synchronization between R1 and R2 files.
@@ -146,6 +148,7 @@ The following steps were performed sequentially for read trimming, as implemente
        --verbose
    ```
 
+\newpage
 
 ##  STARsolo supplementary information {#sec-appendix-starsolo}
 
@@ -224,6 +227,7 @@ These parameters were chosen to optimize single-cell detection while maintaining
 
 Each step is performed in paired-end mode to ensure synchronization between R1 and R2 files. See the pipeline script for implementation details.
 
+\newpage
 
 ## Initial filtering with minimum 100 UMI per cell{#sec-appendix-cell-filtering}
 
@@ -232,9 +236,9 @@ The first step involved filtering cells based on unique molecular identifier (UM
 
 ::: {#fig-filter_100UMI layout="[[1,1], [1]] "}
 
-![Proportion of cell barcodes before and after filtering at 100 UMIs threshold for M9 and M9F culture conditions](../figures/filter_100UMIs_barplot.png){#fig-barplot}
+![Proportion of cell barcodes before and after filtering at 100 UMIs threshold for M9 and M9F culture conditions](../figures/filter_100UMIs_barplot.png){#fig-barplot width="90%"}
 
-![Distribution of UMI and gene counts per cell after filtering at 100 UMIs for M9 and M9F conditions](../figures/violinplot_100UMIs.png){#fig-violin}
+![Distribution of UMI and gene counts per cell after filtering at 100 UMIs for M9 and M9F conditions](../figures/violinplot_100UMIs.png){#fig-violin width="70%"}
 
 ![Total number of cell barcodes retained for each biological replicate (with technical replicates indicated within each bar) across different culture conditions and timepoints after filtering at 100 UMIs](../figures/splitplot_barcodes_100UMIs.png){#fig-splitplot-barcodes}
 
@@ -243,21 +247,21 @@ Filtering of low-quality cell barcodes with fewer than 100 UMIs per cell across 
 
 *The initial filtering step removed cell barcodes with fewer than 100 UMIs to eliminate artifacts. This threshold was chosen to remove very low-quality barcodes and to demonstrate clear differences in UMI distributions between the two culture conditions (M9 vs M9F), with M9 losing more BCs at this threshold, while also serving as a quality control metric to identify potentially failed technical replicates. The filtering revealed significant heterogeneity between conditions, with M9 medium showing fewer retained barcodes compared to M9F. This difference could reflect lower transcriptional activity under nutrient-limited conditions, but may also be related to other factors such as cell wall modifications affecting permeabilization efficiency, or increased cell death leading to differential recovery during washing steps. Additionally, technical replicates showed varying sensitivity to filtering, indicating heterogeneity in the ability to recover reads across different experimental batches. Notably, one technical replicate (replicate 3 of M9_C at T3) appeared to have failed, likely due to a pipetting error, and was consequently eliminated by this threshold.*
 
-
+\newpage
 
 ## PCA analysis Supplementary Figures {#sec-appendix-pca}
 
 ::: {#fig-suppl-single-cell-analysis layout="[[1, 1], [1], [1]]"}
 
-![Transformation of the data with the python version of scTransform (BacSC pipeline)](../figures/fig_sc/scalling.png){#fig-scaling}
+![Transformation of the data with the python version of scTransform (BacSC pipeline)](../figures/fig_sc/scalling.png){#fig-scaling width="70%"}
 
-![PCA analysis showing optimal number of principal components (based on the elbow method) the x axis is the number of principal components and the y axis is the explained variance](../figures/fig_sc/pca_choose.png){#fig-pca-choose}
-
-
-![Comparison of different principal component axes (PC1 vs PC2, PC2 vs PC3, etc.) to assess separation of experimental groups](../figures/fig_sc/pca_conf.png){#fig-pca-conf}
+![PCA analysis showing optimal number of principal components (based on the elbow method) the x axis is the number of principal components and the y axis is the explained variance](../figures/fig_sc/pca_choose.png){#fig-pca-choose width="50%"}
 
 
-![Heatmap of the top contributing genes (top 20) to the first principal components (PC2), based on scaled expression values (z-score per gene). Rows represent genes, columns represent single cells collected at each timepoints for all biological replicates. The legend at the right side of the heatmap shows the full name of the genes.](../figures/fig_sc/pca2_summary_top.png){#fig-pca2-summary-top}
+![Comparison of different principal component axes (PC1 vs PC2, PC2 vs PC3, etc.) to assess separation of experimental groups](../figures/fig_sc/pca_conf.png){#fig-pca-conf width="50%"}
+
+
+![Heatmap of the top contributing genes (top 20) to the first principal components (PC2), based on scaled expression values (z-score per gene). Rows represent genes, columns represent single cells collected at each timepoints for all biological replicates. The legend at the right side of the heatmap shows the full name of the genes.](../figures/fig_sc/pca2_summary_top.png){#fig-pca2-summary-top width="70%"}
 
 Supplementary figures for the PCA analysis
 
@@ -266,19 +270,20 @@ Supplementary figures for the PCA analysis
 *The PCA analysis supplementary figures provide detailed insights into the dimensionality reduction process. The scaling transformation (@fig-scaling) shows data normalization using scTransform from the BacSC pipeline. The elbow plot (@fig-pca-choose) demonstrates the optimal number of principal components selection based on explained variance. The PC comparison (@fig-pca-conf) evaluates different principal component combinations for group separation. The heatmap (@fig-pca2-summary-top) identifies the top contributing genes to PC2, revealing key transcriptional drivers of the observed separation between experimental conditions.*
 
 
+
 ## UMAP Analysis Supplementary Figures {#sec-appendix-umap}
 
 
-::: {#fig-suppl-single-cell-analysis layout="[[1], [1], [1]]"}
+::: {#fig-suppl-single-cell-analysis layout="[[1], [1,1]]"}
 
 
-![Table showing the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering, with gene names and significance thresholds (p-value adj) after FDR correction](../figures/fig_sc/tab.png){#fig-diff-exp}
+![Table showing the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering, with gene names and significance thresholds (p-value adj) after FDR correction](../figures/fig_sc/tab.png){#fig-diff-exp width="70%"}
 
 
 
-![Heatmap  with z-score scaling (ranging from 0 to 1) of the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering. Rows represent genes, columns represent single cells of both leiden clusters](../figures/fig_sc/heatmap.png){#fig-heatmap}
+![Heatmap  with z-score scaling (ranging from 0 to 1) of the top 50 most significant genes among differentially expressed genes between the two clusters identified by Leiden clustering. Rows represent genes, columns represent single cells of both leiden clusters](../figures/fig_sc/heatmap.png){#fig-heatmap width="70%"}
 
-![Violin plots showing five differentially expressed genes (rplA (30S ribosomal protein L1), ppsA, QLH64_28090 (phasin), rpoC, QLH64_04320 (flagellin)) between the two clusters identified by Leiden clustering](../figures/fig_sc/violin.png){#fig-violin-sc}
+![Violin plots showing five differentially expressed genes (rplA (30S ribosomal protein L1), ppsA, QLH64_28090 (phasin), rpoC, QLH64_04320 (flagellin)) between the two clusters identified by Leiden clustering](../figures/fig_sc/violin.png){#fig-violin-sc width="70%"}
 
 Supplementary figures from UMAP clustering analysis revealing transcriptional heterogeneity in *P. brassicacearum* populations under iron stress.
 
