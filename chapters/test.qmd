@@ -32,3 +32,113 @@ Several technological and methodological improvements could enhance future inves
 The complete testing of the bacSC pipeline would also be valuable, though modifications to the code were necessary due to incompatibilities with recent numpy versions for sparse matrix handling. Future analyses should focus on performing DOL analysis by studying each sample independently. Subsequently, comprehensive analyses including Gene Ontology, cell trajectory inference, metabolomic pathway analysis, and pseudobulk analysis would provide deeper insights into bacterial population dynamics .
 
 
+
+
+
+
+```{mermaid}
+flowchart TD
+ subgraph subGraph0["Input Samples"]
+        A1["BC_0076 FASTQ<br>R1 + R2 files"]
+        A2["BC_0077 FASTQ<br>R1 + R2 files"]
+        A3["BC_0078 FASTQ<br>R1 + R2 files"]
+        A4["BC_0079 FASTQ<br>R1 + R2 files"]
+  end
+    A1 --> B["Quality Control<br>FastQC and MultiQC"]
+    A2 --> B
+    A3 --> B
+    A4 --> B
+    B --> C["Trimming<br>Cutadapt and Fastp"]
+    C --> D["Post-trimming QC"]
+    D --> E["Merge R1 and R2 Files"]
+    E --> F["2 merged FASTQ<br>1 R1 + 1 R2"]
+    F --> G["STARsolo<br>Alignment + Barcode Reading<br>+ Cell-Gene Matrix"]
+    G --> H["Data Conversion<br>Seurat / AnnData objects"]
+    H --> H1["add metadata"]
+    H1 --> I["Quality Control <br>Cell and Gene filtering"]
+    I --> L1["Single-cell"] & L2["Pseudobulk"]
+    L1 --> K["Sub/population clustering"] & P["Diffusion pseudotime, Trajectory inference"]
+    K --> M["Differential Expression<br>Co-expression Analysis<br>Gene Ontology Analysis"]
+    L2 --> M
+     A1:::input
+     A2:::input
+     A3:::input
+     A4:::input
+     B:::preprocessing
+     C:::preprocessing
+     D:::preprocessing
+     E:::preprocessing
+     F:::merged
+     G:::alignment
+     H:::conversion
+     H1:::conversion
+     I:::filtering
+     L1:::preparation
+     L2:::preparation
+     K:::clustering
+     P:::trajectory
+     M:::analysis
+    classDef input fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef preprocessing fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef merged fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef alignment fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef conversion fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef filtering fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef clustering fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef preparation fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef analysis fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+    classDef trajectory fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+```
+
+
+```{mermaid}
+flowchart TD
+ subgraph subGraph0["Input Samples"]
+        A1["BC_0076 FASTQ<br>R1 + R2 files"]
+        A2["BC_0077 FASTQ<br>R1 + R2 files"]
+        A3["BC_0078 FASTQ<br>R1 + R2 files"]
+        A4["BC_0079 FASTQ<br>R1 + R2 files"]
+  end
+    A1 --> B["Quality Control<br>FastQC and MultiQC"]
+    A2 --> B
+    A3 --> B
+    A4 --> B
+    B --> C["Trimming<br>Cutadapt and Fastp"]
+    C --> D["Post-trimming QC"]
+    D --> E["Merge R1 and R2 Files"]
+    E --> F["2 merged FASTQ<br>1 R1 + 1 R2"]
+    F --> G["STARsolo<br>Alignment + Barcode Reading<br>+ Cell-Gene Matrix"]
+    G --> H["Data Conversion<br>Seurat / AnnData objects"]
+    H --> H1["add metadata"]
+    H1 --> I["Quality Control <br>Cell and Gene filtering"]
+    I --> L1["Single-cell"]
+    L1 --> K["Sub/population clustering"]
+    K --> M["Differential Expression"]
+     A1:::input
+     A2:::input
+     A3:::input
+     A4:::input
+     B:::preprocessing
+     C:::preprocessing
+     D:::preprocessing
+     E:::preprocessing
+     F:::merged
+     G:::alignment
+     H:::conversion
+     H1:::conversion
+     I:::filtering
+     L1:::preparation
+     K:::clustering
+     M:::analysis
+    classDef input fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef preprocessing fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef merged fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef alignment fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef conversion fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef filtering fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef clustering fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef preparation fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef analysis fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+
+```
