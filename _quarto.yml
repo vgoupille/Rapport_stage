@@ -78,9 +78,9 @@ format:
           file: docs/thesis.pdf
     comments:
       hypothesis: true
-   # other-links:
-     # - text: NASA Open Data
-     #   href: https://data.nasa.gov/
+    other-links:
+      - text: Oral Presentation
+        href: docs/Oral_Valentin_GOUPILLE.pdf
     # code-links:
     #   - text: Data Import Code
     #     icon: file-code

@@ -1,0 +1,93 @@
+---
+format: gfm
+---
+
+
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+
+
+```{r}
+#| include: false
+# Create pdf and png version of template
+# Set CRAN mirror
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+# Check and install required packages if needed
+if (!require("pdftools")) {
+  install.packages("pdftools")
+}
+if (!require("tidyverse")) {
+  install.packages("tidyverse") 
+}
+if (!require("quarto")) {
+  install.packages("quarto")
+}
+if (!require("magick")) {
+  install.packages("magick")
+}
+
+# Load required packages
+library(pdftools)
+library(tidyverse)
+library(quarto)
+library(magick)
+
+#create examples folder if it doesn't exist
+if (!dir.exists("examples")) {
+  dir.create("examples")
+}
+
+# Render template
+quarto_render(input = "index.qmd")
+# Convert rendered PDF to PNG
+image_read_pdf("docs/thesis.pdf", pages = 1) |>
+  image_montage(geometry = "x1000+25+35", tile = 1, bg = "grey92", shadow = TRUE) |>
+  image_convert(format = "png") |>
+  image_write("examples/template.png", )
+# Move pdf to examples folder
+fs::file_copy("docs/thesis.pdf", "examples/template.pdf", overwrite = TRUE)
+```
+
+```{r}
+#| include: false
+# Copy all .py files to docs/
+# Using R's file system functions
+py_files <- list.files(pattern = "\\.py$", recursive = TRUE)
+if (length(py_files) > 0) {
+  file.copy(py_files, "docs/", overwrite = TRUE)
+  message("✅ Fichiers .py copiés dans docs/")
+} else {
+  message("Aucun fichier .py trouvé")
+}
+
+# Copy oral presentation PDF to docs/
+oral_pdf <- "data/Oral_Valentin_GOUPILLE.pdf"
+if (file.exists(oral_pdf)) {
+  file.copy(oral_pdf, "docs/", overwrite = TRUE)
+  message("✅ Présentation orale copiée dans docs/")
+} else {
+  message("Fichier de présentation orale non trouvé")
+}
+```
+
+
+
+# University of Rennes Msc Thesis Template
+
+This is a Quarto template that assists you in creating a University of Rennes Msc Thesis. 
+
+## Installation
+
+You can create a thesis based on this template with the following command:
+
+```bash
+quarto use template quarto-vgoupille/Rapport_stage
+```
+
+This will install the extension and create the files that you can use as a starting place for your thesis.
+
+[![](examples/template.png)](examples/template.pdf)
+
+

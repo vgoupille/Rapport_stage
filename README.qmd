@@ -57,6 +57,15 @@ if (length(py_files) > 0) {
 } else {
   message("Aucun fichier .py trouvé")
 }
+
+# Copy oral presentation PDF to docs/
+oral_pdf <- "data/Oral_Valentin_GOUPILLE.pdf"
+if (file.exists(oral_pdf)) {
+  file.copy(oral_pdf, "docs/", overwrite = TRUE)
+  message("✅ Présentation orale copiée dans docs/")
+} else {
+  message("Fichier de présentation orale non trouvé")
+}
 ```
 
 # University of Rennes Msc Thesis Template
