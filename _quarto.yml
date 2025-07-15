@@ -80,7 +80,7 @@ format:
       hypothesis: true
     other-links:
       - text: Oral Presentation
-        href: docs/Oral_Valentin_GOUPILLE.pdf
+        href: Oral_Valentin_GOUPILLE.pdf
     # code-links:
     #   - text: Data Import Code
     #     icon: file-code
